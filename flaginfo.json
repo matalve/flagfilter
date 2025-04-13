@@ -600,7 +600,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Dominica"
   },
   {
-    "tags": "dominican republic blue red white weapon weapons spear spears cross book bible ribbon ribbons banner banners cross leaf leaves text motto name flag nationalflag caribbean northa",
+    "tags": "dominican republic blue red white weapon spear spears cross book bible ribbon ribbons banner banners cross leaf leaves text motto name flag nationalflag caribbean northa",
     "shortname": "do",
     "name": "Dominican Republic",
     "proportion": "2:3",
@@ -620,7 +620,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Algeria"
   },
   {
-    "tags": "ecuador yellow blue red horizontal stripes weapon weapons axe axes halberd halberds river mountain chimborazo snow smoke boat ship sun leaf vegetation banner bird condor animal flag nationalflag southa",
+    "tags": "ecuador yellow blue red horizontal stripes weapon axe axes halberd halberds river mountain chimborazo snow smoke boat ship sun leaf vegetation banner bird condor animal flag nationalflag southa",
     "shortname": "ec",
     "name": "Ecuador",
     "proportion": "2:3",
@@ -700,7 +700,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Finland"
   },
   {
-    "tags": "fiji blue white red cross british bird laurel vegetation leaf leaves animal ship people men text banner ribbon weapon weapons spear club lion banana bananas tree trees skirt skirts oceania",
+    "tags": "fiji blue white red cross british bird laurel vegetation leaf leaves animal ship people men text banner ribbon weapon spear club lion banana bananas tree trees skirt skirts oceania",
     "shortname": "fj",
     "name": "Fiji",
     "proportion": "1:2",
@@ -940,7 +940,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_South_Georgia_and_the_South_Sandwich_Islands"
   },
   {
-    "tags": "guatemala blue white vertical stripes weapon weapons sword swords rifle rifles remington laurel gun guns bayonette bayonettes leaf vegetation bird quetzal animal text motto scroll berry berries northa",
+    "tags": "guatemala blue white vertical stripes weapon sword swords rifle rifles remington laurel gun guns bayonette bayonettes leaf vegetation bird quetzal animal text motto scroll berry berries northa",
     "shortname": "gt",
     "name": "Guatemala",
     "proportion": "5:8",
@@ -1010,7 +1010,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Honduras"
   },
   {
-    "tags": "croatia red white blue horizontal squares chessboard shield star moon crescent leopard leopards lion lions goat pine marten stripes animal pan-slavic europe",
+    "tags": "croatia red white blue horizontal squares chessboard shield star moon crescent leopard leopards lion lions goat marten stripes animal pan-slavic europe",
     "shortname": "hr",
     "name": "Croatia",
     "proportion": "1:2",
@@ -1020,7 +1020,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Croatia"
   },
   {
-    "tags": "haiti blue red white horizontal stripes vegetation tree palm cannon cannons weapon weapons gun spear spears axe axes cannonball cannonballs hat cap phrygian instrument drum trumpet trumpets leaf text motto banner flag nationalflag caribbean northa",
+    "tags": "haiti blue red white horizontal stripes vegetation tree palm cannon cannons weapon gun spear spears axe axes cannonball cannonballs hat cap phrygian instrument drum trumpet trumpets leaf text motto banner flag nationalflag caribbean northa",
     "shortname": "ht",
     "name": "Haiti",
     "proportion": "3:5",
@@ -1090,7 +1090,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_India"
   },
   {
-    "tags": "british indian ocean territory blue red white cross crown waves palm tree africa",
+    "tags": "british indian ocean territory blue red white cross crown waves vegetation palm tree africa",
     "shortname": "io",
     "name": "British Indian Ocean Territory",
     "proportion": "1:2",
@@ -1180,7 +1180,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Japan"
   },
   {
-    "tags": "kenya black white red green weapon weapons spear spears shield maasai horizontal stripes pan-african africa",
+    "tags": "kenya black white red green weapon spear spears shield maasai horizontal stripes pan-african africa",
     "shortname": "ke",
     "name": "Kenya",
     "proportion": "2:3",
@@ -1190,7 +1190,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Kenya"
   },
   {
-    "tags": "kyrgyzstan red yellow sun circle yurt tent asia",
+    "tags": "kyrgyzstan red yellow sun circle yurt tent building asia",
     "shortname": "kg",
     "name": "Kyrgyzstan",
     "proportion": "3:5",
@@ -1300,7 +1300,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Laos"
   },
   {
-    "tags": "lebanon red white green horizontal stripes tree cedar asia",
+    "tags": "lebanon red white green horizontal stripes vegetation tree cedar asia",
     "shortname": "lb",
     "name": "Lebanon",
     "proportion": "2:3",
@@ -1330,7 +1330,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Liechtenstein"
   },
   {
-    "tags": "sri lanka yellow green orange red maroon vertical stripes animal lion sword kastane leaf leaves asia",
+    "tags": "sri lanka yellow green orange red maroon vertical stripes animal lion weapon sword kastane leaf vegetation leaves asia",
     "shortname": "lk",
     "name": "Sri Lanka",
     "proportion": "1:2",
@@ -1420,7 +1420,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Monaco"
   },
   {
-    "tags": "moldova blue yellow red vertical stripes star moon crescent bird eagle auroch animal shield cross olive branch rose flower europe",
+    "tags": "moldova blue yellow red vertical stripes star moon crescent bird eagle auroch animal shield cross vegetation olive branch rose flower europe",
     "shortname": "md",
     "name": "Moldova",
     "proportion": "1:2",
@@ -1509,7 +1509,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Mongolia"
   },
   {
-    "tags": "macau green white star stars horizontal stripes lotus flower bridge waves asia",
+    "tags": "macau green white star stars horizontal stripes lotus flower vegetation bridge waves asia",
     "shortname": "mo",
     "name": "Macau",
     "proportion": "2:3",
@@ -1549,7 +1549,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Mauritania"
   },
   {
-    "tags": "montserrat blue white red cross british eirinn éirinn harp person northa",
+    "tags": "montserrat blue white red cross british eirinn éirinn harp instrument people person northa",
     "shortname": "ms",
     "name": "Montserrat",
     "proportion": "1:2",
@@ -1599,7 +1599,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Malawi"
   },
   {
-    "tags": "mexico green white red vertical stripes bird eagle falcon animal cactus snake rock lake leaf leaves banner flag nationalflag northa",
+    "tags": "mexico green white red vertical stripes bird eagle falcon animal vegetation cactus snake rock lake leaf leaves banner flag nationalflag northa",
     "shortname": "mx",
     "name": "Mexico",
     "proportion": "4:7",
@@ -1659,7 +1659,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Niger"
   },
   {
-    "tags": "norfolk island green white vertical stripes tree pine oceania",
+    "tags": "norfolk island green white vertical stripes vegetation tree pine oceania",
     "shortname": "nf",
     "name": "Norfolk Island",
     "proportion": "1:2",
@@ -1749,7 +1749,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_New_Zealand"
   },
   {
-    "tags": "oman red white green weapon weapons sword swords dagger khanjar horizontal asia",
+    "tags": "oman red white green weapon sword swords dagger khanjar horizontal asia",
     "shortname": "om",
     "name": "Oman",
     "proportion": "1:2",
@@ -1829,7 +1829,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Poland"
   },
   {
-    "tags": "saint pierre and miquelon white blue green yellow red black triangle triangles cross ship waves animal northa",
+    "tags": "saint pierre and miquelon white blue green yellow red black triangle triangles cross boat ship waves animal northa",
     "shortname": "pm",
     "name": "Saint Pierre and Miquelon",
     "proportion": "2:3",
@@ -1839,7 +1839,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Saint_Pierre_and_Miquelon"
   },
   {
-    "tags": "pitcairn islands blue white red yellow green cross bible anchor flower helmet wheelbarrow banner vines british oceania",
+    "tags": "pitcairn islands blue white red yellow green cross bible book anchor vegetation flower helmet wheelbarrow banner vines british oceania",
     "shortname": "pn",
     "name": "Pitcairn Islands",
     "proportion": "REPLACE",
@@ -1889,7 +1889,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Palau"
   },
   {
-    "tags": "paraguay red white blue horizontal stripes circle star leaf olive palm branch branches text name southa",
+    "tags": "paraguay red white blue horizontal stripes circle star vegetation leaf olive palm branch branches text name southa",
     "shortname": "py",
     "name": "Paraguay",
     "proportion": "11:20",
@@ -1899,7 +1899,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Paraguay"
   },
   {
-    "tags": "qatar white maroon purple triangle triangles saw serrated asia",
+    "tags": "qatar white maroon purple triangle triangles tool saw serrated asia",
     "shortname": "qa",
     "name": "Qatar",
     "proportion": "11:28",
@@ -1909,7 +1909,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Qatar"
   },
   {
-    "tags": "réunion reunion red blue yellow triangle triangles volcano pyramid sunbeams beams africa",
+    "tags": "réunion reunion red blue yellow triangle triangles volcano pyramid building sunbeams beams africa",
     "shortname": "re",
     "name": "Réunion",
     "proportion": "2:3",
@@ -2019,7 +2019,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Singapore"
   },
   {
-    "tags": "saint helena brown blue white red cross british ship flag england rocks bird plover waves africa",
+    "tags": "saint helena brown blue white red cross british ship boat flag england rocks animal bird plover waves africa",
     "shortname": "sh",
     "name": "Saint Helena",
     "proportion": "1:2",
@@ -2069,7 +2069,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Sierra_Leone"
   },
   {
-    "tags": "san marino white blue horizontal stripes laurel oak leaf leaves mountain mountains crown banner ribbon cross text motto building castle castles three europe",
+    "tags": "san marino white blue horizontal stripes vegetation laurel oak leaf leaves mountain mountains crown banner ribbon cross text motto building castle castles three europe",
     "shortname": "sm",
     "name": "San Marino",
     "proportion": "3:4",
@@ -2129,7 +2129,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_S%C3%A3o_Tom%C3%A9_and_Pr%C3%ADncipe"
   },
   {
-    "tags": "el salvador blue white horizontal stripes leaf leaves mountain mountains hill hills phrygian cap text motto name flag nationalflag northa",
+    "tags": "el salvador blue white horizontal stripes vegetation leaf leaves mountain mountains hill hills phrygian cap hat text motto name flag nationalflag northa",
     "shortname": "sv",
     "name": "El Salvador",
     "proportion": "189:335",
@@ -2139,7 +2139,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_El_Salvador"
   },
   {
-    "tags": "sint maarten blue red white yellow triangle horizontal stripes animal pelican flower sage text motto banner ribbon building courthouse caribbean northa",
+    "tags": "sint maarten blue red white yellow triangle horizontal stripes animal pelican vegetation flower sage text motto banner ribbon building courthouse caribbean northa",
     "shortname": "sx",
     "name": "Sint Maarten",
     "proportion": "2:3",
@@ -2159,7 +2159,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Syria"
   },
   {
-    "tags": "eswatini swaziland blue yellow red white black shield nguni weapon weapons spear spears injobo horizontal stripes africa",
+    "tags": "eswatini swaziland blue yellow red white black shield nguni weapon spear spears injobo horizontal stripes africa",
     "shortname": "sz",
     "name": "Eswatini",
     "proportion": "2:3",
@@ -2169,7 +2169,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Eswatini"
   },
   {
-    "tags": "turks and caicos islands blue white red yellow cross british animal conch shell lobster cactus melocactus caribbean northa",
+    "tags": "turks and caicos islands blue white red yellow cross british animal conch shell lobster cactus vegetation melocactus caribbean northa",
     "shortname": "tc",
     "name": "Turks and Caicos Islands",
     "proportion": "1:2",
@@ -2249,7 +2249,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_East_Timor"
   },
   {
-    "tags": "turkmenistan green red vertical stripe carpet moon crescent star stars olive branch branches wreath asia",
+    "tags": "turkmenistan green red vertical stripe carpet moon crescent star stars vegetation olive branch branches wreath asia",
     "shortname": "tm",
     "name": "Turkmenistan",
     "proportion": "2:3",
@@ -2398,7 +2398,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Vatican_City"
   },
   {
-    "tags": "saint vincent grenadines blue yellow green vertical stripes diamond diamonds v caribbean northa",
+    "tags": "saint vincent grenadines blue yellow green vertical stripes diamond diamonds caribbean northa",
     "shortname": "vc",
     "name": "Saint Vincent and the Grenadines",
     "proportion": "2:3",
@@ -2418,7 +2418,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Venezuela"
   },
   {
-    "tags": "british virgin islands white blue red green yellow cross woman person dress saint ursula oil lamp lamps text motto banner ribbon shield northa",
+    "tags": "british virgin islands white blue red green yellow cross woman person people dress saint ursula oil lamp lamps text motto banner ribbon shield northa",
     "shortname": "vg",
     "name": "British Virgin Islands",
     "proportion": "1:2",
@@ -2428,7 +2428,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_British_Virgin_Islands"
   },
   {
-    "tags": "united states virgin islands white blue yellow red eagle bird laurel weapon weapons arrow arrows shield text v i vertical stripes northa",
+    "tags": "united states virgin islands white blue yellow red animal eagle bird vegetation laurel weapon arrow arrows shield text vertical stripes northa",
     "shortname": "vi",
     "name": "United States Virgin Islands",
     "proportion": "2:3",
@@ -2448,7 +2448,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Vietnam"
   },
   {
-    "tags": "vanuatu red green yellow black triangle triangles tusk leaf leaves horizontal oceania",
+    "tags": "vanuatu red green yellow black triangle triangles tusk vegetation leaf leaves horizontal oceania",
     "shortname": "vu",
     "name": "Vanuatu",
     "proportion": "19:36",
@@ -2498,7 +2498,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Yemen"
   },
   {
-    "tags": "mayotte white red blue yellow grey text name banner ribbon animal seahorse seahorses flower flowers ylang-ylang moon crescent star stars africa",
+    "tags": "mayotte white red blue yellow grey text name banner ribbon animal seahorse seahorses vegetation flower flowers ylang-ylang moon crescent star stars africa",
     "shortname": "yt",
     "name": "Mayotte",
     "proportion": "REPLACE",
