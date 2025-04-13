@@ -1,0 +1,7 @@
+
+text, motto, whitney smith, banner, name
+pattern: cross, vertical, horizontal, triangle, stripes, diagonal, 
+color symbolism: pan-arab, british, pan-african, pan-slavic, 
+motive: flag, building, sun, weapon, star, map, face, moon, circle, tool, crown, fleur-de-lis, boat, animal, people, vegetation, mountain, book, key, fire, shield, instrument, wheel
+nordic, caribbean, 
+religious: xxxx
