@@ -1,6 +1,6 @@
 
 text: text, motto, name, ribbon
-pattern: cross, vertical, horizontal, triangle, stripes, diagonal, whitney_smith
+pattern: cross, vertical, horizontal, triangle, diagonal, whitney_smith
 color symbolism: pan-arab, british, pan-african, pan-slavic, 
 
 symbol: flag, sun, star, moon, circle, fleur-de-lis, waves

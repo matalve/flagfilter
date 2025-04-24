@@ -60,7 +60,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Albania"
   },
   {
-    "tags": "armenia red blue orange horizontal stripes",
+    "tags": "armenia red blue orange horizontal",
     "shortname": "am",
     "name": "Armenia",
     "proportion": "1:2",
@@ -70,7 +70,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Armenia"
   },
   {
-    "tags": "angola red black star weapon horizontal stripes",
+    "tags": "angola red black star weapon horizontal",
     "shortname": "ao",
     "name": "Angola",
     "proportion": "2:3",
@@ -90,7 +90,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Antarctica"
   },
   {
-    "tags": "argentina blue white sun horizontal stripes face",
+    "tags": "argentina blue white sun horizontal face",
     "shortname": "ar",
     "name": "Argentina",
     "proportion": "5:8",
@@ -110,7 +110,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_American_Samoa"
   },
   {
-    "tags": "austria red white horizontal stripes",
+    "tags": "austria red white horizontal",
     "shortname": "at",
     "name": "Austria",
     "proportion": "2:3",
@@ -130,7 +130,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Australia"
   },
   {
-    "tags": "aruba blue yellow red white star horizontal stripes whitney_smith",
+    "tags": "aruba blue yellow red white star horizontal whitney_smith",
     "shortname": "aw",
     "name": "Aruba",
     "proportion": "2:3",
@@ -150,7 +150,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_%C3%85land"
   },
   {
-    "tags": "azerbaijan blue red green moon star horizontal stripes",
+    "tags": "azerbaijan blue red green moon star horizontal",
     "shortname": "az",
     "name": "Azerbaijan",
     "proportion": "1:2",
@@ -170,7 +170,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Bosnia_and_Herzegovina"
   },
   {
-    "tags": "barbados blue yellow weapon vertical stripes",
+    "tags": "barbados blue yellow weapon vertical",
     "shortname": "bb",
     "name": "Barbados",
     "proportion": "2:3",
@@ -190,7 +190,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Bangladesh"
   },
   {
-    "tags": "belgium black yellow red vertical stripes",
+    "tags": "belgium black yellow red vertical",
     "shortname": "be",
     "name": "Belgium",
     "proportion": "13:15",
@@ -200,7 +200,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Belgium"
   },
   {
-    "tags": "burkina faso red green yellow star horizontal stripes pan-african",
+    "tags": "burkina faso red green yellow star horizontal pan-african",
     "shortname": "bf",
     "name": "Burkina Faso",
     "proportion": "2:3",
@@ -210,7 +210,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Burkina_Faso"
   },
   {
-    "tags": "bulgaria white green red horizontal stripes",
+    "tags": "bulgaria white green red horizontal",
     "shortname": "bg",
     "name": "Bulgaria",
     "proportion": "3:5",
@@ -240,7 +240,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Burundi"
   },
   {
-    "tags": "benin green yellow red horizontal stripes pan-african",
+    "tags": "benin green yellow red horizontal pan-african",
     "shortname": "bj",
     "name": "Benin",
     "proportion": "2:3",
@@ -250,7 +250,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Benin"
   },
   {
-    "tags": "saint barthélemy barthelemy white blue red yellow horizontal stripes animal bird crown building text cross fleur-de-lis star ribbon",
+    "tags": "saint barthélemy barthelemy white blue red yellow horizontal animal bird crown building text cross fleur-de-lis star ribbon",
     "shortname": "bl",
     "name": "Saint Barthélemy",
     "proportion": "None",
@@ -270,7 +270,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Bermuda"
   },
   {
-    "tags": "brunei yellow black white red stripes triangle text motto name hand ribbon moon flag diagonal",
+    "tags": "brunei yellow black white red triangle text motto name hand ribbon moon flag diagonal",
     "shortname": "bn",
     "name": "Brunei",
     "proportion": "1:2",
@@ -280,7 +280,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Brunei"
   },
   {
-    "tags": "bolivia red yellow green horizontal stripes",
+    "tags": "bolivia red yellow green horizontal",
     "shortname": "bo",
     "name": "Bolivia",
     "proportion": "15:22",
@@ -290,7 +290,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Bolivia"
   },
   {
-    "tags": "bonaire blue white yellow red black triangle stripes star whitney_smith diagonal",
+    "tags": "bonaire blue white yellow red black triangle star whitney_smith diagonal",
     "shortname": "bq",
     "name": "Bonaire",
     "proportion": "2:3",
@@ -310,7 +310,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Brazil"
   },
   {
-    "tags": "bahamas black blue yellow triangle horizontal stripes",
+    "tags": "bahamas black blue yellow triangle horizontal",
     "shortname": "bs",
     "name": "Bahamas",
     "proportion": "1:2",
@@ -340,7 +340,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Bouvet_Island"
   },
   {
-    "tags": "botswana blue white black horizontal stripes",
+    "tags": "botswana blue white black horizontal",
     "shortname": "bw",
     "name": "Botswana",
     "proportion": "2:3",
@@ -350,7 +350,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Botswana"
   },
   {
-    "tags": "belarus red green white horizontal stripes",
+    "tags": "belarus red green white horizontal",
     "shortname": "by",
     "name": "Belarus",
     "proportion": "1:2",
@@ -360,7 +360,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Belarus"
   },
   {
-    "tags": "belize white red white circle weapon tool horizontal stripes text motto ribbon vegetation boat waves human face",
+    "tags": "belize white red white circle weapon tool horizontal text motto ribbon vegetation boat waves human face",
     "shortname": "bz",
     "name": "Belize",
     "proportion": "3:5",
@@ -370,7 +370,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Belize"
   },
   {
-    "tags": "canada red white vertical stripes vegetation",
+    "tags": "canada red white vertical vegetation",
     "shortname": "ca",
     "name": "Canada",
     "proportion": "1:2",
@@ -390,7 +390,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Cocos_(Keeling)_Islands"
   },
   {
-    "tags": "congo blue yellow red triangle star stripes diagonal",
+    "tags": "congo blue yellow red triangle star diagonal",
     "shortname": "cd",
     "name": "Democratic Republic of the Congo",
     "proportion": "3:4",
@@ -400,7 +400,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Democratic_Republic_of_the_Congo"
   },
   {
-    "tags": "central africa blue white green yellow red star horizontal stripes pan-african",
+    "tags": "central africa blue white green yellow red star horizontal pan-african",
     "shortname": "cf",
     "name": "Central African Republic",
     "proportion": "3:5",
@@ -410,7 +410,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Central_African_Republic"
   },
   {
-    "tags": "congo brazzaville green yellow red triangle stripes diagonal pan-african",
+    "tags": "congo brazzaville green yellow red triangle diagonal pan-african",
     "shortname": "cg",
     "name": "Republic of the Congo",
     "proportion": "2:3",
@@ -430,7 +430,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Switzerland"
   },
   {
-    "tags": "côte d'ivoire cote divoire ivory coast orange white green vertical stripes",
+    "tags": "côte d'ivoire cote divoire ivory coast orange white green vertical",
     "shortname": "ci",
     "name": "Côte d'Ivoire (Ivory Coast)",
     "proportion": "2:3",
@@ -450,7 +450,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Cook_Islands"
   },
   {
-    "tags": "chile red white blue star horizontal stripes",
+    "tags": "chile red white blue star horizontal",
     "shortname": "cl",
     "name": "Chile",
     "proportion": "2:3",
@@ -460,7 +460,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Chile"
   },
   {
-    "tags": "cameroon green red yellow vertical stripes star pan-african",
+    "tags": "cameroon green red yellow vertical star pan-african",
     "shortname": "cm",
     "name": "Cameroon",
     "proportion": "2:3",
@@ -480,7 +480,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_China"
   },
   {
-    "tags": "colombia yellow blue red horizontal stripes",
+    "tags": "colombia yellow blue red horizontal",
     "shortname": "co",
     "name": "Colombia",
     "proportion": "2:3",
@@ -490,7 +490,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Colombia"
   },
   {
-    "tags": "costa rica blue white red vegetation star mountain horizontal stripes text name ribbon flag",
+    "tags": "costa rica blue white red vegetation star mountain horizontal text name ribbon flag",
     "shortname": "cr",
     "name": "Costa Rica",
     "proportion": "3:5",
@@ -500,7 +500,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Costa_Rica"
   },
   {
-    "tags": "cuba blue white red triangle star horizontal stripes",
+    "tags": "cuba blue white red triangle star horizontal",
     "shortname": "cu",
     "name": "Cuba",
     "proportion": "1:2",
@@ -510,7 +510,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Cuba"
   },
   {
-    "tags": "cape verde blue white red yellow horizontal stripes star",
+    "tags": "cape verde blue white red yellow horizontal star",
     "shortname": "cv",
     "name": "Cape Verde",
     "proportion": "2:3",
@@ -520,7 +520,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Cape_Verde"
   },
   {
-    "tags": "curaçao curacao blue yellow white star horizontal stripes",
+    "tags": "curaçao curacao blue yellow white star horizontal",
     "shortname": "cw",
     "name": "Curaçao",
     "proportion": "2:3",
@@ -550,7 +550,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Cyprus"
   },
   {
-    "tags": "czechia white red blue triangle horizontal stripes pan-slavic",
+    "tags": "czechia white red blue triangle horizontal pan-slavic",
     "shortname": "cz",
     "name": "Czech Republic",
     "proportion": "2:3",
@@ -560,7 +560,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Czech_Republic"
   },
   {
-    "tags": "germany black red yellow horizontal stripes",
+    "tags": "germany black red yellow horizontal",
     "shortname": "de",
     "name": "Germany",
     "proportion": "3:5",
@@ -570,7 +570,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Germany"
   },
   {
-    "tags": "djibouti white blue green red triangle horizontal stripes star",
+    "tags": "djibouti white blue green red triangle horizontal star",
     "shortname": "dj",
     "name": "Djibouti",
     "proportion": "2:3",
@@ -590,7 +590,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Denmark"
   },
   {
-    "tags": "dominica green yellow black white red purple star circle bird animal horizontal vertical stripes",
+    "tags": "dominica green yellow black white red purple star circle bird animal horizontal vertical",
     "shortname": "dm",
     "name": "Dominica",
     "proportion": "1:2",
@@ -610,7 +610,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Dominican_Republic"
   },
   {
-    "tags": "algeria green white red vertical stripes star moon",
+    "tags": "algeria green white red vertical star moon",
     "shortname": "dz",
     "name": "Algeria",
     "proportion": "2:3",
@@ -620,7 +620,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Algeria"
   },
   {
-    "tags": "ecuador yellow blue red horizontal stripes weapon mountain boat sun vegetation ribbon animal bird flag",
+    "tags": "ecuador yellow blue red horizontal weapon mountain boat sun vegetation ribbon animal bird flag",
     "shortname": "ec",
     "name": "Ecuador",
     "proportion": "2:3",
@@ -630,7 +630,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Ecuador"
   },
   {
-    "tags": "estonia blue black white horizontal stripes",
+    "tags": "estonia blue black white horizontal",
     "shortname": "ee",
     "name": "Estonia",
     "proportion": "7:11",
@@ -640,7 +640,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Estonia"
   },
   {
-    "tags": "egypt red white black yellow horizontal stripes bird animal text name pan-arab",
+    "tags": "egypt red white black yellow horizontal bird animal text name pan-arab",
     "shortname": "eg",
     "name": "Egypt",
     "proportion": "2:3",
@@ -650,7 +650,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Egypt"
   },
   {
-    "tags": "western sahara black white green red triangle horizontal stripes moon star pan-arab",
+    "tags": "western sahara black white green red triangle horizontal moon star pan-arab",
     "shortname": "eh",
     "name": "Western Sahara",
     "proportion": "1:2",
@@ -670,7 +670,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Eritrea"
   },
   {
-    "tags": "spain red yellow horizontal vertical stripes building crown ribbon waves animal vegetation cross fleur-de-lis text motto",
+    "tags": "spain red yellow horizontal vertical building crown ribbon waves animal vegetation cross fleur-de-lis text motto",
     "shortname": "es",
     "name": "Spain",
     "proportion": "2:3",
@@ -680,7 +680,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Spain"
   },
   {
-    "tags": "ethiopia green yellow red blue triangle star circle horizontal stripes",
+    "tags": "ethiopia green yellow red blue triangle star circle horizontal",
     "shortname": "et",
     "name": "Ethiopia",
     "proportion": "1:2",
@@ -740,7 +740,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Faroe_Islands"
   },
   {
-    "tags": "france blue white red vertical stripes",
+    "tags": "france blue white red vertical",
     "shortname": "fr",
     "name": "France",
     "proportion": "2:3",
@@ -750,7 +750,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_France"
   },
   {
-    "tags": "gabon green yellow blue horizontal stripes",
+    "tags": "gabon green yellow blue horizontal",
     "shortname": "ga",
     "name": "Gabon",
     "proportion": "3:4",
@@ -800,7 +800,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Scotland"
   },
   {
-    "tags": "wales white green red animal horizontal stripes",
+    "tags": "wales white green red animal horizontal",
     "shortname": "gb-wls",
     "name": "Wales",
     "proportion": "3:5",
@@ -860,7 +860,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Ghana"
   },
   {
-    "tags": "gibraltar white red horizontal stripes building",
+    "tags": "gibraltar white red horizontal building",
     "shortname": "gi",
     "name": "Gibraltar",
     "proportion": "1:2",
@@ -870,7 +870,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Gibraltar"
   },
   {
-    "tags": "greenland red white horizontal stripes circle",
+    "tags": "greenland red white horizontal circle",
     "shortname": "gl",
     "name": "Greenland",
     "proportion": "2:3",
@@ -880,7 +880,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Greenland"
   },
   {
-    "tags": "gambia red white blue green horizontal stripes pan-african",
+    "tags": "gambia red white blue green horizontal pan-african",
     "shortname": "gm",
     "name": "Gambia",
     "proportion": "2:3",
@@ -890,7 +890,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Gambia"
   },
   {
-    "tags": "guinea red yellow green vertical stripes africa pan-african",
+    "tags": "guinea red yellow green vertical africa pan-african",
     "shortname": "gn",
     "name": "Guinea",
     "proportion": "2:3",
@@ -900,7 +900,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Guinea"
   },
   {
-    "tags": "guadeloupe blue black yellow sun fleur-de-lis horizontal stripes",
+    "tags": "guadeloupe blue black yellow sun fleur-de-lis horizontal",
     "shortname": "gp",
     "name": "Guadeloupe",
     "proportion": "2:3",
@@ -910,7 +910,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Guadeloupe"
   },
   {
-    "tags": "equatorial guinea green white red blue triangle star text motto ribbon vegetation horizontal stripes",
+    "tags": "equatorial guinea green white red blue triangle star text motto ribbon vegetation horizontal",
     "shortname": "gq",
     "name": "Equatorial Guinea",
     "proportion": "2:3",
@@ -920,7 +920,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Equatorial_Guinea"
   },
   {
-    "tags": "greece blue white cross horizontal stripes",
+    "tags": "greece blue white cross horizontal",
     "shortname": "gr",
     "name": "Greece",
     "proportion": "2:3",
@@ -940,7 +940,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_South_Georgia_and_the_South_Sandwich_Islands"
   },
   {
-    "tags": "guatemala blue white vertical stripes weapon vegetation bird animal text motto ribbon",
+    "tags": "guatemala blue white vertical weapon vegetation bird animal text motto ribbon",
     "shortname": "gt",
     "name": "Guatemala",
     "proportion": "5:8",
@@ -950,7 +950,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Guatemala"
   },
   {
-    "tags": "guinea-bissau yellow green red black star horizontal stripes pan-african",
+    "tags": "guinea-bissau yellow green red black star horizontal pan-african",
     "shortname": "gw",
     "name": "Guinea-Bissau",
     "proportion": "1:2",
@@ -1000,7 +1000,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Heard_Island_and_McDonald_Islands"
   },
   {
-    "tags": "honduras blue white horizontal stripes star",
+    "tags": "honduras blue white horizontal star",
     "shortname": "hn",
     "name": "Honduras",
     "proportion": "1:2",
@@ -1010,7 +1010,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Honduras"
   },
   {
-    "tags": "croatia red white blue horizontal shield star moon stripes animal pan-slavic",
+    "tags": "croatia red white blue horizontal shield star moon animal pan-slavic",
     "shortname": "hr",
     "name": "Croatia",
     "proportion": "1:2",
@@ -1020,7 +1020,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Croatia"
   },
   {
-    "tags": "haiti blue red white horizontal stripes vegetation weapon hat text motto ribbon flag",
+    "tags": "haiti blue red white horizontal vegetation weapon hat text motto ribbon flag",
     "shortname": "ht",
     "name": "Haiti",
     "proportion": "3:5",
@@ -1030,7 +1030,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Haiti"
   },
   {
-    "tags": "hungary red white green horizontal stripes",
+    "tags": "hungary red white green horizontal",
     "shortname": "hu",
     "name": "Hungary",
     "proportion": "1:2",
@@ -1040,7 +1040,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Hungary"
   },
   {
-    "tags": "indonesia red white horizontal stripes",
+    "tags": "indonesia red white horizontal",
     "shortname": "id",
     "name": "Indonesia",
     "proportion": "2:3",
@@ -1050,7 +1050,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Indonesia"
   },
   {
-    "tags": "ireland green white orange vertical stripes",
+    "tags": "ireland green white orange vertical",
     "shortname": "ie",
     "name": "Ireland",
     "proportion": "1:2",
@@ -1060,7 +1060,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Ireland"
   },
   {
-    "tags": "israel white blue triangle horizontal stripes star",
+    "tags": "israel white blue triangle horizontal star",
     "shortname": "il",
     "name": "Israel",
     "proportion": "8:11",
@@ -1080,7 +1080,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Isle_of_Man"
   },
   {
-    "tags": "india orange white green blue horizontal stripes circle",
+    "tags": "india orange white green blue horizontal circle",
     "shortname": "in",
     "name": "India",
     "proportion": "2:3",
@@ -1100,7 +1100,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_British_Indian_Ocean_Territory"
   },
   {
-    "tags": "iraq red white black green horizontal stripes text motto pan-arab",
+    "tags": "iraq red white black green horizontal text motto pan-arab",
     "shortname": "iq",
     "name": "Iraq",
     "proportion": "2:3",
@@ -1110,7 +1110,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Iraq"
   },
   {
-    "tags": "iran green white red text motto horizontal stripes",
+    "tags": "iran green white red text motto horizontal",
     "shortname": "ir",
     "name": "Iran",
     "proportion": "4:7",
@@ -1130,7 +1130,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Iceland"
   },
   {
-    "tags": "italy green white red vertical stripes",
+    "tags": "italy green white red vertical",
     "shortname": "it",
     "name": "Italy",
     "proportion": "2:3",
@@ -1160,7 +1160,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Jamaica"
   },
   {
-    "tags": "jordan black white green red triangle horizontal stripes star pan-arab",
+    "tags": "jordan black white green red triangle horizontal star pan-arab",
     "shortname": "jo",
     "name": "Jordan",
     "proportion": "1:2",
@@ -1180,7 +1180,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Japan"
   },
   {
-    "tags": "kenya black white red green weapon shield horizontal stripes pan-african",
+    "tags": "kenya black white red green weapon shield horizontal pan-african",
     "shortname": "ke",
     "name": "Kenya",
     "proportion": "2:3",
@@ -1200,7 +1200,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Kyrgyzstan"
   },
   {
-    "tags": "cambodia blue red white horizontal stripes building",
+    "tags": "cambodia blue red white horizontal building",
     "shortname": "kh",
     "name": "Cambodia",
     "proportion": "16:25",
@@ -1220,7 +1220,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Kiribati"
   },
   {
-    "tags": "comoros green yellow white red blue triangle horizontal stripes moon star pan-african",
+    "tags": "comoros green yellow white red blue triangle horizontal moon star pan-african",
     "shortname": "km",
     "name": "Comoros",
     "proportion": "3:5",
@@ -1230,7 +1230,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Comoros"
   },
   {
-    "tags": "saint kitts nevis green yellow black white red triangle star stripes diagonal",
+    "tags": "saint kitts nevis green yellow black white red triangle star diagonal",
     "shortname": "kn",
     "name": "Saint Kitts and Nevis",
     "proportion": "2:3",
@@ -1240,7 +1240,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Saint_Kitts_and_Nevis"
   },
   {
-    "tags": "north korea blue white red horizontal stripes star circle",
+    "tags": "north korea blue white red horizontal star circle",
     "shortname": "kp",
     "name": "North Korea",
     "proportion": "1:2",
@@ -1250,7 +1250,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_North_Korea"
   },
   {
-    "tags": "south korea white black red blue circle stripes",
+    "tags": "south korea white black red blue circle",
     "shortname": "kr",
     "name": "South Korea",
     "proportion": "2:3",
@@ -1260,7 +1260,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_South_Korea"
   },
   {
-    "tags": "kuwait green white red black horizontal stripes pan-arab",
+    "tags": "kuwait green white red black horizontal pan-arab",
     "shortname": "kw",
     "name": "Kuwait",
     "proportion": "1:2",
@@ -1290,7 +1290,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Kazakhstan"
   },
   {
-    "tags": "laos red blue white horizontal stripes circle",
+    "tags": "laos red blue white horizontal circle",
     "shortname": "la",
     "name": "Laos",
     "proportion": "2:3",
@@ -1300,7 +1300,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Laos"
   },
   {
-    "tags": "lebanon red white green horizontal stripes vegetation",
+    "tags": "lebanon red white green horizontal vegetation",
     "shortname": "lb",
     "name": "Lebanon",
     "proportion": "2:3",
@@ -1320,7 +1320,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Saint_Lucia"
   },
   {
-    "tags": "liechtenstein blue red yellow horizontal stripes crown",
+    "tags": "liechtenstein blue red yellow horizontal crown",
     "shortname": "li",
     "name": "Liechtenstein",
     "proportion": "3:5",
@@ -1330,7 +1330,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Liechtenstein"
   },
   {
-    "tags": "sri lanka yellow green orange red maroon vertical stripes animal weapon vegetation",
+    "tags": "sri lanka yellow green orange red maroon vertical animal weapon vegetation",
     "shortname": "lk",
     "name": "Sri Lanka",
     "proportion": "1:2",
@@ -1340,7 +1340,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Sri_Lanka"
   },
   {
-    "tags": "liberia red white blue horizontal stripes star",
+    "tags": "liberia red white blue horizontal star",
     "shortname": "lr",
     "name": "Liberia",
     "proportion": "10:19",
@@ -1350,7 +1350,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Liberia"
   },
   {
-    "tags": "lesotho blue white green hat horizontal stripes",
+    "tags": "lesotho blue white green hat horizontal",
     "shortname": "ls",
     "name": "Lesotho",
     "proportion": "2:3",
@@ -1360,7 +1360,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Lesotho"
   },
   {
-    "tags": "lithuania yellow green red horizontal stripes",
+    "tags": "lithuania yellow green red horizontal",
     "shortname": "lt",
     "name": "Lithuania",
     "proportion": "3:5",
@@ -1370,7 +1370,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Lithuania"
   },
   {
-    "tags": "luxembourg red white blue horizontal stripes",
+    "tags": "luxembourg red white blue horizontal",
     "shortname": "lu",
     "name": "Luxembourg",
     "proportion": "3:5",
@@ -1380,7 +1380,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Luxembourg"
   },
   {
-    "tags": "latvia red white horizontal stripes",
+    "tags": "latvia red white horizontal",
     "shortname": "lv",
     "name": "Latvia",
     "proportion": "1:2",
@@ -1390,7 +1390,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Latvia"
   },
   {
-    "tags": "libya red black green white horizontal stripes star moon pan-arab",
+    "tags": "libya red black green white horizontal star moon pan-arab",
     "shortname": "ly",
     "name": "Libya",
     "proportion": "1:2",
@@ -1410,7 +1410,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Morocco"
   },
   {
-    "tags": "monaco red white horizontal stripes",
+    "tags": "monaco red white horizontal",
     "shortname": "mc",
     "name": "Monaco",
     "proportion": "4:5",
@@ -1420,7 +1420,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Monaco"
   },
   {
-    "tags": "moldova blue yellow red vertical stripes star moon bird animal shield cross vegetation",
+    "tags": "moldova blue yellow red vertical star moon bird animal shield cross vegetation",
     "shortname": "md",
     "name": "Moldova",
     "proportion": "1:2",
@@ -1440,7 +1440,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Montenegro"
   },
   {
-    "tags": "saint martin blue white red vertical stripes",
+    "tags": "saint martin blue white red vertical",
     "shortname": "mf",
     "name": "Saint Martin",
     "proportion": "2:3",
@@ -1449,7 +1449,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Collectivity_of_Saint_Martin"
   },
   {
-    "tags": "madagascar white red green horizontal stripes",
+    "tags": "madagascar white red green horizontal",
     "shortname": "mg",
     "name": "Madagascar",
     "proportion": "2:3",
@@ -1459,7 +1459,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Madagascar"
   },
   {
-    "tags": "marshall islands blue white orange stripes triangle star sun diagonal",
+    "tags": "marshall islands blue white orange triangle star sun diagonal",
     "shortname": "mh",
     "name": "Marshall Islands",
     "proportion": "10:19",
@@ -1479,7 +1479,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_North_Macedonia"
   },
   {
-    "tags": "mali green yellow red vertical stripes pan-african",
+    "tags": "mali green yellow red vertical pan-african",
     "shortname": "ml",
     "name": "Mali",
     "proportion": "2:3",
@@ -1489,7 +1489,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Mali"
   },
   {
-    "tags": "myanmar burma red green yellow white star horizontal stripes",
+    "tags": "myanmar burma red green yellow white star horizontal",
     "shortname": "mm",
     "name": "Myanmar",
     "proportion": "2:3",
@@ -1499,7 +1499,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Myanmar"
   },
   {
-    "tags": "mongolia red blue yellow vertical stripes circle",
+    "tags": "mongolia red blue yellow vertical circle",
     "shortname": "mn",
     "name": "Mongolia",
     "proportion": "1:2",
@@ -1509,7 +1509,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Mongolia"
   },
   {
-    "tags": "macau green white star horizontal stripes vegetation waves",
+    "tags": "macau green white star horizontal vegetation waves",
     "shortname": "mo",
     "name": "Macau",
     "proportion": "2:3",
@@ -1539,7 +1539,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Martinique"
   },
   {
-    "tags": "mauritania green yellow star moon horizontal stripes pan-african",
+    "tags": "mauritania green yellow star moon horizontal pan-african",
     "shortname": "mr",
     "name": "Mauritania",
     "proportion": "2:3",
@@ -1559,7 +1559,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Montserrat"
   },
   {
-    "tags": "malta red white vertical stripes cross animal text",
+    "tags": "malta red white vertical cross animal text",
     "shortname": "mt",
     "name": "Malta",
     "proportion": "2:3",
@@ -1569,7 +1569,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Malta"
   },
   {
-    "tags": "mauritius red blue yellow green horizontal stripes pan-african",
+    "tags": "mauritius red blue yellow green horizontal pan-african",
     "shortname": "mu",
     "name": "Mauritius",
     "proportion": "2:3",
@@ -1589,7 +1589,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Maldives"
   },
   {
-    "tags": "malawi black red green horizontal stripes sun pan-african",
+    "tags": "malawi black red green horizontal sun pan-african",
     "shortname": "mw",
     "name": "Malawi",
     "proportion": "2:3",
@@ -1599,7 +1599,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Malawi"
   },
   {
-    "tags": "mexico green white red vertical stripes bird animal vegetation ribbon flag",
+    "tags": "mexico green white red vertical bird animal vegetation ribbon flag",
     "shortname": "mx",
     "name": "Mexico",
     "proportion": "4:7",
@@ -1609,7 +1609,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Mexico"
   },
   {
-    "tags": "malaysia blue red white yellow horizontal stripes moon star",
+    "tags": "malaysia blue red white yellow horizontal moon star",
     "shortname": "my",
     "name": "Malaysia",
     "proportion": "1:2",
@@ -1619,7 +1619,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Malaysia"
   },
   {
-    "tags": "mozambique green white black yellow red triangle horizontal stripes star weapon tool pan-african",
+    "tags": "mozambique green white black yellow red triangle horizontal star weapon tool pan-african",
     "shortname": "mz",
     "name": "Mozambique",
     "proportion": "2:3",
@@ -1629,7 +1629,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Mozambique"
   },
   {
-    "tags": "namibia blue white red green yellow triangle sun circle stripes pan-african diagonal",
+    "tags": "namibia blue white red green yellow triangle sun circle pan-african diagonal",
     "shortname": "na",
     "name": "Namibia",
     "proportion": "2:3",
@@ -1639,7 +1639,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Namibia"
   },
   {
-    "tags": "new caledonia blue red green yellow black horizontal stripes circle sun",
+    "tags": "new caledonia blue red green yellow black horizontal circle sun",
     "shortname": "nc",
     "name": "New Caledonia",
     "proportion": "2:3",
@@ -1649,7 +1649,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flags_of_New_Caledonia"
   },
   {
-    "tags": "niger orange white green horizontal stripes circle",
+    "tags": "niger orange white green horizontal circle",
     "shortname": "ne",
     "name": "Niger",
     "proportion": "6:7",
@@ -1659,7 +1659,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Niger"
   },
   {
-    "tags": "norfolk island green white vertical stripes vegetation",
+    "tags": "norfolk island green white vertical vegetation",
     "shortname": "nf",
     "name": "Norfolk Island",
     "proportion": "1:2",
@@ -1669,7 +1669,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Norfolk_Island"
   },
   {
-    "tags": "nigeria green white vertical stripes",
+    "tags": "nigeria green white vertical",
     "shortname": "ng",
     "name": "Nigeria",
     "proportion": "1:2",
@@ -1679,7 +1679,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Nigeria"
   },
   {
-    "tags": "nicaragua blue white horizontal stripes mountain waves hat text name",
+    "tags": "nicaragua blue white horizontal mountain waves hat text name",
     "shortname": "ni",
     "name": "Nicaragua",
     "proportion": "3:5",
@@ -1689,7 +1689,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Nicaragua"
   },
   {
-    "tags": "netherlands red white blue horizontal stripes",
+    "tags": "netherlands red white blue horizontal",
     "shortname": "nl",
     "name": "Netherlands",
     "proportion": "2:3",
@@ -1719,7 +1719,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Nepal"
   },
   {
-    "tags": "nauru blue yellow white horizontal stripes star",
+    "tags": "nauru blue yellow white horizontal star",
     "shortname": "nr",
     "name": "Nauru",
     "proportion": "1:2",
@@ -1769,7 +1769,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Panama"
   },
   {
-    "tags": "peru red white vertical stripes",
+    "tags": "peru red white vertical",
     "shortname": "pe",
     "name": "Peru",
     "proportion": "2:3",
@@ -1779,7 +1779,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Peru"
   },
   {
-    "tags": "french polynesia red white horizontal stripes waves circle star boat",
+    "tags": "french polynesia red white horizontal waves circle star boat",
     "shortname": "pf",
     "name": "French Polynesia",
     "proportion": "2:3",
@@ -1799,7 +1799,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Papua_New_Guinea"
   },
   {
-    "tags": "philippines blue red white yellow triangle horizontal stripes circle sun star",
+    "tags": "philippines blue red white yellow triangle horizontal circle sun star",
     "shortname": "ph",
     "name": "Philippines",
     "proportion": "1:2",
@@ -1809,7 +1809,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Philippines"
   },
   {
-    "tags": "pakistan green white vertical stripes moon star",
+    "tags": "pakistan green white vertical moon star",
     "shortname": "pk",
     "name": "Pakistan",
     "proportion": "2:3",
@@ -1819,7 +1819,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Pakistan"
   },
   {
-    "tags": "poland white red horizontal stripes",
+    "tags": "poland white red horizontal",
     "shortname": "pl",
     "name": "Poland",
     "proportion": "5:8",
@@ -1849,7 +1849,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_and_coat_of_arms_of_the_Pitcairn_Islands"
   },
   {
-    "tags": "puerto rico red white blue triangle horizontal stripes star",
+    "tags": "puerto rico red white blue triangle horizontal star",
     "shortname": "pr",
     "name": "Puerto Rico",
     "proportion": "2:3",
@@ -1859,7 +1859,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Puerto_Rico"
   },
   {
-    "tags": "palestine red white green black triangle horizontal stripes pan-arab",
+    "tags": "palestine red white green black triangle horizontal pan-arab",
     "shortname": "ps",
     "name": "Palestine",
     "proportion": "1:2",
@@ -1869,7 +1869,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Palestine"
   },
   {
-    "tags": "portugal green red vertical stripes circle sphere building shield",
+    "tags": "portugal green red vertical circle sphere building shield",
     "shortname": "pt",
     "name": "Portugal",
     "proportion": "2:3",
@@ -1889,7 +1889,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Palau"
   },
   {
-    "tags": "paraguay red white blue horizontal stripes circle star vegetation text name",
+    "tags": "paraguay red white blue horizontal circle star vegetation text name",
     "shortname": "py",
     "name": "Paraguay",
     "proportion": "11:20",
@@ -1919,7 +1919,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_R%C3%A9union"
   },
   {
-    "tags": "romania blue yellow red vertical stripes",
+    "tags": "romania blue yellow red vertical",
     "shortname": "ro",
     "name": "Romania",
     "proportion": "2:3",
@@ -1929,7 +1929,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Romania"
   },
   {
-    "tags": "serbia red blue white fleur-de-lis horizontal stripes bird animal crown cross pan-slavic",
+    "tags": "serbia red blue white fleur-de-lis horizontal bird animal crown cross pan-slavic",
     "shortname": "rs",
     "name": "Serbia",
     "proportion": "2:3",
@@ -1939,7 +1939,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Serbia"
   },
   {
-    "tags": "russia white blue red horizontal stripes pan-slavic",
+    "tags": "russia white blue red horizontal pan-slavic",
     "shortname": "ru",
     "name": "Russia",
     "proportion": "2:3",
@@ -1949,7 +1949,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Russia"
   },
   {
-    "tags": "rwanda blue yellow green horizontal stripes sun circle",
+    "tags": "rwanda blue yellow green horizontal sun circle",
     "shortname": "rw",
     "name": "Rwanda",
     "proportion": "2:3",
@@ -1989,7 +1989,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Seychelles"
   },
   {
-    "tags": "sudan red white black green triangle horizontal stripes pan-arab",
+    "tags": "sudan red white black green triangle horizontal pan-arab",
     "shortname": "sd",
     "name": "Sudan",
     "proportion": "1:2",
@@ -2009,7 +2009,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Sweden"
   },
   {
-    "tags": "singapore red white horizontal stripes moon star",
+    "tags": "singapore red white horizontal moon star",
     "shortname": "sg",
     "name": "Singapore",
     "proportion": "2:3",
@@ -2029,7 +2029,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Saint_Helena"
   },
   {
-    "tags": "slovenia white blue red horizontal stripes star mountain pan-slavic",
+    "tags": "slovenia white blue red horizontal star mountain pan-slavic",
     "shortname": "si",
     "name": "Slovenia",
     "proportion": "1:2",
@@ -2049,7 +2049,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Svalbard_and_Jan_Mayen"
   },
   {
-    "tags": "slovakia white blue red horizontal stripes cross mountain pan-slavic",
+    "tags": "slovakia white blue red horizontal cross mountain pan-slavic",
     "shortname": "sk",
     "name": "Slovakia",
     "proportion": "2:3",
@@ -2059,7 +2059,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Slovakia"
   },
   {
-    "tags": "sierra leone green white blue horizontal stripes",
+    "tags": "sierra leone green white blue horizontal",
     "shortname": "sl",
     "name": "Sierra Leone",
     "proportion": "2:3",
@@ -2069,7 +2069,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Sierra_Leone"
   },
   {
-    "tags": "san marino white blue horizontal stripes vegetation mountain crown ribbon cross text motto building",
+    "tags": "san marino white blue horizontal vegetation mountain crown ribbon cross text motto building",
     "shortname": "sm",
     "name": "San Marino",
     "proportion": "3:4",
@@ -2079,7 +2079,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_San_Marino"
   },
   {
-    "tags": "senegal green yellow red vertical stripes star pan-african",
+    "tags": "senegal green yellow red vertical star pan-african",
     "shortname": "sn",
     "name": "Senegal",
     "proportion": "2:3",
@@ -2099,7 +2099,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Somalia"
   },
   {
-    "tags": "suriname green white red yellow horizontal stripes star",
+    "tags": "suriname green white red yellow horizontal star",
     "shortname": "sr",
     "name": "Suriname",
     "proportion": "2:3",
@@ -2109,7 +2109,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Suriname"
   },
   {
-    "tags": "south sudan black blue red green yellow white triangle horizontal stripes star pan-african",
+    "tags": "south sudan black blue red green yellow white triangle horizontal star pan-african",
     "shortname": "ss",
     "name": "South Sudan",
     "proportion": "1:2",
@@ -2119,7 +2119,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_South_Sudan"
   },
   {
-    "tags": "são tomé and príncipe sao tome principe green yellow red black triangle horizontal stripes star pan-african",
+    "tags": "são tomé and príncipe sao tome principe green yellow red black triangle horizontal star pan-african",
     "shortname": "st",
     "name": "São Tomé and Príncipe",
     "proportion": "1:2",
@@ -2129,7 +2129,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_S%C3%A3o_Tom%C3%A9_and_Pr%C3%ADncipe"
   },
   {
-    "tags": "el salvador blue white horizontal stripes vegetation mountain hat text motto name flag",
+    "tags": "el salvador blue white horizontal vegetation mountain hat text motto name flag",
     "shortname": "sv",
     "name": "El Salvador",
     "proportion": "189:335",
@@ -2139,7 +2139,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_El_Salvador"
   },
   {
-    "tags": "sint maarten blue red white yellow triangle horizontal stripes animal vegetation text motto ribbon building",
+    "tags": "sint maarten blue red white yellow triangle horizontal animal vegetation text motto ribbon building",
     "shortname": "sx",
     "name": "Sint Maarten",
     "proportion": "2:3",
@@ -2149,7 +2149,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Sint_Maarten"
   },
   {
-    "tags": "syria red white blue green horizontal stripes star pan-arab",
+    "tags": "syria red white blue green horizontal star pan-arab",
     "shortname": "sy",
     "name": "Syria",
     "proportion": "2:3",
@@ -2159,7 +2159,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Syria"
   },
   {
-    "tags": "eswatini swaziland blue yellow red white black shield weapon horizontal stripes",
+    "tags": "eswatini swaziland blue yellow red white black shield weapon horizontal",
     "shortname": "sz",
     "name": "Eswatini",
     "proportion": "2:3",
@@ -2179,7 +2179,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Turks_and_Caicos_Islands"
   },
   {
-    "tags": "chad blue yellow red vertical stripes pan-african",
+    "tags": "chad blue yellow red vertical pan-african",
     "shortname": "td",
     "name": "Chad",
     "proportion": "2:3",
@@ -2189,7 +2189,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Chad"
   },
   {
-    "tags": "french southern and antarctic lands red white blue star vertical stripes text",
+    "tags": "french southern and antarctic lands red white blue star vertical text",
     "shortname": "tf",
     "name": "French Southern and Antarctic Lands",
     "proportion": "2:3",
@@ -2199,7 +2199,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Antarctica#French_Southern_and_Antarctic_Territories"
   },
   {
-    "tags": "togo green yellow red white horizontal stripes star pan-african",
+    "tags": "togo green yellow red white horizontal star pan-african",
     "shortname": "tg",
     "name": "Togo",
     "proportion": "1:φ",
@@ -2209,7 +2209,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Togo"
   },
   {
-    "tags": "thailand red white blue horizontal stripes",
+    "tags": "thailand red white blue horizontal",
     "shortname": "th",
     "name": "Thailand",
     "proportion": "2:3",
@@ -2219,7 +2219,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Thailand"
   },
   {
-    "tags": "tajikistan red white green horizontal stripes star crown",
+    "tags": "tajikistan red white green horizontal star crown",
     "shortname": "tj",
     "name": "Tajikistan",
     "proportion": "1:2",
@@ -2289,7 +2289,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Turkey"
   },
   {
-    "tags": "trinidad tobago red white black triangle stripes diagonal",
+    "tags": "trinidad tobago red white black triangle diagonal",
     "shortname": "tt",
     "name": "Trinidad and Tobago",
     "proportion": "3:5",
@@ -2319,7 +2319,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Republic_of_China"
   },
   {
-    "tags": "tanzania green yellow black blue triangle stripes diagonal",
+    "tags": "tanzania green yellow black blue triangle diagonal",
     "shortname": "tz",
     "name": "Tanzania",
     "proportion": "2:3",
@@ -2329,7 +2329,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Tanzania"
   },
   {
-    "tags": "ukraine blue yellow horizontal stripes",
+    "tags": "ukraine blue yellow horizontal",
     "shortname": "ua",
     "name": "Ukraine",
     "proportion": "2:3",
@@ -2339,7 +2339,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Ukraine"
   },
   {
-    "tags": "uganda black yellow red horizontal stripes circle bird animal",
+    "tags": "uganda black yellow red horizontal circle bird animal",
     "shortname": "ug",
     "name": "Uganda",
     "proportion": "2:3",
@@ -2349,7 +2349,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Uganda"
   },
   {
-    "tags": "united states minor outlying islands red white blue horizontal stripes star",
+    "tags": "united states minor outlying islands red white blue horizontal star",
     "shortname": "um",
     "name": "United States Minor Outlying Islands",
     "proportion": "10:19",
@@ -2358,7 +2358,7 @@
     "funfacts": "The official flag is that of the <a href=\"?q=united+states\">United States</a>.<br>"
   },
   {
-    "tags": "usa united states america red white blue horizontal stripes star",
+    "tags": "usa united states america red white blue horizontal star",
     "shortname": "us",
     "name": "United States",
     "proportion": "10:19",
@@ -2368,7 +2368,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_United_States"
   },
   {
-    "tags": "uruguay white blue horizontal stripes sun face",
+    "tags": "uruguay white blue horizontal sun face",
     "shortname": "uy",
     "name": "Uruguay",
     "proportion": "2:3",
@@ -2378,7 +2378,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Uruguay"
   },
   {
-    "tags": "uzbekistan blue white green red horizontal stripes moon star",
+    "tags": "uzbekistan blue white green red horizontal moon star",
     "shortname": "uz",
     "name": "Uzbekistan",
     "proportion": "1:2",
@@ -2388,7 +2388,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Uzbekistan"
   },
   {
-    "tags": "vatican city yellow white vertical stripes crown",
+    "tags": "vatican city yellow white vertical crown",
     "shortname": "va",
     "name": "Vatican City",
     "proportion": "1:1",
@@ -2398,7 +2398,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Vatican_City"
   },
   {
-    "tags": "saint vincent grenadines blue yellow green vertical stripes",
+    "tags": "saint vincent grenadines blue yellow green vertical",
     "shortname": "vc",
     "name": "Saint Vincent and the Grenadines",
     "proportion": "2:3",
@@ -2408,7 +2408,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Saint_Vincent_and_the_Grenadines"
   },
   {
-    "tags": "venezuela yellow blue red horizontal stripes star",
+    "tags": "venezuela yellow blue red horizontal star",
     "shortname": "ve",
     "name": "Venezuela",
     "proportion": "2:3",
@@ -2428,7 +2428,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_British_Virgin_Islands"
   },
   {
-    "tags": "united states virgin islands white blue yellow red animal bird vegetation weapon shield text vertical stripes",
+    "tags": "united states virgin islands white blue yellow red animal bird vegetation weapon shield text vertical",
     "shortname": "vi",
     "name": "United States Virgin Islands",
     "proportion": "2:3",
@@ -2458,7 +2458,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Vanuatu"
   },
   {
-    "tags": "wallis and futuna red blue white triangle vertical stripes cross",
+    "tags": "wallis and futuna red blue white triangle vertical cross",
     "shortname": "wf",
     "name": "Wallis and Futuna",
     "proportion": "2:3",
@@ -2488,7 +2488,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Kosovo"
   },
   {
-    "tags": "yemen red white black horizontal stripes pan-arab",
+    "tags": "yemen red white black horizontal pan-arab",
     "shortname": "ye",
     "name": "Yemen",
     "proportion": "2:3",
@@ -2518,7 +2518,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_South_Africa"
   },
   {
-    "tags": "zambia green red black orange bird animal vertical stripes pan-african",
+    "tags": "zambia green red black orange bird animal vertical pan-african",
     "shortname": "zm",
     "name": "Zambia",
     "proportion": "2:3",
@@ -2528,7 +2528,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Zambia"
   },
   {
-    "tags": "zimbabwe green yellow red black white horizontal stripes star bird animal pan-african",
+    "tags": "zimbabwe green yellow red black white horizontal star bird animal pan-african",
     "shortname": "zw",
     "name": "Zimbabwe",
     "proportion": "1:2",
