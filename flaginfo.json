@@ -230,7 +230,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Bahrain"
   },
   {
-    "tags": "burundi green red white cross star triangle stars circle diagonal",
+    "tags": "burundi green red white cross star triangle circle diagonal",
     "shortname": "bi",
     "name": "Burundi",
     "proportion": "3:5",
@@ -250,33 +250,33 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Benin"
   },
   {
-    "tags": "saint barthélemy barthelemy white blue red yellow horizontal stripes animal bird birds pelican pelicans crown crowns castle building mural text maltese cross fleur-de-lis fleurs-de-lis star banner",
+    "tags": "saint barthélemy barthelemy white blue red yellow horizontal stripes animal bird crown building text cross fleur-de-lis star ribbon",
     "shortname": "bl",
     "name": "Saint Barthélemy",
     "proportion": "None",
     "adopted": "Unofficial flag",
-    "symbolism": "Pelicans: Representing the local fauna.<br>Mural crown: Ancient symbol of the Greek gods protecting the cities.<br>The <a href=\"?q=fleur-de-lis\">fleurs-de-lis</a> (France), <a href=\"?q=maltese+cross\">Maltese Cross</a> (Knights Hospitaller), and gold <a href=\"?q=crown\">crowns</a> (Sweden) are heraldic reminders of the island's history as a colony.<br>Eventually, the island returned to French rule and the official flag of Saint Barthélemy became the French tricolor.<br>",
+    "symbolism": "Pelicans: Representing the local fauna.<br>Mural crown: Ancient symbol of the Greek gods protecting the cities.<br>The <a href=\"?q=fleur-de-lis\">fleurs-de-lis</a> (France), Maltese cross (Knights Hospitaller), and gold <a href=\"?q=crown\">crowns</a> (Sweden) are heraldic reminders of the island's history as a colony.<br>Eventually, the island returned to French rule and the official flag of Saint Barthélemy became the French tricolor.<br>",
     "funfacts": "The text says \"Ouanalao\" and is the local name of the island.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_and_coat_of_arms_of_Saint_Barth%C3%A9lemy"
   },
   {
-    "tags": "bermuda red blue white cross british animal bear boat waves rock vegetation grass",
+    "tags": "bermuda red blue white cross british animal boat waves vegetation",
     "shortname": "bm",
     "name": "Bermuda",
     "proportion": "1:2",
     "adopted": "1999",
-    "symbolism": "For symbolism regarding the Union Jack, see <a href=\"?q=united+kingdom\">United Kingdom</a>.<br>The coat of arms shows a lion holding a shield which bears a picture of a shipwreck on a rock.<br>The red lion is a symbol of Great Britain and alludes to Bermuda's relationship with that country.<br>The shipwreck is a depiction of the British ship Sea Venture, carrying some 150 colonists bound for Virginia, when it was shipwrecked on shoals off Bermuda during a hurricane in 1609.<br>",
+    "symbolism": "For symbolism regarding the Union Jack, see <a href=\"?q=united+kingdom\">United Kingdom</a>.<br>The coat of arms shows a lion holding a shield which bears a picture of a shipwreck on a rock.<br>The red lion is a symbol of Great Britain and alludes to Bermuda's relationship with that country.<br>The shipwreck is a depiction of the British Sea Venture, carrying some 150 colonists bound for Virginia, when it was shipwrecked on shoals off Bermuda during a hurricane in 1609.<br>",
     "funfacts": "The flag is unusual for a British overseas territory in that it is used on land in a red ensign form; most other British overseas territories use a version of the blue ensign for general use ashore.<br>The Latin inscription on the coat of arms reads \"Quo Fata Farunt\" meaning \"Whither the Fates Carry (Us)\".<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Bermuda"
   },
   {
-    "tags": "brunei yellow black white red stripes triangle text motto name hand hands banner moon flag diagonal",
+    "tags": "brunei yellow black white red stripes triangle text motto name hand ribbon moon flag diagonal",
     "shortname": "bn",
     "name": "Brunei",
     "proportion": "1:2",
     "adopted": "1959",
     "symbolism": "Yellow: The sultan of Brunei.<br>Crescent moon: <a href=\"?q=islam\">Islam</a>.<br>Parasol: Monarchy.<br>The hands at the side: Benevolence of the government.<br>The black and white stripes represent Brunei's chief ministers who were once joint-regents and then, after the sultan came of age, senior advisors.<br>",
-    "funfacts": "The white stripe is roughly 12% wider than the black one.<br>On the crescent moon is the national <a href=\"?q=motto\">motto</a> of Brunei in Arabic: \"Always render service with God's guidance\". The banner is inscribed with \"Brunei, the Abode of Peace\".<br>",
+    "funfacts": "The white stripe is roughly 12% wider than the black one.<br>On the crescent moon is the national <a href=\"?q=motto\">motto</a> of Brunei in Arabic: \"Always render service with God's guidance\". The ribbon is inscribed with \"Brunei, the Abode of Peace\".<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Brunei"
   },
   {
@@ -290,7 +290,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Bolivia"
   },
   {
-    "tags": "bonaire blue white yellow red black triangle stripes star compass whitney_smith diagonal",
+    "tags": "bonaire blue white yellow red black triangle stripes star whitney_smith diagonal",
     "shortname": "bq",
     "name": "Bonaire",
     "proportion": "2:3",
@@ -320,7 +320,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Bahamas"
   },
   {
-    "tags": "bhutan orange white triangle animal dragon diagonal",
+    "tags": "bhutan orange white triangle animal diagonal",
     "shortname": "bt",
     "name": "Bhutan",
     "proportion": "2:3",
@@ -330,7 +330,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Bhutan"
   },
   {
-    "tags": "bouvet island red white blue cross norway",
+    "tags": "bouvet island red white blue cross",
     "shortname": "bv",
     "name": "Bouvet Island",
     "proportion": "8:11",
@@ -360,7 +360,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Belarus"
   },
   {
-    "tags": "belize white red white circle weapon tool axe paddle horizontal stripes text motto banner vegetation tools axe oar ship boat waves men human humans people pants face faces leaf leaves",
+    "tags": "belize white red white circle weapon tool horizontal stripes text motto ribbon vegetation boat waves human face",
     "shortname": "bz",
     "name": "Belize",
     "proportion": "3:5",
@@ -370,7 +370,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Belize"
   },
   {
-    "tags": "canada red white vertical stripes maple leaf",
+    "tags": "canada red white vertical stripes vegetation",
     "shortname": "ca",
     "name": "Canada",
     "proportion": "1:2",
@@ -420,7 +420,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Republic_of_the_Congo"
   },
   {
-    "tags": "switzerland red white square cross",
+    "tags": "switzerland red white cross",
     "shortname": "ch",
     "name": "Switzerland",
     "proportion": "1:1",
@@ -490,13 +490,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Colombia"
   },
   {
-    "tags": "costa rica blue white red ship ships vegetation star mountain horizontal stripes text name flag",
+    "tags": "costa rica blue white red vegetation star mountain horizontal stripes text name ribbon flag",
     "shortname": "cr",
     "name": "Costa Rica",
     "proportion": "3:5",
     "adopted": "1906",
     "symbolism": "Blue: The sky, opportunities, idealism, and perseverance.<br>White: Peace, wisdom and happiness.<br>Red: The blood spilt by martyrs in defense of the country, as well as the warmth and generosity of the people.<br>The coat of arms depicts the isthmus between the Pacific Ocean and the Caribbean Sea, with 3 volcanoes. The 7 stars stand for the 7 provinces of Costa Rica.<br>",
-    "funfacts": "The flag features a stylized version of the flag of itself.<br>The banner of the coat of arms says \"Republica de Costa Rica\" which is the full <a href=\"?q=name\">name</a> of Costa Rica in Spanish.<br>The blue, white and red horizontal design was created in 1848 by Pacífica Fernández, wife of then president José María Castro Madriz. Fernández was inspired by France's 1848 Revolution, and the creation of the French Second Republic.<br>",
+    "funfacts": "The flag features a stylized version of the flag of itself.<br>The ribbon of the coat of arms says \"Republica de Costa Rica\" which is the full <a href=\"?q=name\">name</a> of Costa Rica in Spanish.<br>The blue, white and red horizontal design was created in 1848 by Pacífica Fernández, wife of then president José María Castro Madriz. Fernández was inspired by France's 1848 Revolution, and the creation of the French Second Republic.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Costa_Rica"
   },
   {
@@ -540,7 +540,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Christmas_Island"
   },
   {
-    "tags": "cyprus white orange green olive vegetation map",
+    "tags": "cyprus white orange green vegetation map",
     "shortname": "cy",
     "name": "Cyprus",
     "proportion": "2:3",
@@ -600,7 +600,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Dominica"
   },
   {
-    "tags": "dominican republic blue red white weapon cross book bible ribbon ribbons banner banners cross text motto name flag",
+    "tags": "dominican republic blue red white weapon cross ribbon cross text motto name flag",
     "shortname": "do",
     "name": "Dominican Republic",
     "proportion": "2:3",
@@ -620,12 +620,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Algeria"
   },
   {
-    "tags": "ecuador yellow blue red horizontal stripes weapon mountain chimborazo snow smoke boat ship sun leaf vegetation banner bird condor animal flag",
+    "tags": "ecuador yellow blue red horizontal stripes weapon mountain boat sun vegetation ribbon bird animal bird flag",
     "shortname": "ec",
     "name": "Ecuador",
     "proportion": "2:3",
     "adopted": "1860",
-    "symbolism": "Yellow: The crops and the fertile soil.<br>Blue: The ocean and the clear skies.<br>Red: Freedom and the blood spilled by the heroes who died in the name of their countrymen's Fatherland.<br>Coat of arms: The condor on top of the shield stretches his wings to symbolize power, greatness and strength of Ecuador. In the background of the oval shield is the mountain Chimborazo which is the highest mountain in Ecuador. The ship was built in Guayaquil and was the first seaworthy steamship built in all of South America. The ship has the features of a Caduceus representing trade and economy. The laurel on the left represents the victories of the republic. The palm leaf on the right side is a symbol of the martyrs of the fight for independence and liberty. The bundle of wood (Fasces) below the shield represents the republican dignity.<br>",
+    "symbolism": "Yellow: The crops and the fertile soil.<br>Blue: The ocean and the clear skies.<br>Red: Freedom and the blood spilled by the heroes who died in the name of their countrymen's Fatherland.<br>Coat of arms: The condor on top of the shield stretches his wings to symbolize power, greatness and strength of Ecuador. In the background of the oval shield is the mountain Chimborazo which is the highest mountain in Ecuador. The was built in Guayaquil and was the first seaworthy steamship built in all of South America. The has the features of a Caduceus representing trade and economy. The laurel on the left represents the victories of the republic. The palm leaf on the right side is a symbol of the martyrs of the fight for independence and liberty. The bundle of wood (Fasces) below the shield represents the republican dignity.<br>",
     "funfacts": "The coat of arms contains a depiction of the flag itself.<br>The flags of <a href=\"?q=colombia\">Colombia</a>, Ecuador, and <a href=\"?q=venezuela\">Venezuela</a> are based on a proposal by Venezuelan General Francisco de Miranda, which was adopted by Venezuela in 1811 and later Gran Colombia with some modifications.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Ecuador"
   },
@@ -666,16 +666,16 @@
     "proportion": "1:2",
     "adopted": "1995",
     "symbolism": "Green: The agriculture and livestock of the country.<br>Blue: The bounty of the sea.<br>Red: The blood shed in the struggle for Eritrean independence with the 30 leaves in the wreath representing the thirty years spent in the struggle.<br>",
-    "funfacts": "The flag combines the basic layout and colours from the flag of the Eritrean People's Liberation Front with an emblem of a wreath with the upright olive-branch derived from an earlier flag.<br>The shape of the red triangle broadly mimics the shape of the country.<br>",
+    "funfacts": "The flag combines the basic layout and colours from the flag of the Eritrean People's Liberation Front with an emblem of a wreath with the upright olive branch derived from an earlier flag.<br>The shape of the red triangle broadly mimics the shape of the country.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Eritrea"
   },
   {
-    "tags": "spain red yellow horizontal vertical stripes building castle crown crowns banner ribbon waves pillar pillars animal flower vegetation pomegranate fruit cross fleur-de-lis fleurs-de-lis chain text motto",
+    "tags": "spain red yellow horizontal vertical stripes building crown ribbon waves animal vegetation cross fleur-de-lis text motto",
     "shortname": "es",
     "name": "Spain",
     "proportion": "2:3",
     "adopted": "1981",
-    "symbolism": "The red and gold colours are traditional but have no official symbolic interpretation.<br>The shield of the coat of arms is divided into quarters, each representing the main kingdoms that eventually merged to form Spain (Castilla, Leon, Aragon and Navarra). At the bottom there's a pomegranate representing the kingdom of Granada.<br>The center contains <a href=\"?q=fleur-de-lis\">fleurs-de-lis</a> representing the House of Borbón (the current royal family).<br>Around the shield there's a banner with the Spanish <a href=\"?q=motto\">motto</a> \"Plus Ultra\" (\"Further Beyond\" in latin) wrapped around pillars representing Gibraltar.<br>On top of the shield and the pillars, there are royal crowns representing the Spanish Royal crown and the Imperial crown (Holy Roman empire) respectively.<br>",
+    "symbolism": "The red and gold colours are traditional but have no official symbolic interpretation.<br>The shield of the coat of arms is divided into quarters, each representing the main kingdoms that eventually merged to form Spain (Castilla, Leon, Aragon and Navarra). At the bottom there's a pomegranate representing the kingdom of Granada.<br>The center contains <a href=\"?q=fleur-de-lis\">fleurs-de-lis</a> representing the House of Borbón (the current royal family).<br>Around the shield there's a ribbon with the Spanish <a href=\"?q=motto\">motto</a> \"Plus Ultra\" (\"Further Beyond\" in latin) wrapped around pillars representing Gibraltar.<br>On top of the shield and the pillars, there are royal crowns representing the Spanish Royal crown and the Imperial crown (Holy Roman empire) respectively.<br>",
     "funfacts": "At some point during the 1990s an unofficial version of the Spanish flag sporting an Osborne bull superimposed as some sort of \"coat of arms\" began appearing in football arenas. This usage has become increasingly popular and this flag is easily seen nowadays during sports events, football or others.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Spain"
   },
@@ -700,7 +700,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Finland"
   },
   {
-    "tags": "fiji blue white red cross british bird vegetation animal ship people men text banner ribbon weapon club banana bananas skirt skirts",
+    "tags": "fiji blue white red cross british bird vegetation animal text ribbon weapon",
     "shortname": "fj",
     "name": "Fiji",
     "proportion": "1:2",
@@ -710,12 +710,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Fiji"
   },
   {
-    "tags": "falkland islands blue white red cross british waves animal sheep vegetation banner ribbon star text motto",
+    "tags": "falkland islands blue white red cross british waves animal vegetation ribbon star text motto",
     "shortname": "fk",
     "name": "Falkland Islands",
     "proportion": "1:2",
     "adopted": "1999",
-    "symbolism": "For symbolism regarding the Union Jack, see <a href=\"?q=united+kingdom\">United Kingdom</a>.<br>Coat of arms: The ship represents the Desire, the vessel in which the English sea-captain John Davis is reputed to have discovered the Falkland Islands in 1592. The <a href=\"?q=motto\">motto</a> \"Desire the Right\", also refers to the ship's name. The ram represents sheep farming, which until recently was the principal economic activity of the islands, and the tussock grass shows the most notable native vegetation.<br>",
+    "symbolism": "For symbolism regarding the Union Jack, see <a href=\"?q=united+kingdom\">United Kingdom</a>.<br>Coat of arms: The represents the Desire, the vessel in which the English sea-captain John Davis is reputed to have discovered the Falkland Islands in 1592. The <a href=\"?q=motto\">motto</a> \"Desire the Right\", also refers to the ship's name. The ram represents sheep farming, which until recently was the principal economic activity of the islands, and the tussock grass shows the most notable native vegetation.<br>",
     "funfacts": "The flag was banned by the Argentine military junta from April to June 1982, during their occupation of the islands, when it was replaced by the flag of Argentina.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Falkland_Islands"
   },
@@ -800,7 +800,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Scotland"
   },
   {
-    "tags": "wales white green red animal dragon horizontal stripes",
+    "tags": "wales white green red animal horizontal stripes",
     "shortname": "gb-wls",
     "name": "Wales",
     "proportion": "3:5",
@@ -810,7 +810,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Wales"
   },
   {
-    "tags": "grenada red yellow green triangle nutmeg vegetation star diagonal",
+    "tags": "grenada red yellow green triangle vegetation star diagonal",
     "shortname": "gd",
     "name": "Grenada",
     "proportion": "3:5",
@@ -860,7 +860,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Ghana"
   },
   {
-    "tags": "gibraltar white red horizontal stripes key building castle fortress",
+    "tags": "gibraltar white red horizontal stripes building",
     "shortname": "gi",
     "name": "Gibraltar",
     "proportion": "1:2",
@@ -900,7 +900,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Guinea"
   },
   {
-    "tags": "guadeloupe blue black yellow sun fleur-de-lis fleurs-de-lis horizontal stripes sugar",
+    "tags": "guadeloupe blue black yellow sun fleur-de-lis horizontal stripes",
     "shortname": "gp",
     "name": "Guadeloupe",
     "proportion": "2:3",
@@ -910,12 +910,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Guadeloupe"
   },
   {
-    "tags": "equatorial guinea green white red blue triangle star text motto banner ribbon vegetation horizontal stripes",
+    "tags": "equatorial guinea green white red blue triangle star text motto ribbon vegetation horizontal stripes",
     "shortname": "gq",
     "name": "Equatorial Guinea",
     "proportion": "2:3",
     "adopted": "1979",
-    "symbolism": "Green: The natural resources, agriculture and jungles of the country.<br>Blue: The sea, which connects the main country with the islands.<br>White: Peace.<br>Red: The blood shed by the fighters for independence.<br>Coat of arms: The silk-cotton tree symbolizes the tree that the treaty with Spain was signed under, marking the beginning of the colonial rule. The six stars represent Rio Muni and the offshore islands. The banner has the national <a href=\"?q=motto\">motto</a> \"Unidad, Paz, Justicia\" (Unity, Peace, Justice).<br>",
+    "symbolism": "Green: The natural resources, agriculture and jungles of the country.<br>Blue: The sea, which connects the main country with the islands.<br>White: Peace.<br>Red: The blood shed by the fighters for independence.<br>Coat of arms: The silk-cotton tree symbolizes the tree that the treaty with Spain was signed under, marking the beginning of the colonial rule. The six stars represent Rio Muni and the offshore islands. The ribbon has the national <a href=\"?q=motto\">motto</a> \"Unidad, Paz, Justicia\" (Unity, Peace, Justice).<br>",
     "funfacts": "Under the rule of dictator Francisco Nguema the flag was modified and a different national emblem was used in it (several tools, a sword and a chicken). After he was deposed the original flag was restored.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Equatorial_Guinea"
   },
@@ -930,22 +930,22 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Greece"
   },
   {
-    "tags": "south georgia blue white red cross british banner banners shield ribbon ribbons vegetation ice seal penguin stars fire reindeer deer animal text motto",
+    "tags": "south georgia blue white red cross british shield ribbon vegetation animal text motto",
     "shortname": "gs",
     "name": "South Georgia",
     "proportion": "1:2",
     "adopted": "1999",
     "symbolism": "For symbolism regarding the Union Jack, see <a href=\"?q=united+kingdom\">United Kingdom</a>.<br>Coat of arms: A golden lion holding a torch, representing the United Kingdom and discovery, together with two stars from the arms of James Cook who discovered the islands. The supporters are an Antarctic fur seal standing on a mountain, and a macaroni penguin standing on ice, both animal native to the islands. The crest is a reindeer, from the two herds of reindeer found on South Georgia Island.<br>",
-    "funfacts": "The <a href=\"?q=motto\">motto</a> on the banner reads \"Leo Terram Propriam Protegat\" which is Latin for \"(Let the) Lion protect his own land\".<br>",
+    "funfacts": "The <a href=\"?q=motto\">motto</a> on the ribbon reads \"Leo Terram Propriam Protegat\" which is Latin for \"(Let the) Lion protect his own land\".<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_South_Georgia_and_the_South_Sandwich_Islands"
   },
   {
-    "tags": "guatemala blue white vertical stripes weapon rifle rifles remington gun guns bayonette bayonettes leaf vegetation bird quetzal animal text motto scroll berry berries",
+    "tags": "guatemala blue white vertical stripes weapon vegetation bird animal text motto ribbon",
     "shortname": "gt",
     "name": "Guatemala",
     "proportion": "5:8",
     "adopted": "1871",
-    "symbolism": "Blue: Two stripes represent that Guatemala is located between two oceans, the Pacific Ocean and the Atlantic Ocean (Caribbean sea) as well as the sky over the country.<br>White: Peace and purity.<br>Coat of arms: The Quetzal is the national <a href=\"?q=bird\">bird</a> of Guatemala, and represents freedom and independence of the nation. The crossed Remington <a href=\"?q=rifle\">rifles</a> are the type used during the 1871 Liberal Revolution, and represent the will to defend Guatemala's interests. The crossed <a href=\"?q=weapon\">swords</a> represent justice and honor. The <a href=\"?q=laurel\">laurel</a> wreath represents victory.<br>",
+    "symbolism": "Blue: Two stripes represent that Guatemala is located between two oceans, the Pacific Ocean and the Atlantic Ocean (Caribbean sea) as well as the sky over the country.<br>White: Peace and purity.<br>Coat of arms: The Quetzal is the national <a href=\"?q=bird\">bird</a> of Guatemala, and represents freedom and independence of the nation. The crossed Remington <a href=\"?q=weapon\">rifles</a> are the type used during the 1871 Liberal Revolution, and represent the will to defend Guatemala's interests. The crossed <a href=\"?q=weapon\">swords</a> represent justice and honor. The <a href=\"?q=laurel\">laurel</a> wreath represents victory.<br>",
     "funfacts": "The parchment at the center reads \"Libertad 15 de septiembre de 1821\" (Liberty 15 of September of 1821), the date Guatemala gained independence from <a href=\"?q=spain\">Spain</a>.<br>The blue and white colors, like those of several other countries in the <a href=\"?q=northa+blue+white\">region</a>, are based on the flag of the former Federal Republic of Central America.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Guatemala"
   },
@@ -960,7 +960,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Guinea-Bissau"
   },
   {
-    "tags": "guam blue red palm vegetation coconut boat sail cliff water weapon chamorro stone text name frame",
+    "tags": "guam blue red vegetation boat weapon text name",
     "shortname": "gu",
     "name": "Guam",
     "proportion": "22:41",
@@ -980,7 +980,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Guyana"
   },
   {
-    "tags": "hong kong red white star flower vegetation",
+    "tags": "hong kong red white star vegetation",
     "shortname": "hk",
     "name": "Hong Kong",
     "proportion": "2:3",
@@ -1000,7 +1000,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Heard_Island_and_McDonald_Islands"
   },
   {
-    "tags": "honduras blue white horizontal stripes five star",
+    "tags": "honduras blue white horizontal stripes star",
     "shortname": "hn",
     "name": "Honduras",
     "proportion": "1:2",
@@ -1010,7 +1010,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Honduras"
   },
   {
-    "tags": "croatia red white blue horizontal squares chessboard shield star moon leopard leopards goat marten stripes animal pan-slavic",
+    "tags": "croatia red white blue horizontal shield star moon stripes animal pan-slavic",
     "shortname": "hr",
     "name": "Croatia",
     "proportion": "1:2",
@@ -1020,13 +1020,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Croatia"
   },
   {
-    "tags": "haiti blue red white horizontal stripes vegetation palm cannon cannons weapon gun cannonball cannonballs hat cap phrygian instrument drum trumpet trumpets leaf text motto banner flag",
+    "tags": "haiti blue red white horizontal stripes vegetation weapon hat text motto ribbon flag",
     "shortname": "ht",
     "name": "Haiti",
     "proportion": "3:5",
     "adopted": "1986",
     "symbolism": "Blue: The black citizens of Haiti.<br>Red: The people of colour (mulatto).<br>Coat of arms: A trophy of <a href=\"?q=weapon\">weapons</a> atop a green hill and a royal palm symbolizing independence. Above the palm tree, there is a Phrygian cap placed as a symbol of freedom.<br>",
-    "funfacts": "The banner says \"L'Union fait la force\" (Unity Makes Strength) which is the national <a href=\"?q=motto\">motto</a>.<br>The newly appointed revolutionary leader Jean-Jacques Dessalines created the flag by taking a <a href=\"?q=france\">French tricolor</a> and ripping out the white center, which he discarded. He then asked Catherine Flon, his god-daughter, to sew the remaining bands together.<br>The flag is one of the few whose design incorporate a depiction of the flag itself.<br>It was discovered at the 1936 Summer Olympics in Berlin that Haiti and <a href=\"?q=liechtenstein\">Liechtenstein</a> were using the same flag. This led to the addition of a crown to the design of the flag of Liechtenstein.<br>",
+    "funfacts": "The ribbon says \"L'Union fait la force\" (Unity Makes Strength) which is the national <a href=\"?q=motto\">motto</a>.<br>The newly appointed revolutionary leader Jean-Jacques Dessalines created the flag by taking a <a href=\"?q=france\">French tricolor</a> and ripping out the white center, which he discarded. He then asked Catherine Flon, his god-daughter, to sew the remaining bands together.<br>The flag is one of the few whose design incorporate a depiction of the flag itself.<br>It was discovered at the 1936 Summer Olympics in Berlin that Haiti and <a href=\"?q=liechtenstein\">Liechtenstein</a> were using the same flag. This led to the addition of a crown to the design of the flag of Liechtenstein.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Haiti"
   },
   {
@@ -1070,7 +1070,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Israel"
   },
   {
-    "tags": "isle of man red white yellow star triskelion",
+    "tags": "isle of man red white yellow star",
     "shortname": "im",
     "name": "Isle of Man",
     "proportion": "1:2",
@@ -1080,7 +1080,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Isle_of_Man"
   },
   {
-    "tags": "india orange saffron white green blue horizontal stripes circle ashoka chakra wheel",
+    "tags": "india orange white green blue horizontal stripes circle",
     "shortname": "in",
     "name": "India",
     "proportion": "2:3",
@@ -1090,7 +1090,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_India"
   },
   {
-    "tags": "british indian ocean territory blue red white cross crown waves vegetation palm",
+    "tags": "british indian ocean territory blue red white cross crown waves vegetation",
     "shortname": "io",
     "name": "British Indian Ocean Territory",
     "proportion": "1:2",
@@ -1100,7 +1100,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_British_Indian_Ocean_Territory"
   },
   {
-    "tags": "iraq red white black green horizontal stripes text motto takbir pan-arab",
+    "tags": "iraq red white black green horizontal stripes text motto pan-arab",
     "shortname": "iq",
     "name": "Iraq",
     "proportion": "2:3",
@@ -1110,7 +1110,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Iraq"
   },
   {
-    "tags": "iran green white red text motto takbir horizontal stripes",
+    "tags": "iran green white red text motto horizontal stripes",
     "shortname": "ir",
     "name": "Iran",
     "proportion": "4:7",
@@ -1140,7 +1140,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Italy"
   },
   {
-    "tags": "jersey white red triangle cross animal leopard leopards crown diagonal",
+    "tags": "jersey white red triangle cross animal crown diagonal",
     "shortname": "je",
     "name": "Jersey",
     "proportion": "3:5",
@@ -1260,7 +1260,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_South_Korea"
   },
   {
-    "tags": "kuwait green white red black trapezium horizontal stripes pan-arab",
+    "tags": "kuwait green white red black horizontal stripes pan-arab",
     "shortname": "kw",
     "name": "Kuwait",
     "proportion": "1:2",
@@ -1310,7 +1310,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Lebanon"
   },
   {
-    "tags": "saint lucia blue white black yellow mountain piton pitons triangle",
+    "tags": "saint lucia blue white black yellow mountain triangle",
     "shortname": "lc",
     "name": "Saint Lucia",
     "proportion": "1:2",
@@ -1330,7 +1330,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Liechtenstein"
   },
   {
-    "tags": "sri lanka yellow green orange red maroon vertical stripes animal weapon kastane leaf vegetation leaves",
+    "tags": "sri lanka yellow green orange red maroon vertical stripes animal weapon vegetation",
     "shortname": "lk",
     "name": "Sri Lanka",
     "proportion": "1:2",
@@ -1346,11 +1346,11 @@
     "proportion": "10:19",
     "adopted": "1847",
     "symbolism": "Eleven stripes: The signatories of the Liberian Declaration of Independence.<br>Red and white: Courage and moral excellence.<br>White star: The first independent republic in Africa.<br>Blue square: The African continent.<br>",
-    "funfacts": "The Liberian flag is modeled after and resembles the United States flag because Liberia was founded, colonized, established, and controlled by free people of color and formerly enslaved black people from the <a href=\"?q=united+states\">United States</a> and the Caribbean.<br>Since Liberia offers ship registration under its flag, shipping companies registers boats as Liberian to avoid taxes and restrictions that other countries enforce. It is the second most popular flag of convenience after the flag of <a href=\"?q=panama\">Panama</a>.<br>The only nation other than <a href=\"?q=ethiopia\">Ethiopia</a> to remain independent during the Scramble for Africa.<br>",
+    "funfacts": "The Liberian flag is modeled after and resembles the United States flag because Liberia was founded, colonized, established, and controlled by free people of color and formerly enslaved black people from the <a href=\"?q=united+states\">United States</a> and the Caribbean.<br>Since Liberia offers registration under its flag, shipping companies registers boats as Liberian to avoid taxes and restrictions that other countries enforce. It is the second most popular flag of convenience after the flag of <a href=\"?q=panama\">Panama</a>.<br>The only nation other than <a href=\"?q=ethiopia\">Ethiopia</a> to remain independent during the Scramble for Africa.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Liberia"
   },
   {
-    "tags": "lesotho blue white green hat mokorotlo horizontal stripes",
+    "tags": "lesotho blue white green hat horizontal stripes",
     "shortname": "ls",
     "name": "Lesotho",
     "proportion": "2:3",
@@ -1400,7 +1400,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Libya"
   },
   {
-    "tags": "morocco red green star pentagram emerald triangle",
+    "tags": "morocco red green star triangle",
     "shortname": "ma",
     "name": "Morocco",
     "proportion": "2:3",
@@ -1420,7 +1420,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Monaco"
   },
   {
-    "tags": "moldova blue yellow red vertical stripes star moon bird animal auroch animal shield cross vegetation olive branch rose flower",
+    "tags": "moldova blue yellow red vertical stripes star moon bird animal shield cross vegetation",
     "shortname": "md",
     "name": "Moldova",
     "proportion": "1:2",
@@ -1440,7 +1440,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Montenegro"
   },
   {
-    "tags": "saint martin blue white red vertical stripes france",
+    "tags": "saint martin blue white red vertical stripes",
     "shortname": "mf",
     "name": "Saint Martin",
     "proportion": "2:3",
@@ -1499,7 +1499,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Myanmar"
   },
   {
-    "tags": "mongolia red blue yellow vertical stripes circle soyombo taijitu",
+    "tags": "mongolia red blue yellow vertical stripes circle",
     "shortname": "mn",
     "name": "Mongolia",
     "proportion": "1:2",
@@ -1509,7 +1509,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Mongolia"
   },
   {
-    "tags": "macau green white star horizontal stripes lotus flower vegetation bridge waves",
+    "tags": "macau green white star horizontal stripes vegetation waves",
     "shortname": "mo",
     "name": "Macau",
     "proportion": "2:3",
@@ -1519,7 +1519,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Macau"
   },
   {
-    "tags": "northern mariana islands blue white grey circle star mwarmwar latte stone",
+    "tags": "northern mariana islands blue white grey circle star",
     "shortname": "mp",
     "name": "Northern Mariana Islands",
     "proportion": "1:2",
@@ -1549,7 +1549,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Mauritania"
   },
   {
-    "tags": "montserrat blue white red cross british eirinn éirinn harp instrument people person",
+    "tags": "montserrat blue white red cross british human",
     "shortname": "ms",
     "name": "Montserrat",
     "proportion": "1:2",
@@ -1579,7 +1579,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Mauritius"
   },
   {
-    "tags": "maldives red green white moon frame",
+    "tags": "maldives red green white moon",
     "shortname": "mv",
     "name": "Maldives",
     "proportion": "2:3",
@@ -1599,7 +1599,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Malawi"
   },
   {
-    "tags": "mexico green white red vertical stripes bird falcon animal vegetation cactus snake rock lake banner flag",
+    "tags": "mexico green white red vertical stripes bird falcon animal vegetation cactus snake lake ribbon flag",
     "shortname": "mx",
     "name": "Mexico",
     "proportion": "4:7",
@@ -1619,7 +1619,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Malaysia"
   },
   {
-    "tags": "mozambique green white black yellow red triangle horizontal stripes star book weapon rifle bayonette ak-47 ak47 tool mattock pan-african",
+    "tags": "mozambique green white black yellow red triangle horizontal stripes star weapon ak-47 ak47 tool mattock pan-african",
     "shortname": "mz",
     "name": "REPLACE",
     "proportion": "2:3",
@@ -1679,7 +1679,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Nigeria"
   },
   {
-    "tags": "nicaragua blue white horizontal stripes rainbow mountain waves hat gotto frigio phrygian cap text name",
+    "tags": "nicaragua blue white horizontal stripes rainbow mountain waves hat gotto frigio text name",
     "shortname": "ni",
     "name": "Nicaragua",
     "proportion": "3:5",
@@ -1829,7 +1829,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Poland"
   },
   {
-    "tags": "saint pierre and miquelon white blue green yellow red black triangle cross boat ship waves animal",
+    "tags": "saint pierre and miquelon white blue green yellow red black triangle cross boat waves animal",
     "shortname": "pm",
     "name": "Saint Pierre and Miquelon",
     "proportion": "2:3",
@@ -1839,7 +1839,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Saint_Pierre_and_Miquelon"
   },
   {
-    "tags": "pitcairn islands blue white red yellow green cross bible book anchor vegetation flower helmet wheelbarrow banner vines british",
+    "tags": "pitcairn islands blue white red yellow green cross anchor vegetation helmet wheelbarrow ribbon vines british",
     "shortname": "pn",
     "name": "Pitcairn Islands",
     "proportion": "REPLACE",
@@ -1869,7 +1869,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Palestine"
   },
   {
-    "tags": "portugal green red vertical stripes circle sphere armillary building castle castles shield shields",
+    "tags": "portugal green red vertical stripes circle sphere armillary building shield shields",
     "shortname": "pt",
     "name": "Portugal",
     "proportion": "2:3",
@@ -1889,7 +1889,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Palau"
   },
   {
-    "tags": "paraguay red white blue horizontal stripes circle star vegetation leaf olive palm branch branches text name",
+    "tags": "paraguay red white blue horizontal stripes circle star vegetation branches text name",
     "shortname": "py",
     "name": "Paraguay",
     "proportion": "11:20",
@@ -1929,7 +1929,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Romania"
   },
   {
-    "tags": "serbia red blue white fleur-de-lis fleurs-de-lis horizontal stripes bird animal crown cross pan-slavic",
+    "tags": "serbia red blue white fleur-de-lis horizontal stripes bird animal crown cross pan-slavic",
     "shortname": "rs",
     "name": "Serbia",
     "proportion": "2:3",
@@ -2019,12 +2019,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Singapore"
   },
   {
-    "tags": "saint helena brown blue white red cross british ship boat flag england rocks animal bird plover waves",
+    "tags": "saint helena brown blue white red cross british boat flag england animal bird plover waves",
     "shortname": "sh",
     "name": "Saint Helena",
     "proportion": "1:2",
     "adopted": "1984",
-    "symbolism": "For symbolism regarding the Union Jack, see <a href=\"?q=united+kingdom\">United Kingdom</a>.<br>Bird: The national bird, the Saint Helena plover.<br>Ship: Coastal scene taken from the colonial seal and shows a ship with the flag of England.<br>",
+    "symbolism": "For symbolism regarding the Union Jack, see <a href=\"?q=united+kingdom\">United Kingdom</a>.<br>Bird: The national bird, the Saint Helena plover.<br>Ship: Coastal scene taken from the colonial seal and shows a with the flag of England.<br>",
     "funfacts": "The official flag of Saint Helena is the flag of the <a href=\"?q=united+kingdom\">United Kingdom</a>.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Saint_Helena"
   },
@@ -2069,7 +2069,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Sierra_Leone"
   },
   {
-    "tags": "san marino white blue horizontal stripes vegetation oak mountain crown banner ribbon cross text motto building castle castles three",
+    "tags": "san marino white blue horizontal stripes vegetation oak mountain crown ribbon cross text motto building three",
     "shortname": "sm",
     "name": "San Marino",
     "proportion": "3:4",
@@ -2129,17 +2129,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_S%C3%A3o_Tom%C3%A9_and_Pr%C3%ADncipe"
   },
   {
-    "tags": "el salvador blue white horizontal stripes vegetation mountain hill hills phrygian cap hat text motto name flag",
+    "tags": "el salvador blue white horizontal stripes vegetation mountain hill hills hat text motto name flag",
     "shortname": "sv",
     "name": "El Salvador",
     "proportion": "189:335",
     "adopted": "1912",
     "symbolism": "Blue: The skies of the country and the two massive oceans of Central America.<br>White: Peace, concordia and solidarity with the world.<br>Triangle: The three branches of the country's government: Executive, Legislative and Judiciary.<br>Five volcanoes: The fellowship of the five original isthmian member states of the United Provinces of Central America.<br>Phrygian cap on a staff: Freedom, inspired by the symbolism in the American and French Revolutions.<br>",
-    "funfacts": "The proportion is specified as 189:335 which is close to 9:16.<br>The banner has the national motto written on it: Dios Unión Libertad (Spanish for \"God Union Liberty\").<br>One of only seven flags which shows a flag of itself.<br>",
+    "funfacts": "The proportion is specified as 189:335 which is close to 9:16.<br>The ribbon has the national motto written on it: Dios Unión Libertad (Spanish for \"God Union Liberty\").<br>One of only seven flags which shows a flag of itself.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_El_Salvador"
   },
   {
-    "tags": "sint maarten blue red white yellow triangle horizontal stripes animal pelican vegetation flower sage text motto banner ribbon building courthouse",
+    "tags": "sint maarten blue red white yellow triangle horizontal stripes animal vegetation sage text motto ribbon building courthouse",
     "shortname": "sx",
     "name": "Sint Maarten",
     "proportion": "2:3",
@@ -2249,7 +2249,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_East_Timor"
   },
   {
-    "tags": "turkmenistan green red vertical stripe carpet moon star vegetation olive branch branches wreath",
+    "tags": "turkmenistan green red vertical stripe carpet moon star vegetation branches wreath",
     "shortname": "tm",
     "name": "Turkmenistan",
     "proportion": "2:3",
@@ -2388,7 +2388,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Uzbekistan"
   },
   {
-    "tags": "vatican city yellow white square vertical stripes key keys tiara crown rope cord",
+    "tags": "vatican city yellow white vertical stripes tiara crown rope cord",
     "shortname": "va",
     "name": "Vatican City",
     "proportion": "1:1",
@@ -2418,13 +2418,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Venezuela"
   },
   {
-    "tags": "british virgin islands white blue red green yellow cross woman person people dress saint ursula oil lamp lamps text motto banner ribbon shield",
+    "tags": "british virgin islands white blue red green yellow cross woman human dress saint ursula oil lamp lamps text motto ribbon shield",
     "shortname": "vg",
     "name": "British Virgin Islands",
     "proportion": "1:2",
     "adopted": "1960",
     "symbolism": "For symbolism regarding the Union Jack, see <a href=\"?q=united+kingdom\">United Kingdom</a>.<br>Person and oil lamps: Saint Ursula, the patron saint of the Virgin Islands, with her 11.000 virgin followers which the islands are named after by Christopher Columbus.<br>",
-    "funfacts": "The banner has the <a href=\"?q=motto\">motto</a> of the islands on it in Latin; \"Vigilate\" meaning \"be vigilant\".<br>",
+    "funfacts": "The ribbon has the <a href=\"?q=motto\">motto</a> of the islands on it in Latin; \"Vigilate\" meaning \"be vigilant\".<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_British_Virgin_Islands"
   },
   {
@@ -2498,13 +2498,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Yemen"
   },
   {
-    "tags": "mayotte white red blue yellow grey text name banner ribbon animal seahorse seahorses vegetation flower flowers ylang-ylang moon star",
+    "tags": "mayotte white red blue yellow grey text name ribbon animal seahorse seahorses vegetation ylang-ylang moon star",
     "shortname": "yt",
     "name": "Mayotte",
     "proportion": "REPLACE",
     "adopted": "1982",
     "symbolism": "Blue and red: The Flag of France.<br>Seahorses: A reference to the shape of the main island.<br>Moon: Islam, the main religion of Mayotte.<br>Yellow flowers: Ylang-ylang flowers which represent the main agricultural resource on the island.<br>",
-    "funfacts": "The official flag of Mayotte is the flag of <a href=\"?q=france\">France</a>.<br>Designed by Michel Chabin (former director of the Reunion Archives) and painted by local artist Pascale Santerre.<br>The banner displays the Mayotte <a href=\"?q=motto\">motto</a>, \"Ra Hachiri\", which is Shimaore for \"We are vigilant\".<br>",
+    "funfacts": "The official flag of Mayotte is the flag of <a href=\"?q=france\">France</a>.<br>Designed by Michel Chabin (former director of the Reunion Archives) and painted by local artist Pascale Santerre.<br>The ribbon displays the Mayotte <a href=\"?q=motto\">motto</a>, \"Ra Hachiri\", which is Shimaore for \"We are vigilant\".<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_and_coat_of_arms_of_Mayotte"
   },
   {
