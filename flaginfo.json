@@ -1,6 +1,6 @@
 [
   {
-    "tags": "andorra blue yellow red cows animal text vertical europe",
+    "tags": "andorra blue yellow red animal text vertical",
     "shortname": "ad",
     "name": "Andorra",
     "proportion": "7:10",
@@ -10,7 +10,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Andorra"
   },
   {
-    "tags": "united arab emirates red green white black horizontal pan-arab asia",
+    "tags": "united arab emirates red green white black horizontal pan-arab",
     "shortname": "ae",
     "name": "United Arab Emirates",
     "proportion": "1:2",
@@ -20,7 +20,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_United_Arab_Emirates"
   },
   {
-    "tags": "afghanistan white black text motto name flag nationalflag mosque building asia",
+    "tags": "afghanistan white black text motto name flag building",
     "shortname": "af",
     "name": "Afghanistan",
     "proportion": "1:2",
@@ -30,17 +30,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Afghanistan"
   },
   {
-    "tags": "antigua barbuda red black blue white sun sunrise sunset triangle triangles v-shape caribbean northa",
+    "tags": "antigua barbuda red black blue white sun triangle",
     "shortname": "ag",
     "name": "Antigua and Barbuda",
     "proportion": "2:3",
     "adopted": "1967",
-    "symbolism": "Black: The African ancestry of the people.<br>Blue: Hope and the Caribbean Sea.<br>Red: Energy or life of the people, <a href=\"?q=v-shape\">V-shape</a> is the symbol of victory.<br>The successive colouring of yellow, blue, and white (from the sun down) also stands for the sun, sea, and sand.<br>",
+    "symbolism": "Black: The African ancestry of the people.<br>Blue: Hope and the Caribbean Sea.<br>Red: Energy or life of the people, V is the symbol of victory.<br>The successive colouring of yellow, blue, and white (from the sun down) also stands for the sun, sea, and sand.<br>",
     "funfacts": "A competition to design the flag was held in which more than 600 local people entered. The winning design was put forth by nationally well-known artist and sculptor Sir Reginald Samuel.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Antigua_and_Barbuda"
   },
   {
-    "tags": "anguilla blue red white orange cross british animal dolphin northa",
+    "tags": "anguilla blue red white orange cross british animal",
     "shortname": "ai",
     "name": "Anguilla",
     "proportion": "1:2",
@@ -50,7 +50,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Anguilla"
   },
   {
-    "tags": "albania red black bird europe",
+    "tags": "albania red black bird animal",
     "shortname": "al",
     "name": "Albania",
     "proportion": "5:7",
@@ -60,7 +60,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Albania"
   },
   {
-    "tags": "armenia red blue orange horizontal stripes asia",
+    "tags": "armenia red blue orange horizontal stripes",
     "shortname": "am",
     "name": "Armenia",
     "proportion": "1:2",
@@ -70,7 +70,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Armenia"
   },
   {
-    "tags": "angola red black star weapon sword machete horizontal stripes africa",
+    "tags": "angola red black star weapon horizontal stripes",
     "shortname": "ao",
     "name": "Angola",
     "proportion": "2:3",
@@ -90,7 +90,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Antarctica"
   },
   {
-    "tags": "argentina blue white sun horizontal stripes face southa",
+    "tags": "argentina blue white sun horizontal stripes face",
     "shortname": "ar",
     "name": "Argentina",
     "proportion": "5:8",
@@ -100,17 +100,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Argentina"
   },
   {
-    "tags": "american samoa blue white triangle triangles red bird animal bald eagle weapon war club uatogi fly-whisk v-shape oceania",
+    "tags": "american samoa blue white triangle red bird animal weapon",
     "shortname": "as",
     "name": "American Samoa",
     "proportion": "10:19",
     "adopted": "1960",
-    "symbolism": "The red, white and blue represent the colors traditionally utilized by both the United States and Samoa.<br>The bald eagle represents the U.S. and it clutches two Samoan symbols, alluding to America's guardianship over American Samoa, as well as evoking the Great Seal of the United States.<br>The symbols are a uatogi (a war club, representing the government's power) and a fue (a fly-whisk, representing the wisdom of traditional Samoan leaders).<br>",
+    "symbolism": "The red, white and blue represent the colors traditionally utilized by both the United States and Samoa.<br>The bald represents the U.S. and it clutches two Samoan symbols, alluding to America's guardianship over American Samoa, as well as evoking the Great Seal of the United States.<br>The symbols are a uatogi (a war club, representing the government's power) and a fue (a fly-whisk, representing the wisdom of traditional Samoan leaders).<br>",
     "funfacts": "Before the first Europeans set foot on the islands in the 18th century, Samoa did not use any flags.<br>Designed by high school student Fareti Sotoa in a competition at the Samoana High School.<br>A copy of the flag, which was brought to the moon by astronauts on four Apollo missions from 1969-1971, is on display at the Jean P. Haydon Museum in Pago Pago.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_American_Samoa"
   },
   {
-    "tags": "austria red white horizontal stripes europe",
+    "tags": "austria red white horizontal stripes",
     "shortname": "at",
     "name": "Austria",
     "proportion": "2:3",
@@ -120,17 +120,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Austria"
   },
   {
-    "tags": "australia blue white red cross british star stars southern commonwealth oceania",
+    "tags": "australia blue white red cross british star",
     "shortname": "au",
     "name": "Australia",
     "proportion": "1:2",
     "adopted": "1908",
-    "symbolism": "For symbolism regarding the Union Jack, see <a href=\"?q=united+kingdom\">United Kingdom</a>.<br>Commonwealth star: Also known as the Federation star, represents the territories of the <a href=\"?q=commonwealth\">commonwealth</a>.<br>Southern Cross: A constellation used to represent Australia since the early days of British settlement. Ivor Evans, one of the flag's designers, intended the Southern Cross to also refer to the four moral virtues ascribed to the four main stars by Dante: justice, prudence, temperance and fortitude.<br>",
+    "symbolism": "For symbolism regarding the Union Jack, see <a href=\"?q=united+kingdom\">United Kingdom</a>.<br>Commonwealth star: Also known as the Federation star, represents the territories of the commonwealth.<br>Southern Cross: A constellation used to represent Australia since the early days of British settlement. Ivor Evans, one of the flag's designers, intended the Southern Cross to also refer to the four moral virtues ascribed to the four main stars by Dante: justice, prudence, temperance and fortitude.<br>",
     "funfacts": "The number of points on the stars of the Southern Cross on the modern Australian flag differs from the original competition-winning design, in which they ranged between five and nine points each, representing their relative brightness in the night sky.<br>The stars are named after the first five letters of the Greek alphabet, in decreasing order of brightness in the sky.<br>In order to simplify manufacture, the <a href=\"?q=british\">British</a> Admiralty standardised the four larger outer stars at seven points each, leaving the smaller, more central star with five points.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Australia"
   },
   {
-    "tags": "aruba blue yellow red white star horizontal stripes whitney smith caribbean northa",
+    "tags": "aruba blue yellow red white star horizontal stripes whitney_smith",
     "shortname": "aw",
     "name": "Aruba",
     "proportion": "2:3",
@@ -140,7 +140,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Aruba"
   },
   {
-    "tags": "åland islands aland blue yellow red cross europe nordic",
+    "tags": "åland islands aland blue yellow red cross",
     "shortname": "ax",
     "name": "Åland Islands",
     "proportion": "17:26",
@@ -150,7 +150,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_%C3%85land"
   },
   {
-    "tags": "azerbaijan blue red green moon crescent star horizontal stripes asia",
+    "tags": "azerbaijan blue red green moon star horizontal stripes",
     "shortname": "az",
     "name": "Azerbaijan",
     "proportion": "1:2",
@@ -160,7 +160,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Azerbaijan"
   },
   {
-    "tags": "bosnia and herzegovina blue yellow triangle star stars europe",
+    "tags": "bosnia and herzegovina blue yellow triangle star",
     "shortname": "ba",
     "name": "Bosnia and Herzegovina",
     "proportion": "1:2",
@@ -170,7 +170,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Bosnia_and_Herzegovina"
   },
   {
-    "tags": "barbados blue yellow weapon trident spear vertical stripes caribbean northa",
+    "tags": "barbados blue yellow weapon vertical stripes",
     "shortname": "bb",
     "name": "Barbados",
     "proportion": "2:3",
@@ -180,7 +180,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Barbados"
   },
   {
-    "tags": "bangladesh green red circle asia",
+    "tags": "bangladesh green red circle",
     "shortname": "bd",
     "name": "Bangladesh",
     "proportion": "3:5",
@@ -190,7 +190,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Bangladesh"
   },
   {
-    "tags": "belgium black yellow red vertical stripes europe",
+    "tags": "belgium black yellow red vertical stripes",
     "shortname": "be",
     "name": "Belgium",
     "proportion": "13:15",
@@ -200,7 +200,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Belgium"
   },
   {
-    "tags": "burkina faso red green yellow star horizontal stripes pan-african africa",
+    "tags": "burkina faso red green yellow star horizontal stripes pan-african",
     "shortname": "bf",
     "name": "Burkina Faso",
     "proportion": "2:3",
@@ -210,7 +210,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Burkina_Faso"
   },
   {
-    "tags": "bulgaria white green red horizontal stripes europe",
+    "tags": "bulgaria white green red horizontal stripes",
     "shortname": "bg",
     "name": "Bulgaria",
     "proportion": "3:5",
@@ -220,7 +220,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Bulgaria"
   },
   {
-    "tags": "bahrain white red triangle triangles saw tool asia",
+    "tags": "bahrain white red triangle tool",
     "shortname": "bh",
     "name": "Bahrain",
     "proportion": "3:5",
@@ -230,7 +230,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Bahrain"
   },
   {
-    "tags": "burundi green red white cross star triangle triangles stars circle diagonal africa",
+    "tags": "burundi green red white cross star triangle stars circle diagonal",
     "shortname": "bi",
     "name": "Burundi",
     "proportion": "3:5",
@@ -240,7 +240,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Burundi"
   },
   {
-    "tags": "benin green yellow red horizontal stripes pan-african africa",
+    "tags": "benin green yellow red horizontal stripes pan-african",
     "shortname": "bj",
     "name": "Benin",
     "proportion": "2:3",
@@ -250,7 +250,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Benin"
   },
   {
-    "tags": "saint barthélemy barthelemy white blue red yellow horizontal stripes animal bird birds pelican pelicans crown crowns castle building mural text maltese cross fleur-de-lis fleurs-de-lis star banner northa",
+    "tags": "saint barthélemy barthelemy white blue red yellow horizontal stripes animal bird birds pelican pelicans crown crowns castle building mural text maltese cross fleur-de-lis fleurs-de-lis star banner",
     "shortname": "bl",
     "name": "Saint Barthélemy",
     "proportion": "None",
@@ -260,7 +260,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_and_coat_of_arms_of_Saint_Barth%C3%A9lemy"
   },
   {
-    "tags": "bermuda red blue white cross british animal lion bear boat wave waves rock grass northa",
+    "tags": "bermuda red blue white cross british animal bear boat waves rock vegetation grass",
     "shortname": "bm",
     "name": "Bermuda",
     "proportion": "1:2",
@@ -270,7 +270,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Bermuda"
   },
   {
-    "tags": "brunei yellow black white red stripes triangle triangles text motto name hand hands banner parasol moon crescent flag diagonal asia",
+    "tags": "brunei yellow black white red stripes triangle text motto name hand hands banner moon flag diagonal",
     "shortname": "bn",
     "name": "Brunei",
     "proportion": "1:2",
@@ -280,7 +280,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Brunei"
   },
   {
-    "tags": "bolivia red yellow green horizontal stripes southa",
+    "tags": "bolivia red yellow green horizontal stripes",
     "shortname": "bo",
     "name": "Bolivia",
     "proportion": "15:22",
@@ -290,7 +290,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Bolivia"
   },
   {
-    "tags": "bonaire blue white yellow red black triangle triangles stripes star compass whitney smith diagonal northa",
+    "tags": "bonaire blue white yellow red black triangle stripes star compass whitney_smith diagonal",
     "shortname": "bq",
     "name": "Bonaire",
     "proportion": "2:3",
@@ -300,7 +300,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Bonaire"
   },
   {
-    "tags": "brazil green yellow blue circle text motto star stars southern cross southa",
+    "tags": "brazil green yellow blue circle text motto star",
     "shortname": "br",
     "name": "Brazil",
     "proportion": "7:10",
@@ -310,7 +310,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Brazil"
   },
   {
-    "tags": "bahamas black blue yellow triangle horizontal stripes caribbean northa",
+    "tags": "bahamas black blue yellow triangle horizontal stripes",
     "shortname": "bs",
     "name": "Bahamas",
     "proportion": "1:2",
@@ -320,7 +320,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Bahamas"
   },
   {
-    "tags": "bhutan orange white triangle triangles animal dragon diagonal asia",
+    "tags": "bhutan orange white triangle animal dragon diagonal",
     "shortname": "bt",
     "name": "Bhutan",
     "proportion": "2:3",
@@ -340,7 +340,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Bouvet_Island"
   },
   {
-    "tags": "botswana blue white black horizontal stripes africa",
+    "tags": "botswana blue white black horizontal stripes",
     "shortname": "bw",
     "name": "Botswana",
     "proportion": "2:3",
@@ -350,7 +350,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Botswana"
   },
   {
-    "tags": "belarus red green white horizontal stripes europe",
+    "tags": "belarus red green white horizontal stripes",
     "shortname": "by",
     "name": "Belarus",
     "proportion": "1:2",
@@ -360,7 +360,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Belarus"
   },
   {
-    "tags": "belize white red white circle weapon tool axe paddle horizontal stripes text motto banner tree vegetation tools axe oar ship boat waves men human humans people pants face faces leaf leaves caribbean northa",
+    "tags": "belize white red white circle weapon tool axe paddle horizontal stripes text motto banner vegetation tools axe oar ship boat waves men human humans people pants face faces leaf leaves",
     "shortname": "bz",
     "name": "Belize",
     "proportion": "3:5",
@@ -370,7 +370,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Belize"
   },
   {
-    "tags": "canada red white vertical stripes maple leaf northa",
+    "tags": "canada red white vertical stripes maple leaf",
     "shortname": "ca",
     "name": "Canada",
     "proportion": "1:2",
@@ -380,17 +380,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Canada"
   },
   {
-    "tags": "cocos islands keeling islands green yellow star stars southern cross moon crescent vegetation tree circle oceania",
+    "tags": "cocos islands keeling islands green yellow star moon vegetation circle",
     "shortname": "cc",
     "name": "Cocos (Keeling) Islands",
     "proportion": "1:2",
     "adopted": "2004",
-    "symbolism": "Palm tree: The islands' tropical flora.<br>Green and yellow: Australia's national colours.<br>Crescent moon: <a href=\"?q=islam\">Islam</a>.<br>The <a href=\"?q=southern+cross\">Southern Cross</a>: Australia and the Southern Hemisphere.<br>",
+    "symbolism": "Palm tree: The islands' tropical flora.<br>Green and yellow: Australia's national colours.<br>Crescent moon: <a href=\"?q=islam\">Islam</a>.<br>The Southern cross: Australia and the Southern Hemisphere.<br>",
     "funfacts": "It was designed by territory resident Mohammed Minkom, who won a design contest as a teenager.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Cocos_(Keeling)_Islands"
   },
   {
-    "tags": "congo blue yellow red triangle triangles star stripes diagonal africa",
+    "tags": "congo blue yellow red triangle star stripes diagonal",
     "shortname": "cd",
     "name": "Democratic Republic of the Congo",
     "proportion": "3:4",
@@ -400,7 +400,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Democratic_Republic_of_the_Congo"
   },
   {
-    "tags": "central africa blue white green yellow red star horizontal stripes pan-african africa",
+    "tags": "central africa blue white green yellow red star horizontal stripes pan-african",
     "shortname": "cf",
     "name": "Central African Republic",
     "proportion": "3:5",
@@ -410,7 +410,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Central_African_Republic"
   },
   {
-    "tags": "congo brazzaville green yellow red triangle triangles stripes diagonal pan-african africa",
+    "tags": "congo brazzaville green yellow red triangle stripes diagonal pan-african",
     "shortname": "cg",
     "name": "Republic of the Congo",
     "proportion": "2:3",
@@ -420,7 +420,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Republic_of_the_Congo"
   },
   {
-    "tags": "switzerland red white square cross europe",
+    "tags": "switzerland red white square cross",
     "shortname": "ch",
     "name": "Switzerland",
     "proportion": "1:1",
@@ -430,7 +430,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Switzerland"
   },
   {
-    "tags": "côte d'ivoire cote divoire ivory coast orange white green vertical stripes africa",
+    "tags": "côte d'ivoire cote divoire ivory coast orange white green vertical stripes",
     "shortname": "ci",
     "name": "Côte d'Ivoire (Ivory Coast)",
     "proportion": "2:3",
@@ -440,7 +440,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Ivory_Coast"
   },
   {
-    "tags": "cook islands blue white red cross british star stars circle oceania",
+    "tags": "cook islands blue white red cross british star circle",
     "shortname": "ck",
     "name": "Cook Islands",
     "proportion": "1:2",
@@ -450,7 +450,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Cook_Islands"
   },
   {
-    "tags": "chile red white blue star horizontal stripes southa",
+    "tags": "chile red white blue star horizontal stripes",
     "shortname": "cl",
     "name": "Chile",
     "proportion": "2:3",
@@ -460,7 +460,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Chile"
   },
   {
-    "tags": "cameroon green red yellow vertical stripes star pan-african africa",
+    "tags": "cameroon green red yellow vertical stripes star pan-african",
     "shortname": "cm",
     "name": "Cameroon",
     "proportion": "2:3",
@@ -470,7 +470,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Cameroon"
   },
   {
-    "tags": "china red yellow star stars asia",
+    "tags": "china red yellow star",
     "shortname": "cn",
     "name": "China",
     "proportion": "2:3",
@@ -480,7 +480,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_China"
   },
   {
-    "tags": "colombia yellow blue red horizontal stripes southa",
+    "tags": "colombia yellow blue red horizontal stripes",
     "shortname": "co",
     "name": "Colombia",
     "proportion": "2:3",
@@ -490,17 +490,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Colombia"
   },
   {
-    "tags": "costa rica blue white red ship ships grass vegetation sunset sunrise star stars volcano volcanoes mountain mountains horizontal stripes text name flag nationalflag northa",
+    "tags": "costa rica blue white red ship ships vegetation star mountain horizontal stripes text name flag",
     "shortname": "cr",
     "name": "Costa Rica",
     "proportion": "3:5",
     "adopted": "1906",
     "symbolism": "Blue: The sky, opportunities, idealism, and perseverance.<br>White: Peace, wisdom and happiness.<br>Red: The blood spilt by martyrs in defense of the country, as well as the warmth and generosity of the people.<br>The coat of arms depicts the isthmus between the Pacific Ocean and the Caribbean Sea, with 3 volcanoes. The 7 stars stand for the 7 provinces of Costa Rica.<br>",
-    "funfacts": "The flag features a stylized version of the flag of <a href=\"?q=nationalflag\">itself</a>.<br>The banner of the coat of arms says \"Republica de Costa Rica\" which is the full <a href=\"?q=name\">name</a> of Costa Rica in Spanish.<br>The blue, white and red horizontal design was created in 1848 by Pacífica Fernández, wife of then president José María Castro Madriz. Fernández was inspired by France's 1848 Revolution, and the creation of the French Second Republic.<br>",
+    "funfacts": "The flag features a stylized version of the flag of itself.<br>The banner of the coat of arms says \"Republica de Costa Rica\" which is the full <a href=\"?q=name\">name</a> of Costa Rica in Spanish.<br>The blue, white and red horizontal design was created in 1848 by Pacífica Fernández, wife of then president José María Castro Madriz. Fernández was inspired by France's 1848 Revolution, and the creation of the French Second Republic.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Costa_Rica"
   },
   {
-    "tags": "cuba blue white red triangle star horizontal stripes northa",
+    "tags": "cuba blue white red triangle star horizontal stripes",
     "shortname": "cu",
     "name": "Cuba",
     "proportion": "1:2",
@@ -510,7 +510,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Cuba"
   },
   {
-    "tags": "cape verde blue white red yellow horizontal stripes star stars africa",
+    "tags": "cape verde blue white red yellow horizontal stripes star",
     "shortname": "cv",
     "name": "Cape Verde",
     "proportion": "2:3",
@@ -520,7 +520,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Cape_Verde"
   },
   {
-    "tags": "curaçao curacao blue yellow white star stars horizontal stripes caribbean northa",
+    "tags": "curaçao curacao blue yellow white star horizontal stripes",
     "shortname": "cw",
     "name": "Curaçao",
     "proportion": "2:3",
@@ -530,17 +530,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Cura%C3%A7ao"
   },
   {
-    "tags": "christmas island blue green white yellow triangle triangles star stars southern cross animal bird map diagonal oceania",
+    "tags": "christmas island blue green white yellow triangle star animal bird map diagonal",
     "shortname": "cx",
     "name": "Christmas Island",
     "proportion": "1:2",
     "adopted": "2002",
-    "symbolism": "Blue and green: The sea and land respectively.<br>Stars: The <a href=\"?q=southern+cross\">Southern Cross</a> constellation refers to the southern hemisphere.<br>Bird: A golden bosun bird which is a symbol of the island.<br>Circle with map: A <a href=\"?q=map\">map</a> of the island on a disc representing the mining industry.<br>",
+    "symbolism": "Blue and green: The sea and land respectively.<br>Stars: The Southern cross constellation refers to the southern hemisphere.<br>Bird: A golden bosun bird which is a symbol of the island.<br>Circle with map: A <a href=\"?q=map\">map</a> of the island on a disc representing the mining industry.<br>",
     "funfacts": "The flag was unofficially adopted in 1986 after being chosen the winner in a competition for a flag for the territory. It was designed by Tony Couch of Sydney, Australia who received a price of $100.<br>The Golden bosun bird is one of six races of the white-tailed tropicbird.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Christmas_Island"
   },
   {
-    "tags": "cyprus white orange green olive vegetation leaf leaves map europe",
+    "tags": "cyprus white orange green olive vegetation map",
     "shortname": "cy",
     "name": "Cyprus",
     "proportion": "2:3",
@@ -550,7 +550,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Cyprus"
   },
   {
-    "tags": "czechia white red blue triangle horizontal stripes pan-slavic europe",
+    "tags": "czechia white red blue triangle horizontal stripes pan-slavic",
     "shortname": "cz",
     "name": "Czech Republic",
     "proportion": "2:3",
@@ -560,7 +560,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Czech_Republic"
   },
   {
-    "tags": "germany black red yellow horizontal stripes europe",
+    "tags": "germany black red yellow horizontal stripes",
     "shortname": "de",
     "name": "Germany",
     "proportion": "3:5",
@@ -570,7 +570,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Germany"
   },
   {
-    "tags": "djibouti white blue green red triangle horizontal stripes star africa",
+    "tags": "djibouti white blue green red triangle horizontal stripes star",
     "shortname": "dj",
     "name": "Djibouti",
     "proportion": "2:3",
@@ -580,17 +580,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Djibouti"
   },
   {
-    "tags": "denmark red white cross scandinavia europe nordic",
+    "tags": "denmark red white cross",
     "shortname": "dk",
     "name": "Denmark",
     "proportion": "28:37",
     "adopted": "1219",
-    "symbolism": "White: Peace and honesty.<br>Red: Hardiness, bravery, strength and valour.<br>The cross is a <a href=\"?q=nordic+cross\">Nordic Cross</a> which represent <a href=\"?q=christianity\">Christianity</a>.<br>",
+    "symbolism": "White: Peace and honesty.<br>Red: Hardiness, bravery, strength and valour.<br>The cross is a Nordic <a href=\"?q=cross\">cross</a> which represent <a href=\"?q=christianity\">Christianity</a>.<br>",
     "funfacts": "The flag holds the world record of being the oldest continuously used national flag.<br>According to legend, the Danish flag fell from heaven on June 15, 1219, during the Battle of Lyndanisse (near modern Tallinn, Estonia) as a sign from God of his support for King Valdemar II against the pagan Estonians.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Denmark"
   },
   {
-    "tags": "dominica green yellow black white red purple star stars circle bird animal horizontal vertical stripes caribbean northa",
+    "tags": "dominica green yellow black white red purple star circle bird animal horizontal vertical stripes",
     "shortname": "dm",
     "name": "Dominica",
     "proportion": "1:2",
@@ -600,17 +600,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Dominica"
   },
   {
-    "tags": "dominican republic blue red white weapon spear spears cross book bible ribbon ribbons banner banners cross leaf leaves text motto name flag nationalflag caribbean northa",
+    "tags": "dominican republic blue red white weapon cross book bible ribbon ribbons banner banners cross text motto name flag",
     "shortname": "do",
     "name": "Dominican Republic",
     "proportion": "2:3",
     "adopted": "1863",
-    "symbolism": "Blue: Liberty.<br>White: Salvation.<br>Red: Blood of heroes.<br>The coat of arms contains <a href=\"?q=christianity\">Christian</a> symbols in front of the flag of <a href=\"?q=nationalflag\">itself</a>.<br>",
+    "symbolism": "Blue: Liberty.<br>White: Salvation.<br>Red: Blood of heroes.<br>The coat of arms contains <a href=\"?q=christianity\">Christian</a> symbols in front of the flag of itself.<br>",
     "funfacts": "The coat of arms has a blue ribbon that displays the national <a href=\"?q=motto\">motto</a> \"Dios, Patria, Libertad\" (God, Fatherland, Liberty).<br>The Dominican revolutionary group known as La Trinitaria, who led the independency movement against Haitian rule, emphasized its Christian heritage by placing a white cross on the background of the previously blue-red flag.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Dominican_Republic"
   },
   {
-    "tags": "algeria green white red vertical stripes star moon crescent africa",
+    "tags": "algeria green white red vertical stripes star moon",
     "shortname": "dz",
     "name": "Algeria",
     "proportion": "2:3",
@@ -620,27 +620,27 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Algeria"
   },
   {
-    "tags": "ecuador yellow blue red horizontal stripes weapon axe axes halberd halberds river mountain chimborazo snow smoke boat ship sun leaf vegetation banner bird condor animal flag nationalflag southa",
+    "tags": "ecuador yellow blue red horizontal stripes weapon mountain chimborazo snow smoke boat ship sun leaf vegetation banner bird condor animal flag",
     "shortname": "ec",
     "name": "Ecuador",
     "proportion": "2:3",
     "adopted": "1860",
     "symbolism": "Yellow: The crops and the fertile soil.<br>Blue: The ocean and the clear skies.<br>Red: Freedom and the blood spilled by the heroes who died in the name of their countrymen's Fatherland.<br>Coat of arms: The condor on top of the shield stretches his wings to symbolize power, greatness and strength of Ecuador. In the background of the oval shield is the mountain Chimborazo which is the highest mountain in Ecuador. The ship was built in Guayaquil and was the first seaworthy steamship built in all of South America. The ship has the features of a Caduceus representing trade and economy. The laurel on the left represents the victories of the republic. The palm leaf on the right side is a symbol of the martyrs of the fight for independence and liberty. The bundle of wood (Fasces) below the shield represents the republican dignity.<br>",
-    "funfacts": "The coat of arms contains a depiction of the flag <a href=\"?q=nationalflag\">itself</a>.<br>The flags of <a href=\"?q=colombia\">Colombia</a>, Ecuador, and <a href=\"?q=venezuela\">Venezuela</a> are based on a proposal by Venezuelan General Francisco de Miranda, which was adopted by Venezuela in 1811 and later Gran Colombia with some modifications.<br>",
+    "funfacts": "The coat of arms contains a depiction of the flag itself.<br>The flags of <a href=\"?q=colombia\">Colombia</a>, Ecuador, and <a href=\"?q=venezuela\">Venezuela</a> are based on a proposal by Venezuelan General Francisco de Miranda, which was adopted by Venezuela in 1811 and later Gran Colombia with some modifications.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Ecuador"
   },
   {
-    "tags": "estonia blue black white horizontal stripes europe baltic",
+    "tags": "estonia blue black white horizontal stripes",
     "shortname": "ee",
     "name": "Estonia",
     "proportion": "7:11",
     "adopted": "1990",
     "symbolism": "Blue: Endurance and the reflection of the sky in the lakes and the sea.<br>Black: The earth that feeds the people.<br>White: An aspiration towards light and purity.<br>",
-    "funfacts": "It was officially first adopted as a student organisation flag.<br>Politician Kaarel Tarand suggested in 2001 that the flag be changed from a tricolour to a <a href=\"?q=scandinavia\">Scandinavian</a>-style cross design with the same colours. Advocates for a <a href=\"?q=nordic\">Nordic</a> flag state that Estonians consider themselves a Nordic nation rather than <a href=\"?q=baltic\">Baltic</a>.<br>",
+    "funfacts": "It was officially first adopted as a student organisation flag.<br>Politician Kaarel Tarand suggested in 2001 that the flag be changed from a tricolour to a Scandinavian-style cross design with the same colours. Advocates for a nordic flag state that Estonians consider themselves a Nordic nation rather than Baltic.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Estonia"
   },
   {
-    "tags": "egypt red white black yellow horizontal stripes bird eagle animal text name pan-arab africa asia",
+    "tags": "egypt red white black yellow horizontal stripes bird animal text name pan-arab",
     "shortname": "eg",
     "name": "Egypt",
     "proportion": "2:3",
@@ -650,7 +650,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Egypt"
   },
   {
-    "tags": "western sahara black white green red triangle horizontal stripes moon crescent star pan-arab africa",
+    "tags": "western sahara black white green red triangle horizontal stripes moon star pan-arab",
     "shortname": "eh",
     "name": "Western Sahara",
     "proportion": "1:2",
@@ -660,7 +660,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Western_Sahara"
   },
   {
-    "tags": "eritrea green red blue yellow triangle triangles v-shape leaf leaves pan-african africa",
+    "tags": "eritrea green red blue yellow triangle pan-african",
     "shortname": "er",
     "name": "Eritrea",
     "proportion": "1:2",
@@ -670,7 +670,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Eritrea"
   },
   {
-    "tags": "spain red yellow horizontal vertical stripes building castle crown crowns banner ribbon wave waves pillar pillars animal lion flower vegetation pomegranate fruit cross fleur-de-lis fleurs-de-lis chain text motto europe",
+    "tags": "spain red yellow horizontal vertical stripes building castle crown crowns banner ribbon waves pillar pillars animal flower vegetation pomegranate fruit cross fleur-de-lis fleurs-de-lis chain text motto",
     "shortname": "es",
     "name": "Spain",
     "proportion": "2:3",
@@ -680,7 +680,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Spain"
   },
   {
-    "tags": "ethiopia green yellow red blue triangle triangles star circle horizontal stripes africa",
+    "tags": "ethiopia green yellow red blue triangle star circle horizontal stripes",
     "shortname": "et",
     "name": "Ethiopia",
     "proportion": "1:2",
@@ -690,17 +690,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Ethiopia"
   },
   {
-    "tags": "finland blue white cross europe nordic",
+    "tags": "finland blue white cross",
     "shortname": "fi",
     "name": "Finland",
     "proportion": "11:18",
     "adopted": "1918",
-    "symbolism": "Blue: The country's thousands of lakes and the sky.<br>White: The snow that covers the land in winter.<br>Cross: A <a href=\"?q=nordic+cross\">Nordic cross</a> which represents <a href=\"?q=christianity\">Christianity</a>.<br>",
+    "symbolism": "Blue: The country's thousands of lakes and the sky.<br>White: The snow that covers the land in winter.<br>Cross: A Nordic <a href=\"?q=cross\">cross</a> which represents <a href=\"?q=christianity\">Christianity</a>.<br>",
     "funfacts": "Like <a href=\"?q=sweden\">Sweden</a>'s, Finland's national flag is based on the Nordic cross. It was adopted after independence from Russia, when many patriotic Finns wanted a special flag for their country, but its design dates back to the 19th century.<br>The current blue-crossed design was first used in Finland by Nyländska Jaktklubben, a yacht club founded in Helsinki in 1861.<br>As a special custom in Finland, the flag is flown at Midsummer from 6 pm of Midsummer eve until 9 pm of Midsummer's day. This is done to symbolize the fact that the darkness does not come to any part of Finland during Midsummer's Night.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Finland"
   },
   {
-    "tags": "fiji blue white red cross british bird laurel vegetation leaf leaves animal ship people men text banner ribbon weapon spear club lion banana bananas tree trees skirt skirts oceania",
+    "tags": "fiji blue white red cross british bird vegetation animal ship people men text banner ribbon weapon club banana bananas skirt skirts",
     "shortname": "fj",
     "name": "Fiji",
     "proportion": "1:2",
@@ -710,7 +710,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Fiji"
   },
   {
-    "tags": "falkland islands blue white red cross british wave waves animal sheep grass banner ribbon star stars text motto southa",
+    "tags": "falkland islands blue white red cross british waves animal sheep vegetation banner ribbon star text motto",
     "shortname": "fk",
     "name": "Falkland Islands",
     "proportion": "1:2",
@@ -720,7 +720,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Falkland_Islands"
   },
   {
-    "tags": "micronesia blue white star stars oceania",
+    "tags": "micronesia blue white star",
     "shortname": "fm",
     "name": "Micronesia",
     "proportion": "10:19",
@@ -730,17 +730,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Federated_States_of_Micronesia"
   },
   {
-    "tags": "faroe islands white red blue cross europe nordic",
+    "tags": "faroe islands white red blue cross",
     "shortname": "fo",
     "name": "Faroe Islands",
     "proportion": "8:11",
     "adopted": "1940",
-    "symbolism": "Cross: A <a href=\"?q=nordic+cross\">Nordic cross</a> which represents <a href=\"?q=christianity\">Christianity</a>.<br>White: The creators of the flag, the foam of the sea and the pure, radiant sky of the Faroe Islands.<br>Blue and red: Other <a href=\"?q=scandinavia\">Scandinavian</a> and <a href=\"?q=nordic\">Nordic</a> flags; representing the Faroe Islands' bonds with other Nordic countries.<br>",
+    "symbolism": "Cross: A Nordic <a href=\"?q=cross\">cross</a> which represents <a href=\"?q=christianity\">Christianity</a>.<br>White: The creators of the flag, the foam of the sea and the pure, radiant sky of the Faroe Islands.<br>Blue and red: Other Scandinavian and nordic flags; representing the Faroe Islands' bonds with other Nordic countries.<br>",
     "funfacts": "On 25 April, 1940, the British occupation government approved the flag for use by Faroese vessels as Britain did not want the same flag as German-occupied Denmark to be used.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Faroe_Islands"
   },
   {
-    "tags": "france blue white red vertical stripes europe",
+    "tags": "france blue white red vertical stripes",
     "shortname": "fr",
     "name": "France",
     "proportion": "2:3",
@@ -750,7 +750,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_France"
   },
   {
-    "tags": "gabon green yellow blue horizontal stripes africa",
+    "tags": "gabon green yellow blue horizontal stripes",
     "shortname": "ga",
     "name": "Gabon",
     "proportion": "3:4",
@@ -760,7 +760,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Gabon"
   },
   {
-    "tags": "united kingdom great britain red white blue cross british europe",
+    "tags": "united kingdom great britain red white blue cross british",
     "shortname": "gb",
     "name": "United Kingdom",
     "proportion": "1:2",
@@ -770,7 +770,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_United_Kingdom"
   },
   {
-    "tags": "england white red cross europe",
+    "tags": "england white red cross",
     "shortname": "gb-eng",
     "name": "England",
     "proportion": "3:5",
@@ -780,7 +780,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_England"
   },
   {
-    "tags": "northern ireland white red cross star hand crown europe",
+    "tags": "northern ireland white red cross star hand crown",
     "shortname": "gb-nir",
     "name": "Northern Ireland",
     "proportion": "1:2",
@@ -790,7 +790,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Ulster_Banner"
   },
   {
-    "tags": "scotland blue white triangle triangles cross diagonal europe",
+    "tags": "scotland blue white triangle cross diagonal",
     "shortname": "gb-sct",
     "name": "Scotland",
     "proportion": "3:5",
@@ -800,7 +800,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Scotland"
   },
   {
-    "tags": "wales white green red animal dragon horizontal stripes europe",
+    "tags": "wales white green red animal dragon horizontal stripes",
     "shortname": "gb-wls",
     "name": "Wales",
     "proportion": "3:5",
@@ -810,7 +810,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Wales"
   },
   {
-    "tags": "grenada red yellow green triangle triangles nutmeg vegetation star stars diagonal caribbean northa",
+    "tags": "grenada red yellow green triangle nutmeg vegetation star diagonal",
     "shortname": "gd",
     "name": "Grenada",
     "proportion": "3:5",
@@ -820,7 +820,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Grenada"
   },
   {
-    "tags": "georgia white red cross asia",
+    "tags": "georgia white red cross",
     "shortname": "ge",
     "name": "Georgia",
     "proportion": "2:3",
@@ -830,7 +830,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Georgia_(country)"
   },
   {
-    "tags": "french guiana green yellow red triangle triangles star diagonal southa",
+    "tags": "french guiana green yellow red triangle star diagonal",
     "shortname": "gf",
     "name": "French Guiana",
     "proportion": "2:3",
@@ -840,7 +840,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_French_Guiana"
   },
   {
-    "tags": "guernsey white red yellow cross europe",
+    "tags": "guernsey white red yellow cross",
     "shortname": "gg",
     "name": "Guernsey",
     "proportion": "2:3",
@@ -850,7 +850,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Guernsey"
   },
   {
-    "tags": "ghana red yellow green black star horizontal stripe pan-african africa",
+    "tags": "ghana red yellow green black star horizontal stripe pan-african",
     "shortname": "gh",
     "name": "Ghana",
     "proportion": "2:3",
@@ -860,7 +860,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Ghana"
   },
   {
-    "tags": "gibraltar white red horizontal stripes key building castle fortress europe",
+    "tags": "gibraltar white red horizontal stripes key building castle fortress",
     "shortname": "gi",
     "name": "Gibraltar",
     "proportion": "1:2",
@@ -870,17 +870,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Gibraltar"
   },
   {
-    "tags": "greenland red white horizontal stripes circle nordic northa",
+    "tags": "greenland red white horizontal stripes circle",
     "shortname": "gl",
     "name": "Greenland",
     "proportion": "2:3",
     "adopted": "1989",
     "symbolism": "White stripe: The glaciers and ice cap, which cover more than 80% of the island.<br>Red stripe: The ocean.<br>Red semicircle: The sun, with its bottom part sunk in the ocean.<br>White semicircle: The icebergs and pack ice.<br>",
-    "funfacts": "The flag of Greenland is the only national flag of a <a href=\"?q=nordic\">Nordic</a> country or territory without a <a href=\"?q=nordic+cross\">Nordic Cross</a>.<br>In 1985 it was reported that Greenland's flag had exactly the same motif as the flag of a Danish rowing club, which was founded before Greenland's flag was chosen. It is not clear whether this is a case of plagiarism or just a coincidence, but the rowing club gave Greenland permission to use their flag.<br>",
+    "funfacts": "The flag of Greenland is the only national flag of a nordic country or territory without a Nordic <a href=\"?q=cross\">cross</a>.<br>In 1985 it was reported that Greenland's flag had exactly the same motif as the flag of a Danish rowing club, which was founded before Greenland's flag was chosen. It is not clear whether this is a case of plagiarism or just a coincidence, but the rowing club gave Greenland permission to use their flag.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Greenland"
   },
   {
-    "tags": "gambia red white blue green horizontal stripes pan-african africa",
+    "tags": "gambia red white blue green horizontal stripes pan-african",
     "shortname": "gm",
     "name": "Gambia",
     "proportion": "2:3",
@@ -890,7 +890,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Gambia"
   },
   {
-    "tags": "guinea red yellow green vertical stripes africa pan-african oceania",
+    "tags": "guinea red yellow green vertical stripes africa pan-african",
     "shortname": "gn",
     "name": "Guinea",
     "proportion": "2:3",
@@ -900,7 +900,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Guinea"
   },
   {
-    "tags": "guadeloupe blue black yellow sun fleur-de-lis fleurs-de-lis horizontal stripes sugar northa",
+    "tags": "guadeloupe blue black yellow sun fleur-de-lis fleurs-de-lis horizontal stripes sugar",
     "shortname": "gp",
     "name": "Guadeloupe",
     "proportion": "2:3",
@@ -910,7 +910,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Guadeloupe"
   },
   {
-    "tags": "equatorial guinea green white red blue triangle star stars text motto banner ribbon leaf leaves vegetation horizontal stripes africa",
+    "tags": "equatorial guinea green white red blue triangle star text motto banner ribbon vegetation horizontal stripes",
     "shortname": "gq",
     "name": "Equatorial Guinea",
     "proportion": "2:3",
@@ -920,7 +920,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Equatorial_Guinea"
   },
   {
-    "tags": "greece blue white cross horizontal stripes europe",
+    "tags": "greece blue white cross horizontal stripes",
     "shortname": "gr",
     "name": "Greece",
     "proportion": "2:3",
@@ -930,7 +930,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Greece"
   },
   {
-    "tags": "south georgia blue white red cross british banner banners shield ribbon ribbons grass vegetation ice seal penguin lion stars fire reindeer deer animal text motto",
+    "tags": "south georgia blue white red cross british banner banners shield ribbon ribbons vegetation ice seal penguin stars fire reindeer deer animal text motto",
     "shortname": "gs",
     "name": "South Georgia",
     "proportion": "1:2",
@@ -940,17 +940,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_South_Georgia_and_the_South_Sandwich_Islands"
   },
   {
-    "tags": "guatemala blue white vertical stripes weapon sword swords rifle rifles remington laurel gun guns bayonette bayonettes leaf vegetation bird quetzal animal text motto scroll berry berries northa",
+    "tags": "guatemala blue white vertical stripes weapon rifle rifles remington gun guns bayonette bayonettes leaf vegetation bird quetzal animal text motto scroll berry berries",
     "shortname": "gt",
     "name": "Guatemala",
     "proportion": "5:8",
     "adopted": "1871",
-    "symbolism": "Blue: Two stripes represent that Guatemala is located between two oceans, the Pacific Ocean and the Atlantic Ocean (Caribbean sea) as well as the sky over the country.<br>White: Peace and purity.<br>Coat of arms: The Quetzal is the national <a href=\"?q=bird\">bird</a> of Guatemala, and represents freedom and independence of the nation. The crossed Remington <a href=\"?q=rifle\">rifles</a> are the type used during the 1871 Liberal Revolution, and represent the will to defend Guatemala's interests. The crossed <a href=\"?q=sword\">swords</a> represent justice and honor. The <a href=\"?q=laurel\">laurel</a> wreath represents victory.<br>",
+    "symbolism": "Blue: Two stripes represent that Guatemala is located between two oceans, the Pacific Ocean and the Atlantic Ocean (Caribbean sea) as well as the sky over the country.<br>White: Peace and purity.<br>Coat of arms: The Quetzal is the national <a href=\"?q=bird\">bird</a> of Guatemala, and represents freedom and independence of the nation. The crossed Remington <a href=\"?q=rifle\">rifles</a> are the type used during the 1871 Liberal Revolution, and represent the will to defend Guatemala's interests. The crossed <a href=\"?q=weapon\">swords</a> represent justice and honor. The <a href=\"?q=laurel\">laurel</a> wreath represents victory.<br>",
     "funfacts": "The parchment at the center reads \"Libertad 15 de septiembre de 1821\" (Liberty 15 of September of 1821), the date Guatemala gained independence from <a href=\"?q=spain\">Spain</a>.<br>The blue and white colors, like those of several other countries in the <a href=\"?q=northa+blue+white\">region</a>, are based on the flag of the former Federal Republic of Central America.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Guatemala"
   },
   {
-    "tags": "guinea-bissau yellow green red black star horizontal stripes pan-african africa",
+    "tags": "guinea-bissau yellow green red black star horizontal stripes pan-african",
     "shortname": "gw",
     "name": "Guinea-Bissau",
     "proportion": "1:2",
@@ -960,17 +960,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Guinea-Bissau"
   },
   {
-    "tags": "guam blue red tree palm vegetation coconut boat sail cliff water weapon chamorro stone text name frame oceania",
+    "tags": "guam blue red palm vegetation coconut boat sail cliff water weapon chamorro stone text name frame",
     "shortname": "gu",
     "name": "Guam",
     "proportion": "22:41",
     "adopted": "1948",
-    "symbolism": "Red border: The blood that it ravaged in World War II and Spanish sovereignty.<br>Coat of arms: The shape is of the Chamorro sling stones used by the islanders' ancestors as <a href=\"?q=weapon\">weapons</a>. The coconut <a href=\"?q=tree\">tree</a>, growing in infertile sand, symbolizes self-sustenance and determination to grow and survive. The <a href=\"?q=boat\">boat</a> is a proa sailing in Agana Bay with the Ritidian Point in the background portraying the people's faithful commitment to passing their proud heritage, culture, and language to the endless sea of future generations.<br>",
+    "symbolism": "Red border: The blood that it ravaged in World War II and Spanish sovereignty.<br>Coat of arms: The shape is of the Chamorro sling stones used by the islanders' ancestors as <a href=\"?q=weapon\">weapons</a>. The coconut tree, growing in infertile sand, symbolizes self-sustenance and determination to grow and survive. The <a href=\"?q=boat\">boat</a> is a proa sailing in Agana Bay with the Ritidian Point in the background portraying the people's faithful commitment to passing their proud heritage, culture, and language to the endless sea of future generations.<br>",
     "funfacts": "The flag and emblem was designed by Helen L. Paul, the wife of a U.S. naval officer stationed in Guam.<br>The emblem says \"GUAM\" in bright red letters.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Guam"
   },
   {
-    "tags": "guyana green white yellow black red triangle triangles v-shape whitney smith caribbean southa",
+    "tags": "guyana green white yellow black red triangle whitney_smith",
     "shortname": "gy",
     "name": "Guyana",
     "proportion": "3:5",
@@ -980,7 +980,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Guyana"
   },
   {
-    "tags": "hong kong red white star stars flower vegetation asia",
+    "tags": "hong kong red white star flower vegetation",
     "shortname": "hk",
     "name": "Hong Kong",
     "proportion": "2:3",
@@ -990,7 +990,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Hong_Kong"
   },
   {
-    "tags": "heard island and mcdonald islands blue white red cross british star stars",
+    "tags": "heard island and mcdonald islands blue white red cross british star",
     "shortname": "hm",
     "name": "Heard Island and McDonald Islands",
     "proportion": "1:2",
@@ -1000,7 +1000,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Heard_Island_and_McDonald_Islands"
   },
   {
-    "tags": "honduras blue white horizontal stripes five star stars northa",
+    "tags": "honduras blue white horizontal stripes five star",
     "shortname": "hn",
     "name": "Honduras",
     "proportion": "1:2",
@@ -1010,7 +1010,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Honduras"
   },
   {
-    "tags": "croatia red white blue horizontal squares chessboard shield star moon crescent leopard leopards lion lions goat marten stripes animal pan-slavic europe",
+    "tags": "croatia red white blue horizontal squares chessboard shield star moon leopard leopards goat marten stripes animal pan-slavic",
     "shortname": "hr",
     "name": "Croatia",
     "proportion": "1:2",
@@ -1020,17 +1020,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Croatia"
   },
   {
-    "tags": "haiti blue red white horizontal stripes vegetation tree palm cannon cannons weapon gun spear spears axe axes cannonball cannonballs hat cap phrygian instrument drum trumpet trumpets leaf text motto banner flag nationalflag caribbean northa",
+    "tags": "haiti blue red white horizontal stripes vegetation palm cannon cannons weapon gun cannonball cannonballs hat cap phrygian instrument drum trumpet trumpets leaf text motto banner flag",
     "shortname": "ht",
     "name": "Haiti",
     "proportion": "3:5",
     "adopted": "1986",
     "symbolism": "Blue: The black citizens of Haiti.<br>Red: The people of colour (mulatto).<br>Coat of arms: A trophy of <a href=\"?q=weapon\">weapons</a> atop a green hill and a royal palm symbolizing independence. Above the palm tree, there is a Phrygian cap placed as a symbol of freedom.<br>",
-    "funfacts": "The banner says \"L'Union fait la force\" (Unity Makes Strength) which is the national <a href=\"?q=motto\">motto</a>.<br>The newly appointed revolutionary leader Jean-Jacques Dessalines created the flag by taking a <a href=\"?q=france\">French tricolor</a> and ripping out the white center, which he discarded. He then asked Catherine Flon, his god-daughter, to sew the remaining bands together.<br>The flag is one of the few whose design incorporate a depiction of the flag <a href=\"?q=nationalflag\">itself</a>.<br>It was discovered at the 1936 Summer Olympics in Berlin that Haiti and <a href=\"?q=liechtenstein\">Liechtenstein</a> were using the same flag. This led to the addition of a crown to the design of the flag of Liechtenstein.<br>",
+    "funfacts": "The banner says \"L'Union fait la force\" (Unity Makes Strength) which is the national <a href=\"?q=motto\">motto</a>.<br>The newly appointed revolutionary leader Jean-Jacques Dessalines created the flag by taking a <a href=\"?q=france\">French tricolor</a> and ripping out the white center, which he discarded. He then asked Catherine Flon, his god-daughter, to sew the remaining bands together.<br>The flag is one of the few whose design incorporate a depiction of the flag itself.<br>It was discovered at the 1936 Summer Olympics in Berlin that Haiti and <a href=\"?q=liechtenstein\">Liechtenstein</a> were using the same flag. This led to the addition of a crown to the design of the flag of Liechtenstein.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Haiti"
   },
   {
-    "tags": "hungary red white green horizontal stripes europe",
+    "tags": "hungary red white green horizontal stripes",
     "shortname": "hu",
     "name": "Hungary",
     "proportion": "1:2",
@@ -1040,7 +1040,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Hungary"
   },
   {
-    "tags": "indonesia red white horizontal stripes asia oceania",
+    "tags": "indonesia red white horizontal stripes asia",
     "shortname": "id",
     "name": "Indonesia",
     "proportion": "2:3",
@@ -1050,7 +1050,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Indonesia"
   },
   {
-    "tags": "ireland green white orange vertical stripes europe",
+    "tags": "ireland green white orange vertical stripes",
     "shortname": "ie",
     "name": "Ireland",
     "proportion": "1:2",
@@ -1060,7 +1060,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Ireland"
   },
   {
-    "tags": "israel white blue triangle triangles horizontal stripes star asia",
+    "tags": "israel white blue triangle horizontal stripes star",
     "shortname": "il",
     "name": "Israel",
     "proportion": "8:11",
@@ -1070,17 +1070,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Israel"
   },
   {
-    "tags": "isle of man red white yellow star stars triskelion europe",
+    "tags": "isle of man red white yellow star triskelion",
     "shortname": "im",
     "name": "Isle of Man",
     "proportion": "1:2",
     "adopted": "1932",
     "symbolism": "The three legs is called a triskelion but its symbolism and origin is unknown.<br>According to Norse mythology, the triskelion was a symbol of the movement of the sun through the heavens.<br>",
-    "funfacts": "The usage of a triskelion was very popular with <a href=\"?q=scandinavia\">Scandinavian</a> cultures, and the symbol may have been introduced to the Isle by the Norse descendants of King Amlaíb Cuarán, who ruled the island between the 10th century and 1266.<br>",
+    "funfacts": "The usage of a triskelion was very popular with Scandinavian cultures, and the symbol may have been introduced to the Isle by the Norse descendants of King Amlaíb Cuarán, who ruled the island between the 10th century and 1266.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Isle_of_Man"
   },
   {
-    "tags": "india orange saffron white green blue horizontal stripes circle ashoka chakra wheel asia",
+    "tags": "india orange saffron white green blue horizontal stripes circle ashoka chakra wheel",
     "shortname": "in",
     "name": "India",
     "proportion": "2:3",
@@ -1090,17 +1090,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_India"
   },
   {
-    "tags": "british indian ocean territory blue red white cross crown waves vegetation palm tree africa",
+    "tags": "british indian ocean territory blue red white cross crown waves vegetation palm",
     "shortname": "io",
     "name": "British Indian Ocean Territory",
     "proportion": "1:2",
     "adopted": "1990",
-    "symbolism": "For symbolism regarding the Union Jack, see <a href=\"?q=united+kingdom\">United Kingdom</a>.<br>Waves: The Indian Ocean, where the islands are located.<br>Palm <a href=\"?q=tree\">tree</a> and St Edward's <a href=\"?q=crown\">Crown</a> are symbols of the Indian Ocean Territory.<br>",
+    "symbolism": "For symbolism regarding the Union Jack, see <a href=\"?q=united+kingdom\">United Kingdom</a>.<br>Waves: The Indian Ocean, where the islands are located.<br>Palm tree and St Edward's <a href=\"?q=crown\">Crown</a> are symbols of the Indian Ocean Territory.<br>",
     "funfacts": "Given that it is impossible for civilians to visit the British Indian Ocean Territory, it is not clear how widely this flag is used.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_British_Indian_Ocean_Territory"
   },
   {
-    "tags": "iraq red white black green horizontal stripes text motto takbir pan-arab asia",
+    "tags": "iraq red white black green horizontal stripes text motto takbir pan-arab",
     "shortname": "iq",
     "name": "Iraq",
     "proportion": "2:3",
@@ -1110,7 +1110,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Iraq"
   },
   {
-    "tags": "iran green white red text motto takbir horizontal stripes asia",
+    "tags": "iran green white red text motto takbir horizontal stripes",
     "shortname": "ir",
     "name": "Iran",
     "proportion": "4:7",
@@ -1120,17 +1120,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Iran"
   },
   {
-    "tags": "iceland blue red white cross europe nordic",
+    "tags": "iceland blue red white cross",
     "shortname": "is",
     "name": "Iceland",
     "proportion": "18:25",
     "adopted": "1944",
-    "symbolism": "Cross: A <a href=\"?q=nordic+cross\">Nordic cross</a> which represents <a href=\"?q=christianity\">Christianity</a>.<br>Red: The fire produced by the island's volcanoes.<br>White: The ice and snow that covers Iceland<br>Blue: The mountains of the island.<br>",
-    "funfacts": "According to a legend described in Andrew Evans' Iceland, a red cloth with a white cross fell from the heavens, ensuring <a href=\"?q=denmark\">Danish</a> victory at the Battle of Valdemar in the 13th century. Denmark then used the cross on its flag throughout its <a href=\"?q=nordic\">Nordic</a> territories as a sign of divine right. Upon Iceland's independence, they continued to use the <a href=\"?q=christianity\">Christian</a> symbol.<br>",
+    "symbolism": "Cross: A Nordic <a href=\"?q=cross\">cross</a> which represents <a href=\"?q=christianity\">Christianity</a>.<br>Red: The fire produced by the island's volcanoes.<br>White: The ice and snow that covers Iceland<br>Blue: The mountains of the island.<br>",
+    "funfacts": "According to a legend described in Andrew Evans' Iceland, a red cloth with a white cross fell from the heavens, ensuring <a href=\"?q=denmark\">Danish</a> victory at the Battle of Valdemar in the 13th century. Denmark then used the cross on its flag throughout its nordic territories as a sign of divine right. Upon Iceland's independence, they continued to use the <a href=\"?q=christianity\">Christian</a> symbol.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Iceland"
   },
   {
-    "tags": "italy green white red vertical stripes europe",
+    "tags": "italy green white red vertical stripes",
     "shortname": "it",
     "name": "Italy",
     "proportion": "2:3",
@@ -1140,7 +1140,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Italy"
   },
   {
-    "tags": "jersey white red triangle triangles cross animal leopard leopards lion lions crown diagonal europe",
+    "tags": "jersey white red triangle cross animal leopard leopards crown diagonal",
     "shortname": "je",
     "name": "Jersey",
     "proportion": "3:5",
@@ -1150,7 +1150,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Jersey"
   },
   {
-    "tags": "jamaica green yellow black triangle triangles cross caribbean diagonal northa",
+    "tags": "jamaica green yellow black triangle cross diagonal",
     "shortname": "jm",
     "name": "Jamaica",
     "proportion": "1:2",
@@ -1160,7 +1160,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Jamaica"
   },
   {
-    "tags": "jordan black white green red triangle horizontal stripes star pan-arab asia",
+    "tags": "jordan black white green red triangle horizontal stripes star pan-arab",
     "shortname": "jo",
     "name": "Jordan",
     "proportion": "1:2",
@@ -1170,7 +1170,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Jordan"
   },
   {
-    "tags": "japan white red circle sun asia",
+    "tags": "japan white red circle sun",
     "shortname": "jp",
     "name": "Japan",
     "proportion": "2:3",
@@ -1180,7 +1180,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Japan"
   },
   {
-    "tags": "kenya black white red green weapon spear spears shield maasai horizontal stripes pan-african africa",
+    "tags": "kenya black white red green weapon shield horizontal stripes pan-african",
     "shortname": "ke",
     "name": "Kenya",
     "proportion": "2:3",
@@ -1190,7 +1190,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Kenya"
   },
   {
-    "tags": "kyrgyzstan red yellow sun circle yurt tent building asia",
+    "tags": "kyrgyzstan red yellow sun circle building",
     "shortname": "kg",
     "name": "Kyrgyzstan",
     "proportion": "3:5",
@@ -1200,7 +1200,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Kyrgyzstan"
   },
   {
-    "tags": "cambodia blue red white horizontal stripes building angkor wat asia",
+    "tags": "cambodia blue red white horizontal stripes building",
     "shortname": "kh",
     "name": "Cambodia",
     "proportion": "16:25",
@@ -1210,7 +1210,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Cambodia"
   },
   {
-    "tags": "kiribati red white blue yellow sun sunrise sunset bird frigatebird animal waves oceania",
+    "tags": "kiribati red white blue yellow sun bird animal waves",
     "shortname": "ki",
     "name": "Kiribati",
     "proportion": "1:2",
@@ -1220,7 +1220,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Kiribati"
   },
   {
-    "tags": "comoros green yellow white red blue triangle horizontal stripes moon crescent star stars pan-african africa",
+    "tags": "comoros green yellow white red blue triangle horizontal stripes moon star pan-african",
     "shortname": "km",
     "name": "Comoros",
     "proportion": "3:5",
@@ -1230,7 +1230,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Comoros"
   },
   {
-    "tags": "saint kitts nevis green yellow black white red triangle triangles star stars stripes caribbean diagonal northa",
+    "tags": "saint kitts nevis green yellow black white red triangle star stripes diagonal",
     "shortname": "kn",
     "name": "Saint Kitts and Nevis",
     "proportion": "2:3",
@@ -1240,7 +1240,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Saint_Kitts_and_Nevis"
   },
   {
-    "tags": "north korea blue white red horizontal stripes star circle asia",
+    "tags": "north korea blue white red horizontal stripes star circle",
     "shortname": "kp",
     "name": "North Korea",
     "proportion": "1:2",
@@ -1250,7 +1250,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_North_Korea"
   },
   {
-    "tags": "south korea white black red blue circle stripes taegeuk trigram trigrams asia",
+    "tags": "south korea white black red blue circle stripes",
     "shortname": "kr",
     "name": "South Korea",
     "proportion": "2:3",
@@ -1260,7 +1260,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_South_Korea"
   },
   {
-    "tags": "kuwait green white red black trapezium horizontal stripes pan-arab asia",
+    "tags": "kuwait green white red black trapezium horizontal stripes pan-arab",
     "shortname": "kw",
     "name": "Kuwait",
     "proportion": "1:2",
@@ -1270,7 +1270,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Kuwait"
   },
   {
-    "tags": "cayman islands white blue red cross british text star stars animal waves turtle caribbean northa",
+    "tags": "cayman islands white blue red cross british text star animal waves",
     "shortname": "ky",
     "name": "Cayman Islands",
     "proportion": "1:2",
@@ -1280,7 +1280,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Cayman_Islands"
   },
   {
-    "tags": "kazakhstan blue yellow circle sun bird animal asia",
+    "tags": "kazakhstan blue yellow circle sun bird animal",
     "shortname": "kz",
     "name": "Kazakhstan",
     "proportion": "1:2",
@@ -1290,7 +1290,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Kazakhstan"
   },
   {
-    "tags": "laos red blue white horizontal stripes circle asia",
+    "tags": "laos red blue white horizontal stripes circle",
     "shortname": "la",
     "name": "Laos",
     "proportion": "2:3",
@@ -1300,7 +1300,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Laos"
   },
   {
-    "tags": "lebanon red white green horizontal stripes vegetation tree cedar asia",
+    "tags": "lebanon red white green horizontal stripes vegetation",
     "shortname": "lb",
     "name": "Lebanon",
     "proportion": "2:3",
@@ -1310,7 +1310,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Lebanon"
   },
   {
-    "tags": "saint lucia blue white black yellow mountain mountains piton pitons triangle triangles caribbean northa",
+    "tags": "saint lucia blue white black yellow mountain piton pitons triangle",
     "shortname": "lc",
     "name": "Saint Lucia",
     "proportion": "1:2",
@@ -1320,7 +1320,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Saint_Lucia"
   },
   {
-    "tags": "liechtenstein blue red yellow horizontal stripes crown europe",
+    "tags": "liechtenstein blue red yellow horizontal stripes crown",
     "shortname": "li",
     "name": "Liechtenstein",
     "proportion": "3:5",
@@ -1330,27 +1330,27 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Liechtenstein"
   },
   {
-    "tags": "sri lanka yellow green orange red maroon vertical stripes animal lion weapon sword kastane leaf vegetation leaves asia",
+    "tags": "sri lanka yellow green orange red maroon vertical stripes animal weapon kastane leaf vegetation leaves",
     "shortname": "lk",
     "name": "Sri Lanka",
     "proportion": "1:2",
     "adopted": "1972",
     "symbolism": "The lion and the maroon: The Sinhala ethnicity.<br>Yellow border and four bo leaves: The concepts of mettā, karuṇā, muditā and upekshā respectively.<br>Stripes: The country's two largest minorities; orange for Tamils and green for Muslims (Moors).<br>There are more details with its own symbolism, the full list can be found by following the Wikipedia link below.<br>",
-    "funfacts": "The symbol of a lion in Sri Lankan heraldry dates back to 486 BC, when Vijaya, the first King of Sri Lanka, arrived on the island from <a href=\"?q=india\">India</a> and brought with him a standard depicting a <a href=\"?q=lion\">lion</a>.<br>",
+    "funfacts": "The symbol of a lion in Sri Lankan heraldry dates back to 486 BC, when Vijaya, the first King of Sri Lanka, arrived on the island from <a href=\"?q=india\">India</a> and brought with him a standard depicting a lion.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Sri_Lanka"
   },
   {
-    "tags": "liberia red white blue horizontal stripes star africa",
+    "tags": "liberia red white blue horizontal stripes star",
     "shortname": "lr",
     "name": "Liberia",
     "proportion": "10:19",
     "adopted": "1847",
     "symbolism": "Eleven stripes: The signatories of the Liberian Declaration of Independence.<br>Red and white: Courage and moral excellence.<br>White star: The first independent republic in Africa.<br>Blue square: The African continent.<br>",
-    "funfacts": "The Liberian flag is modeled after and resembles the United States flag because Liberia was founded, colonized, established, and controlled by free people of color and formerly enslaved black people from the <a href=\"?q=united+states\">United States</a> and the <a href=\"?q=caribbean\">Caribbean</a>.<br>Since Liberia offers ship registration under its flag, shipping companies registers boats as Liberian to avoid taxes and restrictions that other countries enforce. It is the second most popular flag of convenience after the flag of <a href=\"?q=panama\">Panama</a>.<br>The only nation other than <a href=\"?q=ethiopia\">Ethiopia</a> to remain independent during the Scramble for Africa.<br>",
+    "funfacts": "The Liberian flag is modeled after and resembles the United States flag because Liberia was founded, colonized, established, and controlled by free people of color and formerly enslaved black people from the <a href=\"?q=united+states\">United States</a> and the Caribbean.<br>Since Liberia offers ship registration under its flag, shipping companies registers boats as Liberian to avoid taxes and restrictions that other countries enforce. It is the second most popular flag of convenience after the flag of <a href=\"?q=panama\">Panama</a>.<br>The only nation other than <a href=\"?q=ethiopia\">Ethiopia</a> to remain independent during the Scramble for Africa.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Liberia"
   },
   {
-    "tags": "lesotho blue white green hat mokorotlo horizontal stripes africa",
+    "tags": "lesotho blue white green hat mokorotlo horizontal stripes",
     "shortname": "ls",
     "name": "Lesotho",
     "proportion": "2:3",
@@ -1360,7 +1360,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Lesotho"
   },
   {
-    "tags": "lithuania yellow green red horizontal stripes europe baltic",
+    "tags": "lithuania yellow green red horizontal stripes",
     "shortname": "lt",
     "name": "Lithuania",
     "proportion": "3:5",
@@ -1370,7 +1370,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Lithuania"
   },
   {
-    "tags": "luxembourg red white blue horizontal stripes europe",
+    "tags": "luxembourg red white blue horizontal stripes",
     "shortname": "lu",
     "name": "Luxembourg",
     "proportion": "3:5",
@@ -1380,7 +1380,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Luxembourg"
   },
   {
-    "tags": "latvia red white horizontal stripes europe baltic",
+    "tags": "latvia red white horizontal stripes",
     "shortname": "lv",
     "name": "Latvia",
     "proportion": "1:2",
@@ -1390,7 +1390,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Latvia"
   },
   {
-    "tags": "libya red black green white horizontal stripes star moon crescent pan-arab africa",
+    "tags": "libya red black green white horizontal stripes star moon pan-arab",
     "shortname": "ly",
     "name": "Libya",
     "proportion": "1:2",
@@ -1400,7 +1400,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Libya"
   },
   {
-    "tags": "morocco red green star pentagram emerald triangle triangles africa",
+    "tags": "morocco red green star pentagram emerald triangle",
     "shortname": "ma",
     "name": "Morocco",
     "proportion": "2:3",
@@ -1410,7 +1410,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Morocco"
   },
   {
-    "tags": "monaco red white horizontal stripes europe",
+    "tags": "monaco red white horizontal stripes",
     "shortname": "mc",
     "name": "Monaco",
     "proportion": "4:5",
@@ -1420,7 +1420,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Monaco"
   },
   {
-    "tags": "moldova blue yellow red vertical stripes star moon crescent bird eagle auroch animal shield cross vegetation olive branch rose flower europe",
+    "tags": "moldova blue yellow red vertical stripes star moon bird animal auroch animal shield cross vegetation olive branch rose flower",
     "shortname": "md",
     "name": "Moldova",
     "proportion": "1:2",
@@ -1430,7 +1430,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Moldova"
   },
   {
-    "tags": "montenegro red yellow bird eagle lion cross animal europe",
+    "tags": "montenegro red yellow bird cross animal",
     "shortname": "me",
     "name": "Montenegro",
     "proportion": "1:2",
@@ -1440,7 +1440,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Montenegro"
   },
   {
-    "tags": "saint martin blue white red vertical stripes france northa",
+    "tags": "saint martin blue white red vertical stripes france",
     "shortname": "mf",
     "name": "Saint Martin",
     "proportion": "2:3",
@@ -1449,7 +1449,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Collectivity_of_Saint_Martin"
   },
   {
-    "tags": "madagascar white red green horizontal stripes africa",
+    "tags": "madagascar white red green horizontal stripes",
     "shortname": "mg",
     "name": "Madagascar",
     "proportion": "2:3",
@@ -1459,7 +1459,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Madagascar"
   },
   {
-    "tags": "marshall islands blue white orange stripes triangle triangles star sun diagonal oceania",
+    "tags": "marshall islands blue white orange stripes triangle star sun diagonal",
     "shortname": "mh",
     "name": "Marshall Islands",
     "proportion": "10:19",
@@ -1469,7 +1469,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Marshall_Islands"
   },
   {
-    "tags": "north macedonia red yellow sun triangle triangles circle diagonal europe",
+    "tags": "north macedonia red yellow sun triangle circle diagonal",
     "shortname": "mk",
     "name": "North Macedonia",
     "proportion": "1:2",
@@ -1479,7 +1479,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_North_Macedonia"
   },
   {
-    "tags": "mali green yellow red vertical stripes pan-african africa",
+    "tags": "mali green yellow red vertical stripes pan-african",
     "shortname": "ml",
     "name": "Mali",
     "proportion": "2:3",
@@ -1489,7 +1489,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Mali"
   },
   {
-    "tags": "myanmar burma red green yellow white star horizontal stripes asia",
+    "tags": "myanmar burma red green yellow white star horizontal stripes",
     "shortname": "mm",
     "name": "Myanmar",
     "proportion": "2:3",
@@ -1499,7 +1499,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Myanmar"
   },
   {
-    "tags": "mongolia red blue yellow vertical stripes circle soyombo taijitu asia",
+    "tags": "mongolia red blue yellow vertical stripes circle soyombo taijitu",
     "shortname": "mn",
     "name": "Mongolia",
     "proportion": "1:2",
@@ -1509,7 +1509,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Mongolia"
   },
   {
-    "tags": "macau green white star stars horizontal stripes lotus flower vegetation bridge waves asia",
+    "tags": "macau green white star horizontal stripes lotus flower vegetation bridge waves",
     "shortname": "mo",
     "name": "Macau",
     "proportion": "2:3",
@@ -1519,7 +1519,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Macau"
   },
   {
-    "tags": "northern mariana islands blue white grey circle star mwarmwar latte stone oceania",
+    "tags": "northern mariana islands blue white grey circle star mwarmwar latte stone",
     "shortname": "mp",
     "name": "Northern Mariana Islands",
     "proportion": "1:2",
@@ -1529,7 +1529,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Northern_Mariana_Islands"
   },
   {
-    "tags": "martinique green red black triangle horizontal northa",
+    "tags": "martinique green red black triangle horizontal",
     "shortname": "mq",
     "name": "Martinique",
     "proportion": "2:3",
@@ -1539,7 +1539,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Martinique"
   },
   {
-    "tags": "mauritania green yellow star moon crescent horizontal stripes pan-african africa",
+    "tags": "mauritania green yellow star moon horizontal stripes pan-african",
     "shortname": "mr",
     "name": "Mauritania",
     "proportion": "2:3",
@@ -1549,7 +1549,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Mauritania"
   },
   {
-    "tags": "montserrat blue white red cross british eirinn éirinn harp instrument people person northa",
+    "tags": "montserrat blue white red cross british eirinn éirinn harp instrument people person",
     "shortname": "ms",
     "name": "Montserrat",
     "proportion": "1:2",
@@ -1559,7 +1559,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Montserrat"
   },
   {
-    "tags": "malta red white vertical stripes cross animal text europe",
+    "tags": "malta red white vertical stripes cross animal text",
     "shortname": "mt",
     "name": "Malta",
     "proportion": "2:3",
@@ -1569,7 +1569,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Malta"
   },
   {
-    "tags": "mauritius red blue yellow green horizontal stripes pan-african africa",
+    "tags": "mauritius red blue yellow green horizontal stripes pan-african",
     "shortname": "mu",
     "name": "Mauritius",
     "proportion": "2:3",
@@ -1579,7 +1579,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Mauritius"
   },
   {
-    "tags": "maldives red green white moon crescent frame asia",
+    "tags": "maldives red green white moon frame",
     "shortname": "mv",
     "name": "Maldives",
     "proportion": "2:3",
@@ -1589,7 +1589,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Maldives"
   },
   {
-    "tags": "malawi black red green horizontal stripes sun sunset dusk sunrise dawn pan-african africa",
+    "tags": "malawi black red green horizontal stripes sun dusk dawn pan-african",
     "shortname": "mw",
     "name": "Malawi",
     "proportion": "2:3",
@@ -1599,7 +1599,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Malawi"
   },
   {
-    "tags": "mexico green white red vertical stripes bird eagle falcon animal vegetation cactus snake rock lake leaf leaves banner flag nationalflag northa",
+    "tags": "mexico green white red vertical stripes bird falcon animal vegetation cactus snake rock lake banner flag",
     "shortname": "mx",
     "name": "Mexico",
     "proportion": "4:7",
@@ -1609,7 +1609,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Mexico"
   },
   {
-    "tags": "malaysia blue red white yellow horizontal stripes moon crescent star asia",
+    "tags": "malaysia blue red white yellow horizontal stripes moon star",
     "shortname": "my",
     "name": "Malaysia",
     "proportion": "1:2",
@@ -1619,7 +1619,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Malaysia"
   },
   {
-    "tags": "mozambique green white black yellow red triangle horizontal stripes star book weapon rifle bayonette ak-47 ak47 tool mattock pan-african africa",
+    "tags": "mozambique green white black yellow red triangle horizontal stripes star book weapon rifle bayonette ak-47 ak47 tool mattock pan-african",
     "shortname": "mz",
     "name": "REPLACE",
     "proportion": "2:3",
@@ -1629,7 +1629,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Mozambique"
   },
   {
-    "tags": "namibia blue white red green yellow triangle triangles sun circle stripes pan-african diagonal africa",
+    "tags": "namibia blue white red green yellow triangle sun circle stripes pan-african diagonal",
     "shortname": "na",
     "name": "Namibia",
     "proportion": "2:3",
@@ -1639,7 +1639,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Namibia"
   },
   {
-    "tags": "new caledonia blue red green yellow black horizontal stripes circle fleche faitiere flèche faitière kebab kebabs in sun oceania",
+    "tags": "new caledonia blue red green yellow black horizontal stripes circle fleche faitiere flèche faitière kebab kebabs in sun",
     "shortname": "nc",
     "name": "New Caledonia",
     "proportion": "2:3",
@@ -1649,7 +1649,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flags_of_New_Caledonia"
   },
   {
-    "tags": "niger orange white green horizontal stripes circle africa",
+    "tags": "niger orange white green horizontal stripes circle",
     "shortname": "ne",
     "name": "Niger",
     "proportion": "6:7",
@@ -1659,7 +1659,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Niger"
   },
   {
-    "tags": "norfolk island green white vertical stripes vegetation tree pine oceania",
+    "tags": "norfolk island green white vertical stripes vegetation pine",
     "shortname": "nf",
     "name": "Norfolk Island",
     "proportion": "1:2",
@@ -1669,7 +1669,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Norfolk_Island"
   },
   {
-    "tags": "nigeria green white vertical stripes africa",
+    "tags": "nigeria green white vertical stripes",
     "shortname": "ng",
     "name": "Nigeria",
     "proportion": "1:2",
@@ -1679,7 +1679,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Nigeria"
   },
   {
-    "tags": "nicaragua blue white horizontal stripes rainbow mountain mountains volcano volcanoes waves hat gotto frigio phrygian cap text name northa",
+    "tags": "nicaragua blue white horizontal stripes rainbow mountain waves hat gotto frigio phrygian cap text name",
     "shortname": "ni",
     "name": "Nicaragua",
     "proportion": "3:5",
@@ -1689,7 +1689,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Nicaragua"
   },
   {
-    "tags": "netherlands red white blue horizontal stripes europe",
+    "tags": "netherlands red white blue horizontal stripes",
     "shortname": "nl",
     "name": "Netherlands",
     "proportion": "2:3",
@@ -1699,7 +1699,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Netherlands"
   },
   {
-    "tags": "norway blue red white cross scandinavia europe nordic",
+    "tags": "norway blue red white cross",
     "shortname": "no",
     "name": "Norway",
     "proportion": "8:11",
@@ -1709,7 +1709,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Norway"
   },
   {
-    "tags": "nepal red blue white triangle triangles star sun moon crescent asia",
+    "tags": "nepal red blue white triangle star sun moon",
     "shortname": "np",
     "name": "Nepal",
     "proportion": "It's complicated.",
@@ -1719,7 +1719,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Nepal"
   },
   {
-    "tags": "nauru blue yellow white horizontal stripes star oceania",
+    "tags": "nauru blue yellow white horizontal stripes star",
     "shortname": "nr",
     "name": "Nauru",
     "proportion": "1:2",
@@ -1729,7 +1729,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Nauru"
   },
   {
-    "tags": "niue yellow blue white red cross british circle star stars oceania",
+    "tags": "niue yellow blue white red cross british circle star",
     "shortname": "nu",
     "name": "Niue",
     "proportion": "1:2",
@@ -1739,7 +1739,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Niue"
   },
   {
-    "tags": "new zealand blue white red cross british star stars southern oceania",
+    "tags": "new zealand blue white red cross british star",
     "shortname": "nz",
     "name": "New Zealand",
     "proportion": "1:2",
@@ -1749,7 +1749,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_New_Zealand"
   },
   {
-    "tags": "oman red white green weapon sword swords dagger khanjar horizontal asia",
+    "tags": "oman red white green weapon dagger khanjar horizontal",
     "shortname": "om",
     "name": "Oman",
     "proportion": "1:2",
@@ -1759,7 +1759,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Oman"
   },
   {
-    "tags": "panama white red blue horizontal vertical star stars northa",
+    "tags": "panama white red blue horizontal vertical star",
     "shortname": "pa",
     "name": "Panama",
     "proportion": "2:3",
@@ -1769,7 +1769,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Panama"
   },
   {
-    "tags": "peru red white vertical stripes southa",
+    "tags": "peru red white vertical stripes",
     "shortname": "pe",
     "name": "Peru",
     "proportion": "2:3",
@@ -1779,7 +1779,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Peru"
   },
   {
-    "tags": "french polynesia red white horizontal stripes waves circle star stars boat canoe oceania",
+    "tags": "french polynesia red white horizontal stripes waves circle star boat canoe",
     "shortname": "pf",
     "name": "French Polynesia",
     "proportion": "2:3",
@@ -1789,7 +1789,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_French_Polynesia"
   },
   {
-    "tags": "papua new guinea red black yellow white triangle triangles star stars southern cross bird bird-of-paradise animal diagonal oceania",
+    "tags": "papua new guinea red black yellow white triangle star bird bird-of-paradise animal diagonal",
     "shortname": "pg",
     "name": "Papua New Guinea",
     "proportion": "3:4",
@@ -1799,7 +1799,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Papua_New_Guinea"
   },
   {
-    "tags": "philippines blue red white yellow triangle horizontal stripes circle sun star stars asia",
+    "tags": "philippines blue red white yellow triangle horizontal stripes circle sun star",
     "shortname": "ph",
     "name": "Philippines",
     "proportion": "1:2",
@@ -1809,7 +1809,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Philippines"
   },
   {
-    "tags": "pakistan green white vertical stripes moon crescent star asia",
+    "tags": "pakistan green white vertical stripes moon star",
     "shortname": "pk",
     "name": "Pakistan",
     "proportion": "2:3",
@@ -1819,7 +1819,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Pakistan"
   },
   {
-    "tags": "poland white red horizontal stripes europe",
+    "tags": "poland white red horizontal stripes",
     "shortname": "pl",
     "name": "Poland",
     "proportion": "5:8",
@@ -1829,7 +1829,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Poland"
   },
   {
-    "tags": "saint pierre and miquelon white blue green yellow red black triangle triangles cross boat ship waves animal northa",
+    "tags": "saint pierre and miquelon white blue green yellow red black triangle cross boat ship waves animal",
     "shortname": "pm",
     "name": "Saint Pierre and Miquelon",
     "proportion": "2:3",
@@ -1839,7 +1839,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Saint_Pierre_and_Miquelon"
   },
   {
-    "tags": "pitcairn islands blue white red yellow green cross bible book anchor vegetation flower helmet wheelbarrow banner vines british oceania",
+    "tags": "pitcairn islands blue white red yellow green cross bible book anchor vegetation flower helmet wheelbarrow banner vines british",
     "shortname": "pn",
     "name": "Pitcairn Islands",
     "proportion": "REPLACE",
@@ -1849,7 +1849,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_and_coat_of_arms_of_the_Pitcairn_Islands"
   },
   {
-    "tags": "puerto rico red white blue triangle horizontal stripes star northa",
+    "tags": "puerto rico red white blue triangle horizontal stripes star",
     "shortname": "pr",
     "name": "Puerto Rico",
     "proportion": "2:3",
@@ -1859,7 +1859,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Puerto_Rico"
   },
   {
-    "tags": "palestine red white green black triangle horizontal stripes pan-arab asia",
+    "tags": "palestine red white green black triangle horizontal stripes pan-arab",
     "shortname": "ps",
     "name": "Palestine",
     "proportion": "1:2",
@@ -1869,7 +1869,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Palestine"
   },
   {
-    "tags": "portugal green red vertical stripes circle sphere armillary building castle castles shield shields europe",
+    "tags": "portugal green red vertical stripes circle sphere armillary building castle castles shield shields",
     "shortname": "pt",
     "name": "Portugal",
     "proportion": "2:3",
@@ -1879,7 +1879,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Portugal"
   },
   {
-    "tags": "palau blue yellow circle sun moon full oceania",
+    "tags": "palau blue yellow circle sun moon full",
     "shortname": "pw",
     "name": "Palau",
     "proportion": "5:8",
@@ -1889,7 +1889,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Palau"
   },
   {
-    "tags": "paraguay red white blue horizontal stripes circle star vegetation leaf olive palm branch branches text name southa",
+    "tags": "paraguay red white blue horizontal stripes circle star vegetation leaf olive palm branch branches text name",
     "shortname": "py",
     "name": "Paraguay",
     "proportion": "11:20",
@@ -1899,7 +1899,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Paraguay"
   },
   {
-    "tags": "qatar white maroon purple triangle triangles tool saw serrated asia",
+    "tags": "qatar white maroon purple triangle tool serrated",
     "shortname": "qa",
     "name": "Qatar",
     "proportion": "11:28",
@@ -1909,7 +1909,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Qatar"
   },
   {
-    "tags": "réunion reunion red blue yellow triangle triangles volcano pyramid building sunbeams beams africa",
+    "tags": "réunion reunion red blue yellow triangle volcano pyramid building sunbeams beams",
     "shortname": "re",
     "name": "Réunion",
     "proportion": "2:3",
@@ -1919,7 +1919,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_R%C3%A9union"
   },
   {
-    "tags": "romania blue yellow red vertical stripes europe",
+    "tags": "romania blue yellow red vertical stripes",
     "shortname": "ro",
     "name": "Romania",
     "proportion": "2:3",
@@ -1929,7 +1929,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Romania"
   },
   {
-    "tags": "serbia red blue white fleur-de-lis fleurs-de-lis horizontal stripes bird animal double-headed crown cross pan-slavic europe",
+    "tags": "serbia red blue white fleur-de-lis fleurs-de-lis horizontal stripes bird animal crown cross pan-slavic",
     "shortname": "rs",
     "name": "Serbia",
     "proportion": "2:3",
@@ -1939,7 +1939,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Serbia"
   },
   {
-    "tags": "russia white blue red horizontal stripes pan-slavic asia europe",
+    "tags": "russia white blue red horizontal stripes pan-slavic",
     "shortname": "ru",
     "name": "Russia",
     "proportion": "2:3",
@@ -1949,7 +1949,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Russia"
   },
   {
-    "tags": "rwanda blue yellow green horizontal stripes sun circle africa",
+    "tags": "rwanda blue yellow green horizontal stripes sun circle",
     "shortname": "rw",
     "name": "Rwanda",
     "proportion": "2:3",
@@ -1959,7 +1959,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Rwanda"
   },
   {
-    "tags": "saudi arabia green white weapon sword text motto asia",
+    "tags": "saudi arabia green white weapon text motto",
     "shortname": "sa",
     "name": "Saudi Arabia",
     "proportion": "2:3",
@@ -1969,17 +1969,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Saudi_Arabia"
   },
   {
-    "tags": "solomon islands blue yellow green white triangle triangles star stars diagonal oceania",
+    "tags": "solomon islands blue yellow green white triangle star diagonal",
     "shortname": "sb",
     "name": "Solomon Islands",
     "proportion": "1:2",
     "adopted": "1977",
     "symbolism": "Blue: The water in the form of rivers, rain, and the Pacific Ocean.<br>Green: The land, the trees and crops that grow on it.<br>Yellow: The sun and its rays separating the land and the ocean.<br>Five stars: The five provinces of the country at the time of independence.<br>",
-    "funfacts": "Unlike the flags of nearby <a href=\"?q=australia\">Australia</a>, <a href=\"?q=new+zealand\">New Zealand</a>, <a href=\"?q=papua+new+guinea\">Papua New Guinea</a>, and <a href=\"?q=samoa\">Samoa</a>, the stars on the flag does not represent the <a href=\"?q=southern+cross\">Southern Cross</a>.<br>The design was created by a New Zealander teaching visual arts at the time in the capital Honiara.<br>",
+    "funfacts": "Unlike the flags of nearby <a href=\"?q=australia\">Australia</a>, <a href=\"?q=new+zealand\">New Zealand</a>, <a href=\"?q=papua+new+guinea\">Papua New Guinea</a>, and <a href=\"?q=samoa\">Samoa</a>, the stars on the flag does not represent the Southern cross.<br>The design was created by a New Zealander teaching visual arts at the time in the capital Honiara.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Solomon_Islands"
   },
   {
-    "tags": "seychelles blue yellow red white green triangle triangles pan-african diagonal africa",
+    "tags": "seychelles blue yellow red white green triangle pan-african diagonal",
     "shortname": "sc",
     "name": "Seychelles",
     "proportion": "1:2",
@@ -1989,7 +1989,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Seychelles"
   },
   {
-    "tags": "sudan red white black green triangle horizontal stripes pan-arab africa",
+    "tags": "sudan red white black green triangle horizontal stripes pan-arab",
     "shortname": "sd",
     "name": "Sudan",
     "proportion": "1:2",
@@ -1999,17 +1999,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Sudan"
   },
   {
-    "tags": "sweden blue yellow cross scandinavia europe nordic",
+    "tags": "sweden blue yellow cross",
     "shortname": "se",
     "name": "Sweden",
     "proportion": "5:8",
     "adopted": "1906",
     "symbolism": "Cross: Christianity.<br>Colours are of unknown origin.<br>",
-    "funfacts": "Blue and yellow have been used as Swedish colours at least since Magnus III's royal coat of arms of 1275.<br>Based on the design of the flag of <a href=\"?q=denmark\">Denmark</a>, the <a href=\"?q=nordic+cross\">Nordic Cross</a> is used in the flags of the <a href=\"?q=nordic\">Nordic</a> countries.<br>",
+    "funfacts": "Blue and yellow have been used as Swedish colours at least since Magnus III's royal coat of arms of 1275.<br>Based on the design of the flag of <a href=\"?q=denmark\">Denmark</a>, the Nordic <a href=\"?q=cross\">cross</a> is used in the flags of the nordic countries.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Sweden"
   },
   {
-    "tags": "singapore red white horizontal stripes moon crescent star stars asia",
+    "tags": "singapore red white horizontal stripes moon star",
     "shortname": "sg",
     "name": "Singapore",
     "proportion": "2:3",
@@ -2019,7 +2019,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Singapore"
   },
   {
-    "tags": "saint helena brown blue white red cross british ship boat flag england rocks animal bird plover waves africa",
+    "tags": "saint helena brown blue white red cross british ship boat flag england rocks animal bird plover waves",
     "shortname": "sh",
     "name": "Saint Helena",
     "proportion": "1:2",
@@ -2029,7 +2029,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Saint_Helena"
   },
   {
-    "tags": "slovenia white blue red horizontal stripes star stars three mountain triglav pan-slavic europe",
+    "tags": "slovenia white blue red horizontal stripes star three mountain triglav pan-slavic",
     "shortname": "si",
     "name": "Slovenia",
     "proportion": "1:2",
@@ -2039,7 +2039,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Slovenia"
   },
   {
-    "tags": "svalbard and jan mayen red white blue cross norway europe nordic",
+    "tags": "svalbard and jan mayen red white blue cross norway",
     "shortname": "sj",
     "name": "Svalbard and Jan Mayen",
     "proportion": "8:11",
@@ -2049,7 +2049,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Svalbard_and_Jan_Mayen"
   },
   {
-    "tags": "slovakia white blue red horizontal stripes double cross mountain mountains tatra fatra matra pan-slavic europe",
+    "tags": "slovakia white blue red horizontal stripes cross mountain pan-slavic",
     "shortname": "sk",
     "name": "Slovakia",
     "proportion": "2:3",
@@ -2059,7 +2059,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Slovakia"
   },
   {
-    "tags": "sierra leone green white blue horizontal stripes africa",
+    "tags": "sierra leone green white blue horizontal stripes",
     "shortname": "sl",
     "name": "Sierra Leone",
     "proportion": "2:3",
@@ -2069,7 +2069,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Sierra_Leone"
   },
   {
-    "tags": "san marino white blue horizontal stripes vegetation laurel oak leaf leaves mountain mountains crown banner ribbon cross text motto building castle castles three europe",
+    "tags": "san marino white blue horizontal stripes vegetation oak mountain crown banner ribbon cross text motto building castle castles three",
     "shortname": "sm",
     "name": "San Marino",
     "proportion": "3:4",
@@ -2079,7 +2079,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_San_Marino"
   },
   {
-    "tags": "senegal green yellow red vertical stripes star pan-african africa",
+    "tags": "senegal green yellow red vertical stripes star pan-african",
     "shortname": "sn",
     "name": "Senegal",
     "proportion": "2:3",
@@ -2089,7 +2089,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Senegal"
   },
   {
-    "tags": "somalia blue white star africa",
+    "tags": "somalia blue white star",
     "shortname": "so",
     "name": "Somalia",
     "proportion": "2:3",
@@ -2099,7 +2099,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Somalia"
   },
   {
-    "tags": "suriname green white red yellow horizontal stripes star caribbean southa",
+    "tags": "suriname green white red yellow horizontal stripes star",
     "shortname": "sr",
     "name": "Suriname",
     "proportion": "2:3",
@@ -2109,7 +2109,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Suriname"
   },
   {
-    "tags": "south sudan black blue red green yellow white triangle horizontal stripes star pan-african africa",
+    "tags": "south sudan black blue red green yellow white triangle horizontal stripes star pan-african",
     "shortname": "ss",
     "name": "South Sudan",
     "proportion": "1:2",
@@ -2129,17 +2129,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_S%C3%A3o_Tom%C3%A9_and_Pr%C3%ADncipe"
   },
   {
-    "tags": "el salvador blue white horizontal stripes vegetation leaf leaves mountain mountains hill hills phrygian cap hat text motto name flag nationalflag northa",
+    "tags": "el salvador blue white horizontal stripes vegetation mountain hill hills phrygian cap hat text motto name flag",
     "shortname": "sv",
     "name": "El Salvador",
     "proportion": "189:335",
     "adopted": "1912",
     "symbolism": "Blue: The skies of the country and the two massive oceans of Central America.<br>White: Peace, concordia and solidarity with the world.<br>Triangle: The three branches of the country's government: Executive, Legislative and Judiciary.<br>Five volcanoes: The fellowship of the five original isthmian member states of the United Provinces of Central America.<br>Phrygian cap on a staff: Freedom, inspired by the symbolism in the American and French Revolutions.<br>",
-    "funfacts": "The proportion is specified as 189:335 which is close to 9:16.<br>The banner has the national motto written on it: Dios Unión Libertad (Spanish for \"God Union Liberty\").<br>One of only seven flags which shows a flag of <a href=\"?q=nationalflag\">itself</a>.<br>",
+    "funfacts": "The proportion is specified as 189:335 which is close to 9:16.<br>The banner has the national motto written on it: Dios Unión Libertad (Spanish for \"God Union Liberty\").<br>One of only seven flags which shows a flag of itself.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_El_Salvador"
   },
   {
-    "tags": "sint maarten blue red white yellow triangle horizontal stripes animal pelican vegetation flower sage text motto banner ribbon building courthouse caribbean northa",
+    "tags": "sint maarten blue red white yellow triangle horizontal stripes animal pelican vegetation flower sage text motto banner ribbon building courthouse",
     "shortname": "sx",
     "name": "Sint Maarten",
     "proportion": "2:3",
@@ -2149,7 +2149,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Sint_Maarten"
   },
   {
-    "tags": "syria red white blue green horizontal stripes star stars pan-arab asia",
+    "tags": "syria red white blue green horizontal stripes star pan-arab",
     "shortname": "sy",
     "name": "Syria",
     "proportion": "2:3",
@@ -2159,7 +2159,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Syria"
   },
   {
-    "tags": "eswatini swaziland blue yellow red white black shield nguni weapon spear spears injobo horizontal stripes africa",
+    "tags": "eswatini swaziland blue yellow red white black shield nguni weapon injobo horizontal stripes",
     "shortname": "sz",
     "name": "Eswatini",
     "proportion": "2:3",
@@ -2169,7 +2169,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Eswatini"
   },
   {
-    "tags": "turks and caicos islands blue white red yellow cross british animal conch shell lobster cactus vegetation melocactus caribbean northa",
+    "tags": "turks and caicos islands blue white red yellow cross british animal conch shell lobster cactus vegetation melocactus",
     "shortname": "tc",
     "name": "Turks and Caicos Islands",
     "proportion": "1:2",
@@ -2179,7 +2179,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Turks_and_Caicos_Islands"
   },
   {
-    "tags": "chad blue yellow red vertical stripes pan-african africa",
+    "tags": "chad blue yellow red vertical stripes pan-african",
     "shortname": "td",
     "name": "Chad",
     "proportion": "2:3",
@@ -2189,7 +2189,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Chad"
   },
   {
-    "tags": "french southern and antarctic lands red white blue star stars vertical stripes text taaf monogram",
+    "tags": "french southern and antarctic lands red white blue star vertical stripes text taaf monogram",
     "shortname": "tf",
     "name": "French Southern and Antarctic Lands",
     "proportion": "2:3",
@@ -2199,7 +2199,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Antarctica#French_Southern_and_Antarctic_Territories"
   },
   {
-    "tags": "togo green yellow red white horizontal stripes star pan-african africa",
+    "tags": "togo green yellow red white horizontal stripes star pan-african",
     "shortname": "tg",
     "name": "Togo",
     "proportion": "1:φ",
@@ -2209,7 +2209,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Togo"
   },
   {
-    "tags": "thailand red white blue horizontal stripes asia",
+    "tags": "thailand red white blue horizontal stripes",
     "shortname": "th",
     "name": "Thailand",
     "proportion": "2:3",
@@ -2219,7 +2219,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Thailand"
   },
   {
-    "tags": "tajikistan red white green horizontal stripes star stars crown asia",
+    "tags": "tajikistan red white green horizontal stripes star crown",
     "shortname": "tj",
     "name": "Tajikistan",
     "proportion": "1:2",
@@ -2229,7 +2229,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Tajikistan"
   },
   {
-    "tags": "tokelau blue yellow white triangle star stars southern cross boat canoe oceania",
+    "tags": "tokelau blue yellow white triangle star boat canoe",
     "shortname": "tk",
     "name": "Tokelau",
     "proportion": "1:2",
@@ -2239,7 +2239,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Tokelau"
   },
   {
-    "tags": "timor-leste east timor red yellow black white triangle triangles star asia",
+    "tags": "timor-leste east timor red yellow black white triangle star",
     "shortname": "tl",
     "name": "Timor-Leste (East Timor)",
     "proportion": "1:2",
@@ -2249,7 +2249,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_East_Timor"
   },
   {
-    "tags": "turkmenistan green red vertical stripe carpet moon crescent star stars vegetation olive branch branches wreath asia",
+    "tags": "turkmenistan green red vertical stripe carpet moon star vegetation olive branch branches wreath",
     "shortname": "tm",
     "name": "Turkmenistan",
     "proportion": "2:3",
@@ -2259,7 +2259,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Turkmenistan"
   },
   {
-    "tags": "tunisia red white circle star africa",
+    "tags": "tunisia red white circle star",
     "shortname": "tn",
     "name": "Tunisia",
     "proportion": "2:3",
@@ -2269,7 +2269,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Tunisia"
   },
   {
-    "tags": "tonga red white cross oceania",
+    "tags": "tonga red white cross",
     "shortname": "to",
     "name": "Tonga",
     "proportion": "1:2",
@@ -2279,7 +2279,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Tonga"
   },
   {
-    "tags": "turkey red white moon crescent star asia europe",
+    "tags": "turkey red white moon star",
     "shortname": "tr",
     "name": "Turkey",
     "proportion": "2:3",
@@ -2289,7 +2289,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Turkey"
   },
   {
-    "tags": "trinidad tobago red white black triangle triangles stripes caribbean diagonal southa",
+    "tags": "trinidad tobago red white black triangle stripes diagonal",
     "shortname": "tt",
     "name": "Trinidad and Tobago",
     "proportion": "3:5",
@@ -2299,7 +2299,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Trinidad_and_Tobago"
   },
   {
-    "tags": "tuvalu blue red white yellow cross british star stars oceania",
+    "tags": "tuvalu blue red white yellow cross british star",
     "shortname": "tv",
     "name": "Tuvalu",
     "proportion": "1:2",
@@ -2309,7 +2309,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Tuvalu"
   },
   {
-    "tags": "taiwan red blue white circle sun asia",
+    "tags": "taiwan red blue white circle sun",
     "shortname": "tw",
     "name": "Taiwan",
     "proportion": "2:3",
@@ -2319,7 +2319,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Republic_of_China"
   },
   {
-    "tags": "tanzania green yellow black blue triangle triangles stripes diagonal africa",
+    "tags": "tanzania green yellow black blue triangle stripes diagonal",
     "shortname": "tz",
     "name": "Tanzania",
     "proportion": "2:3",
@@ -2329,7 +2329,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Tanzania"
   },
   {
-    "tags": "ukraine blue yellow horizontal stripes europe",
+    "tags": "ukraine blue yellow horizontal stripes",
     "shortname": "ua",
     "name": "Ukraine",
     "proportion": "2:3",
@@ -2339,7 +2339,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Ukraine"
   },
   {
-    "tags": "uganda black yellow red horizontal stripes circle bird crane animal africa",
+    "tags": "uganda black yellow red horizontal stripes circle bird crane animal",
     "shortname": "ug",
     "name": "Uganda",
     "proportion": "2:3",
@@ -2349,7 +2349,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Uganda"
   },
   {
-    "tags": "united states minor outlying islands red white blue horizontal stripes star stars northa",
+    "tags": "united states minor outlying islands red white blue horizontal stripes star",
     "shortname": "um",
     "name": "United States Minor Outlying Islands",
     "proportion": "10:19",
@@ -2358,7 +2358,7 @@
     "funfacts": "The official flag is that of the <a href=\"?q=united+states\">United States</a>.<br>"
   },
   {
-    "tags": "usa united states america red white blue horizontal stripes star stars northa",
+    "tags": "usa united states america red white blue horizontal stripes star",
     "shortname": "us",
     "name": "United States",
     "proportion": "10:19",
@@ -2368,7 +2368,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_United_States"
   },
   {
-    "tags": "uruguay white blue horizontal stripes sun face southa",
+    "tags": "uruguay white blue horizontal stripes sun face",
     "shortname": "uy",
     "name": "Uruguay",
     "proportion": "2:3",
@@ -2378,7 +2378,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Uruguay"
   },
   {
-    "tags": "uzbekistan blue white green red horizontal stripes moon crescent star stars asia",
+    "tags": "uzbekistan blue white green red horizontal stripes moon star",
     "shortname": "uz",
     "name": "Uzbekistan",
     "proportion": "1:2",
@@ -2388,7 +2388,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Uzbekistan"
   },
   {
-    "tags": "vatican city yellow white square vertical stripes key keys tiara crown rope cord europe",
+    "tags": "vatican city yellow white square vertical stripes key keys tiara crown rope cord",
     "shortname": "va",
     "name": "Vatican City",
     "proportion": "1:1",
@@ -2398,7 +2398,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Vatican_City"
   },
   {
-    "tags": "saint vincent grenadines blue yellow green vertical stripes diamond diamonds caribbean northa",
+    "tags": "saint vincent grenadines blue yellow green vertical stripes diamond diamonds",
     "shortname": "vc",
     "name": "Saint Vincent and the Grenadines",
     "proportion": "2:3",
@@ -2408,7 +2408,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Saint_Vincent_and_the_Grenadines"
   },
   {
-    "tags": "venezuela yellow blue red horizontal stripes star stars southa",
+    "tags": "venezuela yellow blue red horizontal stripes star",
     "shortname": "ve",
     "name": "Venezuela",
     "proportion": "2:3",
@@ -2418,7 +2418,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Venezuela"
   },
   {
-    "tags": "british virgin islands white blue red green yellow cross woman person people dress saint ursula oil lamp lamps text motto banner ribbon shield northa",
+    "tags": "british virgin islands white blue red green yellow cross woman person people dress saint ursula oil lamp lamps text motto banner ribbon shield",
     "shortname": "vg",
     "name": "British Virgin Islands",
     "proportion": "1:2",
@@ -2428,7 +2428,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_British_Virgin_Islands"
   },
   {
-    "tags": "united states virgin islands white blue yellow red animal eagle bird vegetation laurel weapon arrow arrows shield text vertical stripes northa",
+    "tags": "united states virgin islands white blue yellow red animal bird vegetation weapon arrow arrows shield text vertical stripes",
     "shortname": "vi",
     "name": "United States Virgin Islands",
     "proportion": "2:3",
@@ -2438,7 +2438,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_United_States_Virgin_Islands"
   },
   {
-    "tags": "vietnam red yellow star asia",
+    "tags": "vietnam red yellow star",
     "shortname": "vn",
     "name": "Vietnam",
     "proportion": "2:3",
@@ -2448,7 +2448,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Vietnam"
   },
   {
-    "tags": "vanuatu red green yellow black triangle triangles tusk vegetation leaf leaves horizontal oceania",
+    "tags": "vanuatu red green yellow black triangle tusk vegetation horizontal",
     "shortname": "vu",
     "name": "Vanuatu",
     "proportion": "19:36",
@@ -2458,7 +2458,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Vanuatu"
   },
   {
-    "tags": "wallis and futuna red blue white triangle triangles vertical stripes cross french oceania",
+    "tags": "wallis and futuna red blue white triangle vertical stripes cross french",
     "shortname": "wf",
     "name": "Wallis and Futuna",
     "proportion": "2:3",
@@ -2468,17 +2468,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Wallis_and_Futuna"
   },
   {
-    "tags": "samoa red blue white star stars southern cross oceania",
+    "tags": "samoa red blue white star",
     "shortname": "ws",
     "name": "Samoa",
     "proportion": "1:2",
     "adopted": "1962",
     "symbolism": "Red: Courage.<br>Blue: Freedom and justice.<br>White: Purity.<br>Stars: The Southern cross constellation representing the Southern Hemisphere.<br>",
-    "funfacts": "The design is similar to the flag of <a href=\"?q=taiwan\">Taiwan</a> but believed to be designed independently.<br>Other flags displaying the <a href=\"?q=southern+cross\">Southern cross</a> are for example <a href=\"?q=australia\">Australia</a>, <a href=\"?q=new+zealand\">New Zealand</a> and <a href=\"?q=papua+new+guinea\">Papua New Guinea</a>.<br>",
+    "funfacts": "The design is similar to the flag of <a href=\"?q=taiwan\">Taiwan</a> but believed to be designed independently.<br>Other flags displaying the Southern cross are for example <a href=\"?q=australia\">Australia</a>, <a href=\"?q=new+zealand\">New Zealand</a> and <a href=\"?q=papua+new+guinea\">Papua New Guinea</a>.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Samoa"
   },
   {
-    "tags": "kosovo blue yellow white star stars map europe",
+    "tags": "kosovo blue yellow white star map",
     "shortname": "xk",
     "name": "Kosovo",
     "proportion": "5:7",
@@ -2488,7 +2488,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Kosovo"
   },
   {
-    "tags": "yemen red white black horizontal stripes pan-arab asia",
+    "tags": "yemen red white black horizontal stripes pan-arab",
     "shortname": "ye",
     "name": "Yemen",
     "proportion": "2:3",
@@ -2498,7 +2498,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Yemen"
   },
   {
-    "tags": "mayotte white red blue yellow grey text name banner ribbon animal seahorse seahorses vegetation flower flowers ylang-ylang moon crescent star stars africa",
+    "tags": "mayotte white red blue yellow grey text name banner ribbon animal seahorse seahorses vegetation flower flowers ylang-ylang moon star",
     "shortname": "yt",
     "name": "Mayotte",
     "proportion": "REPLACE",
@@ -2508,7 +2508,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_and_coat_of_arms_of_Mayotte"
   },
   {
-    "tags": "south africa red gren blue white yellow black triangle triangles horizontal pan-african africa",
+    "tags": "south africa red gren blue white yellow black triangle horizontal pan-african",
     "shortname": "za",
     "name": "South Africa",
     "proportion": "2:3",
@@ -2518,7 +2518,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_South_Africa"
   },
   {
-    "tags": "zambia green red black orange bird eagle animal vertical stripes pan-african africa",
+    "tags": "zambia green red black orange bird animal vertical stripes pan-african",
     "shortname": "zm",
     "name": "Zambia",
     "proportion": "2:3",
@@ -2528,7 +2528,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Zambia"
   },
   {
-    "tags": "zimbabwe green yellow red black white horizontal stripes star bird eagle animal pan-african africa",
+    "tags": "zimbabwe green yellow red black white horizontal stripes star bird animal pan-african",
     "shortname": "zw",
     "name": "Zimbabwe",
     "proportion": "1:2",
