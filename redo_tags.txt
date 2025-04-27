@@ -7,4 +7,4 @@ symbol: flag, sun, star, moon, circle, fleur-de-lis, waves
 motive: building, weapon, map, tool, boat, animal, bird, vegetation, mountain, shield
 People or clothing: face, crown, human, hat, hand
 
-ideology: christianity, islam, communist, 
+ideology: christianity, islam, communism, buddhism, hinduism, judaism, 

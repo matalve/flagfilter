@@ -1,6 +1,6 @@
 [
   {
-    "tags": "andorra blue yellow red animal text vertical",
+    "tags": "andorra blue yellow red animal text vertical christianity",
     "shortname": "ad",
     "name": "Andorra",
     "proportion": "7:10",
@@ -20,7 +20,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_United_Arab_Emirates"
   },
   {
-    "tags": "afghanistan white black text motto name flag building",
+    "tags": "afghanistan white black text motto name flag building islam",
     "shortname": "af",
     "name": "Afghanistan",
     "proportion": "1:2",
@@ -60,7 +60,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Albania"
   },
   {
-    "tags": "armenia red blue orange horizontal",
+    "tags": "armenia red blue orange horizontal christianity",
     "shortname": "am",
     "name": "Armenia",
     "proportion": "1:2",
@@ -120,7 +120,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Austria"
   },
   {
-    "tags": "australia blue white red cross british star",
+    "tags": "australia blue white red cross british star christianity",
     "shortname": "au",
     "name": "Australia",
     "proportion": "1:2",
@@ -140,7 +140,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Aruba"
   },
   {
-    "tags": "åland islands aland blue yellow red cross",
+    "tags": "åland islands aland blue yellow red cross christianity",
     "shortname": "ax",
     "name": "Åland Islands",
     "proportion": "17:26",
@@ -150,7 +150,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_%C3%85land"
   },
   {
-    "tags": "azerbaijan blue red green moon star horizontal",
+    "tags": "azerbaijan blue red green moon star horizontal islam",
     "shortname": "az",
     "name": "Azerbaijan",
     "proportion": "1:2",
@@ -220,7 +220,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Bulgaria"
   },
   {
-    "tags": "bahrain white red triangle tool",
+    "tags": "bahrain white red triangle tool islam",
     "shortname": "bh",
     "name": "Bahrain",
     "proportion": "3:5",
@@ -270,7 +270,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Bermuda"
   },
   {
-    "tags": "brunei yellow black white red triangle text motto name hand ribbon moon flag diagonal",
+    "tags": "brunei yellow black white red triangle text motto name hand ribbon moon flag diagonal islam",
     "shortname": "bn",
     "name": "Brunei",
     "proportion": "1:2",
@@ -320,7 +320,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Bahamas"
   },
   {
-    "tags": "bhutan orange white triangle animal diagonal",
+    "tags": "bhutan orange white triangle animal diagonal buddhism",
     "shortname": "bt",
     "name": "Bhutan",
     "proportion": "2:3",
@@ -330,7 +330,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Bhutan"
   },
   {
-    "tags": "bouvet island red white blue cross",
+    "tags": "bouvet island red white blue cross christianity",
     "shortname": "bv",
     "name": "Bouvet Island",
     "proportion": "8:11",
@@ -420,7 +420,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Republic_of_the_Congo"
   },
   {
-    "tags": "switzerland red white cross",
+    "tags": "switzerland red white cross christianity",
     "shortname": "ch",
     "name": "Switzerland",
     "proportion": "1:1",
@@ -440,7 +440,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Ivory_Coast"
   },
   {
-    "tags": "cook islands blue white red cross british star circle",
+    "tags": "cook islands blue white red cross british star circle christianity",
     "shortname": "ck",
     "name": "Cook Islands",
     "proportion": "1:2",
@@ -580,7 +580,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Djibouti"
   },
   {
-    "tags": "denmark red white cross",
+    "tags": "denmark red white cross christianity",
     "shortname": "dk",
     "name": "Denmark",
     "proportion": "28:37",
@@ -590,7 +590,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Denmark"
   },
   {
-    "tags": "dominica green yellow black white red purple star circle bird animal horizontal vertical",
+    "tags": "dominica green yellow black white red purple star circle bird animal horizontal vertical christianity",
     "shortname": "dm",
     "name": "Dominica",
     "proportion": "1:2",
@@ -600,7 +600,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Dominica"
   },
   {
-    "tags": "dominican republic blue red white weapon cross ribbon cross text motto name flag",
+    "tags": "dominican republic blue red white weapon cross ribbon cross text motto name flag christianity",
     "shortname": "do",
     "name": "Dominican Republic",
     "proportion": "2:3",
@@ -610,7 +610,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Dominican_Republic"
   },
   {
-    "tags": "algeria green white red vertical star moon",
+    "tags": "algeria green white red vertical star moon islam",
     "shortname": "dz",
     "name": "Algeria",
     "proportion": "2:3",
@@ -670,7 +670,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Eritrea"
   },
   {
-    "tags": "spain red yellow horizontal vertical building crown ribbon waves animal vegetation cross fleur-de-lis text motto",
+    "tags": "spain red yellow horizontal vertical building crown ribbon waves animal vegetation cross fleur-de-lis text motto christianity",
     "shortname": "es",
     "name": "Spain",
     "proportion": "2:3",
@@ -690,7 +690,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Ethiopia"
   },
   {
-    "tags": "finland blue white cross",
+    "tags": "finland blue white cross christianity",
     "shortname": "fi",
     "name": "Finland",
     "proportion": "11:18",
@@ -700,7 +700,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Finland"
   },
   {
-    "tags": "fiji blue white red cross british bird vegetation animal text ribbon weapon",
+    "tags": "fiji blue white red cross british bird vegetation animal text ribbon weapon christianity",
     "shortname": "fj",
     "name": "Fiji",
     "proportion": "1:2",
@@ -760,7 +760,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Gabon"
   },
   {
-    "tags": "united kingdom great britain red white blue cross british",
+    "tags": "united kingdom great britain red white blue cross british christianity",
     "shortname": "gb",
     "name": "United Kingdom",
     "proportion": "1:2",
@@ -820,7 +820,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Grenada"
   },
   {
-    "tags": "georgia white red cross",
+    "tags": "georgia white red cross christianity",
     "shortname": "ge",
     "name": "Georgia",
     "proportion": "2:3",
@@ -920,7 +920,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Equatorial_Guinea"
   },
   {
-    "tags": "greece blue white cross horizontal",
+    "tags": "greece blue white cross horizontal christianity",
     "shortname": "gr",
     "name": "Greece",
     "proportion": "2:3",
@@ -1050,7 +1050,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Indonesia"
   },
   {
-    "tags": "ireland green white orange vertical",
+    "tags": "ireland green white orange vertical christianity",
     "shortname": "ie",
     "name": "Ireland",
     "proportion": "1:2",
@@ -1060,7 +1060,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Ireland"
   },
   {
-    "tags": "israel white blue triangle horizontal star",
+    "tags": "israel white blue triangle horizontal star judaism",
     "shortname": "il",
     "name": "Israel",
     "proportion": "8:11",
@@ -1080,7 +1080,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Isle_of_Man"
   },
   {
-    "tags": "india orange white green blue horizontal circle",
+    "tags": "india orange white green blue horizontal circle hinduism",
     "shortname": "in",
     "name": "India",
     "proportion": "2:3",
@@ -1100,7 +1100,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_British_Indian_Ocean_Territory"
   },
   {
-    "tags": "iraq red white black green horizontal text motto pan-arab",
+    "tags": "iraq red white black green horizontal text motto pan-arab islam",
     "shortname": "iq",
     "name": "Iraq",
     "proportion": "2:3",
@@ -1110,7 +1110,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Iraq"
   },
   {
-    "tags": "iran green white red text motto horizontal",
+    "tags": "iran green white red text motto horizontal islam",
     "shortname": "ir",
     "name": "Iran",
     "proportion": "4:7",
@@ -1120,7 +1120,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Iran"
   },
   {
-    "tags": "iceland blue red white cross",
+    "tags": "iceland blue red white cross christianity",
     "shortname": "is",
     "name": "Iceland",
     "proportion": "18:25",
@@ -1160,7 +1160,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Jamaica"
   },
   {
-    "tags": "jordan black white green red triangle horizontal star pan-arab",
+    "tags": "jordan black white green red triangle horizontal star pan-arab islam",
     "shortname": "jo",
     "name": "Jordan",
     "proportion": "1:2",
@@ -1200,7 +1200,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Kyrgyzstan"
   },
   {
-    "tags": "cambodia blue red white horizontal building",
+    "tags": "cambodia blue red white horizontal building hinduism buddhism",
     "shortname": "kh",
     "name": "Cambodia",
     "proportion": "16:25",
@@ -1220,7 +1220,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Kiribati"
   },
   {
-    "tags": "comoros green yellow white red blue triangle horizontal moon star pan-african",
+    "tags": "comoros green yellow white red blue triangle horizontal moon star pan-african islam",
     "shortname": "km",
     "name": "Comoros",
     "proportion": "3:5",
@@ -1320,7 +1320,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Saint_Lucia"
   },
   {
-    "tags": "liechtenstein blue red yellow horizontal crown",
+    "tags": "liechtenstein blue red yellow horizontal crown christianity",
     "shortname": "li",
     "name": "Liechtenstein",
     "proportion": "3:5",
@@ -1330,7 +1330,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Liechtenstein"
   },
   {
-    "tags": "sri lanka yellow green orange red maroon vertical animal weapon vegetation",
+    "tags": "sri lanka yellow green orange red maroon vertical animal weapon vegetation buddhism",
     "shortname": "lk",
     "name": "Sri Lanka",
     "proportion": "1:2",
@@ -1390,7 +1390,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Latvia"
   },
   {
-    "tags": "libya red black green white horizontal star moon pan-arab",
+    "tags": "libya red black green white horizontal star moon pan-arab islam",
     "shortname": "ly",
     "name": "Libya",
     "proportion": "1:2",
@@ -1400,7 +1400,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Libya"
   },
   {
-    "tags": "morocco red green star triangle",
+    "tags": "morocco red green star triangle islam",
     "shortname": "ma",
     "name": "Morocco",
     "proportion": "2:3",
@@ -1420,7 +1420,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Monaco"
   },
   {
-    "tags": "moldova blue yellow red vertical star moon bird animal shield cross vegetation",
+    "tags": "moldova blue yellow red vertical star moon bird animal shield cross vegetation christianity",
     "shortname": "md",
     "name": "Moldova",
     "proportion": "1:2",
@@ -1430,7 +1430,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Moldova"
   },
   {
-    "tags": "montenegro red yellow bird cross animal",
+    "tags": "montenegro red yellow bird cross animal christianity",
     "shortname": "me",
     "name": "Montenegro",
     "proportion": "1:2",
@@ -1489,7 +1489,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Mali"
   },
   {
-    "tags": "myanmar burma red green yellow white star horizontal",
+    "tags": "myanmar burma red green yellow white star horizontal buddhism",
     "shortname": "mm",
     "name": "Myanmar",
     "proportion": "2:3",
@@ -1539,7 +1539,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Martinique"
   },
   {
-    "tags": "mauritania green yellow star moon horizontal pan-african",
+    "tags": "mauritania green yellow star moon horizontal pan-african islam",
     "shortname": "mr",
     "name": "Mauritania",
     "proportion": "2:3",
@@ -1549,7 +1549,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Mauritania"
   },
   {
-    "tags": "montserrat blue white red cross british human",
+    "tags": "montserrat blue white red cross british human christianity",
     "shortname": "ms",
     "name": "Montserrat",
     "proportion": "1:2",
@@ -1559,7 +1559,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Montserrat"
   },
   {
-    "tags": "malta red white vertical cross animal text",
+    "tags": "malta red white vertical cross animal text christianity",
     "shortname": "mt",
     "name": "Malta",
     "proportion": "2:3",
@@ -1579,7 +1579,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Mauritius"
   },
   {
-    "tags": "maldives red green white moon",
+    "tags": "maldives red green white moon islam",
     "shortname": "mv",
     "name": "Maldives",
     "proportion": "2:3",
@@ -1609,7 +1609,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Mexico"
   },
   {
-    "tags": "malaysia blue red white yellow horizontal moon star",
+    "tags": "malaysia blue red white yellow horizontal moon star islam",
     "shortname": "my",
     "name": "Malaysia",
     "proportion": "1:2",
@@ -1699,7 +1699,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Netherlands"
   },
   {
-    "tags": "norway blue red white cross",
+    "tags": "norway blue red white cross christianity",
     "shortname": "no",
     "name": "Norway",
     "proportion": "8:11",
@@ -1709,7 +1709,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Norway"
   },
   {
-    "tags": "nepal red blue white triangle star sun moon",
+    "tags": "nepal red blue white triangle star sun moon hinduism",
     "shortname": "np",
     "name": "Nepal",
     "proportion": "It's complicated.",
@@ -1729,7 +1729,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Nauru"
   },
   {
-    "tags": "niue yellow blue white red cross british circle star",
+    "tags": "niue yellow blue white red cross british circle star christianity",
     "shortname": "nu",
     "name": "Niue",
     "proportion": "1:2",
@@ -1739,7 +1739,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Niue"
   },
   {
-    "tags": "new zealand blue white red cross british star",
+    "tags": "new zealand blue white red cross british star christianity",
     "shortname": "nz",
     "name": "New Zealand",
     "proportion": "1:2",
@@ -1809,7 +1809,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Philippines"
   },
   {
-    "tags": "pakistan green white vertical moon star",
+    "tags": "pakistan green white vertical moon star islam",
     "shortname": "pk",
     "name": "Pakistan",
     "proportion": "2:3",
@@ -1869,7 +1869,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Palestine"
   },
   {
-    "tags": "portugal green red vertical circle sphere building shield",
+    "tags": "portugal green red vertical circle sphere building shield christianity",
     "shortname": "pt",
     "name": "Portugal",
     "proportion": "2:3",
@@ -1929,7 +1929,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Romania"
   },
   {
-    "tags": "serbia red blue white fleur-de-lis horizontal bird animal crown cross pan-slavic",
+    "tags": "serbia red blue white fleur-de-lis horizontal bird animal crown cross pan-slavic christianity",
     "shortname": "rs",
     "name": "Serbia",
     "proportion": "2:3",
@@ -1959,7 +1959,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Rwanda"
   },
   {
-    "tags": "saudi arabia green white weapon text motto",
+    "tags": "saudi arabia green white weapon text motto islam",
     "shortname": "sa",
     "name": "Saudi Arabia",
     "proportion": "2:3",
@@ -1999,7 +1999,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Sudan"
   },
   {
-    "tags": "sweden blue yellow cross",
+    "tags": "sweden blue yellow cross christianity",
     "shortname": "se",
     "name": "Sweden",
     "proportion": "5:8",
@@ -2009,7 +2009,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Sweden"
   },
   {
-    "tags": "singapore red white horizontal moon star",
+    "tags": "singapore red white horizontal moon star buddhism",
     "shortname": "sg",
     "name": "Singapore",
     "proportion": "2:3",
@@ -2039,7 +2039,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Slovenia"
   },
   {
-    "tags": "svalbard and jan mayen red white blue cross norway",
+    "tags": "svalbard and jan mayen red white blue cross norway christianity",
     "shortname": "sj",
     "name": "Svalbard and Jan Mayen",
     "proportion": "8:11",
@@ -2049,7 +2049,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Svalbard_and_Jan_Mayen"
   },
   {
-    "tags": "slovakia white blue red horizontal cross mountain pan-slavic",
+    "tags": "slovakia white blue red horizontal cross mountain pan-slavic christianity",
     "shortname": "sk",
     "name": "Slovakia",
     "proportion": "2:3",
@@ -2069,7 +2069,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Sierra_Leone"
   },
   {
-    "tags": "san marino white blue horizontal vegetation mountain crown ribbon cross text motto building",
+    "tags": "san marino white blue horizontal vegetation mountain crown ribbon cross text motto building christianity",
     "shortname": "sm",
     "name": "San Marino",
     "proportion": "3:4",
@@ -2079,7 +2079,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_San_Marino"
   },
   {
-    "tags": "senegal green yellow red vertical star pan-african",
+    "tags": "senegal green yellow red vertical star pan-african islam",
     "shortname": "sn",
     "name": "Senegal",
     "proportion": "2:3",
@@ -2109,7 +2109,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Suriname"
   },
   {
-    "tags": "south sudan black blue red green yellow white triangle horizontal star pan-african",
+    "tags": "south sudan black blue red green yellow white triangle horizontal star pan-african islam",
     "shortname": "ss",
     "name": "South Sudan",
     "proportion": "1:2",
@@ -2129,7 +2129,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_S%C3%A3o_Tom%C3%A9_and_Pr%C3%ADncipe"
   },
   {
-    "tags": "el salvador blue white horizontal vegetation mountain hat text motto name flag",
+    "tags": "el salvador blue white horizontal vegetation mountain hat text motto name flag christianity",
     "shortname": "sv",
     "name": "El Salvador",
     "proportion": "189:335",
@@ -2209,7 +2209,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Togo"
   },
   {
-    "tags": "thailand red white blue horizontal",
+    "tags": "thailand red white blue horizontal buddhism",
     "shortname": "th",
     "name": "Thailand",
     "proportion": "2:3",
@@ -2249,7 +2249,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_East_Timor"
   },
   {
-    "tags": "turkmenistan green red vertical stripe carpet moon star vegetation",
+    "tags": "turkmenistan green red vertical stripe carpet moon star vegetation islam",
     "shortname": "tm",
     "name": "Turkmenistan",
     "proportion": "2:3",
@@ -2259,7 +2259,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Turkmenistan"
   },
   {
-    "tags": "tunisia red white circle star",
+    "tags": "tunisia red white circle star islam",
     "shortname": "tn",
     "name": "Tunisia",
     "proportion": "2:3",
@@ -2269,7 +2269,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Tunisia"
   },
   {
-    "tags": "tonga red white cross",
+    "tags": "tonga red white cross christianity",
     "shortname": "to",
     "name": "Tonga",
     "proportion": "1:2",
@@ -2279,7 +2279,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Tonga"
   },
   {
-    "tags": "turkey red white moon star",
+    "tags": "turkey red white moon star islam",
     "shortname": "tr",
     "name": "Turkey",
     "proportion": "2:3",
@@ -2299,7 +2299,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Trinidad_and_Tobago"
   },
   {
-    "tags": "tuvalu blue red white yellow cross british star",
+    "tags": "tuvalu blue red white yellow cross british star christianity",
     "shortname": "tv",
     "name": "Tuvalu",
     "proportion": "1:2",
@@ -2378,7 +2378,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Uruguay"
   },
   {
-    "tags": "uzbekistan blue white green red horizontal moon star",
+    "tags": "uzbekistan blue white green red horizontal moon star islam",
     "shortname": "uz",
     "name": "Uzbekistan",
     "proportion": "1:2",
@@ -2388,7 +2388,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Uzbekistan"
   },
   {
-    "tags": "vatican city yellow white vertical crown",
+    "tags": "vatican city yellow white vertical crown christianity",
     "shortname": "va",
     "name": "Vatican City",
     "proportion": "1:1",
