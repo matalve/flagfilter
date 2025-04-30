@@ -1,0 +1,10 @@
+
+text: text, motto, name, ribbon
+pattern: cross, vertical, horizontal, triangle, diagonal, whitney_smith
+color symbolism: pan-arab, british, pan-african, pan-slavic, 
+
+symbol: flag, sun, star, moon, circle, fleur-de-lis, waves
+motive: building, weapon, map, tool, boat, animal, bird, vegetation, mountain, shield
+People or clothing: face, crown, human, hat, hand
+
+ideology: christianity, islam, communism, buddhism, hinduism, judaism, 
