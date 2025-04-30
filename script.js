@@ -377,6 +377,7 @@ function showFlagInfoModal(flag) {
     // Create modal container
     const modal = document.createElement('div');
     modal.className = 'modal';
+    modal.style.display = 'flex';
     
     // Create modal content
     const modalContent = document.createElement('div');
