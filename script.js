@@ -336,6 +336,7 @@ function renderFlagGrid() {
     
     if (filteredFlags.length === 0) {
         flagGrid.innerHTML = '<p class="no-results">No flags match your search criteria.</p>';
+        updateFlagCounter(0);
         return;
     }
     
@@ -352,6 +353,8 @@ function renderFlagGrid() {
         flagGrid.appendChild(flagCard);
     });
     
+    updateFlagCounter(filteredFlags.length);
+    
     // Add event listeners to all "Learn more" buttons
     document.querySelectorAll('.learn-more-btn').forEach(button => {
         button.addEventListener('click', () => {
@@ -362,6 +365,11 @@ function renderFlagGrid() {
             }
         });
     });
+}
+
+function updateFlagCounter(count) {
+    const counter = document.getElementById('flagCounter');
+    counter.textContent = `Showing ${count} flag${count !== 1 ? 's' : ''}`;
 }
 
 // Show flag information modal
@@ -481,6 +489,24 @@ function applyFilters() {
     const activeContinents = Array.from(document.querySelectorAll('.filter-btn[data-continent].active'))
         .map(btn => btn.dataset.continent);
     
+    const activePatterns = Array.from(document.querySelectorAll('.filter-btn[data-pattern].active'))
+        .map(btn => btn.dataset.pattern);
+    
+    const activeSymbols = Array.from(document.querySelectorAll('.filter-btn[data-symbol].active'))
+        .map(btn => btn.dataset.symbol);
+    
+    const activeMotives = Array.from(document.querySelectorAll('.filter-btn[data-motive].active'))
+        .map(btn => btn.dataset.motive);
+    
+    const activePeople = Array.from(document.querySelectorAll('.filter-btn[data-people].active'))
+        .map(btn => btn.dataset.people);
+    
+    const activeIdeologies = Array.from(document.querySelectorAll('.filter-btn[data-ideology].active'))
+        .map(btn => btn.dataset.ideology);
+    
+    const activeTexts = Array.from(document.querySelectorAll('.filter-btn[data-text].active'))
+        .map(btn => btn.dataset.text);
+    
     const searchTerm = searchInput.value.toLowerCase().trim();
     
     // Start with all flags or search results
@@ -501,21 +527,93 @@ function applyFilters() {
     if (activeContinents.length > 0) {
         results = results.filter(flag => {
             return activeContinents.some(continent => {
-                const continentMap = {
-                    'africa': 'africa',
-                    'asia': 'asia',
-                    'europe': 'europe',
-                    'northAmerica': 'north america',
-                    'southAmerica': 'south america',
-                    'oceania': 'oceania'
-                };
-                return flag.tags.includes(continentMap[continent]);
+                return continentData[continent].includes(flag.code);
             });
         });
+    }
+
+    // Apply pattern filters
+    if (activePatterns.length > 0) {
+        results = results.filter(flag => 
+            activePatterns.some(pattern => flag.tags.includes(pattern))
+        );
+    }
+
+    // Apply symbol filters
+    if (activeSymbols.length > 0) {
+        results = results.filter(flag => 
+            activeSymbols.some(symbol => flag.tags.includes(symbol))
+        );
+    }
+
+    // Apply motive filters
+    if (activeMotives.length > 0) {
+        results = results.filter(flag => 
+            activeMotives.some(motive => flag.tags.includes(motive))
+        );
+    }
+
+    // Apply people/clothing filters
+    if (activePeople.length > 0) {
+        results = results.filter(flag => 
+            activePeople.some(people => flag.tags.includes(people))
+        );
+    }
+
+    // Apply ideology filters
+    if (activeIdeologies.length > 0) {
+        results = results.filter(flag => 
+            activeIdeologies.some(ideology => flag.tags.includes(ideology))
+        );
+    }
+
+    // Apply text filters
+    if (activeTexts.length > 0) {
+        results = results.filter(flag => 
+            activeTexts.some(text => flag.tags.includes(text))
+        );
     }
     
     filteredFlags = results;
     renderFlagGrid();
+    updateFilterButtonStates(results);
+}
+
+function updateFilterButtonStates(currentResults) {
+    // Reset all buttons to enabled state
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.disabled = false;
+        btn.classList.remove('disabled');
+    });
+
+    // Check each filter type
+    const filterTypes = ['color', 'continent', 'pattern', 'symbol', 'motive', 'people', 'ideology', 'text'];
+    
+    filterTypes.forEach(type => {
+        const buttons = document.querySelectorAll(`.filter-btn[data-${type}]`);
+        buttons.forEach(button => {
+            const value = button.dataset[type];
+            let wouldHaveResults = false;
+
+            // Create a copy of current results to test
+            let testResults = [...currentResults];
+
+            // Test if adding this filter would still show results
+            if (type === 'color') {
+                wouldHaveResults = testResults.some(flag => flag.colors.includes(value));
+            } else if (type === 'continent') {
+                wouldHaveResults = testResults.some(flag => continentData[value].includes(flag.code));
+            } else {
+                wouldHaveResults = testResults.some(flag => flag.tags.includes(value));
+            }
+
+            // Disable button if it would result in 0 flags
+            if (!wouldHaveResults) {
+                button.disabled = true;
+                button.classList.add('disabled');
+            }
+        });
+    });
 }
 
 // Color filter functionality
@@ -552,7 +650,7 @@ function initializeFilterSections() {
         const sectionId = section.querySelector('h3').textContent;
         const isCollapsed = localStorage.getItem(`filterSection_${sectionId}`) === 'true';
         
-        if (isCollapsed) {
+        if (isCollapsed || sectionId === 'More filters') {
             section.classList.add('collapsed');
         }
     });
@@ -561,7 +659,7 @@ function initializeFilterSections() {
 // Event Listeners
 searchInput.addEventListener('input', (e) => handleSearch(e.target.value));
 
-// Update event listeners for both color and continent filters
+// Update event listeners for all filter types
 document.querySelectorAll('.filter-btn[data-color]').forEach(button => {
     button.addEventListener('click', () => handleColorFilter(button.dataset.color));
 });
@@ -570,8 +668,69 @@ document.querySelectorAll('.filter-btn[data-continent]').forEach(button => {
     button.addEventListener('click', () => handleContinentFilter(button.dataset.continent));
 });
 
+document.querySelectorAll('.filter-btn[data-pattern]').forEach(button => {
+    button.addEventListener('click', () => {
+        button.classList.toggle('active');
+        applyFilters();
+    });
+});
+
+document.querySelectorAll('.filter-btn[data-symbol]').forEach(button => {
+    button.addEventListener('click', () => {
+        button.classList.toggle('active');
+        applyFilters();
+    });
+});
+
+document.querySelectorAll('.filter-btn[data-motive]').forEach(button => {
+    button.addEventListener('click', () => {
+        button.classList.toggle('active');
+        applyFilters();
+    });
+});
+
+document.querySelectorAll('.filter-btn[data-people]').forEach(button => {
+    button.addEventListener('click', () => {
+        button.classList.toggle('active');
+        applyFilters();
+    });
+});
+
+document.querySelectorAll('.filter-btn[data-ideology]').forEach(button => {
+    button.addEventListener('click', () => {
+        button.classList.toggle('active');
+        applyFilters();
+    });
+});
+
+document.querySelectorAll('.filter-btn[data-text]').forEach(button => {
+    button.addEventListener('click', () => {
+        button.classList.toggle('active');
+        applyFilters();
+    });
+});
+
 // Initialize the app
 initDarkMode();
 fetchFlags().then(() => {
     initializeFilterSections();
+});
+
+// Info modal functionality
+const infoButton = document.getElementById('infoButton');
+const infoModal = document.getElementById('infoModal');
+const closeBtn = infoModal.querySelector('.close-btn');
+
+infoButton.addEventListener('click', () => {
+    infoModal.style.display = 'flex';
+});
+
+closeBtn.addEventListener('click', () => {
+    infoModal.style.display = 'none';
+});
+
+window.addEventListener('click', (event) => {
+    if (event.target === infoModal) {
+        infoModal.style.display = 'none';
+    }
 }); 
