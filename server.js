@@ -1,6 +1,5 @@
 const express = require('express');
 const axios = require('axios');
-const cors = require('cors');
 const path = require('path');
 const app = express();
 
@@ -14,13 +13,6 @@ if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
     process.exit(1);
 }
 
-// Configure CORS to only allow requests from your domain
-const corsOptions = {
-    origin: process.env.ALLOWED_ORIGIN || 'http://localhost:3000',
-    optionsSuccessStatus: 200
-};
-
-app.use(cors(corsOptions));
 app.use(express.json());
 
 // Serve static files from the current directory
