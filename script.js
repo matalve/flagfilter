@@ -413,16 +413,104 @@ function showFlagInfoModal(flag) {
         <p><strong>Fun Facts:</strong> ${processedFunfacts}</p>
         <p><strong>Colors:</strong> ${flag.colors.join(', ')}</p>
         <a href="${flag.info.wikipedialink}" target="_blank" class="wiki-link">Read more on Wikipedia</a>
+        <button class="report-issue-btn">Report an Issue</button>
+    `;
+    
+    // Create report issue form (initially hidden)
+    const reportForm = document.createElement('div');
+    reportForm.className = 'report-form';
+    reportForm.style.display = 'none';
+    reportForm.innerHTML = `
+        <h3>Report an Issue</h3>
+        <form id="reportForm">
+            <input type="hidden" name="flagCode" value="${flag.code}">
+            <input type="hidden" name="flagName" value="${flag.name}">
+            
+            <div class="form-group">
+                <label for="issueType">Type of Issue:</label>
+                <select name="issueType" id="issueType" required>
+                    <option value="">Select an issue type</option>
+                    <option value="incorrect_info">Incorrect Information</option>
+                    <option value="missing_info">Missing Information</option>
+                    <option value="broken_link">Broken Link</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="issueDescription">Description:</label>
+                <textarea name="issueDescription" id="issueDescription" required 
+                    placeholder="Please describe the issue in detail..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="userEmail">Your Email (optional):</label>
+                <input type="email" name="userEmail" id="userEmail" 
+                    placeholder="Enter your email if you'd like a response">
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="submit-btn">Submit Report</button>
+                <button type="button" class="cancel-btn">Cancel</button>
+            </div>
+        </form>
     `;
     
     // Assemble modal
     modalContent.appendChild(closeBtn);
     modalContent.appendChild(flagImage);
     modalContent.appendChild(flagInfo);
+    modalContent.appendChild(reportForm);
     modal.appendChild(modalContent);
     
     // Add modal to body
     document.body.appendChild(modal);
+    
+    // Handle report issue button click
+    const reportBtn = flagInfo.querySelector('.report-issue-btn');
+    reportBtn.addEventListener('click', () => {
+        reportForm.style.display = 'block';
+        reportBtn.style.display = 'none';
+    });
+    
+    // Handle form submission
+    const form = reportForm.querySelector('#reportForm');
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        
+        try {
+            const response = await fetch('/api/report-issue', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+            
+            const result = await response.json();
+            
+            if (response.ok) {
+                alert('Thank you for your report! We will review it soon.');
+                reportForm.style.display = 'none';
+                reportBtn.style.display = 'block';
+            } else {
+                throw new Error(result.error || 'Failed to submit report');
+            }
+        } catch (error) {
+            alert('Sorry, there was an error submitting your report. Please try again later.');
+            console.error('Error submitting report:', error);
+        }
+    });
+    
+    // Handle cancel button
+    const cancelBtn = reportForm.querySelector('.cancel-btn');
+    cancelBtn.addEventListener('click', () => {
+        reportForm.style.display = 'none';
+        reportBtn.style.display = 'block';
+    });
     
     // Close modal when clicking outside
     modal.addEventListener('click', (e) => {

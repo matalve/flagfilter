@@ -1,0 +1,10 @@
+.env
+node_modules
+package-lock.json
+.DS_Store
+*.log
+.env.local
+.env.development
+.env.production
+.wrangler
+dist
