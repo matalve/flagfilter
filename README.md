@@ -2,6 +2,12 @@
 
 A modern, responsive web application for exploring and searching national flags from around the world. Built with HTML, CSS, and JavaScript, this application uses local flag metadata and Flagpedia-hosted images.
 
+## Runtime
+
+- Production runtime is Cloudflare Pages (static assets + Pages Functions).
+- API endpoint: `functions/api/report-issue.js` is deployed at `/api/report-issue`.
+- `server.js` remains in the repository as a legacy local Node/Express fallback and is not used in Cloudflare production.
+
 ## Features
 
 - Grid display of national flags
@@ -17,6 +23,28 @@ A modern, responsive web application for exploring and searching national flags 
 3. Click on color filter buttons to filter flags by color
 4. Hover over flag cards to see additional information
 
+## Cloudflare Deployment
+
+1. Install Wrangler CLI and authenticate:
+   - `npm i -g wrangler`
+   - `wrangler login`
+2. Run locally with Pages runtime:
+   - `npm run dev`
+3. Deploy to Cloudflare Pages:
+   - `npm run deploy`
+
+## Secrets
+
+Set secrets in Cloudflare Pages/Workers environment (not in repo files):
+
+- `TELEGRAM_BOT_TOKEN`
+- `TELEGRAM_CHAT_ID`
+
+Using Wrangler:
+
+- `wrangler pages secret put TELEGRAM_BOT_TOKEN`
+- `wrangler pages secret put TELEGRAM_CHAT_ID`
+
 ## Technical Details
 
 - Uses `flaginfo.json` as the primary data source for flag metadata
@@ -24,6 +52,7 @@ A modern, responsive web application for exploring and searching national flags 
 - Built with vanilla JavaScript (no frameworks)
 - Responsive CSS Grid layout
 - Modern CSS features for animations and transitions
+- Static caching rules are configured via `_headers`
 
 ## API Reference
 
