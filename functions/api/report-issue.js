@@ -1,5 +1,15 @@
 export async function onRequestPost(context) {
     try {
+        if (!context.env.TELEGRAM_BOT_TOKEN || !context.env.TELEGRAM_CHAT_ID) {
+            return new Response(JSON.stringify({
+                success: false,
+                error: 'Issue reporting is not configured on this server.'
+            }), {
+                status: 503,
+                headers: { 'Content-Type': 'application/json' }
+            });
+        }
+
         const { flagCode, flagName, issueType, issueDescription, userEmail } = await context.request.json();
 
         // Input validation
@@ -29,8 +39,7 @@ ${userEmail ? `Contact Email: ${userEmail.replace(/[<>]/g, '')}` : ''}
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 chat_id: context.env.TELEGRAM_CHAT_ID,
-                text: sanitizedMessage,
-                parse_mode: 'HTML'
+                text: sanitizedMessage
             })
         });
 

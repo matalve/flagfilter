@@ -1,6 +1,6 @@
 # Flagfilter
 
-A modern, responsive web application for exploring and searching national flags from around the world. Built with HTML, CSS, and JavaScript, this application uses the Flagpedia API to display high-quality flag images.
+A modern, responsive web application for exploring and searching national flags from around the world. Built with HTML, CSS, and JavaScript, this application uses local flag metadata and Flagpedia-hosted images.
 
 ## Features
 
@@ -19,15 +19,16 @@ A modern, responsive web application for exploring and searching national flags 
 
 ## Technical Details
 
-- Uses the Flagpedia API for flag data and images
+- Uses `flaginfo.json` as the primary data source for flag metadata
+- Uses `https://flagcdn.com/w320/{code}.png` for flag images
 - Built with vanilla JavaScript (no frameworks)
 - Responsive CSS Grid layout
 - Modern CSS features for animations and transitions
 
 ## API Reference
 
-The application uses the following Flagpedia API endpoints:
-- `https://flagcdn.com/en/codes.json` - For flag data
+The application uses:
+- `flaginfo.json` - For local flag metadata, tags, and descriptions
 - `https://flagcdn.com/w320/{code}.png` - For flag images
 
 ## Browser Support

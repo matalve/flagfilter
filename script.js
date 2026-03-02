@@ -271,7 +271,7 @@ const continentData = {
     'africa': ['dz', 'ao', 'bj', 'bw', 'bf', 'bi', 'cm', 'cv', 'cf', 'td', 'km', 'cg', 'cd', 'ci', 'dj', 'eg', 'gq', 'er', 'et', 'ga', 'gm', 'gh', 'gn', 'gw', 'ke', 'ls', 'lr', 'ly', 'mg', 'mw', 'ml', 'mr', 'mu', 'mz', 'na', 'ne', 'ng', 'rw', 'st', 'sn', 'sc', 'sl', 'so', 'za', 'ss', 'sd', 'sz', 'tz', 'tg', 'tn', 'ug', 'zm', 'zw'],
     'asia': ['af', 'am', 'az', 'bh', 'bd', 'bt', 'bn', 'kh', 'cn', 'ge', 'in', 'id', 'ir', 'iq', 'il', 'jp', 'jo', 'kz', 'kw', 'kg', 'la', 'lb', 'my', 'mv', 'mn', 'mm', 'np', 'om', 'pk', 'ph', 'qa', 'sa', 'sg', 'kr', 'lk', 'sy', 'tw', 'tj', 'th', 'tl', 'tr', 'tm', 'ae', 'uz', 'vn', 'ye'],
     'europe': ['al', 'ad', 'at', 'by', 'be', 'ba', 'bg', 'hr', 'cz', 'dk', 'ee', 'fi', 'fr', 'de', 'gr', 'hu', 'is', 'ie', 'it', 'lv', 'li', 'lt', 'lu', 'mt', 'md', 'mc', 'me', 'nl', 'mk', 'no', 'pl', 'pt', 'ro', 'ru', 'sm', 'rs', 'sk', 'si', 'es', 'se', 'ch', 'ua', 'gb', 'va'],
-    'northAmerica': ['ag', 'bs', 'bb', 'bz', 'ca', 'cr', 'cu', 'dm', 'do', 'sv', 'gd', 'gt', 'ht', 'hn', 'jm', 'mx', 'ni', 'pa', 'tt'],
+    'northAmerica': ['ag', 'bs', 'bb', 'bz', 'ca', 'cr', 'cu', 'dm', 'do', 'sv', 'gd', 'gt', 'ht', 'hn', 'jm', 'mx', 'ni', 'pa', 'tt', 'us'],
     'southAmerica': ['ar', 'bo', 'br', 'cl', 'co', 'ec', 'gy', 'py', 'pe', 'sr', 'uy', 've'],
     'oceania': ['au', 'fj', 'ki', 'mh', 'nr', 'nz', 'pw', 'pg', 'ws', 'sb', 'to', 'tv', 'vu']
 };
@@ -282,12 +282,6 @@ async function fetchFlags() {
         // Fetch flag info data
         const flagInfoResponse = await fetch('flaginfo.json');
         flagInfo = await flagInfoResponse.json();
-        
-        // Create a map of flag info by country code
-        const flagInfoMap = {};
-        flagInfo.forEach(info => {
-            flagInfoMap[info.shortname] = info;
-        });
         
         // Process the flag info data directly
         flags = flagInfo.map(info => {
@@ -412,7 +406,7 @@ function showFlagInfoModal(flag) {
         <p><strong>Symbolism:</strong> ${processedSymbolism}</p>
         <p><strong>Fun Facts:</strong> ${processedFunfacts}</p>
         <p><strong>Colors:</strong> ${flag.colors.join(', ')}</p>
-        <a href="${flag.info.wikipedialink}" target="_blank" class="wiki-link">Read more on Wikipedia</a>
+        <a href="${flag.info.wikipedialink}" target="_blank" rel="noopener noreferrer" class="wiki-link">Read more on Wikipedia</a>
         <button class="report-issue-btn">Report an Issue</button>
     `;
     
