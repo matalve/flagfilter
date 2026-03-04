@@ -1,5 +1,20 @@
 export async function onRequestPost(context) {
+    const jsonHeaders = {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-store'
+    };
+
     try {
+        if (!context.env.TELEGRAM_BOT_TOKEN || !context.env.TELEGRAM_CHAT_ID) {
+            return new Response(JSON.stringify({
+                success: false,
+                error: 'Issue reporting is not configured on this server.'
+            }), {
+                status: 503,
+                headers: jsonHeaders
+            });
+        }
+
         const { flagCode, flagName, issueType, issueDescription, userEmail } = await context.request.json();
 
         // Input validation
@@ -9,7 +24,7 @@ export async function onRequestPost(context) {
                 error: 'Missing required fields' 
             }), {
                 status: 400,
-                headers: { 'Content-Type': 'application/json' }
+                headers: jsonHeaders
             });
         }
 
@@ -29,8 +44,7 @@ ${userEmail ? `Contact Email: ${userEmail.replace(/[<>]/g, '')}` : ''}
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 chat_id: context.env.TELEGRAM_CHAT_ID,
-                text: sanitizedMessage,
-                parse_mode: 'HTML'
+                text: sanitizedMessage
             })
         });
 
@@ -40,7 +54,7 @@ ${userEmail ? `Contact Email: ${userEmail.replace(/[<>]/g, '')}` : ''}
 
         return new Response(JSON.stringify({ success: true }), {
             status: 200,
-            headers: { 'Content-Type': 'application/json' }
+            headers: jsonHeaders
         });
     } catch (error) {
         console.error('Error sending report:', error);
@@ -49,7 +63,7 @@ ${userEmail ? `Contact Email: ${userEmail.replace(/[<>]/g, '')}` : ''}
             error: 'Failed to send report' 
         }), {
             status: 500,
-            headers: { 'Content-Type': 'application/json' }
+            headers: jsonHeaders
         });
     }
 } 

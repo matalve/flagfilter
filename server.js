@@ -1,29 +1,25 @@
+// Legacy local server fallback. Production uses Cloudflare Pages Functions.
 const express = require('express');
 const axios = require('axios');
 const path = require('path');
 const app = express();
 
 // Get environment variables
-const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
-
-// Validate required environment variables
-if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
-    console.error('Missing required environment variables: TELEGRAM_BOT_TOKEN and/or TELEGRAM_CHAT_ID');
-    process.exit(1);
-}
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '';
+const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID || '';
+const hasTelegramConfig = Boolean(TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID);
 
 app.use(express.json());
 
 // Serve static files from the current directory
 app.use(express.static(__dirname));
 
-// Rate limiting middleware
+// Report endpoint rate limiting middleware
 const rateLimit = new Map();
 const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour
-const MAX_REQUESTS = 5;
+const MAX_REQUESTS = 30;
 
-app.use((req, res, next) => {
+function reportRateLimit(req, res, next) {
     const ip = req.ip;
     const now = Date.now();
     
@@ -43,10 +39,17 @@ app.use((req, res, next) => {
     }
     
     next();
-});
+}
 
-app.post('/api/report-issue', async (req, res) => {
+app.post('/api/report-issue', reportRateLimit, async (req, res) => {
     try {
+        if (!hasTelegramConfig) {
+            return res.status(503).json({
+                success: false,
+                error: 'Issue reporting is not configured on this server.'
+            });
+        }
+
         const { flagCode, flagName, issueType, issueDescription, userEmail } = req.body;
 
         // Input validation
@@ -70,8 +73,7 @@ ${userEmail ? `Contact Email: ${userEmail.replace(/[<>]/g, '')}` : ''}
         // Send to Telegram
         await axios.post(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
             chat_id: TELEGRAM_CHAT_ID,
-            text: sanitizedMessage,
-            parse_mode: 'HTML'
+            text: sanitizedMessage
         });
 
         res.status(200).json({ success: true });
@@ -93,4 +95,7 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
     console.log(`Visit http://localhost:${PORT} to view the site`);
-}); 
+    if (!hasTelegramConfig) {
+        console.log('Issue reporting is disabled because TELEGRAM_BOT_TOKEN and/or TELEGRAM_CHAT_ID is missing.');
+    }
+});
