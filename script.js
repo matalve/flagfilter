@@ -2,6 +2,7 @@
 const searchInput = document.getElementById('searchInput');
 const flagGrid = document.getElementById('flagGrid');
 const filterButtons = document.querySelectorAll('.filter-btn');
+const resetFiltersButton = document.getElementById('resetFiltersButton');
 const darkModeToggle = document.getElementById('darkModeToggle');
 const body = document.body;
 
@@ -739,8 +740,21 @@ function initializeFilterSections() {
     });
 }
 
+function resetAllFilters() {
+    searchInput.value = '';
+    document.querySelectorAll('.filter-btn').forEach(button => {
+        button.classList.remove('active');
+        button.disabled = false;
+        button.classList.remove('disabled');
+    });
+    applyFilters();
+}
+
 // Event Listeners
 searchInput.addEventListener('input', (e) => handleSearch(e.target.value));
+if (resetFiltersButton) {
+    resetFiltersButton.addEventListener('click', resetAllFilters);
+}
 
 // Update event listeners for all filter types
 document.querySelectorAll('.filter-btn[data-color]').forEach(button => {
