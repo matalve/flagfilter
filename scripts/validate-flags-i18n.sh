@@ -65,16 +65,16 @@ empty_values_file="$tmp_dir/empty_values.txt"
 all_codes_file="$tmp_dir/all_codes.txt"
 source_codes_file="$tmp_dir/source_codes.txt"
 
-jq -r 'to_entries[] | select(.key | test("^[a-z0-9]{2}_(name|symbolism|funfacts)$") | not) | .key' "$FLAGS_FILE" > "$invalid_keys_file"
+jq -r 'to_entries[] | select(.key | test("^[a-z0-9-]+_(name|symbolism|funfacts)$") | not) | .key' "$FLAGS_FILE" > "$invalid_keys_file"
 
-jq -r 'keys[] | select(test("^[a-z0-9]{2}_(name|symbolism|funfacts)$")) | split("_")[0]' "$FLAGS_FILE" \
+jq -r 'keys[] | select(test("^[a-z0-9-]+_(name|symbolism|funfacts)$")) | sub("_(name|symbolism|funfacts)$"; "")' "$FLAGS_FILE" \
   | sort -u > "$all_codes_file"
 jq -r '.[].shortname' "$SOURCE_FILE" | sort -u > "$source_codes_file"
 comm -23 "$all_codes_file" "$source_codes_file" > "$unknown_codes_file"
 
 jq -r '
   to_entries[]
-  | select(.key | test("^[a-z0-9]{2}_(name|symbolism|funfacts)$"))
+  | select(.key | test("^[a-z0-9-]+_(name|symbolism|funfacts)$"))
   | select(
       (.value | type) != "string"
       or

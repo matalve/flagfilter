@@ -54,11 +54,11 @@ count_nonempty_for_field() {
   local field="$1"
   jq -r --arg field "$field" '
     to_entries[]
-    | select(.key | test("^[a-z0-9]{2}_" + $field + "$"))
+    | select(.key | test("^[a-z0-9-]+_" + $field + "$"))
     | select((.value | type) == "string")
     | select((.value | gsub("<br\\s*/?>";"") | gsub("&nbsp;";"") | gsub("\\s";"")) != "")
     | .key
-    | split("_")[0]
+    | sub("_" + $field + "$"; "")
   ' "$FLAGS_FILE" | sort -u
 }
 
