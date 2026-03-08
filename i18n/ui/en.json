@@ -68,6 +68,8 @@
   "contact_label": "Contact",
   "source_code_label": "Source code",
   "flags_provided_by_label": "Flags provided by",
+  "translation_disclaimer_label": "Translation disclaimer",
+  "translation_disclaimer_es": "Spanish content is translated with assistance from OpenAI GPT-5 and may contain inaccuracies.",
   "close": "Close",
   "no_results": "No flags match your search criteria.",
   "learn_more": "Learn more",

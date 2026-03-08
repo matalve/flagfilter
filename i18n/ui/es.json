@@ -68,6 +68,8 @@
   "contact_label": "Contacto",
   "source_code_label": "Código fuente",
   "flags_provided_by_label": "Banderas provistas por",
+  "translation_disclaimer_label": "Aviso de traducción",
+  "translation_disclaimer_es": "El contenido en español está traducido con ayuda de OpenAI GPT-5 y puede contener imprecisiones.",
   "close": "Cerrar",
   "no_results": "Ninguna bandera coincide con tu búsqueda.",
   "learn_more": "Saber más",

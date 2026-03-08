@@ -478,12 +478,16 @@ function applyStaticTranslations() {
     const closeBtn = infoModal.querySelector('.close-btn');
     const infoTitle = infoModal.querySelector('h2');
     const infoContent = infoModal.querySelector('.info-content');
+    const translationDisclaimer = currentLanguage === 'es'
+        ? `<p><strong>${t('translation_disclaimer_label')}:</strong> ${t('translation_disclaimer_es')}</p>`
+        : '';
     closeBtn.setAttribute('aria-label', t('close'));
     infoTitle.textContent = t('about_flagfilter');
     infoContent.innerHTML = `
         <p><strong>${t('contact_label')}:</strong> <a href="mailto:info@flagfilter.com">info@flagfilter.com</a></p>
         <p><strong>${t('source_code_label')}:</strong> <a href="https://github.com/matalve/flagfilter" target="_blank" rel="noopener noreferrer">GitHub</a></p>
         <p><strong>${t('flags_provided_by_label')}:</strong> <a href="https://flagpedia.net/" target="_blank" rel="noopener noreferrer">Flagpedia</a></p>
+        ${translationDisclaimer}
     `;
 }
 
