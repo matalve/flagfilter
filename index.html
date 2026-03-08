@@ -21,6 +21,13 @@
             <div class="header-top">
                 <h1>Flagfilter</h1>
                 <div class="header-buttons">
+                    <label for="languageSelect" class="language-select-wrapper">
+                        <i class="fas fa-language" aria-hidden="true"></i>
+                        <select id="languageSelect" class="language-select" aria-label="Select language">
+                            <option value="en">EN</option>
+                            <option value="es">ES</option>
+                        </select>
+                    </label>
                     <button id="infoButton" class="info-button" aria-label="Information">
                         <i class="fas fa-question-circle"></i>
                     </button>
@@ -41,7 +48,7 @@
         </header>
         
         <div class="filters">
-            <div class="filter-section">
+            <div class="filter-section" data-section-id="color">
                 <div class="filter-header" onclick="toggleFilterSection(this)">
                     <h3>Filter by Color</h3>
                     <i class="fas fa-chevron-down filter-icon"></i>
@@ -58,7 +65,7 @@
                 </div>
             </div>
             
-            <div class="filter-section">
+            <div class="filter-section" data-section-id="more">
                 <div class="filter-header" onclick="toggleFilterSection(this)">
                     <h3>More filters</h3>
                     <i class="fas fa-chevron-down filter-icon"></i>

@@ -1,15 +1,90 @@
 // DOM Elements
 const searchInput = document.getElementById('searchInput');
 const flagGrid = document.getElementById('flagGrid');
-const filterButtons = document.querySelectorAll('.filter-btn');
 const resetFiltersButton = document.getElementById('resetFiltersButton');
-const darkModeToggle = document.getElementById('darkModeToggle');
-const body = document.body;
+const languageSelect = document.getElementById('languageSelect');
 
 // Global variables
 let flags = [];
 let filteredFlags = [];
-let flagInfo = [];
+let baseFlagInfo = [];
+let uiTranslations = {};
+let fallbackUiTranslations = {};
+let flagTranslations = {};
+let currentLanguage = 'en';
+const SUPPORTED_LANGUAGES = ['en', 'es'];
+const DEFAULT_LANGUAGE = 'en';
+
+function getLanguageFromUrl() {
+    const lang = new URLSearchParams(window.location.search).get('lang');
+    return SUPPORTED_LANGUAGES.includes(lang) ? lang : null;
+}
+
+function getInitialLanguage() {
+    const queryLanguage = getLanguageFromUrl();
+    if (queryLanguage) {
+        return queryLanguage;
+    }
+
+    const savedLanguage = localStorage.getItem('language');
+    if (SUPPORTED_LANGUAGES.includes(savedLanguage)) {
+        return savedLanguage;
+    }
+
+    const browserLanguage = (navigator.language || '').slice(0, 2).toLowerCase();
+    if (SUPPORTED_LANGUAGES.includes(browserLanguage)) {
+        return browserLanguage;
+    }
+
+    return DEFAULT_LANGUAGE;
+}
+
+function updateLanguageInUrl(language) {
+    const url = new URL(window.location.href);
+    url.searchParams.set('lang', language);
+    window.history.replaceState({}, '', url);
+}
+
+function t(key, vars = {}) {
+    const template = uiTranslations[key] || fallbackUiTranslations[key] || key;
+    return template.replace(/\{(\w+)\}/g, (_, varName) => vars[varName] ?? `{${varName}}`);
+}
+
+function setButtonLabel(button, label) {
+    const icon = button.querySelector('i');
+    if (!icon) {
+        button.textContent = label;
+        return;
+    }
+
+    button.innerHTML = '';
+    button.appendChild(icon);
+    button.append(` ${label}`);
+}
+
+async function loadJson(path, fallbackValue = {}) {
+    try {
+        const response = await fetch(path);
+        if (!response.ok) {
+            return fallbackValue;
+        }
+        return await response.json();
+    } catch (error) {
+        console.warn(`Could not load ${path}:`, error);
+        return fallbackValue;
+    }
+}
+
+async function loadTranslations(language) {
+    fallbackUiTranslations = await loadJson('i18n/ui/en.json', {});
+    uiTranslations = language === 'en'
+        ? fallbackUiTranslations
+        : await loadJson(`i18n/ui/${language}.json`, fallbackUiTranslations);
+
+    flagTranslations = language === 'en'
+        ? {}
+        : await loadJson(`i18n/flags/${language}.json`, {});
+}
 
 // Dark mode toggle functionality
 function initDarkMode() {
@@ -277,44 +352,58 @@ const continentData = {
     'oceania': ['au', 'fj', 'ki', 'mh', 'nr', 'nz', 'pw', 'pg', 'ws', 'sb', 'to', 'tv', 'vu']
 };
 
-// Fetch flag data from Flagpedia API
+function localizeFlagInfo(info) {
+    if (currentLanguage === 'en') {
+        return { ...info };
+    }
+
+    const translatedInfo = { ...info };
+    const translatableFields = ['name', 'symbolism', 'funfacts', 'adopted', 'proportion'];
+
+    translatableFields.forEach((field) => {
+        const key = `${info.shortname}_${field}`;
+        if (flagTranslations[key]) {
+            translatedInfo[field] = flagTranslations[key];
+        }
+    });
+
+    return translatedInfo;
+}
+
+function rebuildFlags() {
+    flags = baseFlagInfo.map((baseInfo) => {
+        const info = localizeFlagInfo(baseInfo);
+        const code = info.shortname;
+        const url = `https://flagcdn.com/w320/${code}.png`;
+        const tags = info.tags || '';
+        const colorTags = ['red', 'blue', 'green', 'yellow', 'white', 'black'];
+        const colors = colorTags.filter(color => tags.includes(color));
+
+        return {
+            code,
+            url,
+            name: info.name || code.toUpperCase(),
+            colors: colors.length > 0 ? colors : extractColorsFromUrl(url),
+            tags: tags.split(' '),
+            info
+        };
+    });
+}
+
+// Fetch flag data from local source and apply translations
 async function fetchFlags() {
     try {
-        // Fetch flag info data
         const flagInfoResponse = await fetch('flaginfo.json');
-        flagInfo = await flagInfoResponse.json();
+        baseFlagInfo = await flagInfoResponse.json();
+        rebuildFlags();
         
-        // Process the flag info data directly
-        flags = flagInfo.map(info => {
-            const code = info.shortname;
-            // Use the original flag image URL format
-            const url = `https://flagcdn.com/w320/${code}.png`;
-            const tags = info.tags || '';
-            
-            // Extract colors from tags
-            const colorTags = ['red', 'blue', 'green', 'yellow', 'white', 'black'];
-            const colors = colorTags.filter(color => tags.includes(color));
-            
-            return {
-                code,
-                url,
-                name: info.name || code.toUpperCase(),
-                colors: colors.length > 0 ? colors : extractColorsFromUrl(url),
-                tags: tags.split(' '),
-                info: info
-            };
-        });
-        
-        // Initialize filtered flags
         filteredFlags = [...flags];
-        
-        // Render the flag grid
         renderFlagGrid();
-        
+
         return flags;
     } catch (error) {
         console.error('Error fetching flag data:', error);
-        flagGrid.innerHTML = '<p class="error">Error loading flags. Please try again later.</p>';
+        flagGrid.innerHTML = `<p class="error">${t('error_loading_flags')}</p>`;
     }
 }
 
@@ -325,12 +414,100 @@ function extractColorsFromUrl(url) {
     return [];
 }
 
+function applyStaticTranslations() {
+    document.documentElement.lang = currentLanguage;
+    document.title = t('page_title');
+    searchInput.placeholder = t('search_placeholder');
+    resetFiltersButton.innerHTML = `<i class="fas fa-rotate-left"></i> ${t('reset_button')}`;
+    resetFiltersButton.setAttribute('aria-label', t('reset_button_aria'));
+
+    const infoButton = document.getElementById('infoButton');
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const infoModal = document.getElementById('infoModal');
+    infoButton.setAttribute('aria-label', t('info_button_aria'));
+    darkModeToggle.setAttribute('aria-label', t('dark_mode_aria'));
+
+    const filterHeaders = document.querySelectorAll('.filter-section > .filter-header h3');
+    if (filterHeaders[0]) filterHeaders[0].textContent = t('filter_by_color');
+    if (filterHeaders[1]) filterHeaders[1].textContent = t('more_filters');
+
+    const groupHeadings = document.querySelectorAll('.compact-filter-group h4');
+    const groupHeadingKeys = ['continent', 'pattern', 'symbol', 'motive', 'people_or_clothing', 'ideology', 'text'];
+    groupHeadings.forEach((heading, index) => {
+        heading.textContent = t(groupHeadingKeys[index]);
+    });
+
+    document.querySelectorAll('.filter-btn[data-color]').forEach(button => {
+        button.textContent = t(`color_${button.dataset.color}`);
+    });
+
+    document.querySelectorAll('.filter-btn[data-continent]').forEach(button => {
+        setButtonLabel(button, t(`continent_${button.dataset.continent}`));
+    });
+
+    document.querySelectorAll('.filter-btn[data-pattern]').forEach(button => {
+        setButtonLabel(button, t(`pattern_${button.dataset.pattern}`));
+    });
+
+    document.querySelectorAll('.filter-btn[data-symbol]').forEach(button => {
+        setButtonLabel(button, t(`symbol_${button.dataset.symbol}`));
+    });
+
+    document.querySelectorAll('.filter-btn[data-motive]').forEach(button => {
+        setButtonLabel(button, t(`motive_${button.dataset.motive}`));
+    });
+
+    document.querySelectorAll('.filter-btn[data-people]').forEach(button => {
+        setButtonLabel(button, t(`people_${button.dataset.people}`));
+    });
+
+    document.querySelectorAll('.filter-btn[data-ideology]').forEach(button => {
+        setButtonLabel(button, t(`ideology_${button.dataset.ideology}`));
+    });
+
+    document.querySelectorAll('.filter-btn[data-text]').forEach(button => {
+        setButtonLabel(button, t(`text_${button.dataset.text}`));
+    });
+
+    const closeBtn = infoModal.querySelector('.close-btn');
+    const infoTitle = infoModal.querySelector('h2');
+    const infoContent = infoModal.querySelector('.info-content');
+    closeBtn.setAttribute('aria-label', t('close'));
+    infoTitle.textContent = t('about_flagfilter');
+    infoContent.innerHTML = `
+        <p><strong>${t('contact_label')}:</strong> <a href="mailto:info@flagfilter.com">info@flagfilter.com</a></p>
+        <p><strong>${t('source_code_label')}:</strong> <a href="https://github.com/matalve/flagfilter" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+        <p><strong>${t('flags_provided_by_label')}:</strong> <a href="https://flagpedia.net/" target="_blank" rel="noopener noreferrer">Flagpedia</a></p>
+    `;
+}
+
+async function switchLanguage(language) {
+    if (!SUPPORTED_LANGUAGES.includes(language)) {
+        return;
+    }
+
+    currentLanguage = language;
+    localStorage.setItem('language', language);
+    updateLanguageInUrl(language);
+    await loadTranslations(language);
+    applyStaticTranslations();
+
+    if (baseFlagInfo.length > 0) {
+        rebuildFlags();
+        applyFilters();
+    }
+
+    if (languageSelect) {
+        languageSelect.value = language;
+    }
+}
+
 // Render flag grid
 function renderFlagGrid() {
     flagGrid.innerHTML = '';
     
     if (filteredFlags.length === 0) {
-        flagGrid.innerHTML = '<p class="no-results">No flags match your search criteria.</p>';
+        flagGrid.innerHTML = `<p class="no-results">${t('no_results')}</p>`;
         updateFlagCounter(0);
         return;
     }
@@ -342,7 +519,7 @@ function renderFlagGrid() {
         flagCard.innerHTML = `
             <img src="${flag.url}" alt="${flag.name} flag" loading="lazy">
             <h3>${flag.name}</h3>
-            <button class="learn-more-btn" data-code="${flag.code}">Learn more</button>
+            <button class="learn-more-btn" data-code="${flag.code}">${t('learn_more')}</button>
         `;
         
         flagGrid.appendChild(flagCard);
@@ -364,7 +541,9 @@ function renderFlagGrid() {
 
 function updateFlagCounter(count) {
     const counter = document.getElementById('flagCounter');
-    counter.textContent = `Showing ${count} flag${count !== 1 ? 's' : ''}`;
+    counter.textContent = count === 1
+        ? t('flag_counter_one', { count })
+        : t('flag_counter_other', { count });
 }
 
 // Show flag information modal
@@ -397,18 +576,18 @@ function showFlagInfoModal(flag) {
     flagInfo.className = 'flag-info-details';
     
     // Process HTML content to make links clickable
-    const processedSymbolism = processHtmlContent(flag.info.symbolism || 'No information available.');
-    const processedFunfacts = processHtmlContent(flag.info.funfacts || 'No fun facts available.');
+    const processedSymbolism = processHtmlContent(flag.info.symbolism || t('no_information_available'));
+    const processedFunfacts = processHtmlContent(flag.info.funfacts || t('no_fun_facts_available'));
     
     // Add flag information
     flagInfo.innerHTML = `
         <h2>${flag.name}</h2>
-        <p><strong>Adopted:</strong> ${flag.info.adopted || 'Unknown'}</p>
-        <p><strong>Symbolism:</strong> ${processedSymbolism}</p>
-        <p><strong>Fun Facts:</strong> ${processedFunfacts}</p>
-        <p><strong>Colors:</strong> ${flag.colors.join(', ')}</p>
-        <a href="${flag.info.wikipedialink}" target="_blank" rel="noopener noreferrer" class="wiki-link">Read more on Wikipedia</a>
-        <button class="report-issue-btn">Report an Issue</button>
+        <p><strong>${t('adopted_label')}:</strong> ${flag.info.adopted || t('unknown')}</p>
+        <p><strong>${t('symbolism_label')}:</strong> ${processedSymbolism}</p>
+        <p><strong>${t('fun_facts_label')}:</strong> ${processedFunfacts}</p>
+        <p><strong>${t('colors_label')}:</strong> ${flag.colors.join(', ')}</p>
+        <a href="${flag.info.wikipedialink}" target="_blank" rel="noopener noreferrer" class="wiki-link">${t('read_more_wikipedia')}</a>
+        <button class="report-issue-btn">${t('report_issue')}</button>
     `;
     
     // Create report issue form (initially hidden)
@@ -416,37 +595,37 @@ function showFlagInfoModal(flag) {
     reportForm.className = 'report-form';
     reportForm.style.display = 'none';
     reportForm.innerHTML = `
-        <h3>Report an Issue</h3>
+        <h3>${t('report_issue')}</h3>
         <form id="reportForm">
             <input type="hidden" name="flagCode" value="${flag.code}">
             <input type="hidden" name="flagName" value="${flag.name}">
             
             <div class="form-group">
-                <label for="issueType">Type of Issue:</label>
+                <label for="issueType">${t('type_of_issue_label')}:</label>
                 <select name="issueType" id="issueType" required>
-                    <option value="">Select an issue type</option>
-                    <option value="incorrect_info">Incorrect Information</option>
-                    <option value="missing_info">Missing Information</option>
-                    <option value="broken_link">Broken Link</option>
-                    <option value="other">Other</option>
+                    <option value="">${t('select_issue_type')}</option>
+                    <option value="incorrect_info">${t('issue_incorrect_info')}</option>
+                    <option value="missing_info">${t('issue_missing_info')}</option>
+                    <option value="broken_link">${t('issue_broken_link')}</option>
+                    <option value="other">${t('issue_other')}</option>
                 </select>
             </div>
             
             <div class="form-group">
-                <label for="issueDescription">Description:</label>
+                <label for="issueDescription">${t('description_label')}:</label>
                 <textarea name="issueDescription" id="issueDescription" required 
-                    placeholder="Please describe the issue in detail..."></textarea>
+                    placeholder="${t('issue_description_placeholder')}"></textarea>
             </div>
             
             <div class="form-group">
-                <label for="userEmail">Your Email (optional):</label>
+                <label for="userEmail">${t('your_email_optional_label')}:</label>
                 <input type="email" name="userEmail" id="userEmail" 
-                    placeholder="Enter your email if you'd like a response">
+                    placeholder="${t('email_placeholder')}">
             </div>
             
             <div class="form-actions">
-                <button type="submit" class="submit-btn">Submit Report</button>
-                <button type="button" class="cancel-btn">Cancel</button>
+                <button type="submit" class="submit-btn">${t('submit_report')}</button>
+                <button type="button" class="cancel-btn">${t('cancel')}</button>
             </div>
         </form>
     `;
@@ -488,14 +667,14 @@ function showFlagInfoModal(flag) {
             const result = await response.json();
             
             if (response.ok) {
-                alert('Thank you for your report! We will review it soon.');
+                alert(t('report_success'));
                 reportForm.style.display = 'none';
                 reportBtn.style.display = 'block';
             } else {
-                throw new Error(result.error || 'Failed to submit report');
+                throw new Error(result.error || t('failed_to_submit_report'));
             }
         } catch (error) {
-            alert('Sorry, there was an error submitting your report. Please try again later.');
+            alert(t('report_error'));
             console.error('Error submitting report:', error);
         }
     });
@@ -722,8 +901,8 @@ function toggleFilterSection(header) {
     const section = header.parentElement;
     section.classList.toggle('collapsed');
     
-    // Save the state to localStorage
-    const sectionId = section.querySelector('h3').textContent;
+    // Save the state to localStorage using a stable key that does not change with translations
+    const sectionId = section.dataset.sectionId;
     const isCollapsed = section.classList.contains('collapsed');
     localStorage.setItem(`filterSection_${sectionId}`, isCollapsed);
 }
@@ -731,10 +910,10 @@ function toggleFilterSection(header) {
 // Initialize filter sections from localStorage
 function initializeFilterSections() {
     document.querySelectorAll('.filter-section').forEach(section => {
-        const sectionId = section.querySelector('h3').textContent;
+        const sectionId = section.dataset.sectionId;
         const isCollapsed = localStorage.getItem(`filterSection_${sectionId}`) === 'true';
         
-        if (isCollapsed || sectionId === 'More filters') {
+        if (isCollapsed || sectionId === 'more') {
             section.classList.add('collapsed');
         }
     });
@@ -808,10 +987,21 @@ document.querySelectorAll('.filter-btn[data-text]').forEach(button => {
 });
 
 // Initialize the app
-initDarkMode();
-fetchFlags().then(() => {
+async function initApp() {
+    initDarkMode();
+    const initialLanguage = getInitialLanguage();
+    await switchLanguage(initialLanguage);
+    await fetchFlags();
     initializeFilterSections();
-});
+}
+
+if (languageSelect) {
+    languageSelect.addEventListener('change', (event) => {
+        switchLanguage(event.target.value);
+    });
+}
+
+initApp();
 
 // Info modal functionality
 const infoButton = document.getElementById('infoButton');
