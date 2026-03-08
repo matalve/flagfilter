@@ -60,6 +60,25 @@ The application uses:
 - `flaginfo.json` - For local flag metadata, tags, and descriptions
 - `https://flagcdn.com/w320/{code}.png` - For flag images
 
+## Internationalization (i18n)
+
+- UI translations are stored in `i18n/ui/<lang>.json` (for example `i18n/ui/en.json`, `i18n/ui/es.json`).
+- Flag text overlays are stored in `i18n/flags/<lang>.json` and key format is:
+  - `<shortname>_name`
+  - `<shortname>_symbolism`
+  - `<shortname>_funfacts`
+- Source metadata remains in `flaginfo.json` and overlays are applied at runtime.
+- Language selection priority is:
+  1. `?lang=<code>` URL parameter
+  2. saved `localStorage` preference
+  3. browser language
+  4. default `en`
+- Translation fallback behavior:
+  - Missing/whitespace-only UI values fall back to English.
+  - Missing/whitespace-only flag overlay values fall back to `flaginfo.json`.
+- Link behavior in localized modal text:
+  - Inline links like `?q=france` are resolved against base source data so they remain clickable in translated views.
+
 ## POEditor Flags Sync
 
 Use the script below to sync only flag translations (for example Spanish overlays in `i18n/flags/es.json`):
