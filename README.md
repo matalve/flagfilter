@@ -60,6 +60,24 @@ The application uses:
 - `flaginfo.json` - For local flag metadata, tags, and descriptions
 - `https://flagcdn.com/w320/{code}.png` - For flag images
 
+## POEditor Flags Sync
+
+Use the script below to sync only flag translations (for example Spanish overlays in `i18n/flags/es.json`):
+
+- `scripts/poeditor-flags-sync.sh`
+
+Required environment variables:
+
+- `POEDITOR_API_TOKEN`
+- `POEDITOR_PROJECT_ID`
+
+Examples:
+
+- Pull from POEditor into local file:
+  - `POEDITOR_API_TOKEN=... POEDITOR_PROJECT_ID=654073 scripts/poeditor-flags-sync.sh pull es i18n/flags/es.json`
+- Push local file to POEditor:
+  - `POEDITOR_API_TOKEN=... POEDITOR_PROJECT_ID=654073 scripts/poeditor-flags-sync.sh push es i18n/flags/es.json`
+
 ## Browser Support
 
 The application works on all modern browsers that support:
