@@ -60,6 +60,54 @@ The application uses:
 - `flaginfo.json` - For local flag metadata, tags, and descriptions
 - `https://flagcdn.com/w320/{code}.png` - For flag images
 
+## Internationalization (i18n)
+
+- UI translations are stored in `i18n/ui/<lang>.json` (for example `i18n/ui/en.json`, `i18n/ui/es.json`).
+- Flag text overlays are stored in `i18n/flags/<lang>.json` and key format is:
+  - `<shortname>_name`
+  - `<shortname>_symbolism`
+  - `<shortname>_funfacts`
+- Source metadata remains in `flaginfo.json` and overlays are applied at runtime.
+- Language selection priority is:
+  1. `?lang=<code>` URL parameter
+  2. saved `localStorage` preference
+  3. browser language
+  4. default `en`
+- Translation fallback behavior:
+  - Missing/whitespace-only UI values fall back to English.
+  - Missing/whitespace-only flag overlay values fall back to `flaginfo.json`.
+- Link behavior in localized modal text:
+  - Inline links like `?q=france` are resolved against base source data so they remain clickable in translated views.
+
+## POEditor Flags Sync
+
+Use the script below to sync only flag translations (for example Spanish overlays in `i18n/flags/es.json`):
+
+- `scripts/poeditor-flags-sync.sh`
+
+Required environment variables:
+
+- `POEDITOR_API_TOKEN`
+- `POEDITOR_PROJECT_ID`
+
+Examples:
+
+- Pull from POEditor into local file:
+  - `POEDITOR_API_TOKEN=... POEDITOR_PROJECT_ID=654073 scripts/poeditor-flags-sync.sh pull es i18n/flags/es.json`
+- Push local file to POEditor:
+  - `POEDITOR_API_TOKEN=... POEDITOR_PROJECT_ID=654073 scripts/poeditor-flags-sync.sh push es i18n/flags/es.json`
+
+## Translation Validation and Coverage
+
+For flags-only overlay files (for example `i18n/flags/es.json`):
+
+- Validate keys, shortnames and empty values:
+  - `scripts/validate-flags-i18n.sh i18n/flags/es.json flaginfo.json`
+- Same validation but fail on empty values:
+  - `scripts/validate-flags-i18n.sh --strict-empty i18n/flags/es.json flaginfo.json`
+- Coverage report (`name`, `symbolism`, `funfacts`):
+  - `scripts/flags-translation-coverage.sh i18n/flags/es.json flaginfo.json`
+
 ## Browser Support
 
 The application works on all modern browsers that support:
@@ -71,7 +119,7 @@ The application works on all modern browsers that support:
 ## Acknowledgments
 
 - Special thanks to [flagpedia.net](https://flagpedia.net) for providing high-quality flag images and data
-- Translation help is welcome! Join our translation project at [POEditor](https://poeditor.com/join/project/P7N0JxV3wI)
+- Help improve translations! Join our translation project at [POEditor](https://poeditor.com/join/project/P7N0JxV3wI)
 
 ## Support
 
