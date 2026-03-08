@@ -78,6 +78,17 @@ Examples:
 - Push local file to POEditor:
   - `POEDITOR_API_TOKEN=... POEDITOR_PROJECT_ID=654073 scripts/poeditor-flags-sync.sh push es i18n/flags/es.json`
 
+## Translation Validation and Coverage
+
+For flags-only overlay files (for example `i18n/flags/es.json`):
+
+- Validate keys, shortnames and empty values:
+  - `scripts/validate-flags-i18n.sh i18n/flags/es.json flaginfo.json`
+- Same validation but fail on empty values:
+  - `scripts/validate-flags-i18n.sh --strict-empty i18n/flags/es.json flaginfo.json`
+- Coverage report (`name`, `symbolism`, `funfacts`):
+  - `scripts/flags-translation-coverage.sh i18n/flags/es.json flaginfo.json`
+
 ## Browser Support
 
 The application works on all modern browsers that support:
