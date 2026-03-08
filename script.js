@@ -722,14 +722,35 @@ function showFlagInfoModal(flag) {
 // Process HTML content to make links clickable
 function processHtmlContent(htmlContent) {
     if (!htmlContent) return '';
-    
-    // Replace links with ?q= parameter to make them open the flag modal
-    return htmlContent.replace(/<a href="\?q=([^"]+)">([^<]+)<\/a>/g, (match, flagName, linkText) => {
-        // Find the flag by name (case insensitive)
-        const flag = flags.find(f => f.name.toLowerCase() === flagName.toLowerCase());
-        if (flag) {
-            return `<a href="#" class="flag-link" data-flag-code="${flag.code}">${linkText}</a>`;
+
+    const normalizeForQuery = (value) => value
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/&/g, ' and ')
+        .replace(/['’]/g, '')
+        .replace(/[^a-z0-9]+/g, ' ')
+        .trim()
+        .replace(/\s+/g, '+');
+
+    // Replace links with ?q= parameter to make them open the flag modal.
+    // Use baseFlagInfo (English source names) for lookup so translated UI names do not break links.
+    return htmlContent.replace(/<a href="\?q=([^"]+)">([^<]+)<\/a>/g, (match, queryValue, linkText) => {
+        const normalizedQuery = normalizeForQuery(queryValue);
+
+        const matchedBaseFlag = baseFlagInfo.find((info) =>
+            normalizeForQuery(info.name) === normalizedQuery
+        );
+
+        if (matchedBaseFlag) {
+            return `<a href="#" class="flag-link" data-flag-code="${matchedBaseFlag.shortname}">${linkText}</a>`;
         }
+
+        const matchedByCode = flags.find((flag) => flag.code.toLowerCase() === queryValue.toLowerCase());
+        if (matchedByCode) {
+            return `<a href="#" class="flag-link" data-flag-code="${matchedByCode.code}">${linkText}</a>`;
+        }
+
         return linkText;
     });
 }
