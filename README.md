@@ -119,7 +119,7 @@ The application works on all modern browsers that support:
 ## Acknowledgments
 
 - Special thanks to [flagpedia.net](https://flagpedia.net) for providing high-quality flag images and data
-- Translation help is welcome! Join our translation project at [POEditor](https://poeditor.com/join/project/P7N0JxV3wI)
+- Help improve translations! Join our translation project at [POEditor](https://poeditor.com/join/project/P7N0JxV3wI)
 
 ## Support
 

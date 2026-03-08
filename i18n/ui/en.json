@@ -68,6 +68,8 @@
   "contact_label": "Contact",
   "source_code_label": "Source code",
   "flags_provided_by_label": "Flags provided by",
+  "help_translate_label": "Help improve translations!",
+  "help_translate_link_text": "Join the translation project on POEditor",
   "translation_disclaimer_label": "Translation disclaimer",
   "translation_disclaimer_es": "Spanish content is translated with assistance from OpenAI GPT-5 and may contain inaccuracies.",
   "close": "Close",
