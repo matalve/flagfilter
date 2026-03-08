@@ -46,8 +46,14 @@ function updateLanguageInUrl(language) {
 }
 
 function t(key, vars = {}) {
-    const template = uiTranslations[key] || fallbackUiTranslations[key] || key;
+    const template = hasTextValue(uiTranslations[key])
+        ? uiTranslations[key]
+        : (hasTextValue(fallbackUiTranslations[key]) ? fallbackUiTranslations[key] : key);
     return template.replace(/\{(\w+)\}/g, (_, varName) => vars[varName] ?? `{${varName}}`);
+}
+
+function hasTextValue(value) {
+    return typeof value === 'string' && value.trim() !== '';
 }
 
 function setButtonLabel(button, label) {
@@ -362,7 +368,7 @@ function localizeFlagInfo(info) {
 
     translatableFields.forEach((field) => {
         const key = `${info.shortname}_${field}`;
-        if (flagTranslations[key]) {
+        if (hasTextValue(flagTranslations[key])) {
             translatedInfo[field] = flagTranslations[key];
         }
     });
