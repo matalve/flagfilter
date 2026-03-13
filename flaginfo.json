@@ -25,7 +25,7 @@
     "name": "Afghanistan",
     "proportion": "1:2",
     "adopted": "2021",
-    "symbolism": "White: The purity of faith and government of the Islamic movement of the Taliban.<br>Text: The Islamic declaration of faith, known as the \"shahada\".<br>",
+    "symbolism": "White: Commonly associated with purity and, in the current context, with the Islamic Emirate led by the Taliban.<br>Text: The Islamic declaration of faith, known as the \"shahada\".<br>",
     "funfacts": "During the 20th century, Afghanistan went through 19 national flags. More than any other country during that time period.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Afghanistan"
   },
@@ -105,7 +105,7 @@
     "name": "American Samoa",
     "proportion": "10:19",
     "adopted": "1960",
-    "symbolism": "The red, white and blue represent the colors traditionally utilized by both the United States and Samoa.<br>The bald represents the U.S. and it clutches two Samoan symbols, alluding to America's guardianship over American Samoa, as well as evoking the Great Seal of the United States.<br>The symbols are a uatogi (a war club, representing the government's power) and a fue (a fly-whisk, representing the wisdom of traditional Samoan leaders).<br>",
+    "symbolism": "The red, white and blue represent the colors traditionally utilized by both the United States and Samoa.<br>The bald eagle represents the U.S. and it clutches two Samoan symbols, alluding to America's guardianship over American Samoa, as well as evoking the Great Seal of the United States.<br>The symbols are a uatogi (a war club, representing the government's power) and a fue (a fly-whisk, representing the wisdom of traditional Samoan leaders).<br>",
     "funfacts": "Before the first Europeans set foot on the islands in the 18th century, Samoa did not use any flags.<br>Designed by high school student Fareti Sotoa in a competition at the Samoana High School.<br>A copy of the flag, which was brought to the moon by astronauts on four Apollo missions from 1969-1971, is on display at the Jean P. Haydon Museum in Pago Pago.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_American_Samoa"
   },
@@ -253,8 +253,8 @@
     "tags": "saint barthélemy barthelemy white blue red yellow horizontal animal bird crown building text cross fleur-de-lis star ribbon",
     "shortname": "bl",
     "name": "Saint Barthélemy",
-    "proportion": "None",
-    "adopted": "Unofficial flag",
+    "proportion": "2:3",
+    "adopted": "Unofficial",
     "symbolism": "Pelicans: Representing the local fauna.<br>Mural crown: Ancient symbol of the Greek gods protecting the cities.<br>The <a href=\"?q=fleur-de-lis\">fleurs-de-lis</a> (France), Maltese cross (Knights Hospitaller), and gold <a href=\"?q=crown\">crowns</a> (Sweden) are heraldic reminders of the island's history as a colony.<br>Eventually, the island returned to French rule and the official flag of Saint Barthélemy became the French tricolor.<br>",
     "funfacts": "The text says \"Ouanalao\" and is the local name of the island.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_and_coat_of_arms_of_Saint_Barth%C3%A9lemy"
@@ -536,7 +536,7 @@
     "proportion": "1:2",
     "adopted": "2002",
     "symbolism": "Blue and green: The sea and land respectively.<br>Stars: The Southern cross constellation refers to the southern hemisphere.<br>Bird: A golden bosun bird which is a symbol of the island.<br>Circle with map: A <a href=\"?q=map\">map</a> of the island on a disc representing the mining industry.<br>",
-    "funfacts": "The flag was unofficially adopted in 1986 after being chosen the winner in a competition for a flag for the territory. It was designed by Tony Couch of Sydney, Australia who received a price of $100.<br>The Golden bosun bird is one of six races of the white-tailed tropicbird.<br>",
+    "funfacts": "The flag was unofficially adopted in 1986 after being chosen the winner in a competition for a flag for the territory. It was designed by Tony Couch of Sydney, Australia who received a prize of $100.<br>The Golden bosun bird is one of six races of the white-tailed tropicbird.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Christmas_Island"
   },
   {
@@ -784,9 +784,9 @@
     "shortname": "gb-nir",
     "name": "Northern Ireland",
     "proportion": "1:2",
-    "adopted": "1953",
+    "adopted": "Unofficial",
     "symbolism": "Cross: De Burgh cross with origins in the First Crusade according to legends.<br>Crown: The monarchy of the <a href=\"?q=united+kingdom\">United Kingdom</a>.<br>Red hand: Rooted in Gaelic culture but its meaning is unknown.<br>Six pointed star: The six counties that make up Northern Ireland.<br>",
-    "funfacts": "The only official flag in Northern Ireland is the Union Flag of the <a href=\"?q=united+kingdom\">United Kingdom</a>.<br>The flag displayed above is called the Ulster Banner and is used by loyalists and unionists as well as to represent Northern Ireland internationally in some sporting competitions.<br>",
+    "funfacts": "The only official flag in Northern Ireland is the Union Flag of the <a href=\"?q=united+kingdom\">United Kingdom</a>.<br>The flag displayed above is the Ulster Banner, formerly used by the Government of Northern Ireland and still used by some unionist communities and in certain sporting contexts.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Ulster_Banner"
   },
   {
@@ -834,7 +834,7 @@
     "shortname": "gf",
     "name": "French Guiana",
     "proportion": "2:3",
-    "adopted": "2010",
+    "adopted": "Unofficial",
     "symbolism": "Green: The forest.<br>Yellow: The numerous underground resources.<br>Red star: The socialist orientation of the country.<br>",
     "funfacts": "The flag was originally the flag of the Guyanese Workers' Union (UTG) and later adopted by the General Council of French Guiana.<br>The official flag of French Guiana is the flag of <a href=\"?q=france\">France</a>.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_French_Guiana"
@@ -904,8 +904,8 @@
     "shortname": "gp",
     "name": "Guadeloupe",
     "proportion": "2:3",
-    "adopted": "Unknown",
-    "symbolism": "The unofficial flag of Guadeloupe is based on the coat of arms of the capital Basse-Terre and has either a black or red background.<br>Sun: The tropical climate.<br>Sugar cane: One of Guadeloupe's main crops.<br>Fleurs-de-lis: The belonging to France.<br>",
+    "adopted": "Unofficial",
+    "symbolism": "The unofficial flag of Guadeloupe is based on the coat of arms of the capital Basse-Terre and has either a black or red background.<br>Sun: The tropical climate.<br>Sugar cane: One of Guadeloupe's main crops.<br>Fleurs-de-lis: Guadeloupe's connection to France.<br>",
     "funfacts": "The official flag of Guadeloupe is the flag of <a href=\"?q=france\">France</a>.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Guadeloupe"
   },
@@ -994,7 +994,7 @@
     "shortname": "hm",
     "name": "Heard Island and McDonald Islands",
     "proportion": "1:2",
-    "adopted": "1947",
+    "adopted": "1908",
     "symbolism": "For symbolism regarding the Australian flag, see <a href=\"?q=australia\">Australia</a>.<br>",
     "funfacts": "Heard Island and McDonald Islands is an uninhabited external territory of Australia in the southern Indian Ocean and is represented by the Australian flag.<br>Effective government, administration and control of Heard Island and the McDonald Islands was transferred from the United Kingdom to the Australian government in 1947 at the commencement of the first Australian National Antarctic Research Expedition (ANARE) to Heard Island.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Heard_Island_and_McDonald_Islands"
@@ -1444,7 +1444,7 @@
     "shortname": "mf",
     "name": "Saint Martin",
     "proportion": "2:3",
-    "adopted": "1794",
+    "adopted": "1976",
     "symbolism": "For symbolism regarding the French flag, see <a href=\"?q=france\">France</a>.<br>",
     "funfacts": " ",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Collectivity_of_Saint_Martin"
@@ -1534,7 +1534,7 @@
     "shortname": "mq",
     "name": "Martinique",
     "proportion": "2:3",
-    "adopted": "2023",
+    "adopted": "Unofficial",
     "symbolism": "The Martiniquais independence movement.<br>",
     "funfacts": "Known as the \"Rouge-vert-noir\" (\"red-green-black\").<br>The flag was the runner-up in the official competition of finding an official flag of Martinique but eventually won after the winner was withdrawn after plagiarism accusations.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Martinique"
@@ -1644,7 +1644,7 @@
     "shortname": "nc",
     "name": "New Caledonia",
     "proportion": "2:3",
-    "adopted": "1794",
+    "adopted": "Unofficial",
     "symbolism": "Blue: The sky and more importantly the ocean surrounding New Caledonia.<br>Red: The blood shed by the Kanaks in their struggle for independence, socialism, and unity.<br>Green: The land itself and by extension the ancestors buried within it.<br>Yellow disc: The sun and the symbol upon it consists of a flèche faitière, a carved rooftop spire that adorns Kanak houses and represents the spirit of Kanak culture.<br>",
     "funfacts": "It is also the flag of the Kanak and Socialist National Liberation Front (FLNKS), a political party favoring independence for New Caledonia (an overseas territory of <a href=\"?q=france\">France</a>), thus a highly controversial emblem.<br>Two flags represent New Caledonia, the Kanak flag (pictured above) and the flag of France.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flags_of_New_Caledonia"
@@ -1834,7 +1834,7 @@
     "shortname": "pm",
     "name": "Saint Pierre and Miquelon",
     "proportion": "2:3",
-    "adopted": "1982",
+    "adopted": "Unofficial",
     "symbolism": "Ship: Said to be Grande Hermine, which brought Jacques Cartier to Saint Pierre in 1536.<br>Three square fields: The origin of most inhabitants of the islands, Basques, Bretons, and Normans.<br>",
     "funfacts": "The official flag of Saint Pierre and Miquelon is the flag of <a href=\"?q=france\">France</a>.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Saint_Pierre_and_Miquelon"
@@ -1843,10 +1843,10 @@
     "tags": "pitcairn islands blue white red yellow green cross vegetation ribbon british",
     "shortname": "pn",
     "name": "Pitcairn Islands",
-    "proportion": "REPLACE",
+    "proportion": "1:2",
     "adopted": "1984",
     "symbolism": "For symbolism regarding the Union Jack, see <a href=\"?q=united+kingdom\">United Kingdom</a>.<br>Shield with anchor and Bible: The ancestral history of the islanders, most of whom are descended from the sailors who mutinied on the HMS Bounty in 1789.<br>Green and blue: The island rising from the ocean.<br>",
-    "funfacts": "Knight helmet, Pitcairn island wheelbarrow and flowering portia tree is of unknown symbolism.<br>",
+    "funfacts": "The knight's helmet, the Pitcairn Island wheelbarrow, and the flowering portia tree are of unknown symbolism.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_and_coat_of_arms_of_the_Pitcairn_Islands"
   },
   {
@@ -1914,7 +1914,7 @@
     "shortname": "re",
     "name": "Réunion",
     "proportion": "2:3",
-    "adopted": "2003",
+    "adopted": "Unofficial",
     "symbolism": "Volcano: Depicts the volcano \"Piton de la Fournaise\", French for \"Peak of the Furnace\", which is a shield volcano on the Réunion island and one of the most active volcanoes in the world.<br>",
     "funfacts": "The official flag of Réunion is the flag of <a href=\"?q=france\">France</a>.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_R%C3%A9union"
@@ -2306,7 +2306,7 @@
     "proportion": "1:2",
     "adopted": "1997",
     "symbolism": "For symbolism regarding the Union Jack, see <a href=\"?q=united+kingdom\">United Kingdom</a>.<br>Stars: The nine islands which comprise Tuvalu.<br>",
-    "funfacts": "The arrangement of the stars is geographically correct, but with the east towards the top (i.e. north to the left).<br>In 1995 the flag was updated to show only eight stars to reflect the name \"Tuvalu\" meaning \"eight standing together\" and refers to the eight inhabited islands. However, due pressure from the public, the ninth star was reinstated in 1997.<br>",
+    "funfacts": "The arrangement of the stars is geographically correct, but with the east towards the top (i.e. north to the left).<br>In 1995 the flag was updated to show only eight stars to reflect the name \"Tuvalu\" meaning \"eight standing together\" and refers to the eight inhabited islands. However, due to pressure from the public, the ninth star was reinstated in 1997.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Tuvalu"
   },
   {
@@ -2316,7 +2316,7 @@
     "proportion": "2:3",
     "adopted": "1945",
     "symbolism": "Blue sky with white sun: The emblem of the political party Kuomintang with the rays representing progress.<br>Red: The blood of the revolutionaries who sacrificed themselves in order to overthrow the Qing dynasty.<br>",
-    "funfacts": "The flag is also known as \"Blue Sky, White Sun, and a Wholly Red Earth\".<br>Public display of the flag is outlawed for public use in mainland <a href=\"?q=china\">China</a>, except for historical uses inside historical places.<br>",
+    "funfacts": "The flag is also known as \"Blue Sky, White Sun, and a Wholly Red Earth\".<br>In mainland <a href=\"?q=china\">China</a>, public display of the flag is politically sensitive and heavily restricted in many contexts.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Republic_of_China"
   },
   {
@@ -2354,7 +2354,7 @@
     "shortname": "um",
     "name": "United States Minor Outlying Islands",
     "proportion": "10:19",
-    "adopted": "1986",
+    "adopted": "1960",
     "symbolism": "For symbolism regarding the Star-Spangled Banner, see <a href=\"?q=united+states\">United States</a>.<br>",
     "funfacts": "The official flag is that of the <a href=\"?q=united+states\">United States</a>.<br>"
   },
@@ -2405,7 +2405,7 @@
     "proportion": "2:3",
     "adopted": "1985",
     "symbolism": "V: The first letter of the country's name, and its nickname as the \"Gems of the Antilles\".<br>Blue: The sky and the sea.<br>Yellow: The colour of the islands' sand, the sunshine, and the \"bright spirit\" of the islanders.<br>Green: The country's plentiful vegetation, as well as the vitality of Vincentians.<br>",
-    "funfacts": "The flag is utilised as a flag of convenience by foreign merchant vessels and offers many advantages for the ships, such as less expensive fees and lax rules regarding crew, safety, and the environment but this naturally attracts illegal and suspicious activities.<br>The swiss graphic artist Julien van der Wal was tasked with modernizing the flag and created the V symbol of diamonds which replaced the coat of arms consisting of a breadfruit leaf.<br>",
+    "funfacts": "The flag is utilised as a flag of convenience by foreign merchant vessels and offers many advantages for the ships, such as less expensive fees and lax rules regarding crew, safety, and the environment but this naturally attracts illegal and suspicious activities.<br>The Swiss graphic artist Julien van der Wal was tasked with modernizing the flag and created the V symbol of diamonds which replaced the coat of arms consisting of a breadfruit leaf.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Saint_Vincent_and_the_Grenadines"
   },
   {
@@ -2445,7 +2445,7 @@
     "proportion": "2:3",
     "adopted": "1955",
     "symbolism": "Red: Revolution and bloodshed.<br>Star: The five main classes in Vietnamese society; workers, farmers, soldiers, intellectuals, and entrepreneurs.<br>",
-    "funfacts": "Although the flag was not representing Vietnam until 1945 it was designed in 1940 and used during an uprising against the <a href=\"?q=france\">French</a> in southern Vietnam as well as by the Viet Minh, a communist-led organization created in 1941 to oppose Japanese occupation.<br>",
+    "funfacts": "Although the flag did not represent Vietnam until 1945, it was designed in 1940 and used during an uprising against the <a href=\"?q=france\">French</a> in southern Vietnam as well as by the Viet Minh, a communist-led organization created in 1941 to oppose Japanese occupation.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Vietnam"
   },
   {
@@ -2463,7 +2463,7 @@
     "shortname": "wf",
     "name": "Wallis and Futuna",
     "proportion": "2:3",
-    "adopted": "1985",
+    "adopted": "Unofficial",
     "symbolism": "For symbolism regarding the Tricolour, see <a href=\"?q=france\">France</a>.<br>Red: Courage.<br>White: Purity of ideals.<br>Triangles: The three native kings of the islands, and the French administrator.<br>",
     "funfacts": "The official flag of Wallis and Futuna is the flag of <a href=\"?q=france\">France</a>.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Wallis_and_Futuna"
@@ -2502,8 +2502,8 @@
     "tags": "mayotte white red blue yellow grey text name ribbon animal vegetation moon star",
     "shortname": "yt",
     "name": "Mayotte",
-    "proportion": "REPLACE",
-    "adopted": "1982",
+    "proportion": "2:3",
+    "adopted": "Unofficial",
     "symbolism": "Blue and red: The Flag of France.<br>Seahorses: A reference to the shape of the main island.<br>Moon: Islam, the main religion of Mayotte.<br>Yellow flowers: Ylang-ylang flowers which represent the main agricultural resource on the island.<br>",
     "funfacts": "The official flag of Mayotte is the flag of <a href=\"?q=france\">France</a>.<br>Designed by Michel Chabin (former director of the Reunion Archives) and painted by local artist Pascale Santerre.<br>The ribbon displays the Mayotte <a href=\"?q=motto\">motto</a>, \"Ra Hachiri\", which is Shimaore for \"We are vigilant\".<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_and_coat_of_arms_of_Mayotte"
