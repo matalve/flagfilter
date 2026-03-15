@@ -65,7 +65,16 @@ function setButtonLabel(button, label) {
 
     button.innerHTML = '';
     button.appendChild(icon);
+    icon.setAttribute('aria-hidden', 'true');
     button.append(` ${label}`);
+}
+
+function updateToggleButtonState(button) {
+    button.setAttribute('aria-pressed', String(button.classList.contains('active')));
+}
+
+function updateAllToggleButtonStates() {
+    document.querySelectorAll('.filter-btn').forEach(updateToggleButtonState);
 }
 
 async function loadJson(path, fallbackValue = {}) {
@@ -491,6 +500,8 @@ function applyStaticTranslations() {
         <p><strong>${t('help_translate_label')}:</strong> <a href="https://poeditor.com/join/project/P7N0JxV3wI" target="_blank" rel="noopener noreferrer">${t('help_translate_link_text')}</a></p>
         ${translationDisclaimer}
     `;
+
+    updateAllToggleButtonStates();
 }
 
 async function switchLanguage(language) {
@@ -531,7 +542,7 @@ function renderFlagGrid() {
         flagCard.innerHTML = `
             <img src="${flag.url}" alt="${flag.name} flag" loading="lazy">
             <h3>${flag.name}</h3>
-            <button class="learn-more-btn" data-code="${flag.code}">${t('learn_more')}</button>
+            <button class="learn-more-btn" data-code="${flag.code}" aria-haspopup="dialog">${t('learn_more')}</button>
         `;
         
         flagGrid.appendChild(flagCard);
@@ -664,6 +675,7 @@ function showFlagInfoModal(flag) {
     // Create flag information
     const flagInfo = document.createElement('div');
     flagInfo.className = 'flag-info-details';
+    flagInfo.id = 'flagModalDescription';
     
     // Process HTML content to make links clickable
     const processedSymbolism = processHtmlContent(flag.info.symbolism || t('no_information_available'));
@@ -677,12 +689,13 @@ function showFlagInfoModal(flag) {
         <p><strong>${t('fun_facts_label')}:</strong> ${processedFunfacts}</p>
         <p><strong>${t('colors_label')}:</strong> ${flag.colors.join(', ')}</p>
         <a href="${flag.info.wikipedialink}" target="_blank" rel="noopener noreferrer" class="wiki-link">${t('read_more_wikipedia')}</a>
-        <button class="report-issue-btn">${t('report_issue')}</button>
+        <button class="report-issue-btn" aria-expanded="false" aria-controls="reportFormPanel">${t('report_issue')}</button>
     `;
     
     // Create report issue form (initially hidden)
     const reportForm = document.createElement('div');
     reportForm.className = 'report-form';
+    reportForm.id = 'reportFormPanel';
     reportForm.style.display = 'none';
     reportForm.innerHTML = `
         <h3>${t('report_issue')}</h3>
@@ -727,6 +740,7 @@ function showFlagInfoModal(flag) {
     modalContent.appendChild(reportForm);
     modal.appendChild(modalContent);
     modal.setAttribute('aria-labelledby', 'flagModalTitle');
+    modal.setAttribute('aria-describedby', 'flagModalDescription');
     
     // Add modal to body
     document.body.appendChild(modal);
@@ -737,6 +751,11 @@ function showFlagInfoModal(flag) {
     reportBtn.addEventListener('click', () => {
         reportForm.style.display = 'block';
         reportBtn.style.display = 'none';
+        reportBtn.setAttribute('aria-expanded', 'true');
+        const firstField = reportForm.querySelector('#issueType');
+        if (firstField) {
+            firstField.focus();
+        }
     });
     
     // Handle form submission
@@ -762,6 +781,8 @@ function showFlagInfoModal(flag) {
                 alert(t('report_success'));
                 reportForm.style.display = 'none';
                 reportBtn.style.display = 'block';
+                reportBtn.setAttribute('aria-expanded', 'false');
+                reportBtn.focus();
             } else {
                 throw new Error(result.error || t('failed_to_submit_report'));
             }
@@ -776,6 +797,8 @@ function showFlagInfoModal(flag) {
     cancelBtn.addEventListener('click', () => {
         reportForm.style.display = 'none';
         reportBtn.style.display = 'block';
+        reportBtn.setAttribute('aria-expanded', 'false');
+        reportBtn.focus();
     });
     
     // Close modal when clicking outside
@@ -1002,6 +1025,7 @@ function handleColorFilter(color) {
     if (color) {
         const button = document.querySelector(`[data-color="${color}"]`);
         button.classList.toggle('active');
+        updateToggleButtonState(button);
     }
     
     applyFilters();
@@ -1011,6 +1035,7 @@ function handleColorFilter(color) {
 function handleContinentFilter(continent) {
     const button = document.querySelector(`[data-continent="${continent}"]`);
     button.classList.toggle('active');
+    updateToggleButtonState(button);
     applyFilters();
 }
 
@@ -1049,6 +1074,7 @@ function resetAllFilters() {
         button.classList.remove('active');
         button.disabled = false;
         button.classList.remove('disabled');
+        updateToggleButtonState(button);
     });
     applyFilters();
 }
@@ -1071,6 +1097,7 @@ document.querySelectorAll('.filter-btn[data-continent]').forEach(button => {
 document.querySelectorAll('.filter-btn[data-pattern]').forEach(button => {
     button.addEventListener('click', () => {
         button.classList.toggle('active');
+        updateToggleButtonState(button);
         applyFilters();
     });
 });
@@ -1078,6 +1105,7 @@ document.querySelectorAll('.filter-btn[data-pattern]').forEach(button => {
 document.querySelectorAll('.filter-btn[data-symbol]').forEach(button => {
     button.addEventListener('click', () => {
         button.classList.toggle('active');
+        updateToggleButtonState(button);
         applyFilters();
     });
 });
@@ -1085,6 +1113,7 @@ document.querySelectorAll('.filter-btn[data-symbol]').forEach(button => {
 document.querySelectorAll('.filter-btn[data-motive]').forEach(button => {
     button.addEventListener('click', () => {
         button.classList.toggle('active');
+        updateToggleButtonState(button);
         applyFilters();
     });
 });
@@ -1092,6 +1121,7 @@ document.querySelectorAll('.filter-btn[data-motive]').forEach(button => {
 document.querySelectorAll('.filter-btn[data-people]').forEach(button => {
     button.addEventListener('click', () => {
         button.classList.toggle('active');
+        updateToggleButtonState(button);
         applyFilters();
     });
 });
@@ -1099,6 +1129,7 @@ document.querySelectorAll('.filter-btn[data-people]').forEach(button => {
 document.querySelectorAll('.filter-btn[data-ideology]').forEach(button => {
     button.addEventListener('click', () => {
         button.classList.toggle('active');
+        updateToggleButtonState(button);
         applyFilters();
     });
 });
@@ -1106,6 +1137,7 @@ document.querySelectorAll('.filter-btn[data-ideology]').forEach(button => {
 document.querySelectorAll('.filter-btn[data-text]').forEach(button => {
     button.addEventListener('click', () => {
         button.classList.toggle('active');
+        updateToggleButtonState(button);
         applyFilters();
     });
 });

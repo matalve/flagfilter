@@ -42,22 +42,22 @@
                         </select>
                     </label>
                     <button id="infoButton" class="info-button" aria-label="Information">
-                        <i class="fas fa-question-circle"></i>
+                        <i class="fas fa-question-circle" aria-hidden="true"></i>
                     </button>
                     <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Toggle dark mode">
-                        <i class="fas fa-sun sun-icon"></i>
-                        <i class="fas fa-moon moon-icon"></i>
+                        <i class="fas fa-sun sun-icon" aria-hidden="true"></i>
+                        <i class="fas fa-moon moon-icon" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
             <div class="search-container">
-                <i class="fas fa-search search-icon"></i>
+                <i class="fas fa-search search-icon" aria-hidden="true"></i>
                 <label for="searchInput" class="sr-only">Search flags by country name</label>
                 <input type="text" id="searchInput" placeholder="Search flags by country name..." aria-label="Search flags by country name">
                 <button id="resetFiltersButton" class="reset-filters-btn" type="button" aria-label="Reset filters">
-                    <i class="fas fa-rotate-left"></i> Reset
+                    <i class="fas fa-rotate-left" aria-hidden="true"></i> Reset
                 </button>
-                <span id="flagCounter" class="flag-counter" aria-live="polite">0 flags</span>
+                <span id="flagCounter" class="flag-counter" role="status" aria-live="polite" aria-atomic="true">0 flags</span>
             </div>
         </header>
         
