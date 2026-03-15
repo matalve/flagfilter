@@ -688,8 +688,10 @@ function showFlagInfoModal(flag) {
         <p><strong>${t('symbolism_label')}:</strong> ${processedSymbolism}</p>
         <p><strong>${t('fun_facts_label')}:</strong> ${processedFunfacts}</p>
         <p><strong>${t('colors_label')}:</strong> ${flag.colors.join(', ')}</p>
-        <a href="${flag.info.wikipedialink}" target="_blank" rel="noopener noreferrer" class="wiki-link">${t('read_more_wikipedia')}</a>
-        <button class="report-issue-btn" aria-expanded="false" aria-controls="reportFormPanel">${t('report_issue')}</button>
+        <div class="modal-actions">
+            <a href="${flag.info.wikipedialink}" target="_blank" rel="noopener noreferrer" class="wiki-link">${t('read_more_wikipedia')}</a>
+            <button class="report-issue-btn" aria-expanded="false" aria-controls="reportFormPanel">${t('report_issue')}</button>
+        </div>
     `;
     
     // Create report issue form (initially hidden)
@@ -780,7 +782,7 @@ function showFlagInfoModal(flag) {
             if (response.ok) {
                 alert(t('report_success'));
                 reportForm.style.display = 'none';
-                reportBtn.style.display = 'block';
+                reportBtn.style.display = 'inline-flex';
                 reportBtn.setAttribute('aria-expanded', 'false');
                 reportBtn.focus();
             } else {
@@ -796,7 +798,7 @@ function showFlagInfoModal(flag) {
     const cancelBtn = reportForm.querySelector('.cancel-btn');
     cancelBtn.addEventListener('click', () => {
         reportForm.style.display = 'none';
-        reportBtn.style.display = 'block';
+        reportBtn.style.display = 'inline-flex';
         reportBtn.setAttribute('aria-expanded', 'false');
         reportBtn.focus();
     });
@@ -1039,6 +1041,20 @@ function handleContinentFilter(continent) {
     applyFilters();
 }
 
+function syncFilterSectionState(section) {
+    const header = section.querySelector('.filter-header');
+    const content = section.querySelector('.filter-content');
+    const isCollapsed = section.classList.contains('collapsed');
+
+    if (header) {
+        header.setAttribute('aria-expanded', String(!isCollapsed));
+    }
+
+    if (content) {
+        content.hidden = isCollapsed;
+    }
+}
+
 // Toggle filter section
 function toggleFilterSection(header) {
     const section = header.parentElement;
@@ -1047,7 +1063,7 @@ function toggleFilterSection(header) {
     // Save the state to localStorage using a stable key that does not change with translations
     const sectionId = section.dataset.sectionId;
     const isCollapsed = section.classList.contains('collapsed');
-    header.setAttribute('aria-expanded', String(!isCollapsed));
+    syncFilterSectionState(section);
     localStorage.setItem(`filterSection_${sectionId}`, isCollapsed);
 }
 
@@ -1056,15 +1072,11 @@ function initializeFilterSections() {
     document.querySelectorAll('.filter-section').forEach(section => {
         const sectionId = section.dataset.sectionId;
         const isCollapsed = localStorage.getItem(`filterSection_${sectionId}`) === 'true';
-        const header = section.querySelector('.filter-header');
         
         if (isCollapsed || sectionId === 'more') {
             section.classList.add('collapsed');
         }
-
-        if (header) {
-            header.setAttribute('aria-expanded', String(!section.classList.contains('collapsed')));
-        }
+        syncFilterSectionState(section);
     });
 }
 
