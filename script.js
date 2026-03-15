@@ -65,7 +65,16 @@ function setButtonLabel(button, label) {
 
     button.innerHTML = '';
     button.appendChild(icon);
+    icon.setAttribute('aria-hidden', 'true');
     button.append(` ${label}`);
+}
+
+function updateToggleButtonState(button) {
+    button.setAttribute('aria-pressed', String(button.classList.contains('active')));
+}
+
+function updateAllToggleButtonStates() {
+    document.querySelectorAll('.filter-btn').forEach(updateToggleButtonState);
 }
 
 async function loadJson(path, fallbackValue = {}) {
@@ -424,6 +433,7 @@ function applyStaticTranslations() {
     document.documentElement.lang = currentLanguage;
     document.title = t('page_title');
     searchInput.placeholder = t('search_placeholder');
+    searchInput.setAttribute('aria-label', t('search_input_aria'));
     resetFiltersButton.innerHTML = `<i class="fas fa-rotate-left"></i> ${t('reset_button')}`;
     resetFiltersButton.setAttribute('aria-label', t('reset_button_aria'));
 
@@ -433,7 +443,7 @@ function applyStaticTranslations() {
     infoButton.setAttribute('aria-label', t('info_button_aria'));
     darkModeToggle.setAttribute('aria-label', t('dark_mode_aria'));
 
-    const filterHeaders = document.querySelectorAll('.filter-section > .filter-header h3');
+    const filterHeaders = document.querySelectorAll('.filter-section > .filter-header .filter-title');
     if (filterHeaders[0]) filterHeaders[0].textContent = t('filter_by_color');
     if (filterHeaders[1]) filterHeaders[1].textContent = t('more_filters');
 
@@ -490,6 +500,8 @@ function applyStaticTranslations() {
         <p><strong>${t('help_translate_label')}:</strong> <a href="https://poeditor.com/join/project/P7N0JxV3wI" target="_blank" rel="noopener noreferrer">${t('help_translate_link_text')}</a></p>
         ${translationDisclaimer}
     `;
+
+    updateAllToggleButtonStates();
 }
 
 async function switchLanguage(language) {
@@ -530,7 +542,7 @@ function renderFlagGrid() {
         flagCard.innerHTML = `
             <img src="${flag.url}" alt="${flag.name} flag" loading="lazy">
             <h3>${flag.name}</h3>
-            <button class="learn-more-btn" data-code="${flag.code}">${t('learn_more')}</button>
+            <button class="learn-more-btn" data-code="${flag.code}" aria-haspopup="dialog">${t('learn_more')}</button>
         `;
         
         flagGrid.appendChild(flagCard);
@@ -557,23 +569,101 @@ function updateFlagCounter(count) {
         : t('flag_counter_other', { count });
 }
 
+function getFocusableElements(container) {
+    return Array.from(container.querySelectorAll(
+        'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    )).filter((element) => element.offsetParent !== null);
+}
+
+function handleModalKeydown(event, modal) {
+    if (event.key === 'Escape') {
+        event.preventDefault();
+        closeAnyModal(modal);
+        return;
+    }
+
+    if (event.key !== 'Tab') {
+        return;
+    }
+
+    const focusableElements = getFocusableElements(modal);
+    if (focusableElements.length === 0) {
+        event.preventDefault();
+        return;
+    }
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+    } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+    }
+}
+
+function closeAnyModal(modal) {
+    if (typeof modal._closeHandler === 'function') {
+        modal._closeHandler();
+        return;
+    }
+
+    closeModal(modal);
+}
+
+function openModal(modal, initialFocusSelector = '.close-btn') {
+    modal._previousFocusElement = document.activeElement;
+    modal.style.display = 'flex';
+    modal.setAttribute('aria-hidden', 'false');
+
+    const keydownHandler = (event) => handleModalKeydown(event, modal);
+    modal._keydownHandler = keydownHandler;
+    modal.addEventListener('keydown', keydownHandler);
+
+    const initialFocus = modal.querySelector(initialFocusSelector) || getFocusableElements(modal)[0];
+    if (initialFocus) {
+        initialFocus.focus();
+    }
+}
+
+function closeModal(modal) {
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
+
+    if (modal._keydownHandler) {
+        modal.removeEventListener('keydown', modal._keydownHandler);
+        delete modal._keydownHandler;
+    }
+
+    if (modal._previousFocusElement && typeof modal._previousFocusElement.focus === 'function') {
+        modal._previousFocusElement.focus();
+    }
+}
+
 // Show flag information modal
 function showFlagInfoModal(flag) {
     // Create modal container
     const modal = document.createElement('div');
     modal.className = 'modal';
-    modal.style.display = 'flex';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-hidden', 'true');
     
     // Create modal content
     const modalContent = document.createElement('div');
     modalContent.className = 'modal-content';
+    modal._closeHandler = () => closeDynamicModal(modal);
     
     // Create close button
-    const closeBtn = document.createElement('span');
+    const closeBtn = document.createElement('button');
     closeBtn.className = 'close-btn';
+    closeBtn.type = 'button';
     closeBtn.innerHTML = '&times;';
+    closeBtn.setAttribute('aria-label', t('close'));
     closeBtn.addEventListener('click', () => {
-        document.body.removeChild(modal);
+        closeDynamicModal(modal);
     });
     
     // Create flag image
@@ -585,6 +675,7 @@ function showFlagInfoModal(flag) {
     // Create flag information
     const flagInfo = document.createElement('div');
     flagInfo.className = 'flag-info-details';
+    flagInfo.id = 'flagModalDescription';
     
     // Process HTML content to make links clickable
     const processedSymbolism = processHtmlContent(flag.info.symbolism || t('no_information_available'));
@@ -592,18 +683,21 @@ function showFlagInfoModal(flag) {
     
     // Add flag information
     flagInfo.innerHTML = `
-        <h2>${flag.name}</h2>
+        <h2 id="flagModalTitle">${flag.name}</h2>
         <p><strong>${t('adopted_label')}:</strong> ${flag.info.adopted || t('unknown')}</p>
         <p><strong>${t('symbolism_label')}:</strong> ${processedSymbolism}</p>
         <p><strong>${t('fun_facts_label')}:</strong> ${processedFunfacts}</p>
         <p><strong>${t('colors_label')}:</strong> ${flag.colors.join(', ')}</p>
-        <a href="${flag.info.wikipedialink}" target="_blank" rel="noopener noreferrer" class="wiki-link">${t('read_more_wikipedia')}</a>
-        <button class="report-issue-btn">${t('report_issue')}</button>
+        <div class="modal-actions">
+            <a href="${flag.info.wikipedialink}" target="_blank" rel="noopener noreferrer" class="wiki-link">${t('read_more_wikipedia')}</a>
+            <button class="report-issue-btn" aria-expanded="false" aria-controls="reportFormPanel">${t('report_issue')}</button>
+        </div>
     `;
     
     // Create report issue form (initially hidden)
     const reportForm = document.createElement('div');
     reportForm.className = 'report-form';
+    reportForm.id = 'reportFormPanel';
     reportForm.style.display = 'none';
     reportForm.innerHTML = `
         <h3>${t('report_issue')}</h3>
@@ -647,15 +741,23 @@ function showFlagInfoModal(flag) {
     modalContent.appendChild(flagInfo);
     modalContent.appendChild(reportForm);
     modal.appendChild(modalContent);
+    modal.setAttribute('aria-labelledby', 'flagModalTitle');
+    modal.setAttribute('aria-describedby', 'flagModalDescription');
     
     // Add modal to body
     document.body.appendChild(modal);
+    openModal(modal);
     
     // Handle report issue button click
     const reportBtn = flagInfo.querySelector('.report-issue-btn');
     reportBtn.addEventListener('click', () => {
         reportForm.style.display = 'block';
         reportBtn.style.display = 'none';
+        reportBtn.setAttribute('aria-expanded', 'true');
+        const firstField = reportForm.querySelector('#issueType');
+        if (firstField) {
+            firstField.focus();
+        }
     });
     
     // Handle form submission
@@ -680,7 +782,9 @@ function showFlagInfoModal(flag) {
             if (response.ok) {
                 alert(t('report_success'));
                 reportForm.style.display = 'none';
-                reportBtn.style.display = 'block';
+                reportBtn.style.display = 'inline-flex';
+                reportBtn.setAttribute('aria-expanded', 'false');
+                reportBtn.focus();
             } else {
                 throw new Error(result.error || t('failed_to_submit_report'));
             }
@@ -694,13 +798,15 @@ function showFlagInfoModal(flag) {
     const cancelBtn = reportForm.querySelector('.cancel-btn');
     cancelBtn.addEventListener('click', () => {
         reportForm.style.display = 'none';
-        reportBtn.style.display = 'block';
+        reportBtn.style.display = 'inline-flex';
+        reportBtn.setAttribute('aria-expanded', 'false');
+        reportBtn.focus();
     });
     
     // Close modal when clicking outside
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
-            document.body.removeChild(modal);
+            closeDynamicModal(modal);
         }
     });
     
@@ -712,12 +818,17 @@ function showFlagInfoModal(flag) {
                 const flagCode = link.getAttribute('data-flag-code');
                 const linkedFlag = flags.find(f => f.code === flagCode);
                 if (linkedFlag) {
-                    document.body.removeChild(modal);
+                    closeDynamicModal(modal);
                     showFlagInfoModal(linkedFlag);
                 }
             });
         });
     }, 0);
+}
+
+function closeDynamicModal(modal) {
+    closeModal(modal);
+    modal.remove();
 }
 
 // Process HTML content to make links clickable
@@ -916,6 +1027,7 @@ function handleColorFilter(color) {
     if (color) {
         const button = document.querySelector(`[data-color="${color}"]`);
         button.classList.toggle('active');
+        updateToggleButtonState(button);
     }
     
     applyFilters();
@@ -925,7 +1037,22 @@ function handleColorFilter(color) {
 function handleContinentFilter(continent) {
     const button = document.querySelector(`[data-continent="${continent}"]`);
     button.classList.toggle('active');
+    updateToggleButtonState(button);
     applyFilters();
+}
+
+function syncFilterSectionState(section) {
+    const header = section.querySelector('.filter-header');
+    const content = section.querySelector('.filter-content');
+    const isCollapsed = section.classList.contains('collapsed');
+
+    if (header) {
+        header.setAttribute('aria-expanded', String(!isCollapsed));
+    }
+
+    if (content) {
+        content.hidden = isCollapsed;
+    }
 }
 
 // Toggle filter section
@@ -936,6 +1063,7 @@ function toggleFilterSection(header) {
     // Save the state to localStorage using a stable key that does not change with translations
     const sectionId = section.dataset.sectionId;
     const isCollapsed = section.classList.contains('collapsed');
+    syncFilterSectionState(section);
     localStorage.setItem(`filterSection_${sectionId}`, isCollapsed);
 }
 
@@ -948,6 +1076,7 @@ function initializeFilterSections() {
         if (isCollapsed || sectionId === 'more') {
             section.classList.add('collapsed');
         }
+        syncFilterSectionState(section);
     });
 }
 
@@ -957,8 +1086,24 @@ function resetAllFilters() {
         button.classList.remove('active');
         button.disabled = false;
         button.classList.remove('disabled');
+        updateToggleButtonState(button);
     });
-    applyFilters();
+    filteredFlags = [...flags];
+    renderFlagGrid();
+    updateFilterButtonStates(flags);
+    updateFlagCounter(flags.length);
+}
+
+function isEditableTarget(target) {
+    if (!target) {
+        return false;
+    }
+
+    const tagName = target.tagName?.toLowerCase();
+    return tagName === 'input'
+        || tagName === 'textarea'
+        || tagName === 'select'
+        || target.isContentEditable;
 }
 
 // Event Listeners
@@ -979,6 +1124,7 @@ document.querySelectorAll('.filter-btn[data-continent]').forEach(button => {
 document.querySelectorAll('.filter-btn[data-pattern]').forEach(button => {
     button.addEventListener('click', () => {
         button.classList.toggle('active');
+        updateToggleButtonState(button);
         applyFilters();
     });
 });
@@ -986,6 +1132,7 @@ document.querySelectorAll('.filter-btn[data-pattern]').forEach(button => {
 document.querySelectorAll('.filter-btn[data-symbol]').forEach(button => {
     button.addEventListener('click', () => {
         button.classList.toggle('active');
+        updateToggleButtonState(button);
         applyFilters();
     });
 });
@@ -993,6 +1140,7 @@ document.querySelectorAll('.filter-btn[data-symbol]').forEach(button => {
 document.querySelectorAll('.filter-btn[data-motive]').forEach(button => {
     button.addEventListener('click', () => {
         button.classList.toggle('active');
+        updateToggleButtonState(button);
         applyFilters();
     });
 });
@@ -1000,6 +1148,7 @@ document.querySelectorAll('.filter-btn[data-motive]').forEach(button => {
 document.querySelectorAll('.filter-btn[data-people]').forEach(button => {
     button.addEventListener('click', () => {
         button.classList.toggle('active');
+        updateToggleButtonState(button);
         applyFilters();
     });
 });
@@ -1007,6 +1156,7 @@ document.querySelectorAll('.filter-btn[data-people]').forEach(button => {
 document.querySelectorAll('.filter-btn[data-ideology]').forEach(button => {
     button.addEventListener('click', () => {
         button.classList.toggle('active');
+        updateToggleButtonState(button);
         applyFilters();
     });
 });
@@ -1014,6 +1164,7 @@ document.querySelectorAll('.filter-btn[data-ideology]').forEach(button => {
 document.querySelectorAll('.filter-btn[data-text]').forEach(button => {
     button.addEventListener('click', () => {
         button.classList.toggle('active');
+        updateToggleButtonState(button);
         applyFilters();
     });
 });
@@ -1033,6 +1184,20 @@ if (languageSelect) {
     });
 }
 
+document.addEventListener('keydown', (event) => {
+    if (event.key !== '/' || event.ctrlKey || event.metaKey || event.altKey) {
+        return;
+    }
+
+    if (isEditableTarget(event.target)) {
+        return;
+    }
+
+    event.preventDefault();
+    searchInput.focus();
+    searchInput.select();
+});
+
 initApp();
 
 // Info modal functionality
@@ -1041,15 +1206,17 @@ const infoModal = document.getElementById('infoModal');
 const closeBtn = infoModal.querySelector('.close-btn');
 
 infoButton.addEventListener('click', () => {
-    infoModal.style.display = 'flex';
+    openModal(infoModal);
 });
 
+infoModal._closeHandler = () => closeModal(infoModal);
+
 closeBtn.addEventListener('click', () => {
-    infoModal.style.display = 'none';
+    closeModal(infoModal);
 });
 
 window.addEventListener('click', (event) => {
     if (event.target === infoModal) {
-        infoModal.style.display = 'none';
+        closeModal(infoModal);
     }
-}); 
+});

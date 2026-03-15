@@ -1,6 +1,7 @@
 {
   "page_title": "Flagfilter - Filtering and Exploring Flags",
   "search_placeholder": "Search flags by country name...",
+  "search_input_aria": "Search flags by country name",
   "reset_button": "Reset",
   "reset_button_aria": "Reset filters",
   "info_button_aria": "Information",
@@ -85,7 +86,7 @@
   "fun_facts_label": "Fun Facts",
   "colors_label": "Colors",
   "read_more_wikipedia": "Read more on Wikipedia",
-  "report_issue": "Report an Issue",
+  "report_issue": "Report issue",
   "type_of_issue_label": "Type of Issue",
   "select_issue_type": "Select an issue type",
   "issue_incorrect_info": "Incorrect Information",
