@@ -66,6 +66,41 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.noscript-banner {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.noscript-card {
+    width: min(680px, 100%);
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 18px 40px -20px rgba(79, 70, 229, 0.35);
+    text-align: center;
+}
+
+.noscript-card h2 {
+    margin-bottom: 0.75rem;
+    font-size: 1.75rem;
+    line-height: 1.2;
+}
+
+.noscript-card p {
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
+}
+
+.noscript-card hr {
+    border: 0;
+    border-top: 1px solid var(--border-color);
+    margin: 1.5rem 0;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
