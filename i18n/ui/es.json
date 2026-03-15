@@ -1,6 +1,7 @@
 {
   "page_title": "Flagfilter - Filtrar y explorar banderas",
   "search_placeholder": "Busca banderas por nombre del país...",
+  "search_input_aria": "Busca banderas por nombre del país",
   "reset_button": "Reiniciar",
   "reset_button_aria": "Reiniciar filtros",
   "info_button_aria": "Información",

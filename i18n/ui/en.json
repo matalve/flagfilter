@@ -1,6 +1,7 @@
 {
   "page_title": "Flagfilter - Filtering and Exploring Flags",
   "search_placeholder": "Search flags by country name...",
+  "search_input_aria": "Search flags by country name",
   "reset_button": "Reset",
   "reset_button_aria": "Reset filters",
   "info_button_aria": "Information",

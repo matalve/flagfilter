@@ -52,21 +52,22 @@
             </div>
             <div class="search-container">
                 <i class="fas fa-search search-icon"></i>
-                <input type="text" id="searchInput" placeholder="Search flags by country name...">
+                <label for="searchInput" class="sr-only">Search flags by country name</label>
+                <input type="text" id="searchInput" placeholder="Search flags by country name..." aria-label="Search flags by country name">
                 <button id="resetFiltersButton" class="reset-filters-btn" type="button" aria-label="Reset filters">
                     <i class="fas fa-rotate-left"></i> Reset
                 </button>
-                <span id="flagCounter" class="flag-counter">0 flags</span>
+                <span id="flagCounter" class="flag-counter" aria-live="polite">0 flags</span>
             </div>
         </header>
         
         <div class="filters">
             <div class="filter-section" data-section-id="color">
-                <div class="filter-header" onclick="toggleFilterSection(this)">
-                    <h3>Filter by Color</h3>
-                    <i class="fas fa-chevron-down filter-icon"></i>
-                </div>
-                <div class="filter-content">
+                <button class="filter-header" type="button" aria-expanded="true" aria-controls="filter-content-color" onclick="toggleFilterSection(this)">
+                    <span class="filter-title">Filter by Color</span>
+                    <i class="fas fa-chevron-down filter-icon" aria-hidden="true"></i>
+                </button>
+                <div class="filter-content" id="filter-content-color">
                     <div class="color-filters">
                         <button class="filter-btn" data-color="red">Red</button>
                         <button class="filter-btn" data-color="blue">Blue</button>
@@ -79,11 +80,11 @@
             </div>
             
             <div class="filter-section" data-section-id="more">
-                <div class="filter-header" onclick="toggleFilterSection(this)">
-                    <h3>More filters</h3>
-                    <i class="fas fa-chevron-down filter-icon"></i>
-                </div>
-                <div class="filter-content">
+                <button class="filter-header" type="button" aria-expanded="true" aria-controls="filter-content-more" onclick="toggleFilterSection(this)">
+                    <span class="filter-title">More filters</span>
+                    <i class="fas fa-chevron-down filter-icon" aria-hidden="true"></i>
+                </button>
+                <div class="filter-content" id="filter-content-more">
                     <div class="compact-filter-group">
                         <h4>Continent</h4>
                         <div class="continent-filters">
@@ -177,10 +178,10 @@
             <!-- Flags will be dynamically inserted here -->
         </div>
     </div>
-    <div id="infoModal" class="modal">
+    <div id="infoModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="infoModalTitle" aria-hidden="true">
         <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2>About Flagfilter</h2>
+            <button class="close-btn" type="button" aria-label="Close">&times;</button>
+            <h2 id="infoModalTitle">About Flagfilter</h2>
             <div class="info-content">
                 <p><strong>Contact:</strong> <a href="mailto:info@flagfilter.com">info@flagfilter.com</a></p>
                 <p><strong>Source code:</strong> <a href="https://github.com/matalve/flagfilter" target="_blank" rel="noopener noreferrer">GitHub</a></p>

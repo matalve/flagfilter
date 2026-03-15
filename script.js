@@ -424,6 +424,7 @@ function applyStaticTranslations() {
     document.documentElement.lang = currentLanguage;
     document.title = t('page_title');
     searchInput.placeholder = t('search_placeholder');
+    searchInput.setAttribute('aria-label', t('search_input_aria'));
     resetFiltersButton.innerHTML = `<i class="fas fa-rotate-left"></i> ${t('reset_button')}`;
     resetFiltersButton.setAttribute('aria-label', t('reset_button_aria'));
 
@@ -433,7 +434,7 @@ function applyStaticTranslations() {
     infoButton.setAttribute('aria-label', t('info_button_aria'));
     darkModeToggle.setAttribute('aria-label', t('dark_mode_aria'));
 
-    const filterHeaders = document.querySelectorAll('.filter-section > .filter-header h3');
+    const filterHeaders = document.querySelectorAll('.filter-section > .filter-header .filter-title');
     if (filterHeaders[0]) filterHeaders[0].textContent = t('filter_by_color');
     if (filterHeaders[1]) filterHeaders[1].textContent = t('more_filters');
 
@@ -557,23 +558,101 @@ function updateFlagCounter(count) {
         : t('flag_counter_other', { count });
 }
 
+function getFocusableElements(container) {
+    return Array.from(container.querySelectorAll(
+        'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    )).filter((element) => element.offsetParent !== null);
+}
+
+function handleModalKeydown(event, modal) {
+    if (event.key === 'Escape') {
+        event.preventDefault();
+        closeAnyModal(modal);
+        return;
+    }
+
+    if (event.key !== 'Tab') {
+        return;
+    }
+
+    const focusableElements = getFocusableElements(modal);
+    if (focusableElements.length === 0) {
+        event.preventDefault();
+        return;
+    }
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+    } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+    }
+}
+
+function closeAnyModal(modal) {
+    if (typeof modal._closeHandler === 'function') {
+        modal._closeHandler();
+        return;
+    }
+
+    closeModal(modal);
+}
+
+function openModal(modal, initialFocusSelector = '.close-btn') {
+    modal._previousFocusElement = document.activeElement;
+    modal.style.display = 'flex';
+    modal.setAttribute('aria-hidden', 'false');
+
+    const keydownHandler = (event) => handleModalKeydown(event, modal);
+    modal._keydownHandler = keydownHandler;
+    modal.addEventListener('keydown', keydownHandler);
+
+    const initialFocus = modal.querySelector(initialFocusSelector) || getFocusableElements(modal)[0];
+    if (initialFocus) {
+        initialFocus.focus();
+    }
+}
+
+function closeModal(modal) {
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
+
+    if (modal._keydownHandler) {
+        modal.removeEventListener('keydown', modal._keydownHandler);
+        delete modal._keydownHandler;
+    }
+
+    if (modal._previousFocusElement && typeof modal._previousFocusElement.focus === 'function') {
+        modal._previousFocusElement.focus();
+    }
+}
+
 // Show flag information modal
 function showFlagInfoModal(flag) {
     // Create modal container
     const modal = document.createElement('div');
     modal.className = 'modal';
-    modal.style.display = 'flex';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-hidden', 'true');
     
     // Create modal content
     const modalContent = document.createElement('div');
     modalContent.className = 'modal-content';
+    modal._closeHandler = () => closeDynamicModal(modal);
     
     // Create close button
-    const closeBtn = document.createElement('span');
+    const closeBtn = document.createElement('button');
     closeBtn.className = 'close-btn';
+    closeBtn.type = 'button';
     closeBtn.innerHTML = '&times;';
+    closeBtn.setAttribute('aria-label', t('close'));
     closeBtn.addEventListener('click', () => {
-        document.body.removeChild(modal);
+        closeDynamicModal(modal);
     });
     
     // Create flag image
@@ -592,7 +671,7 @@ function showFlagInfoModal(flag) {
     
     // Add flag information
     flagInfo.innerHTML = `
-        <h2>${flag.name}</h2>
+        <h2 id="flagModalTitle">${flag.name}</h2>
         <p><strong>${t('adopted_label')}:</strong> ${flag.info.adopted || t('unknown')}</p>
         <p><strong>${t('symbolism_label')}:</strong> ${processedSymbolism}</p>
         <p><strong>${t('fun_facts_label')}:</strong> ${processedFunfacts}</p>
@@ -647,9 +726,11 @@ function showFlagInfoModal(flag) {
     modalContent.appendChild(flagInfo);
     modalContent.appendChild(reportForm);
     modal.appendChild(modalContent);
+    modal.setAttribute('aria-labelledby', 'flagModalTitle');
     
     // Add modal to body
     document.body.appendChild(modal);
+    openModal(modal);
     
     // Handle report issue button click
     const reportBtn = flagInfo.querySelector('.report-issue-btn');
@@ -700,7 +781,7 @@ function showFlagInfoModal(flag) {
     // Close modal when clicking outside
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
-            document.body.removeChild(modal);
+            closeDynamicModal(modal);
         }
     });
     
@@ -712,12 +793,17 @@ function showFlagInfoModal(flag) {
                 const flagCode = link.getAttribute('data-flag-code');
                 const linkedFlag = flags.find(f => f.code === flagCode);
                 if (linkedFlag) {
-                    document.body.removeChild(modal);
+                    closeDynamicModal(modal);
                     showFlagInfoModal(linkedFlag);
                 }
             });
         });
     }, 0);
+}
+
+function closeDynamicModal(modal) {
+    closeModal(modal);
+    modal.remove();
 }
 
 // Process HTML content to make links clickable
@@ -936,6 +1022,7 @@ function toggleFilterSection(header) {
     // Save the state to localStorage using a stable key that does not change with translations
     const sectionId = section.dataset.sectionId;
     const isCollapsed = section.classList.contains('collapsed');
+    header.setAttribute('aria-expanded', String(!isCollapsed));
     localStorage.setItem(`filterSection_${sectionId}`, isCollapsed);
 }
 
@@ -944,9 +1031,14 @@ function initializeFilterSections() {
     document.querySelectorAll('.filter-section').forEach(section => {
         const sectionId = section.dataset.sectionId;
         const isCollapsed = localStorage.getItem(`filterSection_${sectionId}`) === 'true';
+        const header = section.querySelector('.filter-header');
         
         if (isCollapsed || sectionId === 'more') {
             section.classList.add('collapsed');
+        }
+
+        if (header) {
+            header.setAttribute('aria-expanded', String(!section.classList.contains('collapsed')));
         }
     });
 }
@@ -1041,15 +1133,17 @@ const infoModal = document.getElementById('infoModal');
 const closeBtn = infoModal.querySelector('.close-btn');
 
 infoButton.addEventListener('click', () => {
-    infoModal.style.display = 'flex';
+    openModal(infoModal);
 });
 
+infoModal._closeHandler = () => closeModal(infoModal);
+
 closeBtn.addEventListener('click', () => {
-    infoModal.style.display = 'none';
+    closeModal(infoModal);
 });
 
 window.addEventListener('click', (event) => {
     if (event.target === infoModal) {
-        infoModal.style.display = 'none';
+        closeModal(infoModal);
     }
-}); 
+});
