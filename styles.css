@@ -284,7 +284,6 @@ h1 {
 }
 
 .search-container {
-    position: relative;
     max-width: 720px;
     margin: 0 auto;
     z-index: 2;
@@ -293,10 +292,14 @@ h1 {
     gap: 0.5rem;
 }
 
-#searchInput {
-    width: auto;
+.search-input-shell {
+    position: relative;
     flex: 1;
     min-width: 0;
+}
+
+#searchInput {
+    width: 100%;
     padding: 1rem 4.25rem 1rem 3rem;
     border: none;
     border-radius: 12px;
@@ -310,7 +313,7 @@ h1 {
 
 .search-shortcut {
     position: absolute;
-    right: 8.2rem;
+    right: 0.8rem;
     top: 50%;
     transform: translateY(-50%);
     min-width: 2rem;
