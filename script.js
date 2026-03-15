@@ -1088,7 +1088,10 @@ function resetAllFilters() {
         button.classList.remove('disabled');
         updateToggleButtonState(button);
     });
-    applyFilters();
+    filteredFlags = [...flags];
+    renderFlagGrid();
+    updateFilterButtonStates(flags);
+    updateFlagCounter(flags.length);
 }
 
 function isEditableTarget(target) {
