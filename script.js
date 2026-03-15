@@ -1091,6 +1091,18 @@ function resetAllFilters() {
     applyFilters();
 }
 
+function isEditableTarget(target) {
+    if (!target) {
+        return false;
+    }
+
+    const tagName = target.tagName?.toLowerCase();
+    return tagName === 'input'
+        || tagName === 'textarea'
+        || tagName === 'select'
+        || target.isContentEditable;
+}
+
 // Event Listeners
 searchInput.addEventListener('input', (e) => handleSearch(e.target.value));
 if (resetFiltersButton) {
@@ -1168,6 +1180,20 @@ if (languageSelect) {
         switchLanguage(event.target.value);
     });
 }
+
+document.addEventListener('keydown', (event) => {
+    if (event.key !== '/' || event.ctrlKey || event.metaKey || event.altKey) {
+        return;
+    }
+
+    if (isEditableTarget(event.target)) {
+        return;
+    }
+
+    event.preventDefault();
+    searchInput.focus();
+    searchInput.select();
+});
 
 initApp();
 
