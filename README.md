@@ -39,11 +39,29 @@ Set secrets in Cloudflare Pages/Workers environment (not in repo files):
 
 - `TELEGRAM_BOT_TOKEN`
 - `TELEGRAM_CHAT_ID`
+- `GITHUB_TOKEN`
+- `GITHUB_OWNER`
+- `GITHUB_REPO`
 
 Using Wrangler:
 
 - `wrangler pages secret put TELEGRAM_BOT_TOKEN`
 - `wrangler pages secret put TELEGRAM_CHAT_ID`
+- `wrangler pages secret put GITHUB_TOKEN`
+
+Set these as plain text environment variables in Cloudflare Pages:
+
+- `GITHUB_OWNER`
+- `GITHUB_REPO`
+
+Optional environment variables:
+
+- `GITHUB_ISSUE_LABELS`
+  - comma-separated base labels applied to created issues
+  - default: `reported-from-site`
+- `GITHUB_ISSUE_LABEL_PREFIX`
+  - prefix used for automatic flag labels such as `flag:se`
+  - default: `flag`
 
 ## Technical Details
 
@@ -59,6 +77,36 @@ Using Wrangler:
 The application uses:
 - `flaginfo.json` - For local flag metadata, tags, and descriptions
 - `https://flagcdn.com/w320/{code}.png` - For flag images
+
+## Issue Reporting Integrations
+
+`/api/report-issue` can send reports to one or both of these destinations:
+
+- Telegram
+- GitHub Issues
+
+Behavior:
+
+- If only Telegram is configured, reports are sent to Telegram.
+- If only GitHub is configured, reports create GitHub Issues.
+- If both are configured, both destinations are used.
+- If one destination fails but the other succeeds, the API still returns success.
+
+GitHub issue format:
+
+- Title format: `User report - <Flag name> (<flag code>)`
+- Body starts with `## Report`
+- User email addresses are not published in GitHub issues
+- The issue body only notes whether a contact email was provided: `True` or `False`
+- Default labels include:
+  - one base source label from `GITHUB_ISSUE_LABELS` (default: `reported-from-site`)
+  - one issue-type label such as `incorrect-info`
+  - one automatic flag label such as `flag:se`
+
+GitHub token guidance:
+
+- Use a fine-grained GitHub personal access token or GitHub App token.
+- The token must have permission to create issues on the target repository.
 
 ## Internationalization (i18n)
 

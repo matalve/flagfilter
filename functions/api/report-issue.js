@@ -5,7 +5,14 @@ export async function onRequestPost(context) {
     };
 
     try {
-        if (!context.env.TELEGRAM_BOT_TOKEN || !context.env.TELEGRAM_CHAT_ID) {
+        const hasTelegramConfig = Boolean(context.env.TELEGRAM_BOT_TOKEN && context.env.TELEGRAM_CHAT_ID);
+        const hasGitHubConfig = Boolean(
+            context.env.GITHUB_TOKEN &&
+            context.env.GITHUB_OWNER &&
+            context.env.GITHUB_REPO
+        );
+
+        if (!hasTelegramConfig && !hasGitHubConfig) {
             return new Response(JSON.stringify({
                 success: false,
                 error: 'Issue reporting is not configured on this server.'
@@ -28,31 +35,122 @@ export async function onRequestPost(context) {
             });
         }
 
-        // Sanitize inputs
-        const sanitizedMessage = `
+        const sanitize = (value) => String(value || '').replace(/[<>]/g, '').trim();
+        const sanitizedFlagCode = sanitize(flagCode);
+        const sanitizedFlagName = sanitize(flagName);
+        const sanitizedIssueType = sanitize(issueType);
+        const sanitizedDescription = sanitize(issueDescription);
+        const sanitizedEmail = sanitize(userEmail);
+        const hasContactEmail = sanitizedEmail !== '';
+        const labelPrefix = sanitize(context.env.GITHUB_ISSUE_LABEL_PREFIX || 'flag');
+        const configuredLabels = sanitize(context.env.GITHUB_ISSUE_LABELS || 'reported-from-site')
+            .split(',')
+            .map((label) => label.trim())
+            .filter(Boolean);
+
+        const issueTypeLabels = {
+            incorrect_info: 'incorrect-info',
+            missing_info: 'missing-info',
+            broken_link: 'broken-link',
+            other: 'other'
+        };
+
+        const githubLabels = [
+            ...configuredLabels,
+            issueTypeLabels[sanitizedIssueType] || 'other',
+            `${labelPrefix}:${sanitizedFlagCode.toLowerCase()}`
+        ];
+
+        const telegramMessage = `
 🚩 New Flag Issue Report
 
-Flag: ${flagName.replace(/[<>]/g, '')} (${flagCode.replace(/[<>]/g, '')})
-Issue Type: ${issueType.replace(/[<>]/g, '')}
-Description: ${issueDescription.replace(/[<>]/g, '')}
-${userEmail ? `Contact Email: ${userEmail.replace(/[<>]/g, '')}` : ''}
+Flag: ${sanitizedFlagName} (${sanitizedFlagCode})
+Issue Type: ${sanitizedIssueType}
+Description: ${sanitizedDescription}
+${sanitizedEmail ? `Contact Email: ${sanitizedEmail}` : ''}
         `.trim();
 
-        // Send to Telegram
-        const response = await fetch(`https://api.telegram.org/bot${context.env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                chat_id: context.env.TELEGRAM_CHAT_ID,
-                text: sanitizedMessage
-            })
-        });
+        const githubIssueTitle = `User report - ${sanitizedFlagName} (${sanitizedFlagCode})`;
+        const githubIssueBody = [
+            '## Report',
+            '',
+            `- Flag: ${sanitizedFlagName} (${sanitizedFlagCode})`,
+            `- Issue type: ${sanitizedIssueType}`,
+            `- Contact email provided: ${hasContactEmail ? 'True' : 'False'}`,
+            '',
+            '## Description',
+            '',
+            sanitizedDescription
+        ].join('\n');
 
-        if (!response.ok) {
-            throw new Error('Failed to send Telegram message');
+        const failures = [];
+        let successCount = 0;
+        let githubIssueUrl = null;
+
+        if (hasTelegramConfig) {
+            const telegramResponse = await fetch(`https://api.telegram.org/bot${context.env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: context.env.TELEGRAM_CHAT_ID,
+                    text: telegramMessage
+                })
+            });
+
+            if (!telegramResponse.ok) {
+                failures.push('telegram');
+            } else {
+                successCount += 1;
+            }
         }
 
-        return new Response(JSON.stringify({ success: true }), {
+        if (hasGitHubConfig) {
+            const githubResponse = await fetch(
+                `https://api.github.com/repos/${context.env.GITHUB_OWNER}/${context.env.GITHUB_REPO}/issues`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/vnd.github+json',
+                        'Authorization': `Bearer ${context.env.GITHUB_TOKEN}`,
+                        'User-Agent': 'flagfilter-reporting'
+                    },
+                    body: JSON.stringify({
+                        title: githubIssueTitle,
+                        body: githubIssueBody,
+                        labels: githubLabels
+                    })
+                }
+            );
+
+            if (!githubResponse.ok) {
+                failures.push('github');
+            } else {
+                const githubResult = await githubResponse.json();
+                githubIssueUrl = githubResult.html_url || null;
+                successCount += 1;
+            }
+        }
+
+        if (successCount === 0) {
+            return new Response(JSON.stringify({
+                success: false,
+                error: 'Failed to send report'
+            }), {
+                status: 502,
+                headers: jsonHeaders
+            });
+        }
+
+        return new Response(JSON.stringify({
+            success: true,
+            partial: failures.length > 0,
+            destinations: {
+                telegram: hasTelegramConfig && !failures.includes('telegram'),
+                github: hasGitHubConfig && !failures.includes('github')
+            },
+            githubIssueUrl
+        }), {
             status: 200,
             headers: jsonHeaders
         });
