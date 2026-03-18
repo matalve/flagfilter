@@ -100,7 +100,7 @@
   "submit_report": "Enviar reporte",
   "cancel": "Cancelar",
   "report_success": "Gracias por tu reporte. Lo revisaremos pronto.",
-  "report_success_with_issue_link": "Gracias por tu reporte. Se ha creado una incidencia en GitHub.",
+  "report_success_with_issue_link": "La incidencia en GitHub se creó automáticamente.",
   "view_github_issue": "Ver incidencia en GitHub",
   "failed_to_submit_report": "No se pudo enviar el reporte",
   "report_error": "Lo sentimos, hubo un error al enviar tu reporte. Inténtalo de nuevo más tarde.",

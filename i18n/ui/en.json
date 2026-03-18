@@ -100,7 +100,7 @@
   "submit_report": "Submit Report",
   "cancel": "Cancel",
   "report_success": "Thank you for your report! We will review it soon.",
-  "report_success_with_issue_link": "Thank you for your report! A GitHub issue has been created.",
+  "report_success_with_issue_link": "GitHub issue was automatically created.",
   "view_github_issue": "View GitHub issue",
   "failed_to_submit_report": "Failed to submit report",
   "report_error": "Sorry, there was an error submitting your report. Please try again later.",

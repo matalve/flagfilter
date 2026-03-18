@@ -816,7 +816,7 @@ function showFlagInfoModal(flag) {
             
             if (response.ok) {
                 if (result.githubIssueUrl) {
-                    showReportStatus('success', t('report_success_with_issue_link'), result.githubIssueUrl);
+                    showReportStatus('success', `${t('report_success')} ${t('report_success_with_issue_link')}`, result.githubIssueUrl);
                 } else {
                     showReportStatus('success', t('report_success'));
                 }
