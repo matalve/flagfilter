@@ -376,6 +376,8 @@ h1 {
     z-index: 3;
     font-size: 1.1rem;
     line-height: 1;
+    pointer-events: none;
+    user-select: none;
 }
 
 .filters {
