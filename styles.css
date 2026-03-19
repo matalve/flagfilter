@@ -1209,6 +1209,39 @@ h1 {
     justify-content: flex-end;
 }
 
+.report-form-status {
+    margin-top: 1rem;
+    padding: 0.9rem 1rem;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background: rgba(15, 23, 42, 0.03);
+    color: var(--text-color);
+    line-height: 1.5;
+}
+
+.report-status-secondary {
+    margin-top: 0.35rem;
+}
+
+.report-form-status.success {
+    border-color: rgba(22, 163, 74, 0.22);
+    background: rgba(22, 163, 74, 0.08);
+}
+
+.report-form-status.error {
+    border-color: rgba(220, 38, 38, 0.22);
+    background: rgba(220, 38, 38, 0.08);
+}
+
+.report-form-status a {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.report-form-status a:hover {
+    text-decoration: underline;
+}
+
 .submit-btn,
 .cancel-btn {
     padding: 0.75rem 1.5rem;

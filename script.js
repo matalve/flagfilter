@@ -732,6 +732,8 @@ function showFlagInfoModal(flag) {
                 <button type="submit" class="submit-btn">${t('submit_report')}</button>
                 <button type="button" class="cancel-btn">${t('cancel')}</button>
             </div>
+
+            <div class="report-form-status" role="status" aria-live="polite" hidden></div>
         </form>
     `;
     
@@ -750,20 +752,57 @@ function showFlagInfoModal(flag) {
     
     // Handle report issue button click
     const reportBtn = flagInfo.querySelector('.report-issue-btn');
+    const form = reportForm.querySelector('#reportForm');
+    const cancelBtn = reportForm.querySelector('.cancel-btn');
+    const statusMessage = reportForm.querySelector('.report-form-status');
+
+    function clearReportStatus() {
+        statusMessage.hidden = true;
+        statusMessage.className = 'report-form-status';
+        statusMessage.textContent = '';
+        statusMessage.replaceChildren();
+    }
+
+    function showReportStatus(type, message, githubIssueUrl = '', followUpMessage = '') {
+        statusMessage.hidden = false;
+        statusMessage.className = `report-form-status ${type}`;
+        statusMessage.textContent = '';
+
+        const messageText = document.createElement('div');
+        messageText.className = 'report-status-primary';
+        messageText.textContent = message;
+        statusMessage.appendChild(messageText);
+
+        if (githubIssueUrl && followUpMessage) {
+            const followUpLine = document.createElement('div');
+            followUpLine.className = 'report-status-secondary';
+            followUpLine.textContent = `${followUpMessage} `;
+
+            const issueLink = document.createElement('a');
+            issueLink.href = githubIssueUrl;
+            issueLink.target = '_blank';
+            issueLink.rel = 'noopener noreferrer';
+            issueLink.textContent = t('view_github_issue');
+            followUpLine.appendChild(issueLink);
+            statusMessage.appendChild(followUpLine);
+        }
+    }
+
     reportBtn.addEventListener('click', () => {
+        clearReportStatus();
         reportForm.style.display = 'block';
         reportBtn.style.display = 'none';
         reportBtn.setAttribute('aria-expanded', 'true');
-        const firstField = reportForm.querySelector('#issueType');
+        const firstField = form.querySelector('#issueType');
         if (firstField) {
             firstField.focus();
         }
     });
     
     // Handle form submission
-    const form = reportForm.querySelector('#reportForm');
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
+        clearReportStatus();
         
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
@@ -780,23 +819,29 @@ function showFlagInfoModal(flag) {
             const result = await response.json();
             
             if (response.ok) {
-                alert(t('report_success'));
-                reportForm.style.display = 'none';
-                reportBtn.style.display = 'inline-flex';
-                reportBtn.setAttribute('aria-expanded', 'false');
-                reportBtn.focus();
+                if (result.githubIssueUrl) {
+                    showReportStatus('success', t('report_success'), result.githubIssueUrl, t('report_success_with_issue_link'));
+                } else {
+                    showReportStatus('success', t('report_success'));
+                }
+                form.reset();
+                const issueTypeField = form.querySelector('#issueType');
+                if (issueTypeField) {
+                    issueTypeField.focus();
+                }
             } else {
                 throw new Error(result.error || t('failed_to_submit_report'));
             }
         } catch (error) {
-            alert(t('report_error'));
+            showReportStatus('error', t('report_error'));
             console.error('Error submitting report:', error);
         }
     });
     
     // Handle cancel button
-    const cancelBtn = reportForm.querySelector('.cancel-btn');
     cancelBtn.addEventListener('click', () => {
+        clearReportStatus();
+        form.reset();
         reportForm.style.display = 'none';
         reportBtn.style.display = 'inline-flex';
         reportBtn.setAttribute('aria-expanded', 'false');
