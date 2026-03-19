@@ -284,6 +284,7 @@ h1 {
 }
 
 .search-container {
+    position: relative;
     max-width: 720px;
     margin: 0 auto;
     z-index: 2;
