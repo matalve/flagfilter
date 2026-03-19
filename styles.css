@@ -1219,6 +1219,10 @@ h1 {
     line-height: 1.5;
 }
 
+.report-status-secondary {
+    margin-top: 0.35rem;
+}
+
 .report-form-status.success {
     border-color: rgba(22, 163, 74, 0.22);
     background: rgba(22, 163, 74, 0.08);

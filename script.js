@@ -763,24 +763,28 @@ function showFlagInfoModal(flag) {
         statusMessage.replaceChildren();
     }
 
-    function showReportStatus(type, message, githubIssueUrl = '') {
+    function showReportStatus(type, message, githubIssueUrl = '', followUpMessage = '') {
         statusMessage.hidden = false;
         statusMessage.className = `report-form-status ${type}`;
         statusMessage.textContent = '';
 
-        const messageText = document.createElement('span');
+        const messageText = document.createElement('div');
+        messageText.className = 'report-status-primary';
         messageText.textContent = message;
         statusMessage.appendChild(messageText);
 
-        if (githubIssueUrl) {
-            const separator = document.createTextNode(' ');
+        if (githubIssueUrl && followUpMessage) {
+            const followUpLine = document.createElement('div');
+            followUpLine.className = 'report-status-secondary';
+            followUpLine.textContent = `${followUpMessage} `;
+
             const issueLink = document.createElement('a');
             issueLink.href = githubIssueUrl;
             issueLink.target = '_blank';
             issueLink.rel = 'noopener noreferrer';
             issueLink.textContent = t('view_github_issue');
-            statusMessage.appendChild(separator);
-            statusMessage.appendChild(issueLink);
+            followUpLine.appendChild(issueLink);
+            statusMessage.appendChild(followUpLine);
         }
     }
 
@@ -816,7 +820,7 @@ function showFlagInfoModal(flag) {
             
             if (response.ok) {
                 if (result.githubIssueUrl) {
-                    showReportStatus('success', `${t('report_success')} ${t('report_success_with_issue_link')}`, result.githubIssueUrl);
+                    showReportStatus('success', t('report_success'), result.githubIssueUrl, t('report_success_with_issue_link'));
                 } else {
                     showReportStatus('success', t('report_success'));
                 }
