@@ -40,6 +40,21 @@ test.describe('Flagfilter smoke flows', () => {
     await expect(page.locator('.flag-card')).toHaveCount(initialCards);
   });
 
+  test('reset is safe when no filters are selected', async ({ page }) => {
+    const searchInput = page.locator('#searchInput');
+    const resetButton = page.locator('#resetFiltersButton');
+    const initialCards = await page.locator('.flag-card').count();
+
+    await expect(searchInput).toHaveValue('');
+    await expect(page.locator('.filter-btn.active')).toHaveCount(0);
+
+    await resetButton.click();
+
+    await expect(searchInput).toHaveValue('');
+    await expect(page.locator('.filter-btn.active')).toHaveCount(0);
+    await expect(page.locator('.flag-card')).toHaveCount(initialCards);
+  });
+
   test('report issue success shows GitHub issue link when API returns it', async ({ page }) => {
     await page.route('**/api/report-issue', async (route) => {
       await route.fulfill({
