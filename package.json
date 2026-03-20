@@ -3,8 +3,13 @@
   "version": "1.1.0",
   "private": true,
   "description": "Cloudflare Pages app for browsing and filtering national flags",
+  "devDependencies": {
+    "@playwright/test": "^1.52.0"
+  },
   "scripts": {
     "dev": "wrangler pages dev .",
-    "deploy": "wrangler pages deploy . --project-name flagfilter"
+    "deploy": "wrangler pages deploy . --project-name flagfilter",
+    "test:e2e": "playwright test",
+    "test:e2e:headed": "playwright test --headed"
   }
 }

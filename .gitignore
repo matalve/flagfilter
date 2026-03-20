@@ -8,3 +8,5 @@ package-lock.json
 .env.production
 .wrangler
 dist
+playwright-report
+test-results
