@@ -19,6 +19,7 @@ test.describe('Flagfilter UI flows', () => {
 
   test('search filters flags and slash focuses the search input', async ({ page }) => {
     const searchInput = page.locator('#searchInput');
+    const resetButton = page.locator('#resetFiltersButton');
 
     await searchInput.click();
     await expect(searchInput).toBeFocused();
@@ -30,7 +31,10 @@ test.describe('Flagfilter UI flows', () => {
     await page.locator('#resetFiltersButton').click();
     await expect(searchInput).toHaveValue('');
 
-    await page.locator('body').click();
+    await resetButton.focus();
+    await expect(resetButton).toBeFocused();
+    await expect(searchInput).not.toBeFocused();
+
     await page.keyboard.press('/');
     await expect(searchInput).toBeFocused();
   });
