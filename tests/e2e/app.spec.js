@@ -5,6 +5,11 @@ async function gotoApp(page, language = 'en') {
   await expect(page.locator('.flag-card').first()).toBeVisible({ timeout: 15000 });
 }
 
+async function openFirstFlagModal(page) {
+  await page.locator('.learn-more-btn').first().click();
+  await expect(page.locator('#flagModalTitle')).toBeVisible();
+}
+
 test.describe('Flagfilter UI flows', () => {
   test.beforeEach(async ({ page }) => {
     await gotoApp(page, 'en');
@@ -98,5 +103,83 @@ test.describe('Flagfilter UI flows', () => {
     await modalCloseButton.click();
 
     await expect(page.locator('#flagModalTitle')).toHaveCount(0);
+  });
+
+  test('report issue opens the form and cancel restores the trigger button', async ({ page }) => {
+    await openFirstFlagModal(page);
+
+    const reportButton = page.locator('.report-issue-btn');
+    const reportFormPanel = page.locator('#reportFormPanel');
+
+    await reportButton.click();
+    await expect(reportFormPanel).toBeVisible();
+    await expect(page.locator('#issueType')).toBeFocused();
+    await expect(reportButton).toBeHidden();
+
+    await page.locator('.cancel-btn').click();
+    await expect(reportFormPanel).toBeHidden();
+    await expect(reportButton).toBeVisible();
+    await expect(reportButton).toBeFocused();
+  });
+
+  test('report issue success without GitHub URL shows only the base success message', async ({ page }) => {
+    await page.route('**/api/report-issue', async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          success: true,
+          partial: false,
+          destinations: {
+            telegram: true,
+            github: false
+          },
+          githubIssueUrl: null
+        })
+      });
+    });
+
+    await openFirstFlagModal(page);
+    await page.locator('.report-issue-btn').click();
+
+    await page.locator('#issueType').selectOption('incorrect_info');
+    await page.locator('#issueDescription').fill('Automated test report.');
+    await page.locator('.submit-btn').click();
+
+    const statusBox = page.locator('.report-form-status.success');
+    await expect(statusBox).toContainText('Thank you for your report! We will review it soon.');
+    await expect(statusBox).not.toContainText('GitHub issue was automatically created.');
+    await expect(statusBox.getByRole('link', { name: 'View GitHub issue' })).toHaveCount(0);
+  });
+
+  test('report issue success with GitHub URL shows follow-up text and link', async ({ page }) => {
+    await page.route('**/api/report-issue', async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          success: true,
+          partial: false,
+          destinations: {
+            telegram: false,
+            github: true
+          },
+          githubIssueUrl: 'https://github.com/matalve/flagfilter/issues/123'
+        })
+      });
+    });
+
+    await openFirstFlagModal(page);
+    await page.locator('.report-issue-btn').click();
+
+    await page.locator('#issueType').selectOption('incorrect_info');
+    await page.locator('#issueDescription').fill('Automated test report with issue link.');
+    await page.locator('.submit-btn').click();
+
+    const statusBox = page.locator('.report-form-status.success');
+    await expect(statusBox).toContainText('Thank you for your report! We will review it soon.');
+    await expect(statusBox).toContainText('GitHub issue was automatically created.');
+    await expect(statusBox.getByRole('link', { name: 'View GitHub issue' }))
+      .toHaveAttribute('href', 'https://github.com/matalve/flagfilter/issues/123');
   });
 });
