@@ -216,4 +216,108 @@ test.describe('Flagfilter UI flows', () => {
     await expect(statusBox.getByRole('link', { name: 'View GitHub issue' }))
       .toHaveAttribute('href', 'https://github.com/matalve/flagfilter/issues/123');
   });
+
+  test('report issue error shows error message and no GitHub link', async ({ page }) => {
+    await page.route('**/api/report-issue', async (route) => {
+      await route.fulfill({
+        status: 500,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          success: false,
+          error: 'Failed to send report'
+        })
+      });
+    });
+
+    await openFirstFlagModal(page);
+    await page.locator('.report-issue-btn').click();
+
+    await page.locator('#issueType').selectOption('incorrect_info');
+    await page.locator('#issueDescription').fill('Automated error-state test.');
+    await page.locator('.submit-btn').click();
+
+    const statusBox = page.locator('.report-form-status.error');
+    await expect(statusBox).toContainText('Sorry, there was an error submitting your report. Please try again later.');
+    await expect(statusBox.getByRole('link', { name: 'View GitHub issue' })).toHaveCount(0);
+    await expect(page.locator('#reportFormPanel')).toBeVisible();
+  });
+
+  test('cancel clears prior error state and restores the report button', async ({ page }) => {
+    await page.route('**/api/report-issue', async (route) => {
+      await route.fulfill({
+        status: 500,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          success: false,
+          error: 'Failed to send report'
+        })
+      });
+    });
+
+    await openFirstFlagModal(page);
+
+    const reportButton = page.locator('.report-issue-btn');
+    await reportButton.click();
+
+    await page.locator('#issueType').selectOption('incorrect_info');
+    await page.locator('#issueDescription').fill('Automated cancel-after-error test.');
+    await page.locator('.submit-btn').click();
+    await expect(page.locator('.report-form-status.error')).toBeVisible();
+
+    await page.locator('.cancel-btn').click();
+    await expect(page.locator('#reportFormPanel')).toBeHidden();
+    await expect(page.locator('.report-form-status')).toBeHidden();
+    await expect(reportButton).toBeVisible();
+    await expect(reportButton).toBeFocused();
+  });
+
+  test('report form can recover after an error and then show success', async ({ page }) => {
+    let requestCount = 0;
+    await page.route('**/api/report-issue', async (route) => {
+      requestCount += 1;
+
+      if (requestCount === 1) {
+        await route.fulfill({
+          status: 500,
+          contentType: 'application/json',
+          body: JSON.stringify({
+            success: false,
+            error: 'Failed to send report'
+          })
+        });
+        return;
+      }
+
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          success: true,
+          partial: false,
+          destinations: {
+            telegram: true,
+            github: false
+          },
+          githubIssueUrl: null
+        })
+      });
+    });
+
+    await openFirstFlagModal(page);
+    await page.locator('.report-issue-btn').click();
+
+    await page.locator('#issueType').selectOption('incorrect_info');
+    await page.locator('#issueDescription').fill('First attempt should fail.');
+    await page.locator('.submit-btn').click();
+    await expect(page.locator('.report-form-status.error')).toBeVisible();
+
+    await page.locator('#issueType').selectOption('incorrect_info');
+    await page.locator('#issueDescription').fill('Second attempt should succeed.');
+    await page.locator('.submit-btn').click();
+
+    const successBox = page.locator('.report-form-status.success');
+    await expect(successBox).toContainText('Thank you for your report! We will review it soon.');
+    await expect(successBox).not.toContainText('GitHub issue was automatically created.');
+    await expect(page.locator('#issueType')).toBeFocused();
+  });
 });
