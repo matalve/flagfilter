@@ -18,6 +18,12 @@ async function openFlagModalBySearch(page, searchTerm) {
   await expect(page.locator('#flagModalTitle')).toBeVisible();
 }
 
+async function waitForNextTask(page) {
+  await page.evaluate(() => new Promise((resolve) => {
+    window.setTimeout(resolve, 0);
+  }));
+}
+
 test.describe('Flagfilter UI flows', () => {
   test.beforeEach(async ({ page }) => {
     await gotoApp(page, 'en');
@@ -128,6 +134,7 @@ test.describe('Flagfilter UI flows', () => {
     const denmarkLink = page.locator('.flag-info-details .flag-link', { hasText: 'Dinamarca' });
     await expect(denmarkLink).toBeVisible();
 
+    await waitForNextTask(page);
     await denmarkLink.click();
     await expect(page.locator('#flagModalTitle')).toHaveText('Dinamarca');
   });
