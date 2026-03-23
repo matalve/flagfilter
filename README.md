@@ -6,7 +6,6 @@ A modern, responsive web application for exploring and searching national flags 
 
 - Production runtime is Cloudflare Pages (static assets + Pages Functions).
 - API endpoint: `functions/api/report-issue.js` is deployed at `/api/report-issue`.
-- `/api/report-issue` is rate-limited in Cloudflare via a Workers Rate Limiting binding.
 - `server.js` remains in the repository as a legacy local Node/Express fallback and is not used in Cloudflare production.
 
 ## Features
@@ -64,14 +63,6 @@ Optional environment variables:
   - prefix used for automatic flag labels such as `flag:se`
   - default: `flag`
 
-Rate limiting:
-
-- `/api/report-issue` uses a Cloudflare Rate Limiting binding named `REPORT_ISSUE_RATE_LIMITER`
-- current default policy in `wrangler.toml`:
-  - `limit = 2`
-  - `period = 60`
-- exceeded requests return HTTP `429`
-
 ## Technical Details
 
 - Uses `flaginfo.json` as the primary data source for flag metadata
@@ -100,7 +91,6 @@ Behavior:
 - If only GitHub is configured, reports create GitHub Issues.
 - If both are configured, both destinations are used.
 - If one destination fails but the other succeeds, the API still returns success.
-- If the Cloudflare rate limit is exceeded, the endpoint returns `429 Too Many Requests`.
 
 GitHub issue format:
 

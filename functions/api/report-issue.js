@@ -4,27 +4,6 @@ export async function onRequestPost(context) {
         'Cache-Control': 'no-store'
     };
 
-    const rateLimiter = context.env.REPORT_ISSUE_RATE_LIMITER;
-    if (rateLimiter && typeof rateLimiter.limit === 'function') {
-        const clientIp = context.request.headers.get('CF-Connecting-IP')
-            || context.request.headers.get('X-Forwarded-For')
-            || 'anonymous';
-        const rateLimitResult = await rateLimiter.limit({ key: `report-issue:${clientIp}` });
-
-        if (!rateLimitResult.success) {
-            return new Response(JSON.stringify({
-                success: false,
-                error: 'Too many report submissions. Please try again in a minute.'
-            }), {
-                status: 429,
-                headers: {
-                    ...jsonHeaders,
-                    'Retry-After': '60'
-                }
-            });
-        }
-    }
-
     try {
         const hasTelegramConfig = Boolean(context.env.TELEGRAM_BOT_TOKEN && context.env.TELEGRAM_CHAT_ID);
         const hasGitHubConfig = Boolean(
