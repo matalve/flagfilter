@@ -10,6 +10,20 @@ async function openFirstFlagModal(page) {
   await expect(page.locator('#flagModalTitle')).toBeVisible();
 }
 
+async function openFlagModalBySearch(page, searchTerm) {
+  const searchInput = page.locator('#searchInput');
+  await searchInput.fill(searchTerm);
+  await expect(page.locator('.flag-card')).toHaveCount(1);
+  await page.locator('.learn-more-btn').click();
+  await expect(page.locator('#flagModalTitle')).toBeVisible();
+}
+
+async function waitForNextTask(page) {
+  await page.evaluate(() => new Promise((resolve) => {
+    window.setTimeout(resolve, 0);
+  }));
+}
+
 test.describe('Flagfilter UI flows', () => {
   test.beforeEach(async ({ page }) => {
     await gotoApp(page, 'en');
@@ -103,6 +117,26 @@ test.describe('Flagfilter UI flows', () => {
     await modalCloseButton.click();
 
     await expect(page.locator('#flagModalTitle')).toHaveCount(0);
+  });
+
+  test('English modal content renders inline flag links', async ({ page }) => {
+    await openFlagModalBySearch(page, 'sweden');
+
+    const denmarkLink = page.locator('.flag-info-details .flag-link', { hasText: 'Denmark' });
+    await expect(denmarkLink).toBeVisible();
+    await expect(denmarkLink).toHaveAttribute('data-flag-code', 'dk');
+  });
+
+  test('Spanish modal inline flag links open the linked flag modal', async ({ page }) => {
+    await gotoApp(page, 'es');
+    await openFlagModalBySearch(page, 'suecia');
+
+    const denmarkLink = page.locator('.flag-info-details .flag-link', { hasText: 'Dinamarca' });
+    await expect(denmarkLink).toBeVisible();
+
+    await waitForNextTask(page);
+    await denmarkLink.click();
+    await expect(page.locator('#flagModalTitle')).toHaveText('Dinamarca');
   });
 
   test('report issue opens the form and cancel restores the trigger button', async ({ page }) => {
