@@ -5,3 +5,11 @@ pages_build_output_dir = "."
 [vars]
 GITHUB_OWNER = "matalve"
 GITHUB_REPO = "flagfilter"
+
+[[ratelimits]]
+name = "REPORT_ISSUE_RATE_LIMITER"
+namespace_id = "2001"
+
+  [ratelimits.simple]
+  limit = 2
+  period = 60
