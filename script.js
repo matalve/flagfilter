@@ -178,16 +178,16 @@ function applyInitialQueryFromUrl() {
         return;
     }
 
-    const words = normalizeQueryValue(rawQuery).split(' ').filter(Boolean);
+    const rawWords = rawQuery.trim().split(/\s+/).filter(Boolean);
     const filterButtons = getFilterButtonsWithQueryMetadata();
     const matchedButtons = new Set();
     const remainingSearchTerms = [];
 
-    for (let index = 0; index < words.length;) {
+    for (let index = 0; index < rawWords.length;) {
         let matchedEntry = null;
 
-        for (let end = words.length; end > index; end -= 1) {
-            const phrase = words.slice(index, end).join(' ');
+        for (let end = rawWords.length; end > index; end -= 1) {
+            const phrase = normalizeQueryValue(rawWords.slice(index, end).join(' '));
             const entry = filterButtons.find((candidate) => (
                 !matchedButtons.has(candidate.button) && candidate.aliases.has(phrase)
             ));
@@ -204,7 +204,7 @@ function applyInitialQueryFromUrl() {
             continue;
         }
 
-        remainingSearchTerms.push(words[index]);
+        remainingSearchTerms.push(rawWords[index]);
         index += 1;
     }
 
