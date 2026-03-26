@@ -64,21 +64,21 @@ test.describe('Flagfilter UI flows', () => {
   });
 
   test('q URL parameter activates matching filter buttons and keeps remaining search text', async ({ page }) => {
-    await gotoApp(page, 'en', 'red sweden');
+    await gotoApp(page, 'en', 'blue sweden');
 
     await expect(page.locator('#searchInput')).toHaveValue('sweden');
-    await expect(page.locator('.filter-btn[data-color="red"]')).toHaveClass(/active/);
+    await expect(page.locator('.filter-btn[data-color="blue"]')).toHaveClass(/active/);
     await expect(page.locator('.flag-card')).toHaveCount(1);
     await expect(page.locator('.flag-card h3')).toHaveText(['Sweden']);
   });
 
   test('reset clears q URL parameter and query-applied filters', async ({ page }) => {
-    await gotoApp(page, 'en', 'red sweden');
+    await gotoApp(page, 'en', 'blue sweden');
 
     await page.locator('#resetFiltersButton').click();
 
     await expect(page.locator('#searchInput')).toHaveValue('');
-    await expect(page.locator('.filter-btn[data-color="red"]')).not.toHaveClass(/active/);
+    await expect(page.locator('.filter-btn[data-color="blue"]')).not.toHaveClass(/active/);
     await expect.poll(async () => new URL(await page.url()).searchParams.get('q')).toBeNull();
   });
 
