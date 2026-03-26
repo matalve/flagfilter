@@ -129,13 +129,15 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('.flag-card h3')).toHaveText(['Suecia']);
   });
 
-  test('q keeps accented and hyphenated text in the search field', async ({ page }) => {
+  test('q keeps accented text in the search field', async ({ page }) => {
     await gotoApp(page, 'es', 'españa');
 
     await expect(page.locator('#searchInput')).toHaveValue('españa');
     await expect(page.locator('.flag-card')).toHaveCount(1);
     await expect(page.locator('.flag-card h3')).toHaveText(['España']);
+  });
 
+  test('q keeps hyphenated text in the search field', async ({ page }) => {
     await gotoApp(page, 'en', 'timor-leste');
 
     await expect(page.locator('#searchInput')).toHaveValue('timor-leste');
