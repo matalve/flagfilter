@@ -1,7 +1,12 @@
 const { test, expect } = require('@playwright/test');
 
-async function gotoApp(page, language = 'en') {
-  await page.goto(`/?lang=${language}`);
+async function gotoApp(page, language = 'en', query = '') {
+  const params = new URLSearchParams({ lang: language });
+  if (query) {
+    params.set('q', query);
+  }
+
+  await page.goto(`/?${params.toString()}`);
   await expect(page.locator('.flag-card').first()).toBeVisible({ timeout: 15000 });
 }
 
@@ -58,6 +63,25 @@ test.describe('Flagfilter UI flows', () => {
     await expect(searchInput).toBeFocused();
   });
 
+  test('q URL parameter activates matching filter buttons and keeps remaining search text', async ({ page }) => {
+    await gotoApp(page, 'en', 'red sweden');
+
+    await expect(page.locator('#searchInput')).toHaveValue('sweden');
+    await expect(page.locator('.filter-btn[data-color="red"]')).toHaveClass(/active/);
+    await expect(page.locator('.flag-card')).toHaveCount(1);
+    await expect(page.locator('.flag-card h3')).toHaveText(['Sweden']);
+  });
+
+  test('reset clears q URL parameter and query-applied filters', async ({ page }) => {
+    await gotoApp(page, 'en', 'red sweden');
+
+    await page.locator('#resetFiltersButton').click();
+
+    await expect(page.locator('#searchInput')).toHaveValue('');
+    await expect(page.locator('.filter-btn[data-color="red"]')).not.toHaveClass(/active/);
+    await expect.poll(async () => new URL(await page.url()).searchParams.get('q')).toBeNull();
+  });
+
   test('color filters reduce the visible flag set', async ({ page }) => {
     const blackFilter = page.locator('.filter-btn[data-color="black"]');
     const initialCards = await page.locator('.flag-card').count();
@@ -95,6 +119,14 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('#resetFiltersButton')).toContainText('Reiniciar');
     await expect(page.locator('.filter-section').first()).toContainText('Filtrar por color');
     await expect(page.locator('.learn-more-btn').first()).toHaveText('Saber más');
+  });
+
+  test('English q search still works when the page is opened in Spanish', async ({ page }) => {
+    await gotoApp(page, 'es', 'sweden');
+
+    await expect(page.locator('#searchInput')).toHaveValue('sweden');
+    await expect(page.locator('.flag-card')).toHaveCount(1);
+    await expect(page.locator('.flag-card h3')).toHaveText(['Suecia']);
   });
 
   test('learn more opens a flag modal and escape closes it', async ({ page }) => {

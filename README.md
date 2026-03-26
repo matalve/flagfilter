@@ -126,6 +126,11 @@ GitHub token guidance:
   - Missing/whitespace-only flag overlay values fall back to `flaginfo.json`.
 - Link behavior in localized modal text:
   - Inline links like `?q=france` are resolved against base source data so they remain clickable in translated views.
+- Search/filter URL behavior:
+  - `?q=...` can prefill the search field on page load.
+  - Query terms that match known filter values (for example `red`, `europe`, `cross`) activate the corresponding filter buttons.
+  - Remaining terms stay in the search field.
+  - `Reset` clears both the active UI state and the `q` parameter.
 
 ## POEditor Flags Sync
 
