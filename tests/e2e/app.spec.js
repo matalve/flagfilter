@@ -142,7 +142,7 @@ test.describe('Flagfilter UI flows', () => {
 
     await expect(page.locator('#searchInput')).toHaveValue('timor-leste');
     await expect(page.locator('.flag-card')).toHaveCount(1);
-    await expect(page.locator('.flag-card h3')).toHaveText(['Timor-Leste']);
+    await expect(page.locator('.flag-card h3')).toHaveText(['Timor-Leste (East Timor)']);
   });
 
   test('learn more opens a flag modal and escape closes it', async ({ page }) => {
