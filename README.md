@@ -7,7 +7,6 @@ Flagfilter is a Cloudflare Pages app for exploring, searching, and filtering nat
 - Production runs on Cloudflare Pages
 - Static frontend files live in the repository root
 - The issue reporting endpoint is `functions/api/report-issue.js`
-- `server.js` is legacy and not used in Cloudflare production
 
 ## Main features
 
