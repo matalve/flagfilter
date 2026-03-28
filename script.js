@@ -14,10 +14,15 @@ let flagTranslations = {};
 let currentLanguage = 'en';
 const SUPPORTED_LANGUAGES = ['en', 'es'];
 const DEFAULT_LANGUAGE = 'en';
+const QUERY_FILTER_DATA_KEYS = ['color', 'continent', 'pattern', 'symbol', 'motive', 'people', 'ideology', 'text'];
 
 function getLanguageFromUrl() {
     const lang = new URLSearchParams(window.location.search).get('lang');
     return SUPPORTED_LANGUAGES.includes(lang) ? lang : null;
+}
+
+function getQueryFromUrl() {
+    return new URLSearchParams(window.location.search).get('q') || '';
 }
 
 function getInitialLanguage() {
@@ -42,6 +47,16 @@ function getInitialLanguage() {
 function updateLanguageInUrl(language) {
     const url = new URL(window.location.href);
     url.searchParams.set('lang', language);
+    window.history.replaceState({}, '', url);
+}
+
+function updateQueryInUrl(query) {
+    const url = new URL(window.location.href);
+    if (hasTextValue(query)) {
+        url.searchParams.set('q', query);
+    } else {
+        url.searchParams.delete('q');
+    }
     window.history.replaceState({}, '', url);
 }
 
@@ -75,6 +90,131 @@ function updateToggleButtonState(button) {
 
 function updateAllToggleButtonStates() {
     document.querySelectorAll('.filter-btn').forEach(updateToggleButtonState);
+}
+
+function normalizeQueryValue(value) {
+    return String(value || '')
+        .replace(/([a-z])([A-Z])/g, '$1 $2')
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[_-]+/g, ' ')
+        .replace(/[^a-z0-9 ]+/g, ' ')
+        .trim()
+        .replace(/\s+/g, ' ');
+}
+
+function getFilterButtonsWithQueryMetadata() {
+    return Array.from(document.querySelectorAll('.filter-btn')).map((button) => {
+        const dataKey = QUERY_FILTER_DATA_KEYS.find((key) => button.dataset[key]);
+        if (!dataKey) {
+            return null;
+        }
+
+        const value = button.dataset[dataKey];
+        const normalizedValue = normalizeQueryValue(value);
+        const aliases = new Set([
+            normalizedValue,
+            normalizedValue.replace(/\s+/g, '')
+        ]);
+
+        return {
+            button,
+            dataKey,
+            value,
+            aliases
+        };
+    }).filter(Boolean);
+}
+
+function getActiveFilterQueryValues() {
+    const activeValues = [];
+
+    QUERY_FILTER_DATA_KEYS.forEach((key) => {
+        document.querySelectorAll(`.filter-btn[data-${key}].active`).forEach((button) => {
+            activeValues.push(button.dataset[key]);
+        });
+    });
+
+    return activeValues;
+}
+
+function getBaseFlagInfoByCode(code) {
+    return baseFlagInfo.find((info) => info.shortname === code);
+}
+
+function matchesSearchTerm(flag, searchTerm) {
+    const normalizedTerm = searchTerm.toLowerCase().trim();
+    if (normalizedTerm === '') {
+        return true;
+    }
+
+    const baseInfo = getBaseFlagInfoByCode(flag.code);
+
+    return flag.name.toLowerCase().includes(normalizedTerm)
+        || (baseInfo?.name || '').toLowerCase().includes(normalizedTerm)
+        || flag.code.toLowerCase() === normalizedTerm
+        || flag.tags.some((tag) => tag.toLowerCase().includes(normalizedTerm));
+}
+
+function syncQueryParamFromUiState() {
+    const searchTokens = searchInput.value
+        .trim()
+        .toLowerCase()
+        .split(/\s+/)
+        .filter(Boolean);
+
+    const queryTokens = [
+        ...getActiveFilterQueryValues(),
+        ...searchTokens
+    ];
+
+    updateQueryInUrl(queryTokens.join(' '));
+}
+
+function applyInitialQueryFromUrl() {
+    const rawQuery = getQueryFromUrl();
+    if (!hasTextValue(rawQuery)) {
+        return;
+    }
+
+    const rawWords = rawQuery.trim().split(/\s+/).filter(Boolean);
+    const filterButtons = getFilterButtonsWithQueryMetadata();
+    const matchedButtons = new Set();
+    const remainingSearchTerms = [];
+
+    for (let index = 0; index < rawWords.length;) {
+        let matchedEntry = null;
+
+        for (let end = rawWords.length; end > index; end -= 1) {
+            const phrase = normalizeQueryValue(rawWords.slice(index, end).join(' '));
+            const entry = filterButtons.find((candidate) => (
+                !matchedButtons.has(candidate.button) && candidate.aliases.has(phrase)
+            ));
+
+            if (entry) {
+                matchedEntry = { entry, end };
+                break;
+            }
+        }
+
+        if (matchedEntry) {
+            matchedButtons.add(matchedEntry.entry.button);
+            index = matchedEntry.end;
+            continue;
+        }
+
+        remainingSearchTerms.push(rawWords[index]);
+        index += 1;
+    }
+
+    matchedButtons.forEach((button) => {
+        button.classList.add('active');
+        updateToggleButtonState(button);
+    });
+
+    searchInput.value = remainingSearchTerms.join(' ');
+    applyFilters();
 }
 
 async function loadJson(path, fallbackValue = {}) {
@@ -917,18 +1057,11 @@ function handleSearch(query) {
     const searchTerm = query.toLowerCase().trim();
     
     if (searchTerm === '') {
-        // If search is empty, apply only color/continent filters
         applyFilters();
         return;
     }
     
-    // Filter flags based on search term
-    filteredFlags = flags.filter(flag => 
-        flag.name.toLowerCase().includes(searchTerm) || 
-        flag.tags.some(tag => tag.toLowerCase().includes(searchTerm))
-    );
-    
-    // Apply active filters to search results
+    filteredFlags = flags.filter((flag) => matchesSearchTerm(flag, searchTerm));
     applyFilters();
 }
 
@@ -961,11 +1094,9 @@ function applyFilters() {
     const searchTerm = searchInput.value.toLowerCase().trim();
     
     // Start with all flags or search results
-    let results = searchTerm === '' ? [...flags] : 
-        flags.filter(flag => 
-            flag.name.toLowerCase().includes(searchTerm) || 
-            flag.tags.some(tag => tag.toLowerCase().includes(searchTerm))
-        );
+    let results = searchTerm === ''
+        ? [...flags]
+        : flags.filter((flag) => matchesSearchTerm(flag, searchTerm));
     
     // Apply color filters
     if (activeColors.length > 0) {
@@ -1028,6 +1159,7 @@ function applyFilters() {
     filteredFlags = results;
     renderFlagGrid();
     updateFilterButtonStates(results);
+    syncQueryParamFromUiState();
 }
 
 function updateFilterButtonStates(currentResults) {
@@ -1137,6 +1269,7 @@ function resetAllFilters() {
     renderFlagGrid();
     updateFilterButtonStates(flags);
     updateFlagCounter(flags.length);
+    updateQueryInUrl('');
 }
 
 function isEditableTarget(target) {
@@ -1221,6 +1354,7 @@ async function initApp() {
     await switchLanguage(initialLanguage);
     await fetchFlags();
     initializeFilterSections();
+    applyInitialQueryFromUrl();
 }
 
 if (languageSelect) {
