@@ -42,7 +42,6 @@ This file documents how AI coding assistants should work in this repository.
 
 ## Legacy files
 
-- `server.js` is legacy and not used in Cloudflare production.
 - Before removing legacy files, verify whether any meaningful behavior still exists only there.
 - Do not assume a legacy file is safe to remove until its remaining responsibilities have been mapped to the current runtime.
 
