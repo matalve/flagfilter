@@ -90,7 +90,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Antarctica"
   },
   {
-    "tags": "argentina blue white sun horizontal face",
+    "tags": "argentina blue white yellow sun horizontal face",
     "shortname": "ar",
     "name": "Argentina",
     "proportion": "5:8",
@@ -360,7 +360,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Belarus"
   },
   {
-    "tags": "belize white red white circle weapon tool horizontal text motto ribbon vegetation boat waves human face",
+    "tags": "belize blue red white green circle weapon tool horizontal text motto ribbon vegetation boat waves human face",
     "shortname": "bz",
     "name": "Belize",
     "proportion": "3:5",
@@ -380,7 +380,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Canada"
   },
   {
-    "tags": "cocos islands keeling islands green yellow star moon vegetation circle",
+    "tags": "cocos islands keeling islands green yellow brown star moon vegetation circle",
     "shortname": "cc",
     "name": "Cocos (Keeling) Islands",
     "proportion": "1:2",
@@ -2369,7 +2369,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_United_States"
   },
   {
-    "tags": "uruguay white blue horizontal sun face",
+    "tags": "uruguay white blue yellow horizontal sun face",
     "shortname": "uy",
     "name": "Uruguay",
     "proportion": "2:3",
@@ -2509,7 +2509,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_and_coat_of_arms_of_Mayotte"
   },
   {
-    "tags": "south africa red gren blue white yellow black triangle horizontal pan-african",
+    "tags": "south africa red green blue white yellow black triangle horizontal pan-african",
     "shortname": "za",
     "name": "South Africa",
     "proportion": "2:3",
