@@ -531,7 +531,7 @@ function rebuildFlags() {
         const code = info.shortname;
         const url = `https://flagcdn.com/w320/${code}.png`;
         const tags = info.tags || '';
-        const colorTags = ['red', 'blue', 'green', 'yellow', 'white', 'black'];
+        const colorTags = ['red', 'blue', 'green', 'yellow', 'white', 'black', 'brown'];
         const colors = colorTags.filter(color => tags.includes(color));
 
         return {
