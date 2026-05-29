@@ -597,6 +597,14 @@ h1 {
     background-color: #8b5a2b;
 }
 
+.color-filters .filter-btn[data-color="purple"]::before {
+    background-color: #9b59b6;
+}
+
+.color-filters .filter-btn[data-color="orange"]::before {
+    background-color: #e67e22;
+}
+
 /* Media query for mobile devices */
 @media (max-width: 768px) {
     header {
