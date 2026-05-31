@@ -167,6 +167,20 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('#flagModalTitle')).toHaveCount(0);
   });
 
+  test('modal Colors line reflects the flag color tags', async ({ page }) => {
+    // Argentina gained "yellow" (Sun of May) when the reported color tags were fixed.
+    await openFlagModalBySearch(page, 'argentina');
+    const argentinaColors = page.locator('.flag-info-details p', { hasText: 'Colors:' });
+    await expect(argentinaColors).toContainText('yellow');
+  });
+
+  test('modal Colors line surfaces brown for the Cocos Islands', async ({ page }) => {
+    // "brown" was promoted to a recognized color so the Cocos palm tree shows up.
+    await openFlagModalBySearch(page, 'cocos');
+    const cocosColors = page.locator('.flag-info-details p', { hasText: 'Colors:' });
+    await expect(cocosColors).toContainText('brown');
+  });
+
   test('English modal content renders inline flag links', async ({ page }) => {
     await openFlagModalBySearch(page, 'sweden');
 
