@@ -79,6 +79,7 @@
   "close": "Close",
   "no_results": "No flags match your search criteria.",
   "learn_more": "Learn more",
+  "flag_image_alt": "Flag of {name}",
   "flag_counter_one": "Showing {count} flag",
   "flag_counter_other": "Showing {count} flags",
   "no_information_available": "No information available.",
