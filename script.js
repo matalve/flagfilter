@@ -665,6 +665,32 @@ async function switchLanguage(language) {
     }
 }
 
+// flagcdn serves every w320 image at 320px wide; the height follows the flag's proportion.
+const FLAG_IMAGE_SOURCE_WIDTH = 320;
+// The grid crops every flag to a uniform 3:2 box (see `.flag-card img` in styles.css),
+// so reserve that ratio up front to avoid layout shift while images load.
+const FLAG_GRID_IMAGE_HEIGHT = Math.round(FLAG_IMAGE_SOURCE_WIDTH * 2 / 3);
+
+// Derive intrinsic pixel dimensions from a "height:width" proportion (e.g. "5:8").
+// Returns null for non-numeric proportions such as Nepal's "It's complicated.".
+function getFlagImageDimensions(proportion) {
+    const match = /^\s*(\d+)\s*:\s*(\d+)\s*$/.exec(String(proportion || ''));
+    if (!match) {
+        return null;
+    }
+
+    const heightUnits = Number(match[1]);
+    const widthUnits = Number(match[2]);
+    if (!heightUnits || !widthUnits) {
+        return null;
+    }
+
+    return {
+        width: FLAG_IMAGE_SOURCE_WIDTH,
+        height: Math.round(FLAG_IMAGE_SOURCE_WIDTH * heightUnits / widthUnits)
+    };
+}
+
 // Render flag grid
 function renderFlagGrid() {
     flagGrid.innerHTML = '';
@@ -680,7 +706,7 @@ function renderFlagGrid() {
         flagCard.className = 'flag-card';
         
         flagCard.innerHTML = `
-            <img src="${flag.url}" alt="${t('flag_image_alt', { name: flag.name })}" loading="lazy">
+            <img src="${flag.url}" alt="${t('flag_image_alt', { name: flag.name })}" width="${FLAG_IMAGE_SOURCE_WIDTH}" height="${FLAG_GRID_IMAGE_HEIGHT}" loading="lazy">
             <h3>${flag.name}</h3>
             <button class="learn-more-btn" data-code="${flag.code}" aria-haspopup="dialog">${t('learn_more')}</button>
         `;
@@ -811,7 +837,14 @@ function showFlagInfoModal(flag) {
     flagImage.src = flag.url;
     flagImage.alt = t('flag_image_alt', { name: flag.name });
     flagImage.className = 'modal-flag-image';
-    
+
+    // Reserve the flag's intrinsic dimensions so the modal does not shift while it loads.
+    const flagImageDimensions = getFlagImageDimensions(flag.info.proportion);
+    if (flagImageDimensions) {
+        flagImage.width = flagImageDimensions.width;
+        flagImage.height = flagImageDimensions.height;
+    }
+
     // Create flag information
     const flagInfo = document.createElement('div');
     flagInfo.className = 'flag-info-details';
