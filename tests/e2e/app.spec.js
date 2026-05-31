@@ -121,6 +121,18 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('.learn-more-btn').first()).toHaveText('Saber más');
   });
 
+  test('flag image alt text is localized', async ({ page }) => {
+    const searchInput = page.locator('#searchInput');
+    const flagImage = page.locator('.flag-card img');
+
+    await searchInput.fill('sweden');
+    await expect(page.locator('.flag-card')).toHaveCount(1);
+    await expect(flagImage).toHaveAttribute('alt', 'Flag of Sweden');
+
+    await page.locator('#languageSelect').selectOption('es');
+    await expect(flagImage).toHaveAttribute('alt', 'Bandera de Suecia');
+  });
+
   test('English q search still works when the page is opened in Spanish', async ({ page }) => {
     await gotoApp(page, 'es', 'sweden');
 

@@ -680,7 +680,7 @@ function renderFlagGrid() {
         flagCard.className = 'flag-card';
         
         flagCard.innerHTML = `
-            <img src="${flag.url}" alt="${flag.name} flag" loading="lazy">
+            <img src="${flag.url}" alt="${t('flag_image_alt', { name: flag.name })}" loading="lazy">
             <h3>${flag.name}</h3>
             <button class="learn-more-btn" data-code="${flag.code}" aria-haspopup="dialog">${t('learn_more')}</button>
         `;
@@ -809,7 +809,7 @@ function showFlagInfoModal(flag) {
     // Create flag image
     const flagImage = document.createElement('img');
     flagImage.src = flag.url;
-    flagImage.alt = `${flag.name} flag`;
+    flagImage.alt = t('flag_image_alt', { name: flag.name });
     flagImage.className = 'modal-flag-image';
     
     // Create flag information

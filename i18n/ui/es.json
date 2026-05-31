@@ -79,6 +79,7 @@
   "close": "Cerrar",
   "no_results": "Ninguna bandera coincide con tu búsqueda.",
   "learn_more": "Saber más",
+  "flag_image_alt": "Bandera de {name}",
   "flag_counter_one": "Mostrando {count} bandera",
   "flag_counter_other": "Mostrando {count} banderas",
   "no_information_available": "No hay información disponible.",
