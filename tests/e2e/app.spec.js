@@ -179,6 +179,21 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('#flagModalTitle')).toHaveCount(0);
   });
 
+  test('grid flag images declare explicit dimensions to avoid layout shift', async ({ page }) => {
+    const flagImage = page.locator('.flag-card img').first();
+    await expect(flagImage).toHaveAttribute('width', '320');
+    await expect(flagImage).toHaveAttribute('height', '213');
+  });
+
+  test('modal flag image dimensions follow the flag proportion', async ({ page }) => {
+    // Sweden is 5:8, so the 320px-wide flagcdn image is 200px tall.
+    await openFlagModalBySearch(page, 'sweden');
+
+    const modalImage = page.locator('.modal-flag-image');
+    await expect(modalImage).toHaveAttribute('width', '320');
+    await expect(modalImage).toHaveAttribute('height', '200');
+  });
+
   test('modal Colors line reflects the flag color tags', async ({ page }) => {
     // Argentina gained "yellow" (Sun of May) when the reported color tags were fixed.
     await openFlagModalBySearch(page, 'argentina');
