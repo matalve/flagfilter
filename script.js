@@ -174,46 +174,49 @@ function syncQueryParamFromUiState() {
 
 function applyInitialQueryFromUrl() {
     const rawQuery = getQueryFromUrl();
-    if (!hasTextValue(rawQuery)) {
-        return;
-    }
 
-    const rawWords = rawQuery.trim().split(/\s+/).filter(Boolean);
-    const filterButtons = getFilterButtonsWithQueryMetadata();
-    const matchedButtons = new Set();
-    const remainingSearchTerms = [];
+    if (hasTextValue(rawQuery)) {
+        const rawWords = rawQuery.trim().split(/\s+/).filter(Boolean);
+        const filterButtons = getFilterButtonsWithQueryMetadata();
+        const matchedButtons = new Set();
+        const remainingSearchTerms = [];
 
-    for (let index = 0; index < rawWords.length;) {
-        let matchedEntry = null;
+        for (let index = 0; index < rawWords.length;) {
+            let matchedEntry = null;
 
-        for (let end = rawWords.length; end > index; end -= 1) {
-            const phrase = normalizeQueryValue(rawWords.slice(index, end).join(' '));
-            const entry = filterButtons.find((candidate) => (
-                !matchedButtons.has(candidate.button) && candidate.aliases.has(phrase)
-            ));
+            for (let end = rawWords.length; end > index; end -= 1) {
+                const phrase = normalizeQueryValue(rawWords.slice(index, end).join(' '));
+                const entry = filterButtons.find((candidate) => (
+                    !matchedButtons.has(candidate.button) && candidate.aliases.has(phrase)
+                ));
 
-            if (entry) {
-                matchedEntry = { entry, end };
-                break;
+                if (entry) {
+                    matchedEntry = { entry, end };
+                    break;
+                }
             }
+
+            if (matchedEntry) {
+                matchedButtons.add(matchedEntry.entry.button);
+                index = matchedEntry.end;
+                continue;
+            }
+
+            remainingSearchTerms.push(rawWords[index]);
+            index += 1;
         }
 
-        if (matchedEntry) {
-            matchedButtons.add(matchedEntry.entry.button);
-            index = matchedEntry.end;
-            continue;
-        }
+        matchedButtons.forEach((button) => {
+            button.classList.add('active');
+            updateToggleButtonState(button);
+        });
 
-        remainingSearchTerms.push(rawWords[index]);
-        index += 1;
+        searchInput.value = remainingSearchTerms.join(' ');
     }
 
-    matchedButtons.forEach((button) => {
-        button.classList.add('active');
-        updateToggleButtonState(button);
-    });
-
-    searchInput.value = remainingSearchTerms.join(' ');
+    // Render once, after the initial filter/search state is resolved, so the first
+    // paint (and the eager / high-priority LCP image) reflects the real above-the-fold
+    // flag instead of the unfiltered list. See PR #115.
     applyFilters();
 }
 
@@ -552,8 +555,10 @@ async function fetchFlags() {
         baseFlagInfo = await flagInfoResponse.json();
         rebuildFlags();
         
+        // Don't render here: initApp resolves the initial ?q= filter first, so the
+        // grid renders exactly once with the correct above-the-fold flags (and the
+        // eager / high-priority LCP image lands on the right one). See PR #115.
         filteredFlags = [...flags];
-        renderFlagGrid();
 
         return flags;
     } catch (error) {
@@ -670,6 +675,9 @@ const FLAG_IMAGE_SOURCE_WIDTH = 320;
 // The grid crops every flag to a uniform 3:2 box (see `.flag-card img` in styles.css),
 // so reserve that ratio up front to avoid layout shift while images load.
 const FLAG_GRID_IMAGE_HEIGHT = Math.round(FLAG_IMAGE_SOURCE_WIDTH * 2 / 3);
+// Eagerly load the first row(s) of above-the-fold flag images instead of lazily,
+// so the LCP image (the first one) is not deferred behind the data fetch. See #108.
+const EAGER_FLAG_IMAGE_COUNT = 8;
 
 // Derive intrinsic pixel dimensions from a "height:width" proportion (e.g. "5:8").
 // Returns null for non-numeric proportions such as Nepal's "It's complicated.".
@@ -701,16 +709,21 @@ function renderFlagGrid() {
         return;
     }
     
-    filteredFlags.forEach(flag => {
+    filteredFlags.forEach((flag, index) => {
         const flagCard = document.createElement('div');
         flagCard.className = 'flag-card';
-        
+
+        // Above-the-fold images load eagerly; the first one is the LCP candidate
+        // and gets high fetch priority. Everything below the fold stays lazy.
+        const loading = index < EAGER_FLAG_IMAGE_COUNT ? 'eager' : 'lazy';
+        const fetchPriority = index === 0 ? ' fetchpriority="high"' : '';
+
         flagCard.innerHTML = `
-            <img src="${flag.url}" alt="${t('flag_image_alt', { name: flag.name })}" width="${FLAG_IMAGE_SOURCE_WIDTH}" height="${FLAG_GRID_IMAGE_HEIGHT}" loading="lazy">
+            <img src="${flag.url}" alt="${t('flag_image_alt', { name: flag.name })}" width="${FLAG_IMAGE_SOURCE_WIDTH}" height="${FLAG_GRID_IMAGE_HEIGHT}" loading="${loading}"${fetchPriority}>
             <h3>${flag.name}</h3>
             <button class="learn-more-btn" data-code="${flag.code}" aria-haspopup="dialog">${t('learn_more')}</button>
         `;
-        
+
         flagGrid.appendChild(flagCard);
     });
     
@@ -1385,9 +1398,13 @@ async function initApp() {
     initDarkMode();
     const initialLanguage = getInitialLanguage();
     await switchLanguage(initialLanguage);
-    await fetchFlags();
+    const loadedFlags = await fetchFlags();
     initializeFilterSections();
-    applyInitialQueryFromUrl();
+    // Only render once the data loaded; on fetch failure fetchFlags returns
+    // undefined and leaves its own error message in the grid.
+    if (loadedFlags) {
+        applyInitialQueryFromUrl();
+    }
 }
 
 if (languageSelect) {
