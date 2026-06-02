@@ -532,7 +532,7 @@ function rebuildFlags() {
     flags = baseFlagInfo.map((baseInfo) => {
         const info = localizeFlagInfo(baseInfo);
         const code = info.shortname;
-        const url = `https://flagcdn.com/w320/${code}.png`;
+        const url = `https://flagcdn.com/w320/${code}.webp`;
         const tags = info.tags || '';
         const colorTags = ['red', 'blue', 'green', 'yellow', 'white', 'black', 'brown', 'purple', 'orange'];
         const colors = colorTags.filter(color => tags.includes(color));

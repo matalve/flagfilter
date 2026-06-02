@@ -217,6 +217,21 @@ test.describe('Flagfilter UI flows', () => {
     await expect(firstImage).toHaveAttribute('loading', 'eager');
   });
 
+  test('flag images are served as WebP', async ({ page }) => {
+    await expect(page.locator('.flag-card img').first())
+      .toHaveAttribute('src', /flagcdn\.com\/w320\/[a-z]+\.webp$/);
+  });
+
+  test('the first flag is preloaded as the LCP image and matches its grid src', async ({ page }) => {
+    const preload = page.locator('link[rel="preload"][as="image"]');
+    await expect(preload).toHaveAttribute('href', 'https://flagcdn.com/w320/ad.webp');
+    await expect(preload).toHaveAttribute('fetchpriority', 'high');
+
+    // The preload must match the rendered src exactly, otherwise the browser fetches twice.
+    await expect(page.locator('.flag-card img').first())
+      .toHaveAttribute('src', 'https://flagcdn.com/w320/ad.webp');
+  });
+
   test('modal Colors line reflects the flag color tags', async ({ page }) => {
     // Argentina gained "yellow" (Sun of May) when the reported color tags were fixed.
     await openFlagModalBySearch(page, 'argentina');
