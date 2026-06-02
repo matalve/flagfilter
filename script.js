@@ -174,46 +174,49 @@ function syncQueryParamFromUiState() {
 
 function applyInitialQueryFromUrl() {
     const rawQuery = getQueryFromUrl();
-    if (!hasTextValue(rawQuery)) {
-        return;
-    }
 
-    const rawWords = rawQuery.trim().split(/\s+/).filter(Boolean);
-    const filterButtons = getFilterButtonsWithQueryMetadata();
-    const matchedButtons = new Set();
-    const remainingSearchTerms = [];
+    if (hasTextValue(rawQuery)) {
+        const rawWords = rawQuery.trim().split(/\s+/).filter(Boolean);
+        const filterButtons = getFilterButtonsWithQueryMetadata();
+        const matchedButtons = new Set();
+        const remainingSearchTerms = [];
 
-    for (let index = 0; index < rawWords.length;) {
-        let matchedEntry = null;
+        for (let index = 0; index < rawWords.length;) {
+            let matchedEntry = null;
 
-        for (let end = rawWords.length; end > index; end -= 1) {
-            const phrase = normalizeQueryValue(rawWords.slice(index, end).join(' '));
-            const entry = filterButtons.find((candidate) => (
-                !matchedButtons.has(candidate.button) && candidate.aliases.has(phrase)
-            ));
+            for (let end = rawWords.length; end > index; end -= 1) {
+                const phrase = normalizeQueryValue(rawWords.slice(index, end).join(' '));
+                const entry = filterButtons.find((candidate) => (
+                    !matchedButtons.has(candidate.button) && candidate.aliases.has(phrase)
+                ));
 
-            if (entry) {
-                matchedEntry = { entry, end };
-                break;
+                if (entry) {
+                    matchedEntry = { entry, end };
+                    break;
+                }
             }
+
+            if (matchedEntry) {
+                matchedButtons.add(matchedEntry.entry.button);
+                index = matchedEntry.end;
+                continue;
+            }
+
+            remainingSearchTerms.push(rawWords[index]);
+            index += 1;
         }
 
-        if (matchedEntry) {
-            matchedButtons.add(matchedEntry.entry.button);
-            index = matchedEntry.end;
-            continue;
-        }
+        matchedButtons.forEach((button) => {
+            button.classList.add('active');
+            updateToggleButtonState(button);
+        });
 
-        remainingSearchTerms.push(rawWords[index]);
-        index += 1;
+        searchInput.value = remainingSearchTerms.join(' ');
     }
 
-    matchedButtons.forEach((button) => {
-        button.classList.add('active');
-        updateToggleButtonState(button);
-    });
-
-    searchInput.value = remainingSearchTerms.join(' ');
+    // Render once, after the initial filter/search state is resolved, so the first
+    // paint (and the eager / high-priority LCP image) reflects the real above-the-fold
+    // flag instead of the unfiltered list. See PR #115.
     applyFilters();
 }
 
@@ -552,8 +555,10 @@ async function fetchFlags() {
         baseFlagInfo = await flagInfoResponse.json();
         rebuildFlags();
         
+        // Don't render here: initApp resolves the initial ?q= filter first, so the
+        // grid renders exactly once with the correct above-the-fold flags (and the
+        // eager / high-priority LCP image lands on the right one). See PR #115.
         filteredFlags = [...flags];
-        renderFlagGrid();
 
         return flags;
     } catch (error) {
@@ -1393,9 +1398,13 @@ async function initApp() {
     initDarkMode();
     const initialLanguage = getInitialLanguage();
     await switchLanguage(initialLanguage);
-    await fetchFlags();
+    const loadedFlags = await fetchFlags();
     initializeFilterSections();
-    applyInitialQueryFromUrl();
+    // Only render once the data loaded; on fetch failure fetchFlags returns
+    // undefined and leaves its own error message in the grid.
+    if (loadedFlags) {
+        applyInitialQueryFromUrl();
+    }
 }
 
 if (languageSelect) {

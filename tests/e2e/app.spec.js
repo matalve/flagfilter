@@ -205,6 +205,18 @@ test.describe('Flagfilter UI flows', () => {
     await expect(laterImage).not.toHaveAttribute('fetchpriority', 'high');
   });
 
+  test('eager/high-priority image follows the initial ?q= filter, not the unfiltered list', async ({ page }) => {
+    // On a filtered landing the grid renders once already-filtered, so the
+    // prioritized LCP image is the filtered first flag (Sweden), not Andorra.
+    await gotoApp(page, 'en', 'blue sweden');
+    await expect(page.locator('.flag-card')).toHaveCount(1);
+
+    const firstImage = page.locator('.flag-card img').first();
+    await expect(firstImage).toHaveAttribute('alt', 'Flag of Sweden');
+    await expect(firstImage).toHaveAttribute('fetchpriority', 'high');
+    await expect(firstImage).toHaveAttribute('loading', 'eager');
+  });
+
   test('modal Colors line reflects the flag color tags', async ({ page }) => {
     // Argentina gained "yellow" (Sun of May) when the reported color tags were fixed.
     await openFlagModalBySearch(page, 'argentina');
