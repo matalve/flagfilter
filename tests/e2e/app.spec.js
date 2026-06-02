@@ -194,6 +194,17 @@ test.describe('Flagfilter UI flows', () => {
     await expect(modalImage).toHaveAttribute('height', '200');
   });
 
+  test('first flag image is eager and high priority for LCP, later ones stay lazy', async ({ page }) => {
+    const firstImage = page.locator('.flag-card img').first();
+    await expect(firstImage).toHaveAttribute('fetchpriority', 'high');
+    await expect(firstImage).toHaveAttribute('loading', 'eager');
+
+    // An image well past the above-the-fold batch is lazy and not prioritized.
+    const laterImage = page.locator('.flag-card img').nth(20);
+    await expect(laterImage).toHaveAttribute('loading', 'lazy');
+    await expect(laterImage).not.toHaveAttribute('fetchpriority', 'high');
+  });
+
   test('modal Colors line reflects the flag color tags', async ({ page }) => {
     // Argentina gained "yellow" (Sun of May) when the reported color tags were fixed.
     await openFlagModalBySearch(page, 'argentina');
