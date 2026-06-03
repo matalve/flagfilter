@@ -68,12 +68,13 @@
             </div>
         </header>
         
+        <main>
         <div class="filters">
             <div class="filter-section" data-section-id="color">
-                <button class="filter-header" type="button" aria-expanded="true" aria-controls="filter-content-color" onclick="toggleFilterSection(this)">
+                <h2 class="filter-heading"><button class="filter-header" type="button" aria-expanded="true" aria-controls="filter-content-color" onclick="toggleFilterSection(this)">
                     <span class="filter-title">Filter by Color</span>
                     <i class="fas fa-chevron-down filter-icon" aria-hidden="true"></i>
-                </button>
+                </button></h2>
                 <div class="filter-content" id="filter-content-color">
                     <div class="color-filters">
                         <button class="filter-btn" data-color="red">Red</button>
@@ -90,13 +91,13 @@
             </div>
             
             <div class="filter-section" data-section-id="more">
-                <button class="filter-header" type="button" aria-expanded="true" aria-controls="filter-content-more" onclick="toggleFilterSection(this)">
+                <h2 class="filter-heading"><button class="filter-header" type="button" aria-expanded="true" aria-controls="filter-content-more" onclick="toggleFilterSection(this)">
                     <span class="filter-title">More filters</span>
                     <i class="fas fa-chevron-down filter-icon" aria-hidden="true"></i>
-                </button>
+                </button></h2>
                 <div class="filter-content" id="filter-content-more">
                     <div class="compact-filter-group">
-                        <h4>Continent</h4>
+                        <h3>Continent</h3>
                         <div class="continent-filters">
                             <button class="filter-btn" data-continent="africa"><i class="fas fa-mountain"></i> Africa</button>
                             <button class="filter-btn" data-continent="asia"><i class="fas fa-dragon"></i> Asia</button>
@@ -108,7 +109,7 @@
                     </div>
 
                     <div class="compact-filter-group">
-                        <h4>Pattern</h4>
+                        <h3>Pattern</h3>
                         <div class="pattern-filters">
                             <button class="filter-btn" data-pattern="cross"><i class="fas fa-plus"></i> Cross</button>
                             <button class="filter-btn" data-pattern="vertical"><i class="fas fa-arrows-alt-v"></i> Vertical</button>
@@ -120,7 +121,7 @@
                     </div>
 
                     <div class="compact-filter-group">
-                        <h4>Symbol</h4>
+                        <h3>Symbol</h3>
                         <div class="symbol-filters">
                             <button class="filter-btn" data-symbol="flag"><i class="fas fa-flag"></i> Flag</button>
                             <button class="filter-btn" data-symbol="sun"><i class="fas fa-sun"></i> Sun</button>
@@ -133,7 +134,7 @@
                     </div>
 
                     <div class="compact-filter-group">
-                        <h4>Motive</h4>
+                        <h3>Motive</h3>
                         <div class="motive-filters">
                             <button class="filter-btn" data-motive="building"><i class="fas fa-building"></i> Building</button>
                             <button class="filter-btn" data-motive="weapon"><i class="fas fa-crosshairs"></i> Weapon</button>
@@ -149,7 +150,7 @@
                     </div>
 
                     <div class="compact-filter-group">
-                        <h4>People or Clothing</h4>
+                        <h3>People or Clothing</h3>
                         <div class="people-filters">
                             <button class="filter-btn" data-people="face"><i class="fas fa-user"></i> Face</button>
                             <button class="filter-btn" data-people="crown"><i class="fas fa-crown"></i> Crown</button>
@@ -160,7 +161,7 @@
                     </div>
 
                     <div class="compact-filter-group">
-                        <h4>Ideology</h4>
+                        <h3>Ideology</h3>
                         <div class="ideology-filters">
                             <button class="filter-btn" data-ideology="christianity"><i class="fas fa-cross"></i> Christianity</button>
                             <button class="filter-btn" data-ideology="islam"><i class="fas fa-mosque"></i> Islam</button>
@@ -172,7 +173,7 @@
                     </div>
 
                     <div class="compact-filter-group">
-                        <h4>Text</h4>
+                        <h3>Text</h3>
                         <div class="text-filters">
                             <button class="filter-btn" data-text="text"><i class="fas fa-font"></i> Text</button>
                             <button class="filter-btn" data-text="motto"><i class="fas fa-quote-right"></i> Motto</button>
@@ -187,6 +188,7 @@
         <div id="flagGrid" class="flag-grid">
             <!-- Flags will be dynamically inserted here -->
         </div>
+        </main>
     </div>
     <div id="infoModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="infoModalTitle" aria-hidden="true">
         <div class="modal-content">
