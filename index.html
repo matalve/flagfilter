@@ -11,6 +11,10 @@
     <meta property="og:description" content="Explore and filter flags from around the world. Search by country name, filter by colors and continents, and discover interesting flag facts.">
     <meta property="og:type" content="website">
     <link rel="canonical" href="https://flagfilter.com/">
+    <!-- Preload the first flag (Andorra) as the LCP image so it is discoverable before
+         the data fetch. The href must match the grid's <img> src exactly (see rebuildFlags
+         in script.js) to avoid a double fetch. -->
+    <link rel="preload" as="image" href="https://flagcdn.com/w320/ad.webp" fetchpriority="high">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
