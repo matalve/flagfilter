@@ -232,6 +232,10 @@ test.describe('Flagfilter UI flows', () => {
       .toHaveAttribute('src', 'https://flagcdn.com/w320/ad.webp');
   });
 
+  test('preconnects to the flag image host', async ({ page }) => {
+    await expect(page.locator('link[rel="preconnect"][href="https://flagcdn.com"]')).toHaveCount(1);
+  });
+
   test('heading levels never skip a level (accessibility heading order)', async ({ page }) => {
     const levels = await page.evaluate(() =>
       [...document.querySelectorAll('h1, h2, h3, h4, h5, h6')]
