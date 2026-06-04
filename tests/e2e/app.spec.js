@@ -232,6 +232,33 @@ test.describe('Flagfilter UI flows', () => {
       .toHaveAttribute('src', 'https://flagcdn.com/w320/ad.webp');
   });
 
+  test('heading levels never skip a level (accessibility heading order)', async ({ page }) => {
+    const levels = await page.evaluate(() =>
+      [...document.querySelectorAll('h1, h2, h3, h4, h5, h6')]
+        .filter((heading) => heading.getClientRects().length > 0)
+        .map((heading) => Number(heading.tagName[1]))
+    );
+
+    expect(levels[0]).toBe(1);
+    for (let i = 1; i < levels.length; i += 1) {
+      expect(levels[i] - levels[i - 1]).toBeLessThanOrEqual(1);
+    }
+  });
+
+  test('the page content is wrapped in a single main landmark', async ({ page }) => {
+    await expect(page.locator('main')).toHaveCount(1);
+    await expect(page.locator('main #flagGrid')).toHaveCount(1);
+  });
+
+  test('filter section heading wraps the toggle and collapse still works', async ({ page }) => {
+    // "More filters" is collapsed by default, hiding its <h3> group headings.
+    const groupHeading = page.locator('.compact-filter-group h3').first();
+    await expect(groupHeading).toBeHidden();
+
+    await page.locator('.filter-section[data-section-id="more"] .filter-header').click();
+    await expect(groupHeading).toBeVisible();
+  });
+
   test('modal Colors line reflects the flag color tags', async ({ page }) => {
     // Argentina gained "yellow" (Sun of May) when the reported color tags were fixed.
     await openFlagModalBySearch(page, 'argentina');

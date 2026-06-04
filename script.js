@@ -588,11 +588,11 @@ function applyStaticTranslations() {
     infoButton.setAttribute('aria-label', t('info_button_aria'));
     darkModeToggle.setAttribute('aria-label', t('dark_mode_aria'));
 
-    const filterHeaders = document.querySelectorAll('.filter-section > .filter-header .filter-title');
+    const filterHeaders = document.querySelectorAll('.filter-section .filter-header .filter-title');
     if (filterHeaders[0]) filterHeaders[0].textContent = t('filter_by_color');
     if (filterHeaders[1]) filterHeaders[1].textContent = t('more_filters');
 
-    const groupHeadings = document.querySelectorAll('.compact-filter-group h4');
+    const groupHeadings = document.querySelectorAll('.compact-filter-group h3');
     const groupHeadingKeys = ['continent', 'pattern', 'symbol', 'motive', 'people_or_clothing', 'ideology', 'text'];
     groupHeadings.forEach((heading, index) => {
         heading.textContent = t(groupHeadingKeys[index]);
@@ -1280,7 +1280,7 @@ function syncFilterSectionState(section) {
 
 // Toggle filter section
 function toggleFilterSection(header) {
-    const section = header.parentElement;
+    const section = header.closest('.filter-section');
     section.classList.toggle('collapsed');
     
     // Save the state to localStorage using a stable key that does not change with translations
