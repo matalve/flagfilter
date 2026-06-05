@@ -248,6 +248,10 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('link[rel="preconnect"][href="https://flagcdn.com"]')).toHaveCount(1);
   });
 
+  test('the main script is deferred (kept off the critical path)', async ({ page }) => {
+    await expect(page.locator('script[src="script.js"][defer]')).toHaveCount(1);
+  });
+
   test('renders icons as inline SVG, not Font Awesome', async ({ page }) => {
     await expect(page.locator('link[href*="font-awesome"]')).toHaveCount(0);
     await expect(page.locator('i.fas')).toHaveCount(0);
