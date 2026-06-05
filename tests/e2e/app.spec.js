@@ -93,6 +93,18 @@ test.describe('Flagfilter UI flows', () => {
     await expect.poll(async () => page.locator('.flag-card').count()).toBeLessThan(initialCards);
   });
 
+  test('communism ideology filter is enabled and returns its tagged flags', async ({ page }) => {
+    // Expand "More filters" (collapsed by default) to reach the ideology buttons.
+    await page.locator('.filter-section[data-section-id="more"] .filter-header').click();
+
+    const communism = page.locator('.filter-btn[data-ideology="communism"]');
+    await expect(communism).toBeEnabled(); // was permanently disabled when no flag carried the tag
+    await communism.click();
+
+    await expect(page.locator('.flag-card')).not.toHaveCount(0);
+    await expect(page.locator('.flag-card h3', { hasText: /^China$/ })).toHaveCount(1);
+  });
+
   test('reset clears combined search and filter state', async ({ page }) => {
     const searchInput = page.locator('#searchInput');
     const yellowFilter = page.locator('.filter-btn[data-color="yellow"]');
