@@ -60,6 +60,15 @@
     border: 0;
 }
 
+.icon {
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+    display: inline-block;
+    vertical-align: -0.125em;
+    flex-shrink: 0;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     margin: 0;
@@ -168,7 +177,7 @@ header::before {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.language-select-wrapper i {
+.language-select-wrapper .icon {
     font-size: 0.9rem;
 }
 
@@ -357,7 +366,7 @@ h1 {
     transform: translateY(-1px);
 }
 
-.reset-filters-btn i {
+.reset-filters-btn .icon {
     font-size: 0.85rem;
 }
 
@@ -550,11 +559,11 @@ h1 {
     border-color: var(--primary-color);
 }
 
-.filter-btn.active i {
+.filter-btn.active .icon {
     color: white;
 }
 
-.filter-btn i {
+.filter-btn .icon {
     font-size: 0.9rem;
     min-width: 1rem;
 }
@@ -663,7 +672,7 @@ h1 {
         padding: 0.35rem 0.5rem;
     }
 
-    .filter-btn i {
+    .filter-btn .icon {
         font-size: 0.8rem;
     }
 }
@@ -821,7 +830,7 @@ h1 {
     transition: all 0.2s ease;
 }
 
-.continent-filters .filter-btn i {
+.continent-filters .filter-btn .icon {
     font-size: 16px;
     transition: transform 0.2s ease;
 }
@@ -832,7 +841,7 @@ h1 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.continent-filters .filter-btn:hover i {
+.continent-filters .filter-btn:hover .icon {
     transform: scale(1.2);
 }
 
@@ -842,32 +851,32 @@ h1 {
     border-color: var(--primary-color);
 }
 
-.continent-filters .filter-btn.active i {
+.continent-filters .filter-btn.active .icon {
     color: white;
 }
 
 /* Specific continent button colors */
-.continent-filters .filter-btn[data-continent="africa"] i {
+.continent-filters .filter-btn[data-continent="africa"] .icon {
     color: #e67e22; /* Orange for Africa (savannah) */
 }
 
-.continent-filters .filter-btn[data-continent="asia"] i {
+.continent-filters .filter-btn[data-continent="asia"] .icon {
     color: #e74c3c; /* Red for Asia (dragon) */
 }
 
-.continent-filters .filter-btn[data-continent="europe"] i {
+.continent-filters .filter-btn[data-continent="europe"] .icon {
     color: #3498db; /* Blue for Europe (landmarks) */
 }
 
-.continent-filters .filter-btn[data-continent="northAmerica"] i {
+.continent-filters .filter-btn[data-continent="northAmerica"] .icon {
     color: #2ecc71; /* Green for North America (eagle) */
 }
 
-.continent-filters .filter-btn[data-continent="southAmerica"] i {
+.continent-filters .filter-btn[data-continent="southAmerica"] .icon {
     color: #27ae60; /* Dark green for South America (rainforest) */
 }
 
-.continent-filters .filter-btn[data-continent="oceania"] i {
+.continent-filters .filter-btn[data-continent="oceania"] .icon {
     color: #1abc9c; /* Teal for Oceania (ocean) */
 }
 
@@ -1091,7 +1100,7 @@ h1 {
     text-align: center;
 }
 
-.compact-filter-group .filter-btn i {
+.compact-filter-group .filter-btn .icon {
     margin-right: 0.3rem;
     font-size: 0.8rem;
 }
@@ -1110,7 +1119,7 @@ h1 {
     min-width: 80px;
 }
 
-.filter-btn i {
+.filter-btn .icon {
     margin-right: 0.3rem;
     font-size: 0.8rem;
 }

@@ -236,6 +236,67 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('link[rel="preconnect"][href="https://flagcdn.com"]')).toHaveCount(1);
   });
 
+  test('renders icons as inline SVG, not Font Awesome', async ({ page }) => {
+    await expect(page.locator('link[href*="font-awesome"]')).toHaveCount(0);
+    await expect(page.locator('i.fas')).toHaveCount(0);
+    // Sprite symbols exist and buttons reference them, including the chosen swaps.
+    await expect(page.locator('svg symbol#i-hippo')).toHaveCount(1);
+    await expect(page.locator('.filter-btn[data-continent="africa"] use')).toHaveAttribute('href', '#i-hippo');
+    await expect(page.locator('.filter-btn[data-continent="southAmerica"] use')).toHaveAttribute('href', '#i-frog');
+    await expect(page.locator('.filter-btn[data-ideology="buddhism"] use')).toHaveAttribute('href', '#i-dharmachakra');
+    await expect(page.locator('.filter-btn[data-ideology="hinduism"] use')).toHaveAttribute('href', '#i-om');
+  });
+
+  test('dark mode toggle still works with inline-SVG icons', async ({ page }) => {
+    await expect(page.locator('.dark-mode-toggle svg.sun-icon')).toHaveCount(1);
+    await expect(page.locator('.dark-mode-toggle svg.moon-icon')).toHaveCount(1);
+
+    const body = page.locator('body');
+    const wasDark = await body.evaluate((b) => b.classList.contains('dark-mode'));
+    await page.locator('#darkModeToggle').click();
+    const nowDark = await body.evaluate((b) => b.classList.contains('dark-mode'));
+    expect(nowDark).toBe(!wasDark);
+  });
+
+  test('filter and reset icons stay inline SVG after a language switch', async ({ page }) => {
+    await page.locator('#languageSelect').selectOption('es');
+    // setButtonLabel re-attaches the SVG icon
+    await expect(page.locator('.filter-btn[data-continent="africa"] use')).toHaveAttribute('href', '#i-hippo');
+    // applyStaticTranslations rebuilds the reset button's inner HTML with the SVG icon
+    await expect(page.locator('#resetFiltersButton svg.icon use')).toHaveAttribute('href', '#i-rotate-left');
+  });
+
+  test('every icon reference resolves to a sprite symbol', async ({ page }) => {
+    // Guards the common regression: an icon is referenced but its <symbol> is
+    // missing from the sprite (e.g. a new icon added without regenerating it).
+    const { refCount, missing } = await page.evaluate(() => {
+      const refs = [...document.querySelectorAll('use')]
+        .map((u) => (u.getAttribute('href') || '').replace(/^#/, ''))
+        .filter(Boolean);
+      const symbols = new Set([...document.querySelectorAll('symbol')].map((s) => s.id));
+      return { refCount: refs.length, missing: [...new Set(refs)].filter((id) => !symbols.has(id)) };
+    });
+    expect(refCount).toBeGreaterThan(0);
+    expect(missing).toEqual([]);
+  });
+
+  test('no sprite symbol is empty (no blank icons)', async ({ page }) => {
+    // Catches a botched sprite regeneration where a <symbol> exists but lost its geometry.
+    const empty = await page.evaluate(() =>
+      [...document.querySelectorAll('symbol')]
+        .filter((s) => s.querySelector('path, polygon, circle, rect, g') === null)
+        .map((s) => s.id)
+    );
+    expect(empty).toEqual([]);
+  });
+
+  test('a rendered icon has a non-zero size', async ({ page }) => {
+    // Guards against a CSS regression collapsing .icon to 0×0.
+    const box = await page.locator('#infoButton .icon').boundingBox();
+    expect(box.width).toBeGreaterThan(0);
+    expect(box.height).toBeGreaterThan(0);
+  });
+
   test('heading levels never skip a level (accessibility heading order)', async ({ page }) => {
     const levels = await page.evaluate(() =>
       [...document.querySelectorAll('h1, h2, h3, h4, h5, h6')]
