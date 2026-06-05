@@ -72,7 +72,7 @@ function hasTextValue(value) {
 }
 
 function setButtonLabel(button, label) {
-    const icon = button.querySelector('i');
+    const icon = button.querySelector('.icon');
     if (!icon) {
         button.textContent = label;
         return;
@@ -579,7 +579,7 @@ function applyStaticTranslations() {
     document.title = t('page_title');
     searchInput.placeholder = t('search_placeholder');
     searchInput.setAttribute('aria-label', t('search_input_aria'));
-    resetFiltersButton.innerHTML = `<i class="fas fa-rotate-left"></i> ${t('reset_button')}`;
+    resetFiltersButton.innerHTML = `<svg class="icon" aria-hidden="true"><use href="#i-rotate-left"></use></svg> ${t('reset_button')}`;
     resetFiltersButton.setAttribute('aria-label', t('reset_button_aria'));
 
     const infoButton = document.getElementById('infoButton');

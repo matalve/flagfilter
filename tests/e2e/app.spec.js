@@ -236,6 +236,36 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('link[rel="preconnect"][href="https://flagcdn.com"]')).toHaveCount(1);
   });
 
+  test('renders icons as inline SVG, not Font Awesome', async ({ page }) => {
+    await expect(page.locator('link[href*="font-awesome"]')).toHaveCount(0);
+    await expect(page.locator('i.fas')).toHaveCount(0);
+    // Sprite symbols exist and buttons reference them, including the chosen swaps.
+    await expect(page.locator('svg symbol#i-hippo')).toHaveCount(1);
+    await expect(page.locator('.filter-btn[data-continent="africa"] use')).toHaveAttribute('href', '#i-hippo');
+    await expect(page.locator('.filter-btn[data-continent="southAmerica"] use')).toHaveAttribute('href', '#i-frog');
+    await expect(page.locator('.filter-btn[data-ideology="buddhism"] use')).toHaveAttribute('href', '#i-dharmachakra');
+    await expect(page.locator('.filter-btn[data-ideology="hinduism"] use')).toHaveAttribute('href', '#i-om');
+  });
+
+  test('dark mode toggle still works with inline-SVG icons', async ({ page }) => {
+    await expect(page.locator('.dark-mode-toggle svg.sun-icon')).toHaveCount(1);
+    await expect(page.locator('.dark-mode-toggle svg.moon-icon')).toHaveCount(1);
+
+    const body = page.locator('body');
+    const wasDark = await body.evaluate((b) => b.classList.contains('dark-mode'));
+    await page.locator('#darkModeToggle').click();
+    const nowDark = await body.evaluate((b) => b.classList.contains('dark-mode'));
+    expect(nowDark).toBe(!wasDark);
+  });
+
+  test('filter and reset icons stay inline SVG after a language switch', async ({ page }) => {
+    await page.locator('#languageSelect').selectOption('es');
+    // setButtonLabel re-attaches the SVG icon
+    await expect(page.locator('.filter-btn[data-continent="africa"] use')).toHaveAttribute('href', '#i-hippo');
+    // applyStaticTranslations rebuilds the reset button's inner HTML with the SVG icon
+    await expect(page.locator('#resetFiltersButton svg.icon use')).toHaveAttribute('href', '#i-rotate-left');
+  });
+
   test('heading levels never skip a level (accessibility heading order)', async ({ page }) => {
     const levels = await page.evaluate(() =>
       [...document.querySelectorAll('h1, h2, h3, h4, h5, h6')]
