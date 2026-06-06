@@ -80,6 +80,8 @@
   "no_results": "Ninguna bandera coincide con tu búsqueda.",
   "learn_more": "Saber más",
   "flag_image_alt": "Bandera de {name}",
+  "shop_flag": "Comprar la bandera de {name}",
+  "amazon_disclosure": "Como Afiliado de Amazon, gano con las compras que cumplen los requisitos.",
   "flag_counter_one": "Mostrando {count} bandera",
   "flag_counter_other": "Mostrando {count} banderas",
   "no_information_available": "No hay información disponible.",

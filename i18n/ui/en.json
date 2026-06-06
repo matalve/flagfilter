@@ -80,6 +80,8 @@
   "no_results": "No flags match your search criteria.",
   "learn_more": "Learn more",
   "flag_image_alt": "Flag of {name}",
+  "shop_flag": "Shop the {name} flag",
+  "amazon_disclosure": "As an Amazon Associate I earn from qualifying purchases.",
   "flag_counter_one": "Showing {count} flag",
   "flag_counter_other": "Showing {count} flags",
   "no_information_available": "No information available.",

@@ -340,6 +340,28 @@ test.describe('Flagfilter UI flows', () => {
     await expect(groupHeading).toBeVisible();
   });
 
+  test('flag modal has an Amazon affiliate shop link with disclosure', async ({ page }) => {
+    await openFlagModalBySearch(page, 'sweden');
+    const shop = page.locator('.shop-link');
+    await expect(shop).toHaveAttribute('href', 'https://www.amazon.com/s?k=Sweden%20flag&tag=flagfilter-20');
+    await expect(shop).toHaveAttribute('rel', /sponsored/);
+    await expect(page.locator('.affiliate-disclosure')).toContainText('Amazon Associate');
+  });
+
+  test('shop link uses the English flag name even in the Spanish UI', async ({ page }) => {
+    await gotoApp(page, 'es');
+    await openFlagModalBySearch(page, 'sweden');
+    const shop = page.locator('.shop-link');
+    await expect(shop).toHaveAttribute('href', /k=Sweden%20flag&tag=flagfilter-20/); // English search query
+    await expect(shop).toContainText('Suecia'); // Spanish label
+  });
+
+  test('shop link strips parenthetical aliases from the search query', async ({ page }) => {
+    await openFlagModalBySearch(page, 'timor-leste');
+    await expect(page.locator('.shop-link'))
+      .toHaveAttribute('href', 'https://www.amazon.com/s?k=Timor-Leste%20flag&tag=flagfilter-20');
+  });
+
   test('modal Colors line reflects the flag color tags', async ({ page }) => {
     // Argentina gained "yellow" (Sun of May) when the reported color tags were fixed.
     await openFlagModalBySearch(page, 'argentina');
