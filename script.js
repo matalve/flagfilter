@@ -15,6 +15,7 @@ let currentLanguage = 'en';
 const SUPPORTED_LANGUAGES = ['en', 'es'];
 const DEFAULT_LANGUAGE = 'en';
 const QUERY_FILTER_DATA_KEYS = ['color', 'continent', 'pattern', 'symbol', 'motive', 'people', 'ideology', 'text'];
+const AMAZON_ASSOCIATE_TAG = 'flagfilter-20';
 
 function getLanguageFromUrl() {
     const lang = new URLSearchParams(window.location.search).get('lang');
@@ -867,6 +868,12 @@ function showFlagInfoModal(flag) {
     const processedSymbolism = processHtmlContent(flag.info.symbolism || t('no_information_available'));
     const processedFunfacts = processHtmlContent(flag.info.funfacts || t('no_fun_facts_available'));
     
+    // Amazon affiliate search link — uses the English base name (so the query works
+    // in any UI language) with parenthetical aliases stripped. See #126.
+    const baseInfo = getBaseFlagInfoByCode(flag.code);
+    const englishName = (baseInfo?.name || flag.name).replace(/\s*\(.*?\)\s*/g, ' ').trim();
+    const shopUrl = `https://www.amazon.com/s?k=${encodeURIComponent(englishName + ' flag')}&tag=${AMAZON_ASSOCIATE_TAG}`;
+
     // Add flag information
     flagInfo.innerHTML = `
         <h2 id="flagModalTitle">${flag.name}</h2>
@@ -876,8 +883,10 @@ function showFlagInfoModal(flag) {
         <p><strong>${t('colors_label')}:</strong> ${flag.colors.join(', ')}</p>
         <div class="modal-actions">
             <a href="${flag.info.wikipedialink}" target="_blank" rel="noopener noreferrer" class="wiki-link">${t('read_more_wikipedia')}</a>
+            <a href="${shopUrl}" target="_blank" rel="noopener noreferrer sponsored nofollow" class="shop-link">${t('shop_flag', { name: flag.name })}</a>
             <button class="report-issue-btn" aria-expanded="false" aria-controls="reportFormPanel">${t('report_issue')}</button>
         </div>
+        <p class="affiliate-disclosure">${t('amazon_disclosure')}</p>
     `;
     
     // Create report issue form (initially hidden)
