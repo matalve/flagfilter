@@ -206,6 +206,13 @@ test.describe('Flagfilter UI flows', () => {
     await expect(modalImage).toHaveAttribute('height', '200');
   });
 
+  test('modal flag image uses a higher-resolution (w640) source than the grid', async ({ page }) => {
+    // Grid stays w320 for performance; the modal uses w640 for a crisp detail view.
+    await expect(page.locator('.flag-card img').first()).toHaveAttribute('src', /\/w320\//);
+    await openFlagModalBySearch(page, 'sweden');
+    await expect(page.locator('.modal-flag-image')).toHaveAttribute('src', /\/w640\/se\.webp$/);
+  });
+
   test('first flag image is eager and high priority for LCP, later ones stay lazy', async ({ page }) => {
     const firstImage = page.locator('.flag-card img').first();
     await expect(firstImage).toHaveAttribute('fetchpriority', 'high');
