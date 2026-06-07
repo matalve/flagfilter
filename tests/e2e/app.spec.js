@@ -373,14 +373,22 @@ test.describe('Flagfilter UI flows', () => {
     // Argentina gained "yellow" (Sun of May) when the reported color tags were fixed.
     await openFlagModalBySearch(page, 'argentina');
     const argentinaColors = page.locator('.flag-info-details p', { hasText: 'Colors:' });
-    await expect(argentinaColors).toContainText('yellow');
+    await expect(argentinaColors).toContainText('Yellow'); // localized label (was raw "yellow")
   });
 
   test('modal Colors line surfaces brown for the Cocos Islands', async ({ page }) => {
     // "brown" was promoted to a recognized color so the Cocos palm tree shows up.
     await openFlagModalBySearch(page, 'cocos');
     const cocosColors = page.locator('.flag-info-details p', { hasText: 'Colors:' });
-    await expect(cocosColors).toContainText('brown');
+    await expect(cocosColors).toContainText('Brown');
+  });
+
+  test('modal Colors line is localized in the Spanish UI', async ({ page }) => {
+    await gotoApp(page, 'es');
+    await openFlagModalBySearch(page, 'sweden');
+    const colors = page.locator('.flag-info-details p', { hasText: 'Colores:' });
+    await expect(colors).toContainText('Azul'); // localized, not the English "blue"
+    await expect(colors).not.toContainText('blue');
   });
 
   test('English modal content renders inline flag links', async ({ page }) => {
