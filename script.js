@@ -848,7 +848,10 @@ function showFlagInfoModal(flag) {
     
     // Create flag image
     const flagImage = document.createElement('img');
-    flagImage.src = flag.url;
+    // Use a higher-resolution source for the modal — it's displayed up to 400px wide
+    // (more on HiDPI screens), so w320 looked soft. The grid keeps w320 for performance;
+    // this w640 fetch only happens when a flag is opened (lazy, not the LCP image).
+    flagImage.src = flag.url.replace('/w320/', '/w640/');
     flagImage.alt = t('flag_image_alt', { name: flag.name });
     flagImage.className = 'modal-flag-image';
 
