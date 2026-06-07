@@ -883,7 +883,7 @@ function showFlagInfoModal(flag) {
         <p><strong>${t('adopted_label')}:</strong> ${flag.info.adopted || t('unknown')}</p>
         <p><strong>${t('symbolism_label')}:</strong> ${processedSymbolism}</p>
         <p><strong>${t('fun_facts_label')}:</strong> ${processedFunfacts}</p>
-        <p><strong>${t('colors_label')}:</strong> ${flag.colors.join(', ')}</p>
+        <p><strong>${t('colors_label')}:</strong> ${flag.colors.map((color) => t(`color_${color}`)).join(', ')}</p>
         <div class="modal-actions">
             <a href="${flag.info.wikipedialink}" target="_blank" rel="noopener noreferrer" class="wiki-link">${t('read_more_wikipedia')}</a>
             <a href="${shopUrl}" target="_blank" rel="noopener noreferrer sponsored nofollow" class="shop-link">${t('shop_flag', { name: flag.name })}</a>
