@@ -1312,6 +1312,13 @@ function initializeFilterSections() {
             section.classList.add('collapsed');
         }
         syncFilterSectionState(section);
+
+        // Bind the collapse toggle here instead of an inline onclick, so the CSP can
+        // use a strict script-src 'self' (no 'unsafe-inline').
+        const header = section.querySelector('.filter-header');
+        if (header) {
+            header.addEventListener('click', () => toggleFilterSection(header));
+        }
     });
 }
 
