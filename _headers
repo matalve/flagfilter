@@ -6,13 +6,15 @@
 # base-uri/form-action/frame-ancestors/object-src. Trusted Types is out of scope (the
 # app uses innerHTML), so inline-script XSS is not blocked — acceptable here since the
 # page only renders first-party data.
+# fonts.googleapis.com / fonts.gstatic.com are allowed for the case where Cloudflare
+# Fonts falls back to (or is disabled and serves) the original Google Fonts <link>.
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Cross-Origin-Opener-Policy: same-origin
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' https://flagcdn.com data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' https://flagcdn.com data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests
 
 /index.html
   Cache-Control: public, max-age=0, must-revalidate
