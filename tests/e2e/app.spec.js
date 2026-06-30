@@ -125,6 +125,25 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('.flag-card')).toHaveCount(initialCards);
   });
 
+  test('the site title is a keyboard-focusable button', async ({ page }) => {
+    const titleReset = page.locator('#titleReset');
+    await expect(titleReset).toHaveRole('button');
+    await expect(titleReset).toHaveText('Flagfilter');
+    await titleReset.focus();
+    await expect(titleReset).toBeFocused();
+  });
+
+  test('clicking the site title resets search, filters and the q URL parameter', async ({ page }) => {
+    await gotoApp(page, 'en', 'blue sweden');
+    await expect(page.locator('.filter-btn[data-color="blue"]')).toHaveClass(/active/);
+
+    await page.locator('#titleReset').click();
+
+    await expect(page.locator('#searchInput')).toHaveValue('');
+    await expect(page.locator('.filter-btn[data-color="blue"]')).not.toHaveClass(/active/);
+    await expect.poll(async () => new URL(await page.url()).searchParams.get('q')).toBeNull();
+  });
+
   test('switching to Spanish updates key UI labels', async ({ page }) => {
     await page.locator('#languageSelect').selectOption('es');
 

@@ -264,6 +264,30 @@ h1 {
     letter-spacing: -0.5px;
 }
 
+/* The site title doubles as a reset control; a <button> keeps it keyboard-operable
+   while inheriting the <h1>'s look so it stays visually identical. */
+.title-reset {
+    font: inherit;
+    color: inherit;
+    letter-spacing: inherit;
+    text-shadow: inherit;
+    background: none;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+.title-reset:hover {
+    opacity: 0.85;
+}
+
+.title-reset:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
 .dark-mode-toggle {
     background: rgba(255, 255, 255, 0.2);
     border: none;

@@ -583,6 +583,12 @@ function applyStaticTranslations() {
     resetFiltersButton.innerHTML = `<svg class="icon" aria-hidden="true"><use href="#i-rotate-left"></use></svg> ${t('reset_button')}`;
     resetFiltersButton.setAttribute('aria-label', t('reset_button_aria'));
 
+    const titleReset = document.getElementById('titleReset');
+    if (titleReset) {
+        titleReset.setAttribute('aria-label', t('title_reset_aria'));
+        titleReset.title = t('reset_button_aria');
+    }
+
     const infoButton = document.getElementById('infoButton');
     const darkModeToggle = document.getElementById('darkModeToggle');
     const infoModal = document.getElementById('infoModal');
@@ -1353,6 +1359,14 @@ function isEditableTarget(target) {
 searchInput.addEventListener('input', (e) => handleSearch(e.target.value));
 if (resetFiltersButton) {
     resetFiltersButton.addEventListener('click', resetAllFilters);
+}
+
+const titleReset = document.getElementById('titleReset');
+if (titleReset) {
+    titleReset.addEventListener('click', () => {
+        resetAllFilters();
+        window.scrollTo(0, 0);
+    });
 }
 
 // Update event listeners for all filter types
