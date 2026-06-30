@@ -583,6 +583,12 @@ function applyStaticTranslations() {
     resetFiltersButton.innerHTML = `<svg class="icon" aria-hidden="true"><use href="#i-rotate-left"></use></svg> ${t('reset_button')}`;
     resetFiltersButton.setAttribute('aria-label', t('reset_button_aria'));
 
+    const titleReset = document.getElementById('titleReset');
+    if (titleReset) {
+        titleReset.setAttribute('aria-label', t('title_reset_aria'));
+        titleReset.title = t('reset_button_aria');
+    }
+
     const infoButton = document.getElementById('infoButton');
     const darkModeToggle = document.getElementById('darkModeToggle');
     const infoModal = document.getElementById('infoModal');
@@ -1302,6 +1308,19 @@ function toggleFilterSection(header) {
     localStorage.setItem(`filterSection_${sectionId}`, isCollapsed);
 }
 
+// Collapse the filter panels back to their default layout (the advanced "More filters"
+// section closed, the rest open). Used by the title reset so the page returns to a clean
+// state; the persisted preference is updated so a later reload stays consistent.
+function resetFilterSectionsToDefault() {
+    document.querySelectorAll('.filter-section').forEach(section => {
+        const sectionId = section.dataset.sectionId;
+        const shouldCollapse = sectionId === 'more';
+        section.classList.toggle('collapsed', shouldCollapse);
+        syncFilterSectionState(section);
+        localStorage.setItem(`filterSection_${sectionId}`, shouldCollapse);
+    });
+}
+
 // Initialize filter sections from localStorage
 function initializeFilterSections() {
     document.querySelectorAll('.filter-section').forEach(section => {
@@ -1353,6 +1372,15 @@ function isEditableTarget(target) {
 searchInput.addEventListener('input', (e) => handleSearch(e.target.value));
 if (resetFiltersButton) {
     resetFiltersButton.addEventListener('click', resetAllFilters);
+}
+
+const titleReset = document.getElementById('titleReset');
+if (titleReset) {
+    titleReset.addEventListener('click', () => {
+        resetAllFilters();
+        resetFilterSectionsToDefault();
+        window.scrollTo(0, 0);
+    });
 }
 
 // Update event listeners for all filter types

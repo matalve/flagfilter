@@ -4,6 +4,7 @@
   "search_input_aria": "Search flags by country name",
   "reset_button": "Reset",
   "reset_button_aria": "Reset filters",
+  "title_reset_aria": "Flagfilter, reset filters",
   "info_button_aria": "Information",
   "dark_mode_aria": "Toggle dark mode",
   "filter_by_color": "Filter by Color",
