@@ -133,14 +133,20 @@ test.describe('Flagfilter UI flows', () => {
     await expect(titleReset).toBeFocused();
   });
 
-  test('clicking the site title resets search, filters and the q URL parameter', async ({ page }) => {
+  test('clicking the site title resets search, filters, expanded sections and the q URL parameter', async ({ page }) => {
     await gotoApp(page, 'en', 'blue sweden');
     await expect(page.locator('.filter-btn[data-color="blue"]')).toHaveClass(/active/);
+
+    // Expand "More filters" (collapsed by default) to confirm the title also collapses it.
+    const moreSection = page.locator('.filter-section[data-section-id="more"]');
+    await moreSection.locator('.filter-header').click();
+    await expect(moreSection).not.toHaveClass(/collapsed/);
 
     await page.locator('#titleReset').click();
 
     await expect(page.locator('#searchInput')).toHaveValue('');
     await expect(page.locator('.filter-btn[data-color="blue"]')).not.toHaveClass(/active/);
+    await expect(moreSection).toHaveClass(/collapsed/);
     await expect.poll(async () => new URL(await page.url()).searchParams.get('q')).toBeNull();
   });
 

@@ -1308,6 +1308,19 @@ function toggleFilterSection(header) {
     localStorage.setItem(`filterSection_${sectionId}`, isCollapsed);
 }
 
+// Collapse the filter panels back to their default layout (the advanced "More filters"
+// section closed, the rest open). Used by the title reset so the page returns to a clean
+// state; the persisted preference is updated so a later reload stays consistent.
+function resetFilterSectionsToDefault() {
+    document.querySelectorAll('.filter-section').forEach(section => {
+        const sectionId = section.dataset.sectionId;
+        const shouldCollapse = sectionId === 'more';
+        section.classList.toggle('collapsed', shouldCollapse);
+        syncFilterSectionState(section);
+        localStorage.setItem(`filterSection_${sectionId}`, shouldCollapse);
+    });
+}
+
 // Initialize filter sections from localStorage
 function initializeFilterSections() {
     document.querySelectorAll('.filter-section').forEach(section => {
@@ -1365,6 +1378,7 @@ const titleReset = document.getElementById('titleReset');
 if (titleReset) {
     titleReset.addEventListener('click', () => {
         resetAllFilters();
+        resetFilterSectionsToDefault();
         window.scrollTo(0, 0);
     });
 }
