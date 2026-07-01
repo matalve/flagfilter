@@ -1379,7 +1379,6 @@ if (titleReset) {
     titleReset.addEventListener('click', () => {
         resetAllFilters();
         resetFilterSectionsToDefault();
-        window.scrollTo(0, 0);
     });
 }
 
