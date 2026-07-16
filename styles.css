@@ -419,6 +419,7 @@ h1 {
     font-size: 1.1rem;
     line-height: 1;
     pointer-events: none;
+    -webkit-user-select: none;
     user-select: none;
 }
 
@@ -448,6 +449,7 @@ h1 {
     align-items: center;
     padding: 1rem 1.5rem;
     cursor: pointer;
+    -webkit-user-select: none;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
     transition: background-color 0.2s ease;
@@ -723,7 +725,6 @@ h1 {
     box-shadow: 0 4px 6px var(--shadow-color);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     position: relative;
-    backdrop-filter: blur(8px);
     border: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
