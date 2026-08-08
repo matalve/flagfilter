@@ -2,6 +2,7 @@
   {
     "tags": "andorra blue yellow red animal text vertical christianity",
     "shortname": "ad",
+    "continent": "europe",
     "name": "Andorra",
     "proportion": "7:10",
     "adopted": "1971",
@@ -12,6 +13,7 @@
   {
     "tags": "united arab emirates red green white black horizontal pan-arab",
     "shortname": "ae",
+    "continent": "asia",
     "name": "United Arab Emirates",
     "proportion": "1:2",
     "adopted": "1971",
@@ -22,6 +24,7 @@
   {
     "tags": "afghanistan white black text motto name flag building islam",
     "shortname": "af",
+    "continent": "asia",
     "name": "Afghanistan",
     "proportion": "1:2",
     "adopted": "2021",
@@ -32,6 +35,7 @@
   {
     "tags": "antigua barbuda red black blue white sun triangle",
     "shortname": "ag",
+    "continent": "northAmerica",
     "name": "Antigua and Barbuda",
     "proportion": "2:3",
     "adopted": "1967",
@@ -42,6 +46,7 @@
   {
     "tags": "anguilla blue red white orange cross british animal",
     "shortname": "ai",
+    "continent": "northAmerica",
     "name": "Anguilla",
     "proportion": "1:2",
     "adopted": "1990",
@@ -52,6 +57,7 @@
   {
     "tags": "albania red black bird animal",
     "shortname": "al",
+    "continent": "europe",
     "name": "Albania",
     "proportion": "5:7",
     "adopted": "2002",
@@ -62,6 +68,7 @@
   {
     "tags": "armenia red blue orange horizontal christianity",
     "shortname": "am",
+    "continent": "asia",
     "name": "Armenia",
     "proportion": "1:2",
     "adopted": "1990",
@@ -72,6 +79,7 @@
   {
     "tags": "angola red black star weapon horizontal",
     "shortname": "ao",
+    "continent": "africa",
     "name": "Angola",
     "proportion": "2:3",
     "adopted": "1975",
@@ -92,6 +100,7 @@
   {
     "tags": "argentina blue white yellow sun horizontal face",
     "shortname": "ar",
+    "continent": "southAmerica",
     "name": "Argentina",
     "proportion": "5:8",
     "adopted": "1861",
@@ -102,6 +111,7 @@
   {
     "tags": "american samoa blue white triangle red bird animal weapon",
     "shortname": "as",
+    "continent": "oceania",
     "name": "American Samoa",
     "proportion": "10:19",
     "adopted": "1960",
@@ -112,6 +122,7 @@
   {
     "tags": "austria red white horizontal",
     "shortname": "at",
+    "continent": "europe",
     "name": "Austria",
     "proportion": "2:3",
     "adopted": "1230",
@@ -122,6 +133,7 @@
   {
     "tags": "australia blue white red cross british star christianity",
     "shortname": "au",
+    "continent": "oceania",
     "name": "Australia",
     "proportion": "1:2",
     "adopted": "1908",
@@ -132,6 +144,7 @@
   {
     "tags": "aruba blue yellow red white star horizontal whitney_smith",
     "shortname": "aw",
+    "continent": "northAmerica",
     "name": "Aruba",
     "proportion": "2:3",
     "adopted": "1976",
@@ -142,6 +155,7 @@
   {
     "tags": "åland islands aland blue yellow red cross christianity",
     "shortname": "ax",
+    "continent": "europe",
     "name": "Åland Islands",
     "proportion": "17:26",
     "adopted": "1954",
@@ -152,6 +166,7 @@
   {
     "tags": "azerbaijan blue red green moon star horizontal islam",
     "shortname": "az",
+    "continent": "asia",
     "name": "Azerbaijan",
     "proportion": "1:2",
     "adopted": "1991",
@@ -162,6 +177,7 @@
   {
     "tags": "bosnia and herzegovina blue yellow triangle star",
     "shortname": "ba",
+    "continent": "europe",
     "name": "Bosnia and Herzegovina",
     "proportion": "1:2",
     "adopted": "2001",
@@ -172,6 +188,7 @@
   {
     "tags": "barbados blue yellow weapon vertical",
     "shortname": "bb",
+    "continent": "northAmerica",
     "name": "Barbados",
     "proportion": "2:3",
     "adopted": "1966",
@@ -182,6 +199,7 @@
   {
     "tags": "bangladesh green red circle",
     "shortname": "bd",
+    "continent": "asia",
     "name": "Bangladesh",
     "proportion": "3:5",
     "adopted": "1972",
@@ -192,6 +210,7 @@
   {
     "tags": "belgium black yellow red vertical",
     "shortname": "be",
+    "continent": "europe",
     "name": "Belgium",
     "proportion": "13:15",
     "adopted": "1831",
@@ -202,6 +221,7 @@
   {
     "tags": "burkina faso red green yellow star horizontal pan-african",
     "shortname": "bf",
+    "continent": "africa",
     "name": "Burkina Faso",
     "proportion": "2:3",
     "adopted": "1984",
@@ -212,6 +232,7 @@
   {
     "tags": "bulgaria white green red horizontal",
     "shortname": "bg",
+    "continent": "europe",
     "name": "Bulgaria",
     "proportion": "3:5",
     "adopted": "1990",
@@ -222,6 +243,7 @@
   {
     "tags": "bahrain white red triangle tool islam",
     "shortname": "bh",
+    "continent": "asia",
     "name": "Bahrain",
     "proportion": "3:5",
     "adopted": "2002",
@@ -232,6 +254,7 @@
   {
     "tags": "burundi green red white cross star triangle circle diagonal",
     "shortname": "bi",
+    "continent": "africa",
     "name": "Burundi",
     "proportion": "3:5",
     "adopted": "1982",
@@ -242,6 +265,7 @@
   {
     "tags": "benin green yellow red horizontal pan-african",
     "shortname": "bj",
+    "continent": "africa",
     "name": "Benin",
     "proportion": "2:3",
     "adopted": "1959",
@@ -252,6 +276,7 @@
   {
     "tags": "saint barthélemy barthelemy white blue red yellow horizontal animal bird crown building text cross fleur-de-lis star ribbon",
     "shortname": "bl",
+    "continent": "northAmerica",
     "name": "Saint Barthélemy",
     "proportion": "2:3",
     "adopted": "Unofficial",
@@ -262,6 +287,7 @@
   {
     "tags": "bermuda red blue white cross british animal boat waves vegetation",
     "shortname": "bm",
+    "continent": "northAmerica",
     "name": "Bermuda",
     "proportion": "1:2",
     "adopted": "1999",
@@ -272,6 +298,7 @@
   {
     "tags": "brunei yellow black white red triangle text motto name hand ribbon moon flag diagonal islam",
     "shortname": "bn",
+    "continent": "asia",
     "name": "Brunei",
     "proportion": "1:2",
     "adopted": "1959",
@@ -282,6 +309,7 @@
   {
     "tags": "bolivia red yellow green horizontal",
     "shortname": "bo",
+    "continent": "southAmerica",
     "name": "Bolivia",
     "proportion": "15:22",
     "adopted": "1851",
@@ -292,6 +320,7 @@
   {
     "tags": "bonaire blue white yellow red black triangle star whitney_smith diagonal",
     "shortname": "bq",
+    "continent": "northAmerica",
     "name": "Bonaire",
     "proportion": "2:3",
     "adopted": "1981",
@@ -302,6 +331,7 @@
   {
     "tags": "brazil green yellow blue circle text motto star",
     "shortname": "br",
+    "continent": "southAmerica",
     "name": "Brazil",
     "proportion": "7:10",
     "adopted": "1992",
@@ -312,6 +342,7 @@
   {
     "tags": "bahamas black blue yellow triangle horizontal",
     "shortname": "bs",
+    "continent": "northAmerica",
     "name": "Bahamas",
     "proportion": "1:2",
     "adopted": "1973",
@@ -322,6 +353,7 @@
   {
     "tags": "bhutan orange white triangle animal diagonal buddhism",
     "shortname": "bt",
+    "continent": "asia",
     "name": "Bhutan",
     "proportion": "2:3",
     "adopted": "1969",
@@ -342,6 +374,7 @@
   {
     "tags": "botswana blue white black horizontal",
     "shortname": "bw",
+    "continent": "africa",
     "name": "Botswana",
     "proportion": "2:3",
     "adopted": "1966",
@@ -352,6 +385,7 @@
   {
     "tags": "belarus red green white horizontal",
     "shortname": "by",
+    "continent": "europe",
     "name": "Belarus",
     "proportion": "1:2",
     "adopted": "2012",
@@ -362,6 +396,7 @@
   {
     "tags": "belize blue red white green circle weapon tool horizontal text motto ribbon vegetation boat waves human face",
     "shortname": "bz",
+    "continent": "northAmerica",
     "name": "Belize",
     "proportion": "3:5",
     "adopted": "1981",
@@ -372,6 +407,7 @@
   {
     "tags": "canada red white vertical vegetation",
     "shortname": "ca",
+    "continent": "northAmerica",
     "name": "Canada",
     "proportion": "1:2",
     "adopted": "1965",
@@ -382,6 +418,7 @@
   {
     "tags": "cocos islands keeling islands green yellow brown star moon vegetation circle",
     "shortname": "cc",
+    "continent": "asia",
     "name": "Cocos (Keeling) Islands",
     "proportion": "1:2",
     "adopted": "2004",
@@ -392,6 +429,7 @@
   {
     "tags": "congo blue yellow red triangle star diagonal",
     "shortname": "cd",
+    "continent": "africa",
     "name": "Democratic Republic of the Congo",
     "proportion": "3:4",
     "adopted": "2006",
@@ -402,6 +440,7 @@
   {
     "tags": "central africa blue white green yellow red star horizontal pan-african",
     "shortname": "cf",
+    "continent": "africa",
     "name": "Central African Republic",
     "proportion": "3:5",
     "adopted": "1958",
@@ -412,6 +451,7 @@
   {
     "tags": "congo brazzaville green yellow red triangle diagonal pan-african",
     "shortname": "cg",
+    "continent": "africa",
     "name": "Republic of the Congo",
     "proportion": "2:3",
     "adopted": "1991",
@@ -422,6 +462,7 @@
   {
     "tags": "switzerland red white cross christianity",
     "shortname": "ch",
+    "continent": "europe",
     "name": "Switzerland",
     "proportion": "1:1",
     "adopted": "1841",
@@ -432,6 +473,7 @@
   {
     "tags": "côte d'ivoire cote divoire ivory coast orange white green vertical",
     "shortname": "ci",
+    "continent": "africa",
     "name": "Côte d'Ivoire (Ivory Coast)",
     "proportion": "2:3",
     "adopted": "1959",
@@ -442,6 +484,7 @@
   {
     "tags": "cook islands blue white red cross british star circle christianity",
     "shortname": "ck",
+    "continent": "oceania",
     "name": "Cook Islands",
     "proportion": "1:2",
     "adopted": "1979",
@@ -452,6 +495,7 @@
   {
     "tags": "chile red white blue star horizontal",
     "shortname": "cl",
+    "continent": "southAmerica",
     "name": "Chile",
     "proportion": "2:3",
     "adopted": "1817",
@@ -462,6 +506,7 @@
   {
     "tags": "cameroon green red yellow vertical star pan-african",
     "shortname": "cm",
+    "continent": "africa",
     "name": "Cameroon",
     "proportion": "2:3",
     "adopted": "1975",
@@ -472,6 +517,7 @@
   {
     "tags": "china red yellow star communism",
     "shortname": "cn",
+    "continent": "asia",
     "name": "China",
     "proportion": "2:3",
     "adopted": "1949",
@@ -482,6 +528,7 @@
   {
     "tags": "colombia yellow blue red horizontal",
     "shortname": "co",
+    "continent": "southAmerica",
     "name": "Colombia",
     "proportion": "2:3",
     "adopted": "1861",
@@ -492,6 +539,7 @@
   {
     "tags": "costa rica blue white red vegetation star mountain horizontal text name ribbon flag",
     "shortname": "cr",
+    "continent": "northAmerica",
     "name": "Costa Rica",
     "proportion": "3:5",
     "adopted": "1906",
@@ -502,6 +550,7 @@
   {
     "tags": "cuba blue white red triangle star horizontal",
     "shortname": "cu",
+    "continent": "northAmerica",
     "name": "Cuba",
     "proportion": "1:2",
     "adopted": "1902",
@@ -512,6 +561,7 @@
   {
     "tags": "cape verde blue white red yellow horizontal star",
     "shortname": "cv",
+    "continent": "africa",
     "name": "Cape Verde",
     "proportion": "2:3",
     "adopted": "1992",
@@ -522,6 +572,7 @@
   {
     "tags": "curaçao curacao blue yellow white star horizontal",
     "shortname": "cw",
+    "continent": "northAmerica",
     "name": "Curaçao",
     "proportion": "2:3",
     "adopted": "1984",
@@ -532,6 +583,7 @@
   {
     "tags": "christmas island blue green white yellow triangle star animal bird map diagonal",
     "shortname": "cx",
+    "continent": "asia",
     "name": "Christmas Island",
     "proportion": "1:2",
     "adopted": "2002",
@@ -542,6 +594,7 @@
   {
     "tags": "cyprus white orange green vegetation map",
     "shortname": "cy",
+    "continent": "asia",
     "name": "Cyprus",
     "proportion": "2:3",
     "adopted": "2006",
@@ -552,6 +605,7 @@
   {
     "tags": "czechia white red blue triangle horizontal pan-slavic",
     "shortname": "cz",
+    "continent": "europe",
     "name": "Czech Republic",
     "proportion": "2:3",
     "adopted": "1920",
@@ -562,6 +616,7 @@
   {
     "tags": "germany black red yellow horizontal",
     "shortname": "de",
+    "continent": "europe",
     "name": "Germany",
     "proportion": "3:5",
     "adopted": "1949",
@@ -572,6 +627,7 @@
   {
     "tags": "djibouti white blue green red triangle horizontal star",
     "shortname": "dj",
+    "continent": "africa",
     "name": "Djibouti",
     "proportion": "2:3",
     "adopted": "1977",
@@ -582,6 +638,7 @@
   {
     "tags": "denmark red white cross christianity",
     "shortname": "dk",
+    "continent": "europe",
     "name": "Denmark",
     "proportion": "28:37",
     "adopted": "1219",
@@ -592,6 +649,7 @@
   {
     "tags": "dominica green yellow black white red purple star circle bird animal horizontal vertical christianity",
     "shortname": "dm",
+    "continent": "northAmerica",
     "name": "Dominica",
     "proportion": "1:2",
     "adopted": "1990",
@@ -602,6 +660,7 @@
   {
     "tags": "dominican republic blue red white weapon cross ribbon cross text motto name flag christianity",
     "shortname": "do",
+    "continent": "northAmerica",
     "name": "Dominican Republic",
     "proportion": "2:3",
     "adopted": "1863",
@@ -612,6 +671,7 @@
   {
     "tags": "algeria green white red vertical star moon islam",
     "shortname": "dz",
+    "continent": "africa",
     "name": "Algeria",
     "proportion": "2:3",
     "adopted": "1961",
@@ -622,6 +682,7 @@
   {
     "tags": "ecuador yellow blue red horizontal weapon mountain boat sun vegetation ribbon animal bird flag",
     "shortname": "ec",
+    "continent": "southAmerica",
     "name": "Ecuador",
     "proportion": "2:3",
     "adopted": "1860",
@@ -632,6 +693,7 @@
   {
     "tags": "estonia blue black white horizontal",
     "shortname": "ee",
+    "continent": "europe",
     "name": "Estonia",
     "proportion": "7:11",
     "adopted": "1990",
@@ -642,6 +704,7 @@
   {
     "tags": "egypt red white black yellow horizontal bird animal text name pan-arab",
     "shortname": "eg",
+    "continent": "africa",
     "name": "Egypt",
     "proportion": "2:3",
     "adopted": "1984",
@@ -652,6 +715,7 @@
   {
     "tags": "western sahara black white green red triangle horizontal moon star pan-arab",
     "shortname": "eh",
+    "continent": "africa",
     "name": "Western Sahara",
     "proportion": "1:2",
     "adopted": "1976",
@@ -662,6 +726,7 @@
   {
     "tags": "eritrea green red blue yellow triangle pan-african",
     "shortname": "er",
+    "continent": "africa",
     "name": "Eritrea",
     "proportion": "1:2",
     "adopted": "1995",
@@ -672,6 +737,7 @@
   {
     "tags": "spain red yellow horizontal vertical building crown ribbon waves animal vegetation cross fleur-de-lis text motto christianity",
     "shortname": "es",
+    "continent": "europe",
     "name": "Spain",
     "proportion": "2:3",
     "adopted": "1981",
@@ -682,6 +748,7 @@
   {
     "tags": "ethiopia green yellow red blue triangle star circle horizontal",
     "shortname": "et",
+    "continent": "africa",
     "name": "Ethiopia",
     "proportion": "1:2",
     "adopted": "2009",
@@ -692,6 +759,7 @@
   {
     "tags": "finland blue white cross christianity",
     "shortname": "fi",
+    "continent": "europe",
     "name": "Finland",
     "proportion": "11:18",
     "adopted": "1918",
@@ -702,6 +770,7 @@
   {
     "tags": "fiji blue white red cross british bird vegetation animal text ribbon weapon christianity",
     "shortname": "fj",
+    "continent": "oceania",
     "name": "Fiji",
     "proportion": "1:2",
     "adopted": "1970",
@@ -712,6 +781,7 @@
   {
     "tags": "falkland islands blue white red cross british waves animal vegetation ribbon star text motto",
     "shortname": "fk",
+    "continent": "southAmerica",
     "name": "Falkland Islands",
     "proportion": "1:2",
     "adopted": "1999",
@@ -722,6 +792,7 @@
   {
     "tags": "micronesia blue white star",
     "shortname": "fm",
+    "continent": "oceania",
     "name": "Micronesia",
     "proportion": "10:19",
     "adopted": "1978",
@@ -732,6 +803,7 @@
   {
     "tags": "faroe islands white red blue cross",
     "shortname": "fo",
+    "continent": "europe",
     "name": "Faroe Islands",
     "proportion": "8:11",
     "adopted": "1940",
@@ -742,6 +814,7 @@
   {
     "tags": "france blue white red vertical",
     "shortname": "fr",
+    "continent": "europe",
     "name": "France",
     "proportion": "2:3",
     "adopted": "1976",
@@ -752,6 +825,7 @@
   {
     "tags": "gabon green yellow blue horizontal",
     "shortname": "ga",
+    "continent": "africa",
     "name": "Gabon",
     "proportion": "3:4",
     "adopted": "1960",
@@ -762,6 +836,7 @@
   {
     "tags": "united kingdom great britain red white blue cross british christianity",
     "shortname": "gb",
+    "continent": "europe",
     "name": "United Kingdom",
     "proportion": "1:2",
     "adopted": "1801",
@@ -772,6 +847,7 @@
   {
     "tags": "england white red cross",
     "shortname": "gb-eng",
+    "continent": "europe",
     "name": "England",
     "proportion": "3:5",
     "adopted": "1190",
@@ -782,6 +858,7 @@
   {
     "tags": "northern ireland white red cross star hand crown",
     "shortname": "gb-nir",
+    "continent": "europe",
     "name": "Northern Ireland",
     "proportion": "1:2",
     "adopted": "Unofficial",
@@ -792,6 +869,7 @@
   {
     "tags": "scotland blue white triangle cross diagonal",
     "shortname": "gb-sct",
+    "continent": "europe",
     "name": "Scotland",
     "proportion": "3:5",
     "adopted": "1542",
@@ -802,6 +880,7 @@
   {
     "tags": "wales white green red animal horizontal",
     "shortname": "gb-wls",
+    "continent": "europe",
     "name": "Wales",
     "proportion": "3:5",
     "adopted": "1959",
@@ -812,6 +891,7 @@
   {
     "tags": "grenada red yellow green triangle vegetation star diagonal",
     "shortname": "gd",
+    "continent": "northAmerica",
     "name": "Grenada",
     "proportion": "3:5",
     "adopted": "1974",
@@ -822,6 +902,7 @@
   {
     "tags": "georgia white red cross christianity",
     "shortname": "ge",
+    "continent": "asia",
     "name": "Georgia",
     "proportion": "2:3",
     "adopted": "2004",
@@ -832,6 +913,7 @@
   {
     "tags": "french guiana green yellow red triangle star diagonal",
     "shortname": "gf",
+    "continent": "southAmerica",
     "name": "French Guiana",
     "proportion": "2:3",
     "adopted": "Unofficial",
@@ -842,6 +924,7 @@
   {
     "tags": "guernsey white red yellow cross",
     "shortname": "gg",
+    "continent": "europe",
     "name": "Guernsey",
     "proportion": "2:3",
     "adopted": "1985",
@@ -852,6 +935,7 @@
   {
     "tags": "ghana red yellow green black star horizontal stripe pan-african",
     "shortname": "gh",
+    "continent": "africa",
     "name": "Ghana",
     "proportion": "2:3",
     "adopted": "1966",
@@ -862,6 +946,7 @@
   {
     "tags": "gibraltar white red horizontal building",
     "shortname": "gi",
+    "continent": "europe",
     "name": "Gibraltar",
     "proportion": "1:2",
     "adopted": "1982",
@@ -872,6 +957,7 @@
   {
     "tags": "greenland red white horizontal circle",
     "shortname": "gl",
+    "continent": "northAmerica",
     "name": "Greenland",
     "proportion": "2:3",
     "adopted": "1989",
@@ -882,6 +968,7 @@
   {
     "tags": "gambia red white blue green horizontal pan-african",
     "shortname": "gm",
+    "continent": "africa",
     "name": "Gambia",
     "proportion": "2:3",
     "adopted": "1965",
@@ -892,6 +979,7 @@
   {
     "tags": "guinea red yellow green vertical africa pan-african",
     "shortname": "gn",
+    "continent": "africa",
     "name": "Guinea",
     "proportion": "2:3",
     "adopted": "1958",
@@ -902,6 +990,7 @@
   {
     "tags": "guadeloupe blue black yellow sun fleur-de-lis horizontal",
     "shortname": "gp",
+    "continent": "northAmerica",
     "name": "Guadeloupe",
     "proportion": "2:3",
     "adopted": "Unofficial",
@@ -912,6 +1001,7 @@
   {
     "tags": "equatorial guinea green white red blue triangle star text motto ribbon vegetation horizontal",
     "shortname": "gq",
+    "continent": "africa",
     "name": "Equatorial Guinea",
     "proportion": "2:3",
     "adopted": "1979",
@@ -922,6 +1012,7 @@
   {
     "tags": "greece blue white cross horizontal christianity",
     "shortname": "gr",
+    "continent": "europe",
     "name": "Greece",
     "proportion": "2:3",
     "adopted": "1978",
@@ -942,6 +1033,7 @@
   {
     "tags": "guatemala blue white vertical weapon vegetation bird animal text motto ribbon",
     "shortname": "gt",
+    "continent": "northAmerica",
     "name": "Guatemala",
     "proportion": "5:8",
     "adopted": "1871",
@@ -952,6 +1044,7 @@
   {
     "tags": "guinea-bissau yellow green red black star horizontal pan-african",
     "shortname": "gw",
+    "continent": "africa",
     "name": "Guinea-Bissau",
     "proportion": "1:2",
     "adopted": "1973",
@@ -962,6 +1055,7 @@
   {
     "tags": "guam blue red vegetation boat weapon text name",
     "shortname": "gu",
+    "continent": "oceania",
     "name": "Guam",
     "proportion": "22:41",
     "adopted": "1948",
@@ -972,6 +1066,7 @@
   {
     "tags": "guyana green white yellow black red triangle whitney_smith",
     "shortname": "gy",
+    "continent": "southAmerica",
     "name": "Guyana",
     "proportion": "3:5",
     "adopted": "1966",
@@ -982,6 +1077,7 @@
   {
     "tags": "hong kong red white star vegetation",
     "shortname": "hk",
+    "continent": "asia",
     "name": "Hong Kong",
     "proportion": "2:3",
     "adopted": "1997",
@@ -1002,6 +1098,7 @@
   {
     "tags": "honduras blue white horizontal star",
     "shortname": "hn",
+    "continent": "northAmerica",
     "name": "Honduras",
     "proportion": "1:2",
     "adopted": "1898",
@@ -1012,6 +1109,7 @@
   {
     "tags": "croatia red white blue horizontal shield star moon animal pan-slavic",
     "shortname": "hr",
+    "continent": "europe",
     "name": "Croatia",
     "proportion": "1:2",
     "adopted": "1990",
@@ -1022,6 +1120,7 @@
   {
     "tags": "haiti blue red white horizontal vegetation weapon hat text motto ribbon flag",
     "shortname": "ht",
+    "continent": "northAmerica",
     "name": "Haiti",
     "proportion": "3:5",
     "adopted": "1986",
@@ -1032,6 +1131,7 @@
   {
     "tags": "hungary red white green horizontal",
     "shortname": "hu",
+    "continent": "europe",
     "name": "Hungary",
     "proportion": "1:2",
     "adopted": "1990",
@@ -1042,6 +1142,7 @@
   {
     "tags": "indonesia red white horizontal",
     "shortname": "id",
+    "continent": "asia",
     "name": "Indonesia",
     "proportion": "2:3",
     "adopted": "1950",
@@ -1052,6 +1153,7 @@
   {
     "tags": "ireland green white orange vertical christianity",
     "shortname": "ie",
+    "continent": "europe",
     "name": "Ireland",
     "proportion": "1:2",
     "adopted": "1916",
@@ -1062,6 +1164,7 @@
   {
     "tags": "israel white blue triangle horizontal star judaism",
     "shortname": "il",
+    "continent": "asia",
     "name": "Israel",
     "proportion": "8:11",
     "adopted": "1948",
@@ -1072,6 +1175,7 @@
   {
     "tags": "isle of man red white yellow star",
     "shortname": "im",
+    "continent": "europe",
     "name": "Isle of Man",
     "proportion": "1:2",
     "adopted": "1932",
@@ -1082,6 +1186,7 @@
   {
     "tags": "india orange white green blue horizontal circle hinduism",
     "shortname": "in",
+    "continent": "asia",
     "name": "India",
     "proportion": "2:3",
     "adopted": "1947",
@@ -1092,6 +1197,7 @@
   {
     "tags": "british indian ocean territory blue red white cross crown waves vegetation",
     "shortname": "io",
+    "continent": "africa",
     "name": "British Indian Ocean Territory",
     "proportion": "1:2",
     "adopted": "1990",
@@ -1102,6 +1208,7 @@
   {
     "tags": "iraq red white black green horizontal text motto pan-arab islam",
     "shortname": "iq",
+    "continent": "asia",
     "name": "Iraq",
     "proportion": "2:3",
     "adopted": "2008",
@@ -1112,6 +1219,7 @@
   {
     "tags": "iran green white red text motto horizontal islam",
     "shortname": "ir",
+    "continent": "asia",
     "name": "Iran",
     "proportion": "4:7",
     "adopted": "1980",
@@ -1122,6 +1230,7 @@
   {
     "tags": "iceland blue red white cross christianity",
     "shortname": "is",
+    "continent": "europe",
     "name": "Iceland",
     "proportion": "18:25",
     "adopted": "1944",
@@ -1132,6 +1241,7 @@
   {
     "tags": "italy green white red vertical",
     "shortname": "it",
+    "continent": "europe",
     "name": "Italy",
     "proportion": "2:3",
     "adopted": "1946",
@@ -1142,6 +1252,7 @@
   {
     "tags": "jersey white red triangle cross animal crown diagonal",
     "shortname": "je",
+    "continent": "europe",
     "name": "Jersey",
     "proportion": "3:5",
     "adopted": "1981",
@@ -1152,6 +1263,7 @@
   {
     "tags": "jamaica green yellow black triangle cross diagonal",
     "shortname": "jm",
+    "continent": "northAmerica",
     "name": "Jamaica",
     "proportion": "1:2",
     "adopted": "1962",
@@ -1162,6 +1274,7 @@
   {
     "tags": "jordan black white green red triangle horizontal star pan-arab islam",
     "shortname": "jo",
+    "continent": "asia",
     "name": "Jordan",
     "proportion": "1:2",
     "adopted": "1928",
@@ -1172,6 +1285,7 @@
   {
     "tags": "japan white red circle sun",
     "shortname": "jp",
+    "continent": "asia",
     "name": "Japan",
     "proportion": "2:3",
     "adopted": "1999",
@@ -1182,6 +1296,7 @@
   {
     "tags": "kenya black white red green weapon shield horizontal pan-african",
     "shortname": "ke",
+    "continent": "africa",
     "name": "Kenya",
     "proportion": "2:3",
     "adopted": "1963",
@@ -1192,6 +1307,7 @@
   {
     "tags": "kyrgyzstan red yellow sun circle building",
     "shortname": "kg",
+    "continent": "asia",
     "name": "Kyrgyzstan",
     "proportion": "3:5",
     "adopted": "1992",
@@ -1202,6 +1318,7 @@
   {
     "tags": "cambodia blue red white horizontal building hinduism buddhism",
     "shortname": "kh",
+    "continent": "asia",
     "name": "Cambodia",
     "proportion": "16:25",
     "adopted": "1993",
@@ -1212,6 +1329,7 @@
   {
     "tags": "kiribati red white blue yellow sun bird animal waves",
     "shortname": "ki",
+    "continent": "oceania",
     "name": "Kiribati",
     "proportion": "1:2",
     "adopted": "1979",
@@ -1222,6 +1340,7 @@
   {
     "tags": "comoros green yellow white red blue triangle horizontal moon star pan-african islam",
     "shortname": "km",
+    "continent": "africa",
     "name": "Comoros",
     "proportion": "3:5",
     "adopted": "2001",
@@ -1232,6 +1351,7 @@
   {
     "tags": "saint kitts nevis green yellow black white red triangle star diagonal",
     "shortname": "kn",
+    "continent": "northAmerica",
     "name": "Saint Kitts and Nevis",
     "proportion": "2:3",
     "adopted": "1983",
@@ -1242,6 +1362,7 @@
   {
     "tags": "north korea blue white red horizontal star circle communism",
     "shortname": "kp",
+    "continent": "asia",
     "name": "North Korea",
     "proportion": "1:2",
     "adopted": "1948",
@@ -1252,6 +1373,7 @@
   {
     "tags": "south korea white black red blue circle",
     "shortname": "kr",
+    "continent": "asia",
     "name": "South Korea",
     "proportion": "2:3",
     "adopted": "2011",
@@ -1262,6 +1384,7 @@
   {
     "tags": "kuwait green white red black horizontal pan-arab",
     "shortname": "kw",
+    "continent": "asia",
     "name": "Kuwait",
     "proportion": "1:2",
     "adopted": "1961",
@@ -1272,6 +1395,7 @@
   {
     "tags": "cayman islands white blue red cross british text star animal waves",
     "shortname": "ky",
+    "continent": "northAmerica",
     "name": "Cayman Islands",
     "proportion": "1:2",
     "adopted": "1999",
@@ -1282,6 +1406,7 @@
   {
     "tags": "kazakhstan blue yellow circle sun bird animal",
     "shortname": "kz",
+    "continent": "asia",
     "name": "Kazakhstan",
     "proportion": "1:2",
     "adopted": "1992",
@@ -1292,6 +1417,7 @@
   {
     "tags": "laos red blue white horizontal circle",
     "shortname": "la",
+    "continent": "asia",
     "name": "Laos",
     "proportion": "2:3",
     "adopted": "1975",
@@ -1302,6 +1428,7 @@
   {
     "tags": "lebanon red white green horizontal vegetation",
     "shortname": "lb",
+    "continent": "asia",
     "name": "Lebanon",
     "proportion": "2:3",
     "adopted": "1943",
@@ -1312,6 +1439,7 @@
   {
     "tags": "saint lucia blue white black yellow mountain triangle",
     "shortname": "lc",
+    "continent": "northAmerica",
     "name": "Saint Lucia",
     "proportion": "1:2",
     "adopted": "2002",
@@ -1322,6 +1450,7 @@
   {
     "tags": "liechtenstein blue red yellow horizontal crown christianity",
     "shortname": "li",
+    "continent": "europe",
     "name": "Liechtenstein",
     "proportion": "3:5",
     "adopted": "1982",
@@ -1332,6 +1461,7 @@
   {
     "tags": "sri lanka yellow green orange red maroon vertical animal weapon vegetation buddhism",
     "shortname": "lk",
+    "continent": "asia",
     "name": "Sri Lanka",
     "proportion": "1:2",
     "adopted": "1972",
@@ -1342,6 +1472,7 @@
   {
     "tags": "liberia red white blue horizontal star",
     "shortname": "lr",
+    "continent": "africa",
     "name": "Liberia",
     "proportion": "10:19",
     "adopted": "1847",
@@ -1352,6 +1483,7 @@
   {
     "tags": "lesotho blue white green hat horizontal",
     "shortname": "ls",
+    "continent": "africa",
     "name": "Lesotho",
     "proportion": "2:3",
     "adopted": "2006",
@@ -1362,6 +1494,7 @@
   {
     "tags": "lithuania yellow green red horizontal",
     "shortname": "lt",
+    "continent": "europe",
     "name": "Lithuania",
     "proportion": "3:5",
     "adopted": "2004",
@@ -1372,6 +1505,7 @@
   {
     "tags": "luxembourg red white blue horizontal",
     "shortname": "lu",
+    "continent": "europe",
     "name": "Luxembourg",
     "proportion": "3:5",
     "adopted": "1993",
@@ -1382,6 +1516,7 @@
   {
     "tags": "latvia red white horizontal",
     "shortname": "lv",
+    "continent": "europe",
     "name": "Latvia",
     "proportion": "1:2",
     "adopted": "1990",
@@ -1392,6 +1527,7 @@
   {
     "tags": "libya red black green white horizontal star moon pan-arab islam",
     "shortname": "ly",
+    "continent": "africa",
     "name": "Libya",
     "proportion": "1:2",
     "adopted": "2011",
@@ -1402,6 +1538,7 @@
   {
     "tags": "morocco red green star triangle islam",
     "shortname": "ma",
+    "continent": "africa",
     "name": "Morocco",
     "proportion": "2:3",
     "adopted": "1915",
@@ -1412,6 +1549,7 @@
   {
     "tags": "monaco red white horizontal",
     "shortname": "mc",
+    "continent": "europe",
     "name": "Monaco",
     "proportion": "4:5",
     "adopted": "1881",
@@ -1422,6 +1560,7 @@
   {
     "tags": "moldova blue yellow red vertical star moon bird animal shield cross vegetation christianity",
     "shortname": "md",
+    "continent": "europe",
     "name": "Moldova",
     "proportion": "1:2",
     "adopted": "1990",
@@ -1432,6 +1571,7 @@
   {
     "tags": "montenegro red yellow bird cross animal christianity",
     "shortname": "me",
+    "continent": "europe",
     "name": "Montenegro",
     "proportion": "1:2",
     "adopted": "2004",
@@ -1442,16 +1582,18 @@
   {
     "tags": "saint martin blue white red vertical",
     "shortname": "mf",
+    "continent": "northAmerica",
     "name": "Saint Martin",
     "proportion": "2:3",
     "adopted": "1976",
     "symbolism": "For symbolism regarding the French flag, see <a href=\"?q=france\">France</a>.<br>",
-    "funfacts": " ",
+    "funfacts": "The official flag of Saint Martin is the flag of <a href=\"?q=france\">France</a>.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Collectivity_of_Saint_Martin"
   },
   {
     "tags": "madagascar white red green horizontal",
     "shortname": "mg",
+    "continent": "africa",
     "name": "Madagascar",
     "proportion": "2:3",
     "adopted": "1958",
@@ -1462,6 +1604,7 @@
   {
     "tags": "marshall islands blue white orange triangle star sun diagonal",
     "shortname": "mh",
+    "continent": "oceania",
     "name": "Marshall Islands",
     "proportion": "10:19",
     "adopted": "1979",
@@ -1472,6 +1615,7 @@
   {
     "tags": "north macedonia red yellow sun triangle circle diagonal",
     "shortname": "mk",
+    "continent": "europe",
     "name": "North Macedonia",
     "proportion": "1:2",
     "adopted": "1995",
@@ -1482,6 +1626,7 @@
   {
     "tags": "mali green yellow red vertical pan-african",
     "shortname": "ml",
+    "continent": "africa",
     "name": "Mali",
     "proportion": "2:3",
     "adopted": "1961",
@@ -1492,6 +1637,7 @@
   {
     "tags": "myanmar burma red green yellow white star horizontal buddhism",
     "shortname": "mm",
+    "continent": "asia",
     "name": "Myanmar",
     "proportion": "2:3",
     "adopted": "2010",
@@ -1502,6 +1648,7 @@
   {
     "tags": "mongolia red blue yellow vertical circle",
     "shortname": "mn",
+    "continent": "asia",
     "name": "Mongolia",
     "proportion": "1:2",
     "adopted": "1992",
@@ -1512,6 +1659,7 @@
   {
     "tags": "macau green white star horizontal vegetation waves",
     "shortname": "mo",
+    "continent": "asia",
     "name": "Macau",
     "proportion": "2:3",
     "adopted": "1999",
@@ -1522,6 +1670,7 @@
   {
     "tags": "northern mariana islands blue white grey circle star",
     "shortname": "mp",
+    "continent": "oceania",
     "name": "Northern Mariana Islands",
     "proportion": "1:2",
     "adopted": "1985",
@@ -1532,6 +1681,7 @@
   {
     "tags": "martinique green red black triangle horizontal",
     "shortname": "mq",
+    "continent": "northAmerica",
     "name": "Martinique",
     "proportion": "2:3",
     "adopted": "Unofficial",
@@ -1542,6 +1692,7 @@
   {
     "tags": "mauritania green yellow star moon horizontal pan-african islam",
     "shortname": "mr",
+    "continent": "africa",
     "name": "Mauritania",
     "proportion": "2:3",
     "adopted": "2017",
@@ -1552,6 +1703,7 @@
   {
     "tags": "montserrat blue white red cross british human christianity",
     "shortname": "ms",
+    "continent": "northAmerica",
     "name": "Montserrat",
     "proportion": "1:2",
     "adopted": "1999",
@@ -1562,6 +1714,7 @@
   {
     "tags": "malta red white vertical cross animal text christianity",
     "shortname": "mt",
+    "continent": "europe",
     "name": "Malta",
     "proportion": "2:3",
     "adopted": "1964",
@@ -1572,6 +1725,7 @@
   {
     "tags": "mauritius red blue yellow green horizontal pan-african",
     "shortname": "mu",
+    "continent": "africa",
     "name": "Mauritius",
     "proportion": "2:3",
     "adopted": "1968",
@@ -1582,6 +1736,7 @@
   {
     "tags": "maldives red green white moon islam",
     "shortname": "mv",
+    "continent": "asia",
     "name": "Maldives",
     "proportion": "2:3",
     "adopted": "1965",
@@ -1592,6 +1747,7 @@
   {
     "tags": "malawi black red green horizontal sun pan-african",
     "shortname": "mw",
+    "continent": "africa",
     "name": "Malawi",
     "proportion": "2:3",
     "adopted": "2012",
@@ -1602,6 +1758,7 @@
   {
     "tags": "mexico green white red vertical bird animal vegetation ribbon flag",
     "shortname": "mx",
+    "continent": "northAmerica",
     "name": "Mexico",
     "proportion": "4:7",
     "adopted": "1968",
@@ -1612,6 +1769,7 @@
   {
     "tags": "malaysia blue red white yellow horizontal moon star islam",
     "shortname": "my",
+    "continent": "asia",
     "name": "Malaysia",
     "proportion": "1:2",
     "adopted": "1963",
@@ -1622,6 +1780,7 @@
   {
     "tags": "mozambique green white black yellow red triangle horizontal star weapon tool pan-african",
     "shortname": "mz",
+    "continent": "africa",
     "name": "Mozambique",
     "proportion": "2:3",
     "adopted": "1983",
@@ -1632,6 +1791,7 @@
   {
     "tags": "namibia blue white red green yellow triangle sun circle pan-african diagonal",
     "shortname": "na",
+    "continent": "africa",
     "name": "Namibia",
     "proportion": "2:3",
     "adopted": "1990",
@@ -1642,6 +1802,7 @@
   {
     "tags": "new caledonia blue red green yellow black horizontal circle sun",
     "shortname": "nc",
+    "continent": "oceania",
     "name": "New Caledonia",
     "proportion": "2:3",
     "adopted": "Unofficial",
@@ -1652,6 +1813,7 @@
   {
     "tags": "niger orange white green horizontal circle",
     "shortname": "ne",
+    "continent": "africa",
     "name": "Niger",
     "proportion": "6:7",
     "adopted": "1959",
@@ -1662,6 +1824,7 @@
   {
     "tags": "norfolk island green white vertical vegetation",
     "shortname": "nf",
+    "continent": "oceania",
     "name": "Norfolk Island",
     "proportion": "1:2",
     "adopted": "1979",
@@ -1672,6 +1835,7 @@
   {
     "tags": "nigeria green white vertical",
     "shortname": "ng",
+    "continent": "africa",
     "name": "Nigeria",
     "proportion": "1:2",
     "adopted": "1960",
@@ -1682,6 +1846,7 @@
   {
     "tags": "nicaragua blue white horizontal mountain waves hat text name",
     "shortname": "ni",
+    "continent": "northAmerica",
     "name": "Nicaragua",
     "proportion": "3:5",
     "adopted": "1971",
@@ -1692,6 +1857,7 @@
   {
     "tags": "netherlands red white blue horizontal",
     "shortname": "nl",
+    "continent": "europe",
     "name": "Netherlands",
     "proportion": "2:3",
     "adopted": "1937",
@@ -1702,6 +1868,7 @@
   {
     "tags": "norway blue red white cross christianity",
     "shortname": "no",
+    "continent": "europe",
     "name": "Norway",
     "proportion": "8:11",
     "adopted": "1821",
@@ -1712,6 +1879,7 @@
   {
     "tags": "nepal red blue white triangle star sun moon hinduism",
     "shortname": "np",
+    "continent": "asia",
     "name": "Nepal",
     "proportion": "It's complicated.",
     "adopted": "1962",
@@ -1722,6 +1890,7 @@
   {
     "tags": "nauru blue yellow white horizontal star",
     "shortname": "nr",
+    "continent": "oceania",
     "name": "Nauru",
     "proportion": "1:2",
     "adopted": "1968",
@@ -1732,6 +1901,7 @@
   {
     "tags": "niue yellow blue white red cross british circle star christianity",
     "shortname": "nu",
+    "continent": "oceania",
     "name": "Niue",
     "proportion": "1:2",
     "adopted": "1975",
@@ -1742,6 +1912,7 @@
   {
     "tags": "new zealand blue white red cross british star christianity",
     "shortname": "nz",
+    "continent": "oceania",
     "name": "New Zealand",
     "proportion": "1:2",
     "adopted": "1902",
@@ -1752,6 +1923,7 @@
   {
     "tags": "oman red white green weapon horizontal",
     "shortname": "om",
+    "continent": "asia",
     "name": "Oman",
     "proportion": "1:2",
     "adopted": "1995",
@@ -1762,6 +1934,7 @@
   {
     "tags": "panama white red blue horizontal vertical star",
     "shortname": "pa",
+    "continent": "northAmerica",
     "name": "Panama",
     "proportion": "2:3",
     "adopted": "1925",
@@ -1772,6 +1945,7 @@
   {
     "tags": "peru red white vertical",
     "shortname": "pe",
+    "continent": "southAmerica",
     "name": "Peru",
     "proportion": "2:3",
     "adopted": "1950",
@@ -1782,6 +1956,7 @@
   {
     "tags": "french polynesia red white horizontal waves circle star boat",
     "shortname": "pf",
+    "continent": "oceania",
     "name": "French Polynesia",
     "proportion": "2:3",
     "adopted": "1984",
@@ -1792,6 +1967,7 @@
   {
     "tags": "papua new guinea red black yellow white triangle star bird animal diagonal",
     "shortname": "pg",
+    "continent": "oceania",
     "name": "Papua New Guinea",
     "proportion": "3:4",
     "adopted": "1971",
@@ -1802,6 +1978,7 @@
   {
     "tags": "philippines blue red white yellow triangle horizontal circle sun star",
     "shortname": "ph",
+    "continent": "asia",
     "name": "Philippines",
     "proportion": "1:2",
     "adopted": "1998",
@@ -1812,6 +1989,7 @@
   {
     "tags": "pakistan green white vertical moon star islam",
     "shortname": "pk",
+    "continent": "asia",
     "name": "Pakistan",
     "proportion": "2:3",
     "adopted": "1947",
@@ -1822,6 +2000,7 @@
   {
     "tags": "poland white red horizontal",
     "shortname": "pl",
+    "continent": "europe",
     "name": "Poland",
     "proportion": "5:8",
     "adopted": "1919",
@@ -1832,6 +2011,7 @@
   {
     "tags": "saint pierre and miquelon white blue green yellow red black triangle cross boat waves animal",
     "shortname": "pm",
+    "continent": "northAmerica",
     "name": "Saint Pierre and Miquelon",
     "proportion": "2:3",
     "adopted": "Unofficial",
@@ -1842,6 +2022,7 @@
   {
     "tags": "pitcairn islands blue white red yellow green cross vegetation ribbon british",
     "shortname": "pn",
+    "continent": "oceania",
     "name": "Pitcairn Islands",
     "proportion": "1:2",
     "adopted": "1984",
@@ -1852,6 +2033,7 @@
   {
     "tags": "puerto rico red white blue triangle horizontal star",
     "shortname": "pr",
+    "continent": "northAmerica",
     "name": "Puerto Rico",
     "proportion": "2:3",
     "adopted": "1952",
@@ -1862,6 +2044,7 @@
   {
     "tags": "palestine red white green black triangle horizontal pan-arab",
     "shortname": "ps",
+    "continent": "asia",
     "name": "Palestine",
     "proportion": "1:2",
     "adopted": "1988",
@@ -1872,6 +2055,7 @@
   {
     "tags": "portugal green red vertical circle sphere building shield christianity",
     "shortname": "pt",
+    "continent": "europe",
     "name": "Portugal",
     "proportion": "2:3",
     "adopted": "1911",
@@ -1882,6 +2066,7 @@
   {
     "tags": "palau blue yellow circle sun moon",
     "shortname": "pw",
+    "continent": "oceania",
     "name": "Palau",
     "proportion": "5:8",
     "adopted": "1981",
@@ -1892,6 +2077,7 @@
   {
     "tags": "paraguay red white blue horizontal circle star vegetation text name",
     "shortname": "py",
+    "continent": "southAmerica",
     "name": "Paraguay",
     "proportion": "11:20",
     "adopted": "2013",
@@ -1902,6 +2088,7 @@
   {
     "tags": "qatar white maroon purple triangle tool",
     "shortname": "qa",
+    "continent": "asia",
     "name": "Qatar",
     "proportion": "11:28",
     "adopted": "1971",
@@ -1912,6 +2099,7 @@
   {
     "tags": "réunion reunion red blue yellow triangle building",
     "shortname": "re",
+    "continent": "africa",
     "name": "Réunion",
     "proportion": "2:3",
     "adopted": "Unofficial",
@@ -1922,6 +2110,7 @@
   {
     "tags": "romania blue yellow red vertical",
     "shortname": "ro",
+    "continent": "europe",
     "name": "Romania",
     "proportion": "2:3",
     "adopted": "1989",
@@ -1932,6 +2121,7 @@
   {
     "tags": "serbia red blue white fleur-de-lis horizontal bird animal crown cross pan-slavic christianity",
     "shortname": "rs",
+    "continent": "europe",
     "name": "Serbia",
     "proportion": "2:3",
     "adopted": "2004",
@@ -1942,6 +2132,7 @@
   {
     "tags": "russia white blue red horizontal pan-slavic",
     "shortname": "ru",
+    "continent": "europe",
     "name": "Russia",
     "proportion": "2:3",
     "adopted": "1993",
@@ -1952,6 +2143,7 @@
   {
     "tags": "rwanda blue yellow green horizontal sun circle",
     "shortname": "rw",
+    "continent": "africa",
     "name": "Rwanda",
     "proportion": "2:3",
     "adopted": "2001",
@@ -1962,6 +2154,7 @@
   {
     "tags": "saudi arabia green white weapon text motto islam",
     "shortname": "sa",
+    "continent": "asia",
     "name": "Saudi Arabia",
     "proportion": "2:3",
     "adopted": "1973",
@@ -1972,6 +2165,7 @@
   {
     "tags": "solomon islands blue yellow green white triangle star diagonal",
     "shortname": "sb",
+    "continent": "oceania",
     "name": "Solomon Islands",
     "proportion": "1:2",
     "adopted": "1977",
@@ -1982,6 +2176,7 @@
   {
     "tags": "seychelles blue yellow red white green triangle pan-african diagonal",
     "shortname": "sc",
+    "continent": "africa",
     "name": "Seychelles",
     "proportion": "1:2",
     "adopted": "1996",
@@ -1992,6 +2187,7 @@
   {
     "tags": "sudan red white black green triangle horizontal pan-arab",
     "shortname": "sd",
+    "continent": "africa",
     "name": "Sudan",
     "proportion": "1:2",
     "adopted": "1970",
@@ -2002,6 +2198,7 @@
   {
     "tags": "sweden blue yellow cross christianity",
     "shortname": "se",
+    "continent": "europe",
     "name": "Sweden",
     "proportion": "5:8",
     "adopted": "1906",
@@ -2012,6 +2209,7 @@
   {
     "tags": "singapore red white horizontal moon star buddhism",
     "shortname": "sg",
+    "continent": "asia",
     "name": "Singapore",
     "proportion": "2:3",
     "adopted": "1959",
@@ -2022,6 +2220,7 @@
   {
     "tags": "saint helena brown blue white red cross british boat flag england animal bird waves",
     "shortname": "sh",
+    "continent": "africa",
     "name": "Saint Helena",
     "proportion": "1:2",
     "adopted": "1984",
@@ -2032,6 +2231,7 @@
   {
     "tags": "slovenia white blue red horizontal star mountain pan-slavic",
     "shortname": "si",
+    "continent": "europe",
     "name": "Slovenia",
     "proportion": "1:2",
     "adopted": "1991",
@@ -2042,6 +2242,7 @@
   {
     "tags": "svalbard and jan mayen red white blue cross norway christianity",
     "shortname": "sj",
+    "continent": "europe",
     "name": "Svalbard and Jan Mayen",
     "proportion": "8:11",
     "adopted": "1821",
@@ -2052,6 +2253,7 @@
   {
     "tags": "slovakia white blue red horizontal cross mountain pan-slavic christianity",
     "shortname": "sk",
+    "continent": "europe",
     "name": "Slovakia",
     "proportion": "2:3",
     "adopted": "1992",
@@ -2062,6 +2264,7 @@
   {
     "tags": "sierra leone green white blue horizontal",
     "shortname": "sl",
+    "continent": "africa",
     "name": "Sierra Leone",
     "proportion": "2:3",
     "adopted": "1961",
@@ -2072,6 +2275,7 @@
   {
     "tags": "san marino white blue horizontal vegetation mountain crown ribbon cross text motto building christianity",
     "shortname": "sm",
+    "continent": "europe",
     "name": "San Marino",
     "proportion": "3:4",
     "adopted": "1862",
@@ -2082,6 +2286,7 @@
   {
     "tags": "senegal green yellow red vertical star pan-african islam",
     "shortname": "sn",
+    "continent": "africa",
     "name": "Senegal",
     "proportion": "2:3",
     "adopted": "1960",
@@ -2092,6 +2297,7 @@
   {
     "tags": "somalia blue white star",
     "shortname": "so",
+    "continent": "africa",
     "name": "Somalia",
     "proportion": "2:3",
     "adopted": "2012",
@@ -2102,6 +2308,7 @@
   {
     "tags": "suriname green white red yellow horizontal star",
     "shortname": "sr",
+    "continent": "southAmerica",
     "name": "Suriname",
     "proportion": "2:3",
     "adopted": "1975",
@@ -2112,6 +2319,7 @@
   {
     "tags": "south sudan black blue red green yellow white triangle horizontal star pan-african islam",
     "shortname": "ss",
+    "continent": "africa",
     "name": "South Sudan",
     "proportion": "1:2",
     "adopted": "2005",
@@ -2122,6 +2330,7 @@
   {
     "tags": "são tomé and príncipe sao tome principe green yellow red black triangle horizontal star pan-african",
     "shortname": "st",
+    "continent": "africa",
     "name": "São Tomé and Príncipe",
     "proportion": "1:2",
     "adopted": "1975",
@@ -2132,6 +2341,7 @@
   {
     "tags": "el salvador blue white horizontal vegetation mountain hat text motto name flag christianity",
     "shortname": "sv",
+    "continent": "northAmerica",
     "name": "El Salvador",
     "proportion": "189:335",
     "adopted": "1912",
@@ -2142,6 +2352,7 @@
   {
     "tags": "sint maarten blue red white yellow triangle horizontal animal vegetation text motto ribbon building",
     "shortname": "sx",
+    "continent": "northAmerica",
     "name": "Sint Maarten",
     "proportion": "2:3",
     "adopted": "1985",
@@ -2152,6 +2363,7 @@
   {
     "tags": "syria red white blue green horizontal star pan-arab",
     "shortname": "sy",
+    "continent": "asia",
     "name": "Syria",
     "proportion": "2:3",
     "adopted": "1980",
@@ -2162,6 +2374,7 @@
   {
     "tags": "eswatini swaziland blue yellow red white black shield weapon horizontal",
     "shortname": "sz",
+    "continent": "africa",
     "name": "Eswatini",
     "proportion": "2:3",
     "adopted": "1968",
@@ -2172,6 +2385,7 @@
   {
     "tags": "turks and caicos islands blue white red yellow cross british animal vegetation",
     "shortname": "tc",
+    "continent": "northAmerica",
     "name": "Turks and Caicos Islands",
     "proportion": "1:2",
     "adopted": "1968",
@@ -2182,6 +2396,7 @@
   {
     "tags": "chad blue yellow red vertical pan-african",
     "shortname": "td",
+    "continent": "africa",
     "name": "Chad",
     "proportion": "2:3",
     "adopted": "1959",
@@ -2202,6 +2417,7 @@
   {
     "tags": "togo green yellow red white horizontal star pan-african",
     "shortname": "tg",
+    "continent": "africa",
     "name": "Togo",
     "proportion": "1:φ",
     "adopted": "1960",
@@ -2212,6 +2428,7 @@
   {
     "tags": "thailand red white blue horizontal buddhism",
     "shortname": "th",
+    "continent": "asia",
     "name": "Thailand",
     "proportion": "2:3",
     "adopted": "1917",
@@ -2222,6 +2439,7 @@
   {
     "tags": "tajikistan red white green horizontal star crown",
     "shortname": "tj",
+    "continent": "asia",
     "name": "Tajikistan",
     "proportion": "1:2",
     "adopted": "1992",
@@ -2232,6 +2450,7 @@
   {
     "tags": "tokelau blue yellow white triangle star boat",
     "shortname": "tk",
+    "continent": "oceania",
     "name": "Tokelau",
     "proportion": "1:2",
     "adopted": "2009",
@@ -2242,6 +2461,7 @@
   {
     "tags": "timor-leste east timor red yellow black white triangle star",
     "shortname": "tl",
+    "continent": "asia",
     "name": "Timor-Leste (East Timor)",
     "proportion": "1:2",
     "adopted": "2002",
@@ -2252,6 +2472,7 @@
   {
     "tags": "turkmenistan green red vertical stripe carpet moon star vegetation islam",
     "shortname": "tm",
+    "continent": "asia",
     "name": "Turkmenistan",
     "proportion": "2:3",
     "adopted": "2001",
@@ -2262,6 +2483,7 @@
   {
     "tags": "tunisia red white circle star islam",
     "shortname": "tn",
+    "continent": "africa",
     "name": "Tunisia",
     "proportion": "2:3",
     "adopted": "1999",
@@ -2272,6 +2494,7 @@
   {
     "tags": "tonga red white cross christianity",
     "shortname": "to",
+    "continent": "oceania",
     "name": "Tonga",
     "proportion": "1:2",
     "adopted": "1875",
@@ -2282,6 +2505,7 @@
   {
     "tags": "turkey red white moon star islam",
     "shortname": "tr",
+    "continent": "asia",
     "name": "Turkey",
     "proportion": "2:3",
     "adopted": "1844",
@@ -2292,6 +2516,7 @@
   {
     "tags": "trinidad tobago red white black triangle diagonal",
     "shortname": "tt",
+    "continent": "northAmerica",
     "name": "Trinidad and Tobago",
     "proportion": "3:5",
     "adopted": "1962",
@@ -2302,6 +2527,7 @@
   {
     "tags": "tuvalu blue red white yellow cross british star christianity",
     "shortname": "tv",
+    "continent": "oceania",
     "name": "Tuvalu",
     "proportion": "1:2",
     "adopted": "1997",
@@ -2312,6 +2538,7 @@
   {
     "tags": "taiwan red blue white circle sun",
     "shortname": "tw",
+    "continent": "asia",
     "name": "Taiwan",
     "proportion": "2:3",
     "adopted": "1945",
@@ -2322,6 +2549,7 @@
   {
     "tags": "tanzania green yellow black blue triangle diagonal",
     "shortname": "tz",
+    "continent": "africa",
     "name": "Tanzania",
     "proportion": "2:3",
     "adopted": "1964",
@@ -2332,6 +2560,7 @@
   {
     "tags": "ukraine blue yellow horizontal",
     "shortname": "ua",
+    "continent": "europe",
     "name": "Ukraine",
     "proportion": "2:3",
     "adopted": "1992",
@@ -2342,6 +2571,7 @@
   {
     "tags": "uganda black yellow red horizontal circle bird animal",
     "shortname": "ug",
+    "continent": "africa",
     "name": "Uganda",
     "proportion": "2:3",
     "adopted": "1962",
@@ -2352,15 +2582,18 @@
   {
     "tags": "united states minor outlying islands red white blue horizontal star",
     "shortname": "um",
+    "continent": "oceania",
     "name": "United States Minor Outlying Islands",
     "proportion": "10:19",
     "adopted": "1960",
     "symbolism": "For symbolism regarding the Star-Spangled Banner, see <a href=\"?q=united+states\">United States</a>.<br>",
-    "funfacts": "The official flag is that of the <a href=\"?q=united+states\">United States</a>.<br>"
+    "funfacts": "The official flag is that of the <a href=\"?q=united+states\">United States</a>.<br>",
+    "wikipedialink": "https://en.wikipedia.org/wiki/United_States_Minor_Outlying_Islands"
   },
   {
     "tags": "usa united states america red white blue horizontal star",
     "shortname": "us",
+    "continent": "northAmerica",
     "name": "United States",
     "proportion": "10:19",
     "adopted": "1960",
@@ -2371,6 +2604,7 @@
   {
     "tags": "uruguay white blue yellow horizontal sun face",
     "shortname": "uy",
+    "continent": "southAmerica",
     "name": "Uruguay",
     "proportion": "2:3",
     "adopted": "1830",
@@ -2381,6 +2615,7 @@
   {
     "tags": "uzbekistan blue white green red horizontal moon star islam",
     "shortname": "uz",
+    "continent": "asia",
     "name": "Uzbekistan",
     "proportion": "1:2",
     "adopted": "1991",
@@ -2391,6 +2626,7 @@
   {
     "tags": "vatican city yellow white vertical crown christianity",
     "shortname": "va",
+    "continent": "europe",
     "name": "Vatican City",
     "proportion": "1:1",
     "adopted": "1929",
@@ -2401,6 +2637,7 @@
   {
     "tags": "saint vincent grenadines blue yellow green vertical",
     "shortname": "vc",
+    "continent": "northAmerica",
     "name": "Saint Vincent and the Grenadines",
     "proportion": "2:3",
     "adopted": "1985",
@@ -2411,6 +2648,7 @@
   {
     "tags": "venezuela yellow blue red horizontal star",
     "shortname": "ve",
+    "continent": "southAmerica",
     "name": "Venezuela",
     "proportion": "2:3",
     "adopted": "2006",
@@ -2421,6 +2659,7 @@
   {
     "tags": "british virgin islands white blue red green yellow cross human text motto ribbon shield",
     "shortname": "vg",
+    "continent": "northAmerica",
     "name": "British Virgin Islands",
     "proportion": "1:2",
     "adopted": "1960",
@@ -2431,6 +2670,7 @@
   {
     "tags": "united states virgin islands white blue yellow red animal bird vegetation weapon shield text vertical",
     "shortname": "vi",
+    "continent": "northAmerica",
     "name": "United States Virgin Islands",
     "proportion": "2:3",
     "adopted": "1921",
@@ -2441,6 +2681,7 @@
   {
     "tags": "vietnam red yellow star communism",
     "shortname": "vn",
+    "continent": "asia",
     "name": "Vietnam",
     "proportion": "2:3",
     "adopted": "1955",
@@ -2451,6 +2692,7 @@
   {
     "tags": "vanuatu red green yellow black triangle vegetation horizontal",
     "shortname": "vu",
+    "continent": "oceania",
     "name": "Vanuatu",
     "proportion": "19:36",
     "adopted": "1980",
@@ -2461,6 +2703,7 @@
   {
     "tags": "wallis and futuna red blue white triangle vertical cross",
     "shortname": "wf",
+    "continent": "oceania",
     "name": "Wallis and Futuna",
     "proportion": "2:3",
     "adopted": "Unofficial",
@@ -2471,6 +2714,7 @@
   {
     "tags": "samoa red blue white star",
     "shortname": "ws",
+    "continent": "oceania",
     "name": "Samoa",
     "proportion": "1:2",
     "adopted": "1962",
@@ -2481,6 +2725,7 @@
   {
     "tags": "kosovo blue yellow white star map",
     "shortname": "xk",
+    "continent": "europe",
     "name": "Kosovo",
     "proportion": "5:7",
     "adopted": "2008",
@@ -2491,6 +2736,7 @@
   {
     "tags": "yemen red white black horizontal pan-arab",
     "shortname": "ye",
+    "continent": "asia",
     "name": "Yemen",
     "proportion": "2:3",
     "adopted": "1990",
@@ -2501,6 +2747,7 @@
   {
     "tags": "mayotte white red blue yellow grey text name ribbon animal vegetation moon star",
     "shortname": "yt",
+    "continent": "africa",
     "name": "Mayotte",
     "proportion": "2:3",
     "adopted": "Unofficial",
@@ -2511,6 +2758,7 @@
   {
     "tags": "south africa red green blue white yellow black triangle horizontal pan-african",
     "shortname": "za",
+    "continent": "africa",
     "name": "South Africa",
     "proportion": "2:3",
     "adopted": "1994",
@@ -2521,6 +2769,7 @@
   {
     "tags": "zambia green red black orange bird animal vertical pan-african",
     "shortname": "zm",
+    "continent": "africa",
     "name": "Zambia",
     "proportion": "2:3",
     "adopted": "1996",
@@ -2531,6 +2780,7 @@
   {
     "tags": "zimbabwe green yellow red black white horizontal star bird animal pan-african",
     "shortname": "zw",
+    "continent": "africa",
     "name": "Zimbabwe",
     "proportion": "1:2",
     "adopted": "1980",
