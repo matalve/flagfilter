@@ -65,7 +65,7 @@ If GitHub issue creation succeeds, the frontend can show a direct link to the cr
 
 - UI strings live in `i18n/ui/<lang>.json`
 - Flag text overlays live in `i18n/flags/<lang>.json`
-- Base source data stays in `flaginfo.json`
+- Base source data (including the per-flag `continent` field used by the continent filter) stays in `flaginfo.json`
 - Supported languages today: `en`, `es`
 
 Language selection priority:
@@ -118,6 +118,7 @@ Translation contributions are welcome:
 - Playwright tests: `tests/e2e/app.spec.js`
 - GitHub Actions workflow: `.github/workflows/ui-tests.yml`
 - Data sources: `flaginfo.json` and `https://flagcdn.com/w320/{code}.png`
+- `flaginfo.json` is validated in CI (required fields, unique codes, continent coverage): `node scripts/validate-flaginfo.mjs`
 
 ## Support
 
