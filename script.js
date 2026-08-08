@@ -98,7 +98,7 @@ function normalizeQueryValue(value) {
         .replace(/([a-z])([A-Z])/g, '$1 $2')
         .toLowerCase()
         .normalize('NFD')
-        .replace(/[\\u0300-\\u036f]/g, '')
+        .replace(/[̀-ͯ]/g, '')
         .replace(/[_-]+/g, ' ')
         .replace(/[^a-z0-9 ]+/g, ' ')
         .trim()
@@ -870,7 +870,7 @@ function processHtmlContent(htmlContent) {
     const normalizeForQuery = (value) => value
         .toLowerCase()
         .normalize('NFD')
-        .replace(/[\\u0300-\\u036f]/g, '')
+        .replace(/[̀-ͯ]/g, '')
         .replace(/&/g, ' and ')
         .replace(/['’]/g, '')
         .replace(/[^a-z0-9]+/g, ' ')
