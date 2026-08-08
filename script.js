@@ -98,7 +98,7 @@ function normalizeQueryValue(value) {
         .replace(/([a-z])([A-Z])/g, '$1 $2')
         .toLowerCase()
         .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[̀-ͯ]/g, '')
         .replace(/[_-]+/g, ' ')
         .replace(/[^a-z0-9 ]+/g, ' ')
         .trim()
@@ -302,215 +302,6 @@ function initDarkMode() {
     });
 }
 
-// Predefined flag colors database
-const flagColors = {
-    'af': ['black', 'red', 'green'],
-    'al': ['red', 'black'],
-    'dz': ['green', 'white', 'red'],
-    'ad': ['blue', 'yellow', 'red'],
-    'ao': ['red', 'black', 'yellow'],
-    'ag': ['red', 'blue', 'yellow', 'white', 'black'],
-    'ar': ['blue', 'white'],
-    'am': ['red', 'blue', 'orange'],
-    'au': ['blue', 'red', 'white'],
-    'at': ['red', 'white'],
-    'az': ['blue', 'red', 'green'],
-    'bs': ['blue', 'yellow', 'black'],
-    'bh': ['red', 'white'],
-    'bd': ['green', 'red'],
-    'bb': ['blue', 'yellow', 'black'],
-    'by': ['red', 'green', 'white'],
-    'be': ['black', 'yellow', 'red'],
-    'bz': ['blue', 'red', 'white'],
-    'bj': ['green', 'yellow', 'red'],
-    'bt': ['yellow', 'orange', 'white'],
-    'bo': ['red', 'yellow', 'green'],
-    'ba': ['blue', 'yellow', 'white'],
-    'bw': ['blue', 'white', 'black'],
-    'br': ['green', 'yellow', 'blue', 'white'],
-    'bn': ['yellow', 'black', 'white', 'red'],
-    'bg': ['white', 'green', 'red'],
-    'bf': ['red', 'green', 'yellow'],
-    'bi': ['red', 'white', 'green'],
-    'kh': ['blue', 'red', 'white'],
-    'cm': ['green', 'red', 'yellow', 'white'],
-    'ca': ['red', 'white'],
-    'cv': ['blue', 'white', 'red', 'yellow'],
-    'cf': ['blue', 'white', 'green', 'yellow', 'red'],
-    'td': ['blue', 'yellow', 'red'],
-    'cl': ['red', 'white', 'blue'],
-    'cn': ['red', 'yellow'],
-    'co': ['yellow', 'blue', 'red'],
-    'km': ['green', 'white', 'red', 'yellow', 'blue'],
-    'cg': ['green', 'yellow', 'red'],
-    'cd': ['blue', 'yellow', 'red'],
-    'cr': ['blue', 'white', 'red'],
-    'ci': ['orange', 'white', 'green'],
-    'hr': ['red', 'white', 'blue'],
-    'cu': ['blue', 'white', 'red'],
-    'cy': ['white', 'yellow', 'green'],
-    'cz': ['white', 'red', 'blue'],
-    'dk': ['red', 'white'],
-    'dj': ['blue', 'green', 'white', 'red'],
-    'dm': ['green', 'yellow', 'black', 'red', 'white'],
-    'do': ['blue', 'red', 'white'],
-    'ec': ['yellow', 'blue', 'red'],
-    'eg': ['red', 'white', 'black'],
-    'sv': ['blue', 'white'],
-    'gq': ['green', 'white', 'red', 'blue'],
-    'er': ['green', 'red', 'blue', 'yellow'],
-    'ee': ['blue', 'black', 'white'],
-    'et': ['green', 'yellow', 'red', 'blue'],
-    'fj': ['blue', 'red', 'white'],
-    'fi': ['white', 'blue'],
-    'fr': ['blue', 'white', 'red'],
-    'ga': ['green', 'yellow', 'blue'],
-    'gm': ['red', 'blue', 'green', 'white'],
-    'ge': ['white', 'red'],
-    'de': ['black', 'red', 'yellow'],
-    'gh': ['red', 'yellow', 'green', 'black'],
-    'gr': ['blue', 'white'],
-    'gd': ['red', 'yellow', 'green', 'white'],
-    'gt': ['blue', 'white'],
-    'gn': ['red', 'yellow', 'green'],
-    'gw': ['yellow', 'green', 'red', 'black'],
-    'gy': ['green', 'white', 'yellow', 'red', 'black'],
-    'ht': ['blue', 'red', 'white'],
-    'hn': ['blue', 'white'],
-    'hu': ['red', 'white', 'green'],
-    'is': ['blue', 'white', 'red'],
-    'in': ['orange', 'white', 'green'],
-    'id': ['red', 'white'],
-    'ir': ['green', 'white', 'red'],
-    'iq': ['red', 'white', 'black', 'green'],
-    'ie': ['green', 'white', 'orange'],
-    'il': ['blue', 'white'],
-    'it': ['green', 'white', 'red'],
-    'jm': ['green', 'yellow', 'black'],
-    'jp': ['white', 'red'],
-    'jo': ['black', 'white', 'green', 'red'],
-    'kz': ['blue', 'yellow'],
-    'ke': ['black', 'red', 'green', 'white'],
-    'ki': ['red', 'blue', 'white', 'yellow'],
-    'kp': ['red', 'white', 'blue'],
-    'kr': ['white', 'red', 'blue', 'black'],
-    'kw': ['green', 'white', 'red', 'black'],
-    'kg': ['red', 'yellow'],
-    'la': ['red', 'blue', 'white'],
-    'lv': ['red', 'white'],
-    'lb': ['red', 'white', 'green'],
-    'ls': ['blue', 'white', 'green', 'black'],
-    'lr': ['red', 'white', 'blue', 'white'],
-    'ly': ['red', 'black', 'green', 'white'],
-    'li': ['red', 'blue'],
-    'lt': ['yellow', 'green', 'red'],
-    'lu': ['red', 'white', 'blue'],
-    'mg': ['white', 'red', 'green'],
-    'mw': ['black', 'red', 'green'],
-    'my': ['red', 'white', 'blue', 'yellow'],
-    'mv': ['red', 'green', 'white'],
-    'ml': ['green', 'yellow', 'red'],
-    'mt': ['white', 'red'],
-    'mh': ['blue', 'white', 'orange'],
-    'mr': ['green', 'yellow', 'red'],
-    'mu': ['red', 'blue', 'yellow', 'green'],
-    'mx': ['green', 'white', 'red'],
-    'fm': ['blue', 'white'],
-    'md': ['blue', 'yellow', 'red'],
-    'mc': ['red', 'white'],
-    'mn': ['red', 'blue', 'yellow'],
-    'me': ['red', 'yellow'],
-    'ma': ['red', 'green'],
-    'mz': ['green', 'black', 'yellow', 'white', 'red'],
-    'mm': ['yellow', 'green', 'red', 'white'],
-    'na': ['blue', 'red', 'green', 'white', 'yellow'],
-    'nr': ['blue', 'yellow', 'white'],
-    'np': ['red', 'blue', 'white'],
-    'nl': ['red', 'white', 'blue'],
-    'nz': ['blue', 'white', 'red'],
-    'ni': ['blue', 'white'],
-    'ne': ['orange', 'white', 'green'],
-    'ng': ['green', 'white', 'green'],
-    'no': ['red', 'white', 'blue'],
-    'om': ['red', 'white', 'green'],
-    'pk': ['green', 'white'],
-    'pw': ['blue', 'yellow'],
-    'pa': ['white', 'blue', 'red'],
-    'pg': ['red', 'black', 'yellow'],
-    'py': ['red', 'white', 'blue'],
-    'pe': ['red', 'white'],
-    'ph': ['blue', 'red', 'yellow', 'white'],
-    'pl': ['white', 'red'],
-    'pt': ['red', 'green'],
-    'qa': ['white', 'red'],
-    'ro': ['blue', 'yellow', 'red'],
-    'ru': ['white', 'blue', 'red'],
-    'rw': ['blue', 'yellow', 'green'],
-    'kn': ['green', 'yellow', 'black', 'red', 'white'],
-    'lc': ['blue', 'yellow', 'black', 'white', 'red'],
-    'vc': ['blue', 'yellow', 'green', 'white', 'red'],
-    'ws': ['red', 'white', 'blue'],
-    'sm': ['white', 'blue'],
-    'st': ['green', 'yellow', 'red', 'black'],
-    'sa': ['green', 'white'],
-    'sn': ['green', 'yellow', 'red'],
-    'rs': ['red', 'blue', 'white'],
-    'sc': ['blue', 'yellow', 'red', 'white', 'green'],
-    'sl': ['green', 'white', 'blue'],
-    'sg': ['red', 'white'],
-    'sk': ['white', 'blue', 'red'],
-    'si': ['white', 'blue', 'red'],
-    'sb': ['blue', 'yellow', 'green', 'white'],
-    'so': ['blue', 'white'],
-    'za': ['red', 'blue', 'green', 'yellow', 'white', 'black'],
-    'ss': ['black', 'red', 'green', 'blue', 'yellow', 'white'],
-    'es': ['red', 'yellow'],
-    'lk': ['red', 'green', 'yellow', 'orange'],
-    'sd': ['red', 'white', 'black', 'green'],
-    'sr': ['green', 'white', 'red', 'yellow'],
-    'sz': ['blue', 'yellow', 'red', 'white', 'black'],
-    'se': ['blue', 'yellow'],
-    'ch': ['red', 'white'],
-    'sy': ['red', 'white', 'black', 'green'],
-    'tw': ['red', 'blue', 'white'],
-    'tj': ['red', 'white', 'green'],
-    'tz': ['green', 'yellow', 'blue', 'black'],
-    'th': ['red', 'white', 'blue'],
-    'tl': ['red', 'yellow', 'black', 'white'],
-    'tg': ['green', 'yellow', 'red', 'white'],
-    'to': ['red', 'white'],
-    'tt': ['red', 'white', 'black'],
-    'tn': ['red', 'white'],
-    'tr': ['red', 'white'],
-    'tm': ['green', 'red', 'white', 'yellow'],
-    'tv': ['blue', 'yellow', 'white', 'red'],
-    'ug': ['black', 'yellow', 'red'],
-    'ua': ['blue', 'yellow'],
-    'ae': ['green', 'white', 'black', 'red'],
-    'gb': ['blue', 'white', 'red'],
-    'us': ['red', 'white', 'blue'],
-    'uy': ['white', 'blue', 'yellow'],
-    'uz': ['blue', 'white', 'red', 'green'],
-    'vu': ['red', 'green', 'yellow', 'black', 'white'],
-    'va': ['yellow', 'white'],
-    've': ['yellow', 'blue', 'red', 'white'],
-    'vn': ['red', 'yellow'],
-    'ye': ['red', 'white', 'black'],
-    'zm': ['green', 'red', 'black', 'yellow', 'orange'],
-    'zw': ['green', 'yellow', 'red', 'black', 'white'],
-    'eu': ['blue', 'yellow', 'white']
-};
-
-// Continent data structure
-const continentData = {
-    'africa': ['dz', 'ao', 'bj', 'bw', 'bf', 'bi', 'cm', 'cv', 'cf', 'td', 'km', 'cg', 'cd', 'ci', 'dj', 'eg', 'gq', 'er', 'et', 'ga', 'gm', 'gh', 'gn', 'gw', 'ke', 'ls', 'lr', 'ly', 'mg', 'mw', 'ml', 'mr', 'mu', 'mz', 'na', 'ne', 'ng', 'rw', 'st', 'sn', 'sc', 'sl', 'so', 'za', 'ss', 'sd', 'sz', 'tz', 'tg', 'tn', 'ug', 'zm', 'zw'],
-    'asia': ['af', 'am', 'az', 'bh', 'bd', 'bt', 'bn', 'kh', 'cn', 'ge', 'in', 'id', 'ir', 'iq', 'il', 'jp', 'jo', 'kz', 'kw', 'kg', 'la', 'lb', 'my', 'mv', 'mn', 'mm', 'np', 'om', 'pk', 'ph', 'qa', 'sa', 'sg', 'kr', 'lk', 'sy', 'tw', 'tj', 'th', 'tl', 'tr', 'tm', 'ae', 'uz', 'vn', 'ye'],
-    'europe': ['al', 'ad', 'at', 'by', 'be', 'ba', 'bg', 'hr', 'cz', 'dk', 'ee', 'fi', 'fr', 'de', 'gr', 'hu', 'is', 'ie', 'it', 'lv', 'li', 'lt', 'lu', 'mt', 'md', 'mc', 'me', 'nl', 'mk', 'no', 'pl', 'pt', 'ro', 'ru', 'sm', 'rs', 'sk', 'si', 'es', 'se', 'ch', 'ua', 'gb', 'va'],
-    'northAmerica': ['ag', 'bs', 'bb', 'bz', 'ca', 'cr', 'cu', 'dm', 'do', 'sv', 'gd', 'gt', 'ht', 'hn', 'jm', 'mx', 'ni', 'pa', 'tt', 'us'],
-    'southAmerica': ['ar', 'bo', 'br', 'cl', 'co', 'ec', 'gy', 'py', 'pe', 'sr', 'uy', 've'],
-    'oceania': ['au', 'fj', 'ki', 'mh', 'nr', 'nz', 'pw', 'pg', 'ws', 'sb', 'to', 'tv', 'vu']
-};
-
 function localizeFlagInfo(info) {
     if (currentLanguage === 'en') {
         return { ...info };
@@ -541,8 +332,9 @@ function rebuildFlags() {
         return {
             code,
             url,
+            continent: info.continent || null,
             name: info.name || code.toUpperCase(),
-            colors: colors.length > 0 ? colors : extractColorsFromUrl(url),
+            colors,
             tags: tags.split(' '),
             info
         };
@@ -555,24 +347,15 @@ async function fetchFlags() {
         const flagInfoResponse = await fetch('flaginfo.json');
         baseFlagInfo = await flagInfoResponse.json();
         rebuildFlags();
-        
+
         // Don't render here: initApp resolves the initial ?q= filter first, so the
         // grid renders exactly once with the correct above-the-fold flags (and the
         // eager / high-priority LCP image lands on the right one). See PR #115.
-        filteredFlags = [...flags];
-
         return flags;
     } catch (error) {
         console.error('Error fetching flag data:', error);
         flagGrid.innerHTML = `<p class="error">${t('error_loading_flags')}</p>`;
     }
-}
-
-// Extract colors from flag URL (fallback method)
-function extractColorsFromUrl(url) {
-    // This is a simplified version of the original function
-    // We'll use the tags from flaginfo.json as the primary source
-    return [];
 }
 
 function applyStaticTranslations() {
@@ -1087,7 +870,7 @@ function processHtmlContent(htmlContent) {
     const normalizeForQuery = (value) => value
         .toLowerCase()
         .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[̀-ͯ]/g, '')
         .replace(/&/g, ' and ')
         .replace(/['’]/g, '')
         .replace(/[^a-z0-9]+/g, ' ')
@@ -1171,11 +954,7 @@ function applyFilters() {
     
     // Apply continent filters
     if (activeContinents.length > 0) {
-        results = results.filter(flag => {
-            return activeContinents.some(continent => {
-                return continentData[continent].includes(flag.code);
-            });
-        });
+        results = results.filter(flag => activeContinents.some(continent => flag.continent === continent));
     }
 
     // Apply pattern filters
@@ -1249,7 +1028,7 @@ function updateFilterButtonStates(currentResults) {
             if (type === 'color') {
                 wouldHaveResults = testResults.some(flag => flag.colors.includes(value));
             } else if (type === 'continent') {
-                wouldHaveResults = testResults.some(flag => continentData[value].includes(flag.code));
+                wouldHaveResults = testResults.some(flag => flag.continent === value);
             } else {
                 wouldHaveResults = testResults.some(flag => flag.tags.includes(value));
             }
