@@ -24,6 +24,9 @@ jobs:
         with:
           node-version: 20
 
+      - name: Validate flaginfo.json
+        run: node scripts/validate-flaginfo.mjs
+
       - name: Install dependencies
         run: npm install
 
