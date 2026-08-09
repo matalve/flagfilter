@@ -150,17 +150,16 @@ function getBaseFlagInfoByCode(code) {
 }
 
 function matchesSearchTerm(flag, searchTerm) {
-    const normalizedTerm = searchTerm.toLowerCase().trim();
+    // Normalize the term the same way as the precomputed flag haystack (see
+    // rebuildFlags): NFD + diacritics folding + punctuation/case/space folding.
+    const normalizedTerm = normalizeQueryValue(searchTerm);
     if (normalizedTerm === '') {
-        return true;
+        // Empty input shows everything; input that only contains characters the
+        // normalization strips (e.g. punctuation) matches nothing.
+        return searchTerm.trim() === '';
     }
 
-    const baseInfo = getBaseFlagInfoByCode(flag.code);
-
-    return flag.name.toLowerCase().includes(normalizedTerm)
-        || (baseInfo?.name || '').toLowerCase().includes(normalizedTerm)
-        || flag.code.toLowerCase() === normalizedTerm
-        || flag.tags.some((tag) => tag.toLowerCase().includes(normalizedTerm));
+    return flag.searchText.includes(normalizedTerm);
 }
 
 function syncQueryParamFromUiState() {
@@ -334,6 +333,12 @@ function rebuildFlags() {
         const colorTags = ['red', 'blue', 'green', 'yellow', 'white', 'black', 'brown', 'purple', 'orange'];
         const colors = colorTags.filter(color => tags.includes(color));
 
+        // Precompute one normalized search haystack per flag (localized name +
+        // English base name + code + tags), so matchesSearchTerm becomes a single
+        // includes() that folds diacritics and works regardless of UI language.
+        // See #144.
+        const searchText = normalizeQueryValue(`${info.name || ''} ${baseInfo.name || ''} ${code} ${tags}`);
+
         return {
             code,
             url,
@@ -341,7 +346,8 @@ function rebuildFlags() {
             name: info.name || code.toUpperCase(),
             colors,
             tags: tags.split(' '),
-            info
+            info,
+            searchText
         };
     });
     flagsByCode = new Map(flags.map((flag) => [flag.code, flag]));
