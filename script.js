@@ -8,6 +8,11 @@ const languageSelect = document.getElementById('languageSelect');
 let flags = [];
 let filteredFlags = [];
 let baseFlagInfo = [];
+// Lookup caches, rebuilt whenever the flag list is (re)built. flagsByCode makes
+// "Learn more" resolution O(1); flagCardsByCode holds one persistent DOM card per
+// flag so filtering reorders nodes instead of recreating them. See #142.
+let flagsByCode = new Map();
+let flagCardsByCode = new Map();
 let uiTranslations = {};
 let fallbackUiTranslations = {};
 let flagTranslations = {};
@@ -250,10 +255,10 @@ function initDarkMode() {
     const darkModeToggle = document.getElementById('darkModeToggle');
     const sunIcon = document.querySelector('.sun-icon');
     const moonIcon = document.querySelector('.moon-icon');
-    
+
     // Check if user has a saved preference
     const savedDarkMode = localStorage.getItem('darkMode');
-    
+
     // Apply saved preference or use system preference
     if (savedDarkMode !== null) {
         // User has a saved preference
@@ -282,11 +287,11 @@ function initDarkMode() {
             localStorage.setItem('darkMode', 'false');
         }
     }
-    
+
     // Toggle dark mode
     darkModeToggle.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
-        
+
         // Update icons
         if (document.body.classList.contains('dark-mode')) {
             sunIcon.style.display = 'none';
@@ -339,6 +344,8 @@ function rebuildFlags() {
             info
         };
     });
+    flagsByCode = new Map(flags.map((flag) => [flag.code, flag]));
+    buildFlagCards();
 }
 
 // Fetch flag data from local source and apply translations
@@ -489,47 +496,80 @@ function getFlagImageDimensions(proportion) {
     };
 }
 
-// Render flag grid
+// Create one persistent card element per flag. Cards are built once per language
+// (names, alt texts and button labels are localized) and then reused across renders.
+function createFlagCard(flag) {
+    const flagCard = document.createElement('div');
+    flagCard.className = 'flag-card';
+
+    flagCard.innerHTML = `
+        <img src="${flag.url}" alt="${t('flag_image_alt', { name: flag.name })}" width="${FLAG_IMAGE_SOURCE_WIDTH}" height="${FLAG_GRID_IMAGE_HEIGHT}" loading="lazy">
+        <h3>${flag.name}</h3>
+        <button class="learn-more-btn" data-code="${flag.code}" aria-haspopup="dialog">${t('learn_more')}</button>
+    `;
+
+    return flagCard;
+}
+
+function buildFlagCards() {
+    flagCardsByCode = new Map(flags.map((flag) => [flag.code, createFlagCard(flag)]));
+}
+
+// Render the flag grid by reordering the persistent card nodes (appendChild moves
+// an existing node instead of recreating it), so filtering no longer rebuilds
+// ~250 cards per interaction. See #142.
 function renderFlagGrid() {
-    flagGrid.innerHTML = '';
-    
     if (filteredFlags.length === 0) {
-        flagGrid.innerHTML = `<p class="no-results">${t('no_results')}</p>`;
+        flagGrid.replaceChildren();
+        const noResults = document.createElement('p');
+        noResults.className = 'no-results';
+        noResults.textContent = t('no_results');
+        flagGrid.appendChild(noResults);
         updateFlagCounter(0);
         return;
     }
-    
+
+    const visibleCards = new Set();
     filteredFlags.forEach((flag, index) => {
-        const flagCard = document.createElement('div');
-        flagCard.className = 'flag-card';
+        const flagCard = flagCardsByCode.get(flag.code);
 
         // Above-the-fold images load eagerly; the first one is the LCP candidate
         // and gets high fetch priority. Everything below the fold stays lazy.
-        const loading = index < EAGER_FLAG_IMAGE_COUNT ? 'eager' : 'lazy';
-        const fetchPriority = index === 0 ? ' fetchpriority="high"' : '';
+        // These depend on the card's position, so refresh them on every render.
+        const image = flagCard.querySelector('img');
+        image.loading = index < EAGER_FLAG_IMAGE_COUNT ? 'eager' : 'lazy';
+        if (index === 0) {
+            image.setAttribute('fetchpriority', 'high');
+        } else {
+            image.removeAttribute('fetchpriority');
+        }
 
-        flagCard.innerHTML = `
-            <img src="${flag.url}" alt="${t('flag_image_alt', { name: flag.name })}" width="${FLAG_IMAGE_SOURCE_WIDTH}" height="${FLAG_GRID_IMAGE_HEIGHT}" loading="${loading}"${fetchPriority}>
-            <h3>${flag.name}</h3>
-            <button class="learn-more-btn" data-code="${flag.code}" aria-haspopup="dialog">${t('learn_more')}</button>
-        `;
-
+        visibleCards.add(flagCard);
         flagGrid.appendChild(flagCard);
     });
-    
-    updateFlagCounter(filteredFlags.length);
-    
-    // Add event listeners to all "Learn more" buttons
-    document.querySelectorAll('.learn-more-btn').forEach(button => {
-        button.addEventListener('click', () => {
-            const flagCode = button.getAttribute('data-code');
-            const flag = flags.find(f => f.code === flagCode);
-            if (flag) {
-                showFlagInfoModal(flag);
-            }
-        });
+
+    // Detach the cards that fell out of the result set.
+    Array.from(flagGrid.children).forEach((child) => {
+        if (!visibleCards.has(child)) {
+            child.remove();
+        }
     });
+
+    updateFlagCounter(filteredFlags.length);
 }
+
+// One delegated listener for every "Learn more" button, registered once on the
+// grid instead of one listener per button on every render.
+flagGrid.addEventListener('click', (event) => {
+    const button = event.target.closest('.learn-more-btn');
+    if (!button) {
+        return;
+    }
+    const flag = flagsByCode.get(button.dataset.code);
+    if (flag) {
+        showFlagInfoModal(flag);
+    }
+});
 
 function updateFlagCounter(count) {
     const counter = document.getElementById('flagCounter');
@@ -619,12 +659,12 @@ function showFlagInfoModal(flag) {
     modal.setAttribute('role', 'dialog');
     modal.setAttribute('aria-modal', 'true');
     modal.setAttribute('aria-hidden', 'true');
-    
+
     // Create modal content
     const modalContent = document.createElement('div');
     modalContent.className = 'modal-content';
     modal._closeHandler = () => closeDynamicModal(modal);
-    
+
     // Create close button
     const closeBtn = document.createElement('button');
     closeBtn.className = 'close-btn';
@@ -634,7 +674,7 @@ function showFlagInfoModal(flag) {
     closeBtn.addEventListener('click', () => {
         closeDynamicModal(modal);
     });
-    
+
     // Create flag image
     const flagImage = document.createElement('img');
     // Use a higher-resolution source for the modal — it's displayed up to 400px wide
@@ -655,11 +695,11 @@ function showFlagInfoModal(flag) {
     const flagInfo = document.createElement('div');
     flagInfo.className = 'flag-info-details';
     flagInfo.id = 'flagModalDescription';
-    
+
     // Process HTML content to make links clickable
     const processedSymbolism = processHtmlContent(flag.info.symbolism || t('no_information_available'));
     const processedFunfacts = processHtmlContent(flag.info.funfacts || t('no_fun_facts_available'));
-    
+
     // Amazon affiliate search link — uses the English base name (so the query works
     // in any UI language) with parenthetical aliases stripped. See #126.
     const baseInfo = getBaseFlagInfoByCode(flag.code);
@@ -680,7 +720,7 @@ function showFlagInfoModal(flag) {
         </div>
         <p class="affiliate-disclosure">${t('amazon_disclosure')}</p>
     `;
-    
+
     // Create report issue form (initially hidden)
     const reportForm = document.createElement('div');
     reportForm.className = 'report-form';
@@ -691,7 +731,7 @@ function showFlagInfoModal(flag) {
         <form id="reportForm">
             <input type="hidden" name="flagCode" value="${flag.code}">
             <input type="hidden" name="flagName" value="${flag.name}">
-            
+
             <div class="form-group">
                 <label for="issueType">${t('type_of_issue_label')}:</label>
                 <select name="issueType" id="issueType" required>
@@ -702,19 +742,19 @@ function showFlagInfoModal(flag) {
                     <option value="other">${t('issue_other')}</option>
                 </select>
             </div>
-            
+
             <div class="form-group">
                 <label for="issueDescription">${t('description_label')}:</label>
-                <textarea name="issueDescription" id="issueDescription" required 
+                <textarea name="issueDescription" id="issueDescription" required
                     placeholder="${t('issue_description_placeholder')}"></textarea>
             </div>
-            
+
             <div class="form-group">
                 <label for="userEmail">${t('your_email_optional_label')}:</label>
-                <input type="email" name="userEmail" id="userEmail" 
+                <input type="email" name="userEmail" id="userEmail"
                     placeholder="${t('email_placeholder')}">
             </div>
-            
+
             <div class="form-actions">
                 <button type="submit" class="submit-btn">${t('submit_report')}</button>
                 <button type="button" class="cancel-btn">${t('cancel')}</button>
@@ -723,7 +763,7 @@ function showFlagInfoModal(flag) {
             <div class="report-form-status" role="status" aria-live="polite" hidden></div>
         </form>
     `;
-    
+
     // Assemble modal
     modalContent.appendChild(closeBtn);
     modalContent.appendChild(flagImage);
@@ -732,11 +772,11 @@ function showFlagInfoModal(flag) {
     modal.appendChild(modalContent);
     modal.setAttribute('aria-labelledby', 'flagModalTitle');
     modal.setAttribute('aria-describedby', 'flagModalDescription');
-    
+
     // Add modal to body
     document.body.appendChild(modal);
     openModal(modal);
-    
+
     // Handle report issue button click
     const reportBtn = flagInfo.querySelector('.report-issue-btn');
     const form = reportForm.querySelector('#reportForm');
@@ -785,15 +825,15 @@ function showFlagInfoModal(flag) {
             firstField.focus();
         }
     });
-    
+
     // Handle form submission
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         clearReportStatus();
-        
+
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
-        
+
         try {
             const response = await fetch('/api/report-issue', {
                 method: 'POST',
@@ -802,9 +842,9 @@ function showFlagInfoModal(flag) {
                 },
                 body: JSON.stringify(data)
             });
-            
+
             const result = await response.json();
-            
+
             if (response.ok) {
                 if (result.githubIssueUrl) {
                     showReportStatus('success', t('report_success'), result.githubIssueUrl, t('report_success_with_issue_link'));
@@ -824,7 +864,7 @@ function showFlagInfoModal(flag) {
             console.error('Error submitting report:', error);
         }
     });
-    
+
     // Handle cancel button
     cancelBtn.addEventListener('click', () => {
         clearReportStatus();
@@ -834,14 +874,14 @@ function showFlagInfoModal(flag) {
         reportBtn.setAttribute('aria-expanded', 'false');
         reportBtn.focus();
     });
-    
+
     // Close modal when clicking outside
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
             closeDynamicModal(modal);
         }
     });
-    
+
     // Add event listeners to flag links in the modal
     setTimeout(() => {
         document.querySelectorAll('.flag-link').forEach(link => {
@@ -899,15 +939,28 @@ function processHtmlContent(htmlContent) {
     });
 }
 
+// Search is debounced so typing does not trigger a filter pass plus grid render
+// per keystroke; it settles ~150 ms after the last input. See #142.
+const SEARCH_DEBOUNCE_MS = 150;
+let searchDebounceTimer = null;
+
+function debounceSearch(query) {
+    clearTimeout(searchDebounceTimer);
+    searchDebounceTimer = setTimeout(() => {
+        searchDebounceTimer = null;
+        handleSearch(query);
+    }, SEARCH_DEBOUNCE_MS);
+}
+
 // Search functionality
 function handleSearch(query) {
     const searchTerm = query.toLowerCase().trim();
-    
+
     if (searchTerm === '') {
         applyFilters();
         return;
     }
-    
+
     filteredFlags = flags.filter((flag) => matchesSearchTerm(flag, searchTerm));
     applyFilters();
 }
@@ -916,42 +969,42 @@ function handleSearch(query) {
 function applyFilters() {
     const activeColors = Array.from(document.querySelectorAll('.filter-btn[data-color].active'))
         .map(btn => btn.dataset.color);
-    
+
     const activeContinents = Array.from(document.querySelectorAll('.filter-btn[data-continent].active'))
         .map(btn => btn.dataset.continent);
-    
+
     const activePatterns = Array.from(document.querySelectorAll('.filter-btn[data-pattern].active'))
         .map(btn => btn.dataset.pattern);
-    
+
     const activeSymbols = Array.from(document.querySelectorAll('.filter-btn[data-symbol].active'))
         .map(btn => btn.dataset.symbol);
-    
+
     const activeMotives = Array.from(document.querySelectorAll('.filter-btn[data-motive].active'))
         .map(btn => btn.dataset.motive);
-    
+
     const activePeople = Array.from(document.querySelectorAll('.filter-btn[data-people].active'))
         .map(btn => btn.dataset.people);
-    
+
     const activeIdeologies = Array.from(document.querySelectorAll('.filter-btn[data-ideology].active'))
         .map(btn => btn.dataset.ideology);
-    
+
     const activeTexts = Array.from(document.querySelectorAll('.filter-btn[data-text].active'))
         .map(btn => btn.dataset.text);
-    
+
     const searchTerm = searchInput.value.toLowerCase().trim();
-    
+
     // Start with all flags or search results
     let results = searchTerm === ''
         ? [...flags]
         : flags.filter((flag) => matchesSearchTerm(flag, searchTerm));
-    
+
     // Apply color filters
     if (activeColors.length > 0) {
-        results = results.filter(flag => 
+        results = results.filter(flag =>
             activeColors.every(color => flag.colors.includes(color))
         );
     }
-    
+
     // Apply continent filters
     if (activeContinents.length > 0) {
         results = results.filter(flag => activeContinents.some(continent => flag.continent === continent));
@@ -959,46 +1012,46 @@ function applyFilters() {
 
     // Apply pattern filters
     if (activePatterns.length > 0) {
-        results = results.filter(flag => 
+        results = results.filter(flag =>
             activePatterns.some(pattern => flag.tags.includes(pattern))
         );
     }
 
     // Apply symbol filters
     if (activeSymbols.length > 0) {
-        results = results.filter(flag => 
+        results = results.filter(flag =>
             activeSymbols.some(symbol => flag.tags.includes(symbol))
         );
     }
 
     // Apply motive filters
     if (activeMotives.length > 0) {
-        results = results.filter(flag => 
+        results = results.filter(flag =>
             activeMotives.some(motive => flag.tags.includes(motive))
         );
     }
 
     // Apply people/clothing filters
     if (activePeople.length > 0) {
-        results = results.filter(flag => 
+        results = results.filter(flag =>
             activePeople.some(people => flag.tags.includes(people))
         );
     }
 
     // Apply ideology filters
     if (activeIdeologies.length > 0) {
-        results = results.filter(flag => 
+        results = results.filter(flag =>
             activeIdeologies.some(ideology => flag.tags.includes(ideology))
         );
     }
 
     // Apply text filters
     if (activeTexts.length > 0) {
-        results = results.filter(flag => 
+        results = results.filter(flag =>
             activeTexts.some(text => flag.tags.includes(text))
         );
     }
-    
+
     filteredFlags = results;
     renderFlagGrid();
     updateFilterButtonStates(results);
@@ -1012,25 +1065,35 @@ function updateFilterButtonStates(currentResults) {
         btn.classList.remove('disabled');
     });
 
+    // Index the values present in the current results once (O(flags)) so each
+    // filter-button test below is an O(1) lookup instead of an O(flags) scan.
+    const availableColors = new Set();
+    const availableContinents = new Set();
+    const availableTags = new Set();
+    currentResults.forEach(flag => {
+        flag.colors.forEach(color => availableColors.add(color));
+        if (flag.continent) {
+            availableContinents.add(flag.continent);
+        }
+        flag.tags.forEach(tag => availableTags.add(tag));
+    });
+
     // Check each filter type
     const filterTypes = ['color', 'continent', 'pattern', 'symbol', 'motive', 'people', 'ideology', 'text'];
-    
+
     filterTypes.forEach(type => {
         const buttons = document.querySelectorAll(`.filter-btn[data-${type}]`);
         buttons.forEach(button => {
             const value = button.dataset[type];
-            let wouldHaveResults = false;
-
-            // Create a copy of current results to test
-            let testResults = [...currentResults];
 
             // Test if adding this filter would still show results
+            let wouldHaveResults;
             if (type === 'color') {
-                wouldHaveResults = testResults.some(flag => flag.colors.includes(value));
+                wouldHaveResults = availableColors.has(value);
             } else if (type === 'continent') {
-                wouldHaveResults = testResults.some(flag => flag.continent === value);
+                wouldHaveResults = availableContinents.has(value);
             } else {
-                wouldHaveResults = testResults.some(flag => flag.tags.includes(value));
+                wouldHaveResults = availableTags.has(value);
             }
 
             // Disable button if it would result in 0 flags
@@ -1049,7 +1112,7 @@ function handleColorFilter(color) {
         button.classList.toggle('active');
         updateToggleButtonState(button);
     }
-    
+
     applyFilters();
 }
 
@@ -1079,7 +1142,7 @@ function syncFilterSectionState(section) {
 function toggleFilterSection(header) {
     const section = header.closest('.filter-section');
     section.classList.toggle('collapsed');
-    
+
     // Save the state to localStorage using a stable key that does not change with translations
     const sectionId = section.dataset.sectionId;
     const isCollapsed = section.classList.contains('collapsed');
@@ -1105,7 +1168,7 @@ function initializeFilterSections() {
     document.querySelectorAll('.filter-section').forEach(section => {
         const sectionId = section.dataset.sectionId;
         const isCollapsed = localStorage.getItem(`filterSection_${sectionId}`) === 'true';
-        
+
         if (isCollapsed || sectionId === 'more') {
             section.classList.add('collapsed');
         }
@@ -1121,6 +1184,9 @@ function initializeFilterSections() {
 }
 
 function resetAllFilters() {
+    // Cancel any pending debounced search so it cannot re-filter after the reset.
+    clearTimeout(searchDebounceTimer);
+    searchDebounceTimer = null;
     searchInput.value = '';
     document.querySelectorAll('.filter-btn').forEach(button => {
         button.classList.remove('active');
@@ -1148,7 +1214,7 @@ function isEditableTarget(target) {
 }
 
 // Event Listeners
-searchInput.addEventListener('input', (e) => handleSearch(e.target.value));
+searchInput.addEventListener('input', (e) => debounceSearch(e.target.value));
 if (resetFiltersButton) {
     resetFiltersButton.addEventListener('click', resetAllFilters);
 }
