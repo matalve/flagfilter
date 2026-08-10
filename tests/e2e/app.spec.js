@@ -242,6 +242,17 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('.flag-card h3')).toHaveText(['Santo Tomé y Príncipe']);
   });
 
+  test('search uses the rebuilt haystack after a runtime language switch', async ({ page }) => {
+    // Pins the invariant that switchLanguage re-runs rebuildFlags: without the
+    // rebuild, the haystack keeps the English names and "espana" would still
+    // find nothing after switching to Spanish. See #144.
+    await page.locator('#searchInput').fill('espana');
+    await expect(page.locator('.flag-card')).toHaveCount(0);
+    await page.locator('#languageSelect').selectOption('es');
+    await expect(page.locator('.flag-card')).toHaveCount(1);
+    await expect(page.locator('.flag-card h3')).toHaveText(['España']);
+  });
+
   test('search containing only punctuation shows the no-results message', async ({ page }) => {
     await page.locator('#searchInput').fill('!!!');
     await expect(page.locator('.flag-card')).toHaveCount(0);
@@ -250,6 +261,9 @@ test.describe('Flagfilter UI flows', () => {
 
   test('clearing a punctuation-only search restores the full grid', async ({ page }) => {
     const initialCards = await page.locator('.flag-card').count();
+    // Guard the precondition: without a rendered grid the restore assertion
+    // below would pass vacuously.
+    expect(initialCards).toBeGreaterThan(0);
     await page.locator('#searchInput').fill('!!!');
     await expect(page.locator('.flag-card')).toHaveCount(0);
     await page.locator('#searchInput').fill('');
@@ -614,6 +628,7 @@ test.describe('Flagfilter UI flows', () => {
     });
 
     await openFirstFlagModal(page);
+
     const reportButton = page.locator('.report-issue-btn');
     await reportButton.click();
 
