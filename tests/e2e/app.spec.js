@@ -614,7 +614,8 @@ test.describe('Flagfilter UI flows', () => {
     });
 
     await openFirstFlagModal(page);
-    await page.locator('.report-issue-btn').click();
+    const reportButton = page.locator('.report-issue-btn');
+    await reportButton.click();
 
     await page.locator('#issueType').selectOption('incorrect_info');
     await page.locator('#issueDescription').fill('Automated cancel-after-error test.');
