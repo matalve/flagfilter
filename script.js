@@ -149,17 +149,13 @@ function getBaseFlagInfoByCode(code) {
     return baseFlagInfo.find((info) => info.shortname === code);
 }
 
-function matchesSearchTerm(flag, searchTerm) {
-    // Normalize the term the same way as the precomputed flag haystack (see
-    // rebuildFlags): NFD + diacritics folding + punctuation/case/space folding.
-    const normalizedTerm = normalizeQueryValue(searchTerm);
-    if (normalizedTerm === '') {
-        // Empty input shows everything; input that only contains characters the
-        // normalization strips (e.g. punctuation) matches nothing.
-        return searchTerm.trim() === '';
-    }
-
-    return flag.searchText.includes(normalizedTerm);
+function matchesSearchTerm(flag, normalizedTerm) {
+    // The term is normalized once per search by the caller (handleSearch /
+    // applyFilters), not once per flag comparison. An empty normalized term
+    // here means the input only contained characters the normalization strips
+    // (e.g. punctuation) and matches nothing; a truly empty search is handled
+    // by the callers and shows all flags.
+    return normalizedTerm !== '' && flag.searchText.includes(normalizedTerm);
 }
 
 function syncQueryParamFromUiState() {
@@ -960,14 +956,15 @@ function debounceSearch(query) {
 
 // Search functionality
 function handleSearch(query) {
-    const searchTerm = query.toLowerCase().trim();
+    // Normalize once per search instead of once per flag (see matchesSearchTerm).
+    const normalizedTerm = normalizeQueryValue(query);
 
-    if (searchTerm === '') {
+    if (query.trim() === '') {
         applyFilters();
         return;
     }
 
-    filteredFlags = flags.filter((flag) => matchesSearchTerm(flag, searchTerm));
+    filteredFlags = flags.filter((flag) => matchesSearchTerm(flag, normalizedTerm));
     applyFilters();
 }
 
@@ -999,10 +996,13 @@ function applyFilters() {
 
     const searchTerm = searchInput.value.toLowerCase().trim();
 
+    // Normalize once per filter pass instead of once per flag (see matchesSearchTerm).
+    const normalizedTerm = normalizeQueryValue(searchInput.value);
+
     // Start with all flags or search results
     let results = searchTerm === ''
         ? [...flags]
-        : flags.filter((flag) => matchesSearchTerm(flag, searchTerm));
+        : flags.filter((flag) => matchesSearchTerm(flag, normalizedTerm));
 
     // Apply color filters
     if (activeColors.length > 0) {
