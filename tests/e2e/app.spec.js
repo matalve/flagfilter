@@ -253,6 +253,22 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('.flag-card h3')).toHaveText(['España']);
   });
 
+  test('search cannot match across field boundaries', async ({ page }) => {
+    // "spain es" would match Spain if the name field flowed into the code
+    // field; with sentinel-separated haystack fields it finds nothing. See #151.
+    await page.locator('#searchInput').fill('spain es');
+    await expect(page.locator('.flag-card')).toHaveCount(0);
+    await expect(page.locator('.no-results')).toBeVisible();
+  });
+
+  test('Spanish UI search cannot match across the translated and base name', async ({ page }) => {
+    // "espana spain" spans the localized-name and base-name fields. See #151.
+    await gotoApp(page, 'es');
+    await page.locator('#searchInput').fill('espana spain');
+    await expect(page.locator('.flag-card')).toHaveCount(0);
+    await expect(page.locator('.no-results')).toBeVisible();
+  });
+
   test('search containing only punctuation shows the no-results message', async ({ page }) => {
     await page.locator('#searchInput').fill('!!!');
     await expect(page.locator('.flag-card')).toHaveCount(0);
