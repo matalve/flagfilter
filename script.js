@@ -149,18 +149,13 @@ function getBaseFlagInfoByCode(code) {
     return baseFlagInfo.find((info) => info.shortname === code);
 }
 
-function matchesSearchTerm(flag, searchTerm) {
-    const normalizedTerm = searchTerm.toLowerCase().trim();
-    if (normalizedTerm === '') {
-        return true;
-    }
-
-    const baseInfo = getBaseFlagInfoByCode(flag.code);
-
-    return flag.name.toLowerCase().includes(normalizedTerm)
-        || (baseInfo?.name || '').toLowerCase().includes(normalizedTerm)
-        || flag.code.toLowerCase() === normalizedTerm
-        || flag.tags.some((tag) => tag.toLowerCase().includes(normalizedTerm));
+function matchesSearchTerm(flag, normalizedTerm) {
+    // The term is normalized once per search by the caller (handleSearch /
+    // applyFilters), not once per flag comparison. An empty normalized term
+    // here means the input only contained characters the normalization strips
+    // (e.g. punctuation) and matches nothing; a truly empty search is handled
+    // by the callers and shows all flags.
+    return normalizedTerm !== '' && flag.searchText.includes(normalizedTerm);
 }
 
 function syncQueryParamFromUiState() {
@@ -334,6 +329,12 @@ function rebuildFlags() {
         const colorTags = ['red', 'blue', 'green', 'yellow', 'white', 'black', 'brown', 'purple', 'orange'];
         const colors = colorTags.filter(color => tags.includes(color));
 
+        // Precompute one normalized search haystack per flag (localized name +
+        // English base name + code + tags), so matchesSearchTerm becomes a single
+        // includes() that folds diacritics and works regardless of UI language.
+        // See #144.
+        const searchText = normalizeQueryValue(`${info.name || ''} ${baseInfo.name || ''} ${code} ${tags}`);
+
         return {
             code,
             url,
@@ -341,7 +342,8 @@ function rebuildFlags() {
             name: info.name || code.toUpperCase(),
             colors,
             tags: tags.split(' '),
-            info
+            info,
+            searchText
         };
     });
     flagsByCode = new Map(flags.map((flag) => [flag.code, flag]));
@@ -954,14 +956,15 @@ function debounceSearch(query) {
 
 // Search functionality
 function handleSearch(query) {
-    const searchTerm = query.toLowerCase().trim();
+    // Normalize once per search instead of once per flag (see matchesSearchTerm).
+    const normalizedTerm = normalizeQueryValue(query);
 
-    if (searchTerm === '') {
+    if (query.trim() === '') {
         applyFilters();
         return;
     }
 
-    filteredFlags = flags.filter((flag) => matchesSearchTerm(flag, searchTerm));
+    filteredFlags = flags.filter((flag) => matchesSearchTerm(flag, normalizedTerm));
     applyFilters();
 }
 
@@ -993,10 +996,13 @@ function applyFilters() {
 
     const searchTerm = searchInput.value.toLowerCase().trim();
 
+    // Normalize once per filter pass instead of once per flag (see matchesSearchTerm).
+    const normalizedTerm = normalizeQueryValue(searchInput.value);
+
     // Start with all flags or search results
     let results = searchTerm === ''
         ? [...flags]
-        : flags.filter((flag) => matchesSearchTerm(flag, searchTerm));
+        : flags.filter((flag) => matchesSearchTerm(flag, normalizedTerm));
 
     // Apply color filters
     if (activeColors.length > 0) {

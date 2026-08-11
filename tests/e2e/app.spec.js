@@ -194,6 +194,82 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('.flag-card h3')).toHaveText(['Timor-Leste (East Timor)']);
   });
 
+  test('search folds diacritics on flag names', async ({ page }) => {
+    // "sao tome" (no diacritics) must find "São Tomé and Príncipe". See #144.
+    await page.locator('#searchInput').fill('sao tome');
+    await expect(page.locator('.flag-card')).toHaveCount(1);
+    await expect(page.locator('.flag-card h3')).toHaveText(['São Tomé and Príncipe']);
+  });
+
+  test('search with diacritics also matches', async ({ page }) => {
+    await page.locator('#searchInput').fill('são tomé');
+    await expect(page.locator('.flag-card')).toHaveCount(1);
+    await expect(page.locator('.flag-card h3')).toHaveText(['São Tomé and Príncipe']);
+  });
+
+  test('search matches hyphenated names without the hyphen', async ({ page }) => {
+    await page.locator('#searchInput').fill('timor leste');
+    await expect(page.locator('.flag-card')).toHaveCount(1);
+    await expect(page.locator('.flag-card h3')).toHaveText(['Timor-Leste (East Timor)']);
+  });
+
+  test('search normalizes case and extra whitespace', async ({ page }) => {
+    await page.locator('#searchInput').fill('  South   KOREA ');
+    await expect(page.locator('.flag-card')).toHaveCount(1);
+    await expect(page.locator('.flag-card h3')).toHaveText(['South Korea']);
+  });
+
+  test('Spanish UI search folds diacritics on translated names', async ({ page }) => {
+    // "espana" (no tilde) must find "España" in the Spanish UI. See #144.
+    await gotoApp(page, 'es');
+    await page.locator('#searchInput').fill('espana');
+    await expect(page.locator('.flag-card')).toHaveCount(1);
+    await expect(page.locator('.flag-card h3')).toHaveText(['España']);
+  });
+
+  test('Spanish UI search also matches English base names', async ({ page }) => {
+    // Language mixing: English query, Spanish UI — the base name is always searchable.
+    await gotoApp(page, 'es');
+    await page.locator('#searchInput').fill('ivory coast');
+    await expect(page.locator('.flag-card')).toHaveCount(1);
+    await expect(page.locator('.flag-card h3')).toHaveText(['Costa de Marfil']);
+  });
+
+  test('Spanish UI search matches English multiword base names with punctuation', async ({ page }) => {
+    await gotoApp(page, 'es');
+    await page.locator('#searchInput').fill('sao tome');
+    await expect(page.locator('.flag-card')).toHaveCount(1);
+    await expect(page.locator('.flag-card h3')).toHaveText(['Santo Tomé y Príncipe']);
+  });
+
+  test('search uses the rebuilt haystack after a runtime language switch', async ({ page }) => {
+    // Pins the invariant that switchLanguage re-runs rebuildFlags: without the
+    // rebuild, the haystack keeps the English names and "espana" would still
+    // find nothing after switching to Spanish. See #144.
+    await page.locator('#searchInput').fill('espana');
+    await expect(page.locator('.flag-card')).toHaveCount(0);
+    await page.locator('#languageSelect').selectOption('es');
+    await expect(page.locator('.flag-card')).toHaveCount(1);
+    await expect(page.locator('.flag-card h3')).toHaveText(['España']);
+  });
+
+  test('search containing only punctuation shows the no-results message', async ({ page }) => {
+    await page.locator('#searchInput').fill('!!!');
+    await expect(page.locator('.flag-card')).toHaveCount(0);
+    await expect(page.locator('.no-results')).toBeVisible();
+  });
+
+  test('clearing a punctuation-only search restores the full grid', async ({ page }) => {
+    const initialCards = await page.locator('.flag-card').count();
+    // Guard the precondition: without a rendered grid the restore assertion
+    // below would pass vacuously.
+    expect(initialCards).toBeGreaterThan(0);
+    await page.locator('#searchInput').fill('!!!');
+    await expect(page.locator('.flag-card')).toHaveCount(0);
+    await page.locator('#searchInput').fill('');
+    await expect(page.locator('.flag-card')).toHaveCount(initialCards);
+  });
+
   test('learn more opens a flag modal and escape closes it', async ({ page }) => {
     const learnMoreButton = page.locator('.learn-more-btn').first();
 
