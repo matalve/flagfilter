@@ -208,7 +208,6 @@ test.describe('Flagfilter UI flows', () => {
   });
 
   test('search matches hyphenated names without the hyphen', async ({ page }) => {
-    // "timor leste" (no hyphen) must find "Timor-Leste (East Timor)". See #144.
     await page.locator('#searchInput').fill('timor leste');
     await expect(page.locator('.flag-card')).toHaveCount(1);
     await expect(page.locator('.flag-card h3')).toHaveText(['Timor-Leste (East Timor)']);
