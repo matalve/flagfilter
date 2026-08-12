@@ -83,11 +83,9 @@ function getInitialLanguage() {
     }
 
     const browserLanguage = (navigator.language || '').slice(0, 2).toLowerCase();
-    if (SUPPORTED_LANGUAGES.includes(browserLanguage)) {
-        return browserLanguage;
-    }
-
-    return DEFAULT_LANGUAGE;
+    return SUPPORTED_LANGUAGES.includes(browserLanguage)
+        ? browserLanguage
+        : DEFAULT_LANGUAGE;
 }
 
 function updateLanguageInUrl(language) {
@@ -870,8 +868,13 @@ function showFlagInfoModal(flag) {
         reportForm.style.display = 'block';
         reportBtn.style.display = 'none';
         reportBtn.setAttribute('aria-expanded', 'true');
+        // Only move focus automatically on devices with a fine pointer
+        // (mouse/trackpad). On touch devices, programmatic focus on a <select>
+        // leaves it "ghost-focused" without opening the native picker, so the
+        // first physical tap just clears the focus instead of opening the
+        // dropdown.
         const firstField = form.querySelector('#issueType');
-        if (firstField) {
+        if (firstField && window.matchMedia('(pointer: fine)').matches) {
             firstField.focus();
         }
 
