@@ -11,13 +11,16 @@
 # static.cloudflareinsights.com (script-src) and cloudflareinsights.com (connect-src)
 # are allowed so Cloudflare Web Analytics' beacon can load and report once automatic
 # injection is enabled in the dashboard; without these the enforced CSP would block it.
+# challenges.cloudflare.com (script-src + frame-src) is allowed so the Cloudflare
+# Turnstile widget can load and render its iframe once a site key is configured in
+# script.js; without these the enforced CSP would block the widget (see #146).
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Cross-Origin-Opener-Policy: same-origin
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' https://flagcdn.com data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://cloudflareinsights.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' https://flagcdn.com data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://cloudflareinsights.com; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests
 
 /index.html
   Cache-Control: public, max-age=0, must-revalidate
