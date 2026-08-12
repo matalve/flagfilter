@@ -5,7 +5,9 @@ const ISSUE_TYPE_LABELS = {
     other: 'other'
 };
 
-const FLAG_CODE_PATTERN = /^[a-z]{2}$/;
+// Matches the shortname formats used in flaginfo.json: two-letter country codes
+// plus the four UK subdivision codes (gb-eng, gb-nir, gb-sct, gb-wls).
+const FLAG_CODE_PATTERN = /^[a-z]{2}(-[a-z]{3})?$/;
 const MAX_DESCRIPTION_LENGTH = 2000;
 const MAX_EMAIL_LENGTH = 254;
 // Deliberately simple: one @ with non-empty local and domain parts.
