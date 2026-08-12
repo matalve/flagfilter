@@ -709,4 +709,34 @@ test.describe('Flagfilter UI flows', () => {
     await expect(successBox).not.toContainText('GitHub issue was automatically created.');
     await expect(page.locator('#issueType')).toBeFocused();
   });
+
+  test('app still works when localStorage access is denied', async ({ page }) => {
+    // Private mode / blocked storage (notably Safari) can make every
+    // localStorage access throw; the app must degrade to no persistence
+    // instead of aborting initApp. See #146.
+    await page.addInitScript(() => {
+      Storage.prototype.getItem = () => { throw new DOMException('Access is denied', 'SecurityError'); };
+      Storage.prototype.setItem = () => { throw new DOMException('Access is denied', 'SecurityError'); };
+    });
+    await gotoApp(page, 'en');
+
+    await page.locator('#searchInput').fill('sweden');
+    await expect(page.locator('.flag-card')).toHaveCount(1);
+
+    await page.locator('#darkModeToggle').click();
+    await expect(page.locator('body')).toHaveClass(/dark-mode/);
+
+    const moreSection = page.locator('.filter-section[data-section-id="more"]');
+    await moreSection.locator('.filter-header').click();
+    await expect(moreSection).not.toHaveClass(/collapsed/);
+  });
+
+  test('report form caps description and email length', async ({ page }) => {
+    // Mirrors the server-side length limits from #146 on the client side.
+    await openFirstFlagModal(page);
+    await page.locator('.report-issue-btn').click();
+
+    await expect(page.locator('#issueDescription')).toHaveAttribute('maxlength', '2000');
+    await expect(page.locator('#userEmail')).toHaveAttribute('maxlength', '254');
+  });
 });
