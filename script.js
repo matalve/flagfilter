@@ -83,9 +83,11 @@ function getInitialLanguage() {
     }
 
     const browserLanguage = (navigator.language || '').slice(0, 2).toLowerCase();
-    return SUPPORTED_LANGUAGES.includes(browserLanguage)
-        ? browserLanguage
-        : DEFAULT_LANGUAGE;
+    if (SUPPORTED_LANGUAGES.includes(browserLanguage)) {
+        return browserLanguage;
+    }
+
+    return DEFAULT_LANGUAGE;
 }
 
 function updateLanguageInUrl(language) {
