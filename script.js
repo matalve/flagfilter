@@ -332,8 +332,12 @@ function rebuildFlags() {
         // Precompute one normalized search haystack per flag (localized name +
         // English base name + code + tags), so matchesSearchTerm becomes a single
         // includes() that folds diacritics and works regardless of UI language.
-        // See #144.
-        const searchText = normalizeQueryValue(`${info.name || ''} ${baseInfo.name || ''} ${code} ${tags}`);
+        // Each field is normalized separately and joined with a NUL sentinel that
+        // the query normalization always strips, so a search term can never match
+        // across a field boundary (e.g. "spain es"). See #144 and #151.
+        const searchText = [info.name || '', baseInfo.name || '', code, tags]
+            .map(normalizeQueryValue)
+            .join(String.fromCharCode(0));
 
         return {
             code,
