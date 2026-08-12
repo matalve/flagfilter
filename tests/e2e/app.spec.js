@@ -208,6 +208,7 @@ test.describe('Flagfilter UI flows', () => {
   });
 
   test('search matches hyphenated names without the hyphen', async ({ page }) => {
+    // "timor leste" (no hyphen) must find "Timor-Leste (East Timor)". See #144.
     await page.locator('#searchInput').fill('timor leste');
     await expect(page.locator('.flag-card')).toHaveCount(1);
     await expect(page.locator('.flag-card h3')).toHaveText(['Timor-Leste (East Timor)']);
@@ -738,5 +739,37 @@ test.describe('Flagfilter UI flows', () => {
 
     await expect(page.locator('#issueDescription')).toHaveAttribute('maxlength', '2000');
     await expect(page.locator('#userEmail')).toHaveAttribute('maxlength', '254');
+  });
+
+  test('report form does not ghost-focus the issue type select on touch devices', async ({ browser }) => {
+    // Regression test: programmatically focusing a <select> on a touch device
+    // leaves it "ghost-focused" without opening the native picker, so the
+    // first physical tap just clears the focus instead of opening the
+    // dropdown. Focus is therefore only moved automatically when the device
+    // has a fine pointer (mouse/trackpad).
+    const context = await browser.newContext({
+      baseURL: 'http://127.0.0.1:4173',
+      hasTouch: true,
+      isMobile: true,
+      viewport: { width: 390, height: 844 },
+    });
+    const page = await context.newPage();
+    try {
+      await gotoApp(page, 'en');
+      await page.locator('.learn-more-btn').first().tap();
+      await expect(page.locator('#flagModalTitle')).toBeVisible();
+
+      await page.locator('.report-issue-btn').tap();
+      await expect(page.locator('#reportFormPanel')).toBeVisible();
+
+      // The select must not be pre-focused on coarse-pointer devices...
+      await expect(page.locator('#issueType')).not.toBeFocused();
+
+      // ...so the first tap on it focuses it and opens the native picker.
+      await page.locator('#issueType').tap();
+      await expect(page.locator('#issueType')).toBeFocused();
+    } finally {
+      await context.close();
+    }
   });
 });
