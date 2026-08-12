@@ -22,6 +22,46 @@ const DEFAULT_LANGUAGE = 'en';
 const QUERY_FILTER_DATA_KEYS = ['color', 'continent', 'pattern', 'symbol', 'motive', 'people', 'ideology', 'text'];
 const AMAZON_ASSOCIATE_TAG = 'flagfilter-20';
 
+// localStorage can throw on every access (private mode, blocked storage — notably
+// Safari). Route all persistence through these helpers so a denied store degrades
+// to "no persistence" instead of aborting initApp. See #146.
+function safeStorageGet(key) {
+    try {
+        return localStorage.getItem(key);
+    } catch (error) {
+        return null;
+    }
+}
+
+function safeStorageSet(key, value) {
+    try {
+        localStorage.setItem(key, value);
+    } catch (error) {
+        // Storage unavailable — the app keeps working without persistence.
+    }
+}
+
+// Cloudflare Turnstile bot protection for the report form. Dormant until a site
+// key is configured here AND TURNSTILE_SECRET_KEY is set on the Pages project;
+// with an empty site key no widget is rendered and the server skips verification.
+// See #146.
+const TURNSTILE_SITE_KEY = '';
+let turnstileScriptPromise = null;
+
+function loadTurnstileScript() {
+    if (!turnstileScriptPromise) {
+        turnstileScriptPromise = new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+            script.async = true;
+            script.onload = resolve;
+            script.onerror = reject;
+            document.head.appendChild(script);
+        });
+    }
+    return turnstileScriptPromise;
+}
+
 function getLanguageFromUrl() {
     const lang = new URLSearchParams(window.location.search).get('lang');
     return SUPPORTED_LANGUAGES.includes(lang) ? lang : null;
@@ -37,7 +77,7 @@ function getInitialLanguage() {
         return queryLanguage;
     }
 
-    const savedLanguage = localStorage.getItem('language');
+    const savedLanguage = safeStorageGet('language');
     if (SUPPORTED_LANGUAGES.includes(savedLanguage)) {
         return savedLanguage;
     }
@@ -252,7 +292,7 @@ function initDarkMode() {
     const moonIcon = document.querySelector('.moon-icon');
 
     // Check if user has a saved preference
-    const savedDarkMode = localStorage.getItem('darkMode');
+    const savedDarkMode = safeStorageGet('darkMode');
 
     // Apply saved preference or use system preference
     if (savedDarkMode !== null) {
@@ -273,13 +313,13 @@ function initDarkMode() {
             sunIcon.style.display = 'none';
             moonIcon.style.display = 'block';
             // Save this preference
-            localStorage.setItem('darkMode', 'true');
+            safeStorageSet('darkMode', 'true');
         } else {
             document.body.classList.remove('dark-mode');
             sunIcon.style.display = 'block';
             moonIcon.style.display = 'none';
             // Save this preference
-            localStorage.setItem('darkMode', 'false');
+            safeStorageSet('darkMode', 'false');
         }
     }
 
@@ -292,12 +332,12 @@ function initDarkMode() {
             sunIcon.style.display = 'none';
             moonIcon.style.display = 'block';
             // Save preference
-            localStorage.setItem('darkMode', 'true');
+            safeStorageSet('darkMode', 'true');
         } else {
             sunIcon.style.display = 'block';
             moonIcon.style.display = 'none';
             // Save preference
-            localStorage.setItem('darkMode', 'false');
+            safeStorageSet('darkMode', 'false');
         }
     });
 }
@@ -458,7 +498,7 @@ async function switchLanguage(language) {
     }
 
     currentLanguage = language;
-    localStorage.setItem('language', language);
+    safeStorageSet('language', language);
     updateLanguageInUrl(language);
     await loadTranslations(language);
     applyStaticTranslations();
@@ -736,7 +776,6 @@ function showFlagInfoModal(flag) {
         <h3>${t('report_issue')}</h3>
         <form id="reportForm">
             <input type="hidden" name="flagCode" value="${flag.code}">
-            <input type="hidden" name="flagName" value="${flag.name}">
 
             <div class="form-group">
                 <label for="issueType">${t('type_of_issue_label')}:</label>
@@ -752,14 +791,18 @@ function showFlagInfoModal(flag) {
             <div class="form-group">
                 <label for="issueDescription">${t('description_label')}:</label>
                 <textarea name="issueDescription" id="issueDescription" required
+                    maxlength="2000"
                     placeholder="${t('issue_description_placeholder')}"></textarea>
             </div>
 
             <div class="form-group">
                 <label for="userEmail">${t('your_email_optional_label')}:</label>
                 <input type="email" name="userEmail" id="userEmail"
+                    maxlength="254"
                     placeholder="${t('email_placeholder')}">
             </div>
+
+            ${TURNSTILE_SITE_KEY ? '<div class="turnstile-widget"></div>' : ''}
 
             <div class="form-actions">
                 <button type="submit" class="submit-btn">${t('submit_report')}</button>
@@ -788,6 +831,7 @@ function showFlagInfoModal(flag) {
     const form = reportForm.querySelector('#reportForm');
     const cancelBtn = reportForm.querySelector('.cancel-btn');
     const statusMessage = reportForm.querySelector('.report-form-status');
+    let turnstileWidgetId = null;
 
     function clearReportStatus() {
         statusMessage.hidden = true;
@@ -830,6 +874,17 @@ function showFlagInfoModal(flag) {
         if (firstField) {
             firstField.focus();
         }
+
+        // Render the bot-protection widget only once the form is visible (and
+        // only when a site key is configured). See #146.
+        if (TURNSTILE_SITE_KEY && turnstileWidgetId === null) {
+            loadTurnstileScript().then(() => {
+                turnstileWidgetId = window.turnstile.render(
+                    reportForm.querySelector('.turnstile-widget'),
+                    { sitekey: TURNSTILE_SITE_KEY }
+                );
+            }).catch((error) => console.error('Could not load Turnstile:', error));
+        }
     });
 
     // Handle form submission
@@ -839,6 +894,10 @@ function showFlagInfoModal(flag) {
 
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
+        // The Turnstile widget injects its token as cf-turnstile-response; send it
+        // under a stable name (empty when no widget is configured). See #146.
+        data.turnstileToken = data['cf-turnstile-response'] || '';
+        delete data['cf-turnstile-response'];
 
         try {
             const response = await fetch('/api/report-issue', {
@@ -868,6 +927,10 @@ function showFlagInfoModal(flag) {
         } catch (error) {
             showReportStatus('error', t('report_error'));
             console.error('Error submitting report:', error);
+            // Turnstile tokens are single-use: mint a fresh one for the retry.
+            if (turnstileWidgetId !== null && window.turnstile) {
+                window.turnstile.reset(turnstileWidgetId);
+            }
         }
     });
 
@@ -923,9 +986,14 @@ function processHtmlContent(htmlContent) {
         .trim()
         .replace(/\s+/g, '+');
 
-    // Replace links with ?q= parameter to make them open the flag modal.
-    // Use baseFlagInfo (English source names) for lookup so translated UI names do not break links.
-    return htmlContent.replace(/<a href="\?q=([^"]+)">([^<]+)<\/a>/g, (match, queryValue, linkText) => {
+    // Parse with DOMParser instead of rewriting the HTML with regex, so links
+    // keep working even if flaginfo.json content gains attributes or nested
+    // markup. ?q= links are resolved against baseFlagInfo (English source names)
+    // so translated UI names do not break them. See #146.
+    const doc = new DOMParser().parseFromString(htmlContent, 'text/html');
+
+    doc.querySelectorAll('a[href^="?q="]').forEach((link) => {
+        const queryValue = link.getAttribute('href').slice('?q='.length);
         const normalizedQuery = normalizeForQuery(queryValue);
 
         const matchedBaseFlag = baseFlagInfo.find((info) =>
@@ -933,16 +1001,25 @@ function processHtmlContent(htmlContent) {
         );
 
         if (matchedBaseFlag) {
-            return `<a href="#" class="flag-link" data-flag-code="${matchedBaseFlag.shortname}">${linkText}</a>`;
+            link.setAttribute('href', '#');
+            link.setAttribute('class', 'flag-link');
+            link.setAttribute('data-flag-code', matchedBaseFlag.shortname);
+            return;
         }
 
         const matchedByCode = flags.find((flag) => flag.code.toLowerCase() === queryValue.toLowerCase());
         if (matchedByCode) {
-            return `<a href="#" class="flag-link" data-flag-code="${matchedByCode.code}">${linkText}</a>`;
+            link.setAttribute('href', '#');
+            link.setAttribute('class', 'flag-link');
+            link.setAttribute('data-flag-code', matchedByCode.code);
+            return;
         }
 
-        return linkText;
+        // Unresolvable link: keep the link text, drop the anchor (same as before).
+        link.replaceWith(...link.childNodes);
     });
+
+    return doc.body.innerHTML;
 }
 
 // Search is debounced so typing does not trigger a filter pass plus grid render
@@ -1157,7 +1234,7 @@ function toggleFilterSection(header) {
     const sectionId = section.dataset.sectionId;
     const isCollapsed = section.classList.contains('collapsed');
     syncFilterSectionState(section);
-    localStorage.setItem(`filterSection_${sectionId}`, isCollapsed);
+    safeStorageSet(`filterSection_${sectionId}`, isCollapsed);
 }
 
 // Collapse the filter panels back to their default layout (the advanced "More filters"
@@ -1169,7 +1246,7 @@ function resetFilterSectionsToDefault() {
         const shouldCollapse = sectionId === 'more';
         section.classList.toggle('collapsed', shouldCollapse);
         syncFilterSectionState(section);
-        localStorage.setItem(`filterSection_${sectionId}`, shouldCollapse);
+        safeStorageSet(`filterSection_${sectionId}`, shouldCollapse);
     });
 }
 
@@ -1177,7 +1254,7 @@ function resetFilterSectionsToDefault() {
 function initializeFilterSections() {
     document.querySelectorAll('.filter-section').forEach(section => {
         const sectionId = section.dataset.sectionId;
-        const isCollapsed = localStorage.getItem(`filterSection_${sectionId}`) === 'true';
+        const isCollapsed = safeStorageGet(`filterSection_${sectionId}`) === 'true';
 
         if (isCollapsed || sectionId === 'more') {
             section.classList.add('collapsed');
