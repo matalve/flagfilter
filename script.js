@@ -834,8 +834,15 @@ function showFlagInfoModal(flag) {
                 <button type="button" class="cancel-btn">${t('cancel')}</button>
             </div>
 
-            <div class="report-form-status" role="status" aria-live="polite" hidden></div>
         </form>
+
+        <!-- Outside the form: the receipt has to survive the form being hidden
+             once a report has been sent. -->
+        <div class="report-form-status" role="status" aria-live="polite" hidden></div>
+
+        <div class="form-actions report-form-done" hidden>
+            <button type="button" class="close-report-btn">${t('close')}</button>
+        </div>
     `;
 
     // Assemble modal
@@ -855,6 +862,8 @@ function showFlagInfoModal(flag) {
     const reportBtn = flagInfo.querySelector('.report-issue-btn');
     const form = reportForm.querySelector('#reportForm');
     const cancelBtn = reportForm.querySelector('.cancel-btn');
+    const doneActions = reportForm.querySelector('.report-form-done');
+    const closeReportBtn = reportForm.querySelector('.close-report-btn');
     const statusMessage = reportForm.querySelector('.report-form-status');
     const submitBtn = reportForm.querySelector('.submit-btn');
     let turnstileWidgetId = null;
@@ -1015,13 +1024,21 @@ function showFlagInfoModal(flag) {
             const result = await response.json();
 
             if (response.ok) {
+                // The report is sent, so Submit and Cancel no longer describe
+                // anything the reader can do: swap the whole form for its
+                // receipt and a single way out. Hide before showing the status,
+                // so it is scrolled into view against the final layout.
+                form.reset();
+                form.hidden = true;
+                doneActions.hidden = false;
+
                 if (result.githubIssueUrl) {
                     showReportStatus('success', t('report_success'), result.githubIssueUrl, t('report_success_with_issue_link'));
                 } else {
                     showReportStatus('success', t('report_success'));
                 }
-                form.reset();
-                focusIfFinePointer(form.querySelector('#issueType'));
+
+                closeReportBtn.focus();
             } else {
                 throw new Error(result.error || t('failed_to_submit_report'));
             }
@@ -1033,15 +1050,21 @@ function showFlagInfoModal(flag) {
         }
     });
 
-    // Handle cancel button
-    cancelBtn.addEventListener('click', () => {
+    // Cancel (report not sent) and Close (report sent) both land back on the
+    // trigger button with the form ready for a fresh report.
+    function collapseReportForm() {
         clearReportStatus();
         form.reset();
+        form.hidden = false;
+        doneActions.hidden = true;
         reportForm.style.display = 'none';
         reportBtn.style.display = 'inline-flex';
         reportBtn.setAttribute('aria-expanded', 'false');
         reportBtn.focus();
-    });
+    }
+
+    cancelBtn.addEventListener('click', collapseReportForm);
+    closeReportBtn.addEventListener('click', collapseReportForm);
 
     // A modal is built per open and dropped on close, so unregister the widget
     // with Turnstile as well instead of only detaching its DOM node.

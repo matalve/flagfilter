@@ -757,7 +757,7 @@ test.describe('Flagfilter UI flows', () => {
     const successBox = page.locator('.report-form-status.success');
     await expect(successBox).toContainText('Thank you for your report! We will review it soon.');
     await expect(successBox).not.toContainText('GitHub issue was automatically created.');
-    await expect(page.locator('#issueType')).toBeFocused();
+    await expect(page.locator('.close-report-btn')).toBeFocused();
   });
 
   test('app still works when localStorage access is denied', async ({ page }) => {
@@ -788,6 +788,50 @@ test.describe('Flagfilter UI flows', () => {
 
     await expect(page.locator('#issueDescription')).toHaveAttribute('maxlength', '2000');
     await expect(page.locator('#userEmail')).toHaveAttribute('maxlength', '254');
+  });
+
+  test('a sent report replaces the form with a receipt and a single Close button', async ({ page }) => {
+    // Submit and Cancel describe nothing the reader can still do once the
+    // report is on its way, so the form gives way to its receipt.
+    await page.route('**/api/report-issue', async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          success: true,
+          partial: false,
+          destinations: { telegram: true, github: false },
+          githubIssueUrl: null
+        })
+      });
+    });
+
+    await openFirstFlagModal(page);
+    await page.locator('.report-issue-btn').click();
+
+    // Nothing to close before anything has been sent.
+    await expect(page.locator('.close-report-btn')).toBeHidden();
+
+    await page.locator('#issueType').selectOption('incorrect_info');
+    await page.locator('#issueDescription').fill('The form should close itself out.');
+    await page.locator('.submit-btn').click();
+
+    await expect(page.locator('.report-form-status.success')).toBeVisible();
+    await expect(page.locator('.submit-btn')).toBeHidden();
+    await expect(page.locator('.cancel-btn')).toBeHidden();
+    await expect(page.locator('.close-report-btn')).toBeVisible();
+    await expect(page.locator('.close-report-btn')).toBeFocused();
+
+    // Close returns to the trigger button, with a clean form for a next report.
+    await page.locator('.close-report-btn').click();
+    await expect(page.locator('#reportFormPanel')).toBeHidden();
+    await expect(page.locator('.report-issue-btn')).toBeVisible();
+
+    await page.locator('.report-issue-btn').click();
+    await expect(page.locator('.submit-btn')).toBeVisible();
+    await expect(page.locator('.close-report-btn')).toBeHidden();
+    await expect(page.locator('#issueDescription')).toHaveValue('');
+    await expect(page.locator('.report-form-status')).toBeHidden();
   });
 
   test('bot verification runs on submit, not when the report form opens', async ({ page }) => {
@@ -919,14 +963,14 @@ test.describe('Flagfilter UI flows', () => {
       await page.locator('#issueType').tap();
       await expect(page.locator('#issueType')).toBeFocused();
 
-      // The same applies after a successful submit: the form stays open, so
-      // re-focusing the select there would ghost-focus it all over again.
+      // Sending replaces the form with its receipt, so the select is gone
+      // rather than sitting there ghost-focused.
       await page.locator('#issueType').selectOption('incorrect_info');
       await page.locator('#issueDescription').fill('Reported from a touch device.');
       await page.locator('.submit-btn').tap();
 
       await expect(page.locator('.report-form-status.success')).toBeVisible();
-      await expect(page.locator('#issueType')).not.toBeFocused();
+      await expect(page.locator('#issueType')).toBeHidden();
     } finally {
       await context.close();
     }

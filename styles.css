@@ -1314,6 +1314,17 @@ h1 {
     margin-top: 0.35rem;
 }
 
+.report-form-done {
+    margin-top: 1rem;
+}
+
+/* .form-actions sets display: flex, which beats the [hidden] attribute's
+   display: none from the UA stylesheet. Without this the Close button shows up
+   before a report has been sent. */
+.report-form-done[hidden] {
+    display: none;
+}
+
 .report-form-status.success {
     border-color: rgba(22, 163, 74, 0.22);
     background: rgba(22, 163, 74, 0.08);
@@ -1371,7 +1382,8 @@ h1 {
 }
 
 .submit-btn,
-.cancel-btn {
+.cancel-btn,
+.close-report-btn {
     padding: 0.75rem 1.5rem;
     border: none;
     border-radius: 6px;
@@ -1380,12 +1392,16 @@ h1 {
     transition: all 0.2s ease;
 }
 
-.submit-btn {
+/* Once the report is sent, Close is the only action left, so it carries the
+   primary styling that Submit had. */
+.submit-btn,
+.close-report-btn {
     background-color: var(--primary-color);
     color: white;
 }
 
-.submit-btn:hover {
+.submit-btn:hover,
+.close-report-btn:hover {
     background-color: #4338ca;
 }
 
@@ -1409,7 +1425,8 @@ h1 {
     }
     
     .submit-btn,
-    .cancel-btn {
+    .cancel-btn,
+    .close-report-btn {
         width: 100%;
     }
 } 
