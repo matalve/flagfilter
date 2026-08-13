@@ -868,12 +868,21 @@ function showFlagInfoModal(flag) {
     const submitBtn = reportForm.querySelector('.submit-btn');
     let turnstileWidgetId = null;
     let pendingVerification = null;
+    let verificationTimeoutId = null;
 
     // The challenge runs when the report is submitted, not when the form opens.
     // Running it up front minted a token for every form that was opened and
     // abandoned, and left the widget sitting in the form looking like an
     // unfinished step once a report had been sent. See #146.
     function settleVerification(token, errorCode) {
+        // Drop this attempt's timeout with it. Left running, it would still fire
+        // 30 s later and settle whatever attempt happened to be pending by then
+        // — rejecting a retry that was doing nothing wrong.
+        if (verificationTimeoutId !== null) {
+            window.clearTimeout(verificationTimeoutId);
+            verificationTimeoutId = null;
+        }
+
         const pending = pendingVerification;
         pendingVerification = null;
 
@@ -929,7 +938,7 @@ function showFlagInfoModal(flag) {
             // Belt and braces: Turnstile has its own timeout-callback, but a
             // challenge that never settles would otherwise leave the form
             // disabled with no way out.
-            window.setTimeout(() => settleVerification(null, 'turnstile-timeout'), TURNSTILE_TIMEOUT_MS);
+            verificationTimeoutId = window.setTimeout(() => settleVerification(null, 'turnstile-timeout'), TURNSTILE_TIMEOUT_MS);
             window.turnstile.execute(widgetId);
         });
     }
