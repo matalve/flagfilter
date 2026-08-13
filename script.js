@@ -47,6 +47,9 @@ function safeStorageSet(key, value) {
 // skips verification, so reports keep going through. See #146.
 const TURNSTILE_SITE_KEY = '0x4AAAAAAEO8-UkMVW5o0VjW';
 const TURNSTILE_TIMEOUT_MS = 30000;
+// Cloudflare can ask the reader to tick a box. That runs at their pace, not the
+// network's, so the fallback gets a longer budget once the challenge is theirs.
+const TURNSTILE_INTERACTION_TIMEOUT_MS = 120000;
 let turnstileScriptPromise = null;
 
 // Programmatic focus on a <select> leaves it "ghost-focused" on touch devices:
@@ -81,7 +84,15 @@ function loadTurnstileScript() {
             script.onerror = reject;
             document.head.appendChild(script);
         });
+
+        // Only success is worth caching. Holding on to a rejected promise would
+        // turn one network hiccup into a session where every later report fails
+        // verification until the page is reloaded.
+        turnstileScriptPromise.catch(() => {
+            turnstileScriptPromise = null;
+        });
     }
+
     return turnstileScriptPromise;
 }
 
@@ -874,14 +885,24 @@ function showFlagInfoModal(flag) {
     // Running it up front minted a token for every form that was opened and
     // abandoned, and left the widget sitting in the form looking like an
     // unfinished step once a report had been sent. See #146.
-    function settleVerification(token, errorCode) {
-        // Drop this attempt's timeout with it. Left running, it would still fire
-        // 30 s later and settle whatever attempt happened to be pending by then
-        // — rejecting a retry that was doing nothing wrong.
+    function clearVerificationTimeout() {
         if (verificationTimeoutId !== null) {
             window.clearTimeout(verificationTimeoutId);
             verificationTimeoutId = null;
         }
+    }
+
+    // Only ever one timer in flight: restarting replaces the previous one.
+    function startVerificationTimeout(delayMs) {
+        clearVerificationTimeout();
+        verificationTimeoutId = window.setTimeout(() => settleVerification(null, 'turnstile-timeout'), delayMs);
+    }
+
+    function settleVerification(token, errorCode) {
+        // Drop this attempt's timeout with it. Left running, it would still fire
+        // later and settle whatever attempt happened to be pending by then —
+        // rejecting a retry that was doing nothing wrong.
+        clearVerificationTimeout();
 
         const pending = pendingVerification;
         pendingVerification = null;
@@ -910,6 +931,9 @@ function showFlagInfoModal(flag) {
                 callback: (token) => settleVerification(token),
                 'before-interactive-callback': () => {
                     showReportStatus('pending', t('report_verify_interaction'));
+                    // The wait is now the reader ticking a box, so the short
+                    // network-shaped budget would cut them off mid-interaction.
+                    startVerificationTimeout(TURNSTILE_INTERACTION_TIMEOUT_MS);
                 },
                 'error-callback': () => {
                     settleVerification(null, 'turnstile-error');
@@ -938,7 +962,7 @@ function showFlagInfoModal(flag) {
             // Belt and braces: Turnstile has its own timeout-callback, but a
             // challenge that never settles would otherwise leave the form
             // disabled with no way out.
-            verificationTimeoutId = window.setTimeout(() => settleVerification(null, 'turnstile-timeout'), TURNSTILE_TIMEOUT_MS);
+            startVerificationTimeout(TURNSTILE_TIMEOUT_MS);
             window.turnstile.execute(widgetId);
         });
     }
