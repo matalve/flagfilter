@@ -46,6 +46,7 @@ function safeStorageSet(key, value) {
 // Pages project. Until that secret is set the widget renders but the server
 // skips verification, so reports keep going through. See #146.
 const TURNSTILE_SITE_KEY = '0x4AAAAAAEO8-UkMVW5o0VjW';
+const TURNSTILE_TIMEOUT_MS = 30000;
 let turnstileScriptPromise = null;
 
 // Programmatic focus on a <select> leaves it "ghost-focused" on touch devices:
@@ -719,6 +720,8 @@ function showFlagInfoModal(flag) {
     // Create modal content
     const modalContent = document.createElement('div');
     modalContent.className = 'modal-content';
+    // Set again further down, once the report form exists, so closing the modal
+    // also tears down any Turnstile widget it rendered.
     modal._closeHandler = () => closeDynamicModal(modal);
 
     // Create close button
@@ -728,7 +731,7 @@ function showFlagInfoModal(flag) {
     closeBtn.innerHTML = '&times;';
     closeBtn.setAttribute('aria-label', t('close'));
     closeBtn.addEventListener('click', () => {
-        closeDynamicModal(modal);
+        closeAnyModal(modal);
     });
 
     // Create flag image
@@ -841,14 +844,79 @@ function showFlagInfoModal(flag) {
     const form = reportForm.querySelector('#reportForm');
     const cancelBtn = reportForm.querySelector('.cancel-btn');
     const statusMessage = reportForm.querySelector('.report-form-status');
+    const submitBtn = reportForm.querySelector('.submit-btn');
     let turnstileWidgetId = null;
+    let pendingVerification = null;
 
-    // Turnstile tokens are single-use, and the form stays open after a submit —
-    // mint a fresh one after every attempt so the next report is not rejected
-    // with a spent token. No-op while the widget is not configured. See #146.
-    function resetTurnstileWidget() {
+    // The challenge runs when the report is submitted, not when the form opens.
+    // Running it up front minted a token for every form that was opened and
+    // abandoned, and left the widget sitting in the form looking like an
+    // unfinished step once a report had been sent. See #146.
+    function settleVerification(token, errorCode) {
+        const pending = pendingVerification;
+        pendingVerification = null;
+
+        if (!pending) {
+            return;
+        }
+
+        if (token) {
+            pending.resolve(token);
+        } else {
+            pending.reject(new Error(errorCode));
+        }
+    }
+
+    async function renderTurnstileWidget() {
+        await loadTurnstileScript();
+
+        if (turnstileWidgetId === null) {
+            turnstileWidgetId = window.turnstile.render(reportForm.querySelector('.turnstile-widget'), {
+                sitekey: TURNSTILE_SITE_KEY,
+                // Wait for turnstile.execute() instead of challenging on render.
+                execution: 'execute',
+                // Stay out of the layout unless Cloudflare needs the user to act.
+                appearance: 'interaction-only',
+                callback: (token) => settleVerification(token),
+                'before-interactive-callback': () => {
+                    showReportStatus('pending', t('report_verify_interaction'));
+                },
+                'error-callback': () => {
+                    settleVerification(null, 'turnstile-error');
+                    return true;
+                },
+                'timeout-callback': () => settleVerification(null, 'turnstile-timeout'),
+                'expired-callback': () => settleVerification(null, 'turnstile-expired')
+            });
+        }
+
+        return turnstileWidgetId;
+    }
+
+    // Resolves with a fresh token, or '' when Turnstile is not configured. Tokens
+    // are single-use, so the widget is reset before every run.
+    async function requestTurnstileToken() {
+        if (!TURNSTILE_SITE_KEY) {
+            return '';
+        }
+
+        const widgetId = await renderTurnstileWidget();
+        window.turnstile.reset(widgetId);
+
+        return new Promise((resolve, reject) => {
+            pendingVerification = { resolve, reject };
+            // Belt and braces: Turnstile has its own timeout-callback, but a
+            // challenge that never settles would otherwise leave the form
+            // disabled with no way out.
+            window.setTimeout(() => settleVerification(null, 'turnstile-timeout'), TURNSTILE_TIMEOUT_MS);
+            window.turnstile.execute(widgetId);
+        });
+    }
+
+    function removeTurnstileWidget() {
         if (turnstileWidgetId !== null && window.turnstile) {
-            window.turnstile.reset(turnstileWidgetId);
+            window.turnstile.remove(turnstileWidgetId);
+            turnstileWidgetId = null;
         }
     }
 
@@ -890,32 +958,34 @@ function showFlagInfoModal(flag) {
         reportBtn.style.display = 'none';
         reportBtn.setAttribute('aria-expanded', 'true');
         focusIfFinePointer(form.querySelector('#issueType'));
-
-        // Render the bot-protection widget only once the form is visible (and
-        // only when a site key is configured). See #146.
-        if (TURNSTILE_SITE_KEY && turnstileWidgetId === null) {
-            loadTurnstileScript().then(() => {
-                turnstileWidgetId = window.turnstile.render(
-                    reportForm.querySelector('.turnstile-widget'),
-                    { sitekey: TURNSTILE_SITE_KEY }
-                );
-            }).catch((error) => console.error('Could not load Turnstile:', error));
-        }
     });
 
     // Handle form submission
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        clearReportStatus();
 
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
-        // The Turnstile widget injects its token as cf-turnstile-response; send it
-        // under a stable name (empty when no widget is configured). See #146.
-        data.turnstileToken = data['cf-turnstile-response'] || '';
+        // Turnstile injects its own hidden cf-turnstile-response input; the token
+        // this request uses is the one minted below, so drop the form copy.
         delete data['cf-turnstile-response'];
 
+        // Verification and sending both take a moment, so the form says what it
+        // is doing and stops accepting a second submit while it works.
+        submitBtn.disabled = true;
+        showReportStatus('pending', t('report_verifying'));
+
         try {
+            try {
+                data.turnstileToken = await requestTurnstileToken();
+            } catch (error) {
+                console.error('Turnstile verification failed:', error);
+                showReportStatus('error', t('report_verification_failed'));
+                return;
+            }
+
+            showReportStatus('pending', t('report_sending'));
+
             const response = await fetch('/api/report-issue', {
                 method: 'POST',
                 headers: {
@@ -933,7 +1003,6 @@ function showFlagInfoModal(flag) {
                     showReportStatus('success', t('report_success'));
                 }
                 form.reset();
-                resetTurnstileWidget();
                 focusIfFinePointer(form.querySelector('#issueType'));
             } else {
                 throw new Error(result.error || t('failed_to_submit_report'));
@@ -941,7 +1010,8 @@ function showFlagInfoModal(flag) {
         } catch (error) {
             showReportStatus('error', t('report_error'));
             console.error('Error submitting report:', error);
-            resetTurnstileWidget();
+        } finally {
+            submitBtn.disabled = false;
         }
     });
 
@@ -955,10 +1025,17 @@ function showFlagInfoModal(flag) {
         reportBtn.focus();
     });
 
+    // A modal is built per open and dropped on close, so unregister the widget
+    // with Turnstile as well instead of only detaching its DOM node.
+    modal._closeHandler = () => {
+        removeTurnstileWidget();
+        closeDynamicModal(modal);
+    };
+
     // Close modal when clicking outside
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
-            closeDynamicModal(modal);
+            closeAnyModal(modal);
         }
     });
 

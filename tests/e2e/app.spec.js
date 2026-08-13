@@ -23,12 +23,44 @@ async function openFlagModalBySearch(page, searchTerm) {
   await expect(page.locator('#flagModalTitle')).toBeVisible();
 }
 
-// With a Turnstile site key configured, opening the report form loads the widget
-// from challenges.cloudflare.com. The widget is not what these tests exercise, and
-// the test host is not one of its allowed hostnames, so keep the suite off the
-// network and let the app take its script-unavailable path.
-async function blockTurnstile(page) {
-  await page.route('**challenges.cloudflare.com/**', (route) => route.abort());
+// Submitting a report loads Turnstile from challenges.cloudflare.com. Cloudflare
+// is not what these tests exercise, and the test host is not one of the widget's
+// allowed hostnames, so serve a stand-in that resolves the challenge immediately.
+// It records how many widgets were rendered, which is what proves the challenge
+// runs on submit rather than when the form opens.
+const TURNSTILE_STUB = `
+  (() => {
+    const widgets = new Map();
+    let nextId = 0;
+
+    window.turnstile = {
+      render(container, options) {
+        window.__turnstileRenders += 1;
+        const id = 'stub-' + (nextId += 1);
+        widgets.set(id, options);
+        return id;
+      },
+      execute(id) {
+        const options = widgets.get(id);
+        window.setTimeout(() => options && options.callback('stub-token-' + id), 10);
+      },
+      reset() {},
+      remove(id) {
+        widgets.delete(id);
+      }
+    };
+  })();
+`;
+
+async function stubTurnstile(page) {
+  await page.addInitScript(() => {
+    window.__turnstileRenders = 0;
+  });
+  await page.route('**challenges.cloudflare.com/**', (route) => route.fulfill({
+    status: 200,
+    contentType: 'application/javascript',
+    body: TURNSTILE_STUB
+  }));
 }
 
 async function waitForNextTask(page) {
@@ -39,7 +71,7 @@ async function waitForNextTask(page) {
 
 test.describe('Flagfilter UI flows', () => {
   test.beforeEach(async ({ page }) => {
-    await blockTurnstile(page);
+    await stubTurnstile(page);
     await gotoApp(page, 'en');
   });
 
@@ -749,6 +781,50 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('#userEmail')).toHaveAttribute('maxlength', '254');
   });
 
+  test('bot verification runs on submit, not when the report form opens', async ({ page }) => {
+    // Opening a report form used to mint a token, which meant a challenge for
+    // every abandoned form and a widget left sitting in the form afterwards.
+    // The challenge now runs as part of submitting. See #146.
+    let submittedBody = null;
+    await page.route('**/api/report-issue', async (route) => {
+      submittedBody = route.request().postDataJSON();
+      // Hold the response briefly so the pending state is observable.
+      await new Promise((resolve) => setTimeout(resolve, 400));
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          success: true,
+          partial: false,
+          destinations: { telegram: true, github: false },
+          githubIssueUrl: null
+        })
+      });
+    });
+
+    await openFirstFlagModal(page);
+    await page.locator('.report-issue-btn').click();
+    await expect(page.locator('#reportFormPanel')).toBeVisible();
+
+    // No widget while the user is still filling the form in.
+    expect(await page.evaluate(() => window.__turnstileRenders)).toBe(0);
+
+    await page.locator('#issueType').selectOption('incorrect_info');
+    await page.locator('#issueDescription').fill('Verification should run on submit.');
+    await page.locator('.submit-btn').click();
+
+    // The form says what it is doing and refuses a second submit meanwhile.
+    await expect(page.locator('.report-form-status.pending')).toBeVisible();
+    await expect(page.locator('.submit-btn')).toBeDisabled();
+
+    await expect(page.locator('.report-form-status.success')).toBeVisible();
+    await expect(page.locator('.submit-btn')).toBeEnabled();
+
+    expect(await page.evaluate(() => window.__turnstileRenders)).toBe(1);
+    expect(submittedBody.turnstileToken).toMatch(/^stub-token-/);
+    expect(submittedBody['cf-turnstile-response']).toBeUndefined();
+  });
+
   test('report form does not ghost-focus the issue type select on touch devices', async ({ browser, baseURL }) => {
     // Regression test: programmatically focusing a <select> on a touch device
     // leaves it "ghost-focused" without opening the native picker, so the
@@ -764,7 +840,7 @@ test.describe('Flagfilter UI flows', () => {
     });
     const page = await context.newPage();
     try {
-      await blockTurnstile(page);
+      await stubTurnstile(page);
       await page.route('**/api/report-issue', async (route) => {
         await route.fulfill({
           status: 200,
