@@ -1013,7 +1013,7 @@ function processHtmlContent(htmlContent) {
 
         if (matchedBaseFlag) {
             link.setAttribute('href', '#');
-            link.setAttribute('class', 'flag-link');
+            link.classList.add('flag-link');
             link.setAttribute('data-flag-code', matchedBaseFlag.shortname);
             return;
         }
@@ -1021,7 +1021,7 @@ function processHtmlContent(htmlContent) {
         const matchedByCode = flags.find((flag) => flag.code.toLowerCase() === queryValue.toLowerCase());
         if (matchedByCode) {
             link.setAttribute('href', '#');
-            link.setAttribute('class', 'flag-link');
+            link.classList.add('flag-link');
             link.setAttribute('data-flag-code', matchedByCode.code);
             return;
         }

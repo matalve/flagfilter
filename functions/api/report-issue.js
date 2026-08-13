@@ -17,9 +17,11 @@ function jsonResponse(payload, status, headers) {
     return new Response(JSON.stringify(payload), { status, headers });
 }
 
-// Resolve the flag name server-side from flagCode: the client-supplied flagName
-// could diverge from the code or be entirely fabricated. See #146.
-async function getFlagNameByCode(context, code) {
+// flaginfo.json is ~220 KB and immutable for the lifetime of a deployment, so
+// the code-to-name map is built once per isolate rather than on every report.
+let flagNamesPromise = null;
+
+async function loadFlagNames(context) {
     try {
         const flagInfoUrl = new URL('/flaginfo.json', context.request.url);
         const response = context.env.ASSETS
@@ -31,14 +33,37 @@ async function getFlagNameByCode(context, code) {
         }
 
         const flagInfo = await response.json();
-        const match = Array.isArray(flagInfo)
-            ? flagInfo.find((info) => info && info.shortname === code)
-            : null;
-        return match && typeof match.name === 'string' ? match.name : null;
+        if (!Array.isArray(flagInfo)) {
+            return null;
+        }
+
+        return new Map(
+            flagInfo
+                .filter((info) => info && typeof info.shortname === 'string' && typeof info.name === 'string')
+                .map((info) => [info.shortname, info.name])
+        );
     } catch (error) {
         console.error('Could not load flaginfo.json:', error);
         return null;
     }
+}
+
+// Resolve the flag name server-side from flagCode: the client-supplied flagName
+// could diverge from the code or be entirely fabricated. See #146.
+async function getFlagNameByCode(context, code) {
+    if (!flagNamesPromise) {
+        flagNamesPromise = loadFlagNames(context);
+    }
+
+    const flagNames = await flagNamesPromise;
+    if (!flagNames) {
+        // Never cache a failed load: one transient error would otherwise reject
+        // every report this isolate handles for the rest of its life.
+        flagNamesPromise = null;
+        return null;
+    }
+
+    return flagNames.get(code) || null;
 }
 
 // Cloudflare Turnstile bot protection. Dormant until TURNSTILE_SECRET_KEY is set
