@@ -822,11 +822,13 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('.close-report-btn')).toBeVisible();
     await expect(page.locator('.close-report-btn')).toBeFocused();
 
-    // Close returns to the trigger button, with a clean form for a next report.
+    // Close dismisses the dialog rather than dropping the reader back into the
+    // modal they were already looking at.
     await page.locator('.close-report-btn').click();
-    await expect(page.locator('#reportFormPanel')).toBeHidden();
-    await expect(page.locator('.report-issue-btn')).toBeVisible();
+    await expect(page.locator('#flagModalTitle')).toHaveCount(0);
 
+    // Re-opening the flag gives a clean form again.
+    await openFirstFlagModal(page);
     await page.locator('.report-issue-btn').click();
     await expect(page.locator('.submit-btn')).toBeVisible();
     await expect(page.locator('.close-report-btn')).toBeHidden();

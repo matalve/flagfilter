@@ -1050,8 +1050,8 @@ function showFlagInfoModal(flag) {
         }
     });
 
-    // Cancel (report not sent) and Close (report sent) both land back on the
-    // trigger button with the form ready for a fresh report.
+    // Cancel means "never mind, I am staying here", so it collapses the panel
+    // back to the trigger button with the form ready for a fresh report.
     function collapseReportForm() {
         clearReportStatus();
         form.reset();
@@ -1064,7 +1064,11 @@ function showFlagInfoModal(flag) {
     }
 
     cancelBtn.addEventListener('click', collapseReportForm);
-    closeReportBtn.addEventListener('click', collapseReportForm);
+
+    // Close means the reader is done: dismiss the whole dialog. Collapsing back
+    // to the trigger button looked like nothing had happened, since the modal
+    // was already scrolled to the end.
+    closeReportBtn.addEventListener('click', () => closeAnyModal(modal));
 
     // A modal is built per open and dropped on close, so unregister the widget
     // with Turnstile as well instead of only detaching its DOM node.
