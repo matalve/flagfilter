@@ -41,11 +41,11 @@ function safeStorageSet(key, value) {
     }
 }
 
-// Cloudflare Turnstile bot protection for the report form. Dormant until a site
-// key is configured here AND TURNSTILE_SECRET_KEY is set on the Pages project;
-// with an empty site key no widget is rendered and the server skips verification.
-// See #146.
-const TURNSTILE_SITE_KEY = '';
+// Cloudflare Turnstile bot protection for the report form. The site key is
+// public by design; the matching TURNSTILE_SECRET_KEY lives as a secret on the
+// Pages project. Until that secret is set the widget renders but the server
+// skips verification, so reports keep going through. See #146.
+const TURNSTILE_SITE_KEY = '0x4AAAAAAEO8-UkMVW5o0VjW';
 let turnstileScriptPromise = null;
 
 // Programmatic focus on a <select> leaves it "ghost-focused" on touch devices:

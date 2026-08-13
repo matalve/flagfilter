@@ -23,6 +23,14 @@ async function openFlagModalBySearch(page, searchTerm) {
   await expect(page.locator('#flagModalTitle')).toBeVisible();
 }
 
+// With a Turnstile site key configured, opening the report form loads the widget
+// from challenges.cloudflare.com. The widget is not what these tests exercise, and
+// the test host is not one of its allowed hostnames, so keep the suite off the
+// network and let the app take its script-unavailable path.
+async function blockTurnstile(page) {
+  await page.route('**challenges.cloudflare.com/**', (route) => route.abort());
+}
+
 async function waitForNextTask(page) {
   await page.evaluate(() => new Promise((resolve) => {
     window.setTimeout(resolve, 0);
@@ -31,6 +39,7 @@ async function waitForNextTask(page) {
 
 test.describe('Flagfilter UI flows', () => {
   test.beforeEach(async ({ page }) => {
+    await blockTurnstile(page);
     await gotoApp(page, 'en');
   });
 
@@ -755,6 +764,7 @@ test.describe('Flagfilter UI flows', () => {
     });
     const page = await context.newPage();
     try {
+      await blockTurnstile(page);
       await page.route('**/api/report-issue', async (route) => {
         await route.fulfill({
           status: 200,
