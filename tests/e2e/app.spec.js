@@ -63,6 +63,15 @@ async function stubTurnstile(page) {
   }));
 }
 
+function createPhoneContext(browser, baseURL) {
+  return browser.newContext({
+    baseURL,
+    hasTouch: true,
+    isMobile: true,
+    viewport: { width: 390, height: 844 },
+  });
+}
+
 async function waitForNextTask(page) {
   await page.evaluate(() => new Promise((resolve) => {
     window.setTimeout(resolve, 0);
@@ -825,6 +834,53 @@ test.describe('Flagfilter UI flows', () => {
     expect(submittedBody['cf-turnstile-response']).toBeUndefined();
   });
 
+  test('the report form and its status messages stay in view on a phone', async ({ browser, baseURL }) => {
+    // The modal body scrolls on its own and the report flow sits at the bottom
+    // of it, so opening the form and every status message that follows was
+    // appended below the fold for a reader already scrolled to the end.
+    const context = await createPhoneContext(browser, baseURL);
+    const page = await context.newPage();
+    try {
+      await stubTurnstile(page);
+      await page.route('**/api/report-issue', async (route) => {
+        // Hold the response so the pending state can be checked on its own.
+        await new Promise((resolve) => setTimeout(resolve, 400));
+        await route.fulfill({
+          status: 200,
+          contentType: 'application/json',
+          body: JSON.stringify({
+            success: true,
+            partial: false,
+            destinations: { telegram: true, github: false },
+            githubIssueUrl: null
+          })
+        });
+      });
+
+      await gotoApp(page, 'en');
+      await page.locator('.learn-more-btn').first().tap();
+      await expect(page.locator('#flagModalTitle')).toBeVisible();
+
+      // The static info modal is always in the DOM, so pick the flag modal.
+      const modalContent = page.locator('.modal-content').filter({ has: page.locator('#flagModalTitle') });
+      await modalContent.evaluate((el) => { el.scrollTop = el.scrollHeight; });
+
+      await page.locator('.report-issue-btn').tap();
+      await expect(page.locator('#reportFormPanel')).toBeInViewport({ ratio: 0.1 });
+      await expect(page.locator('#issueType')).toBeInViewport({ ratio: 0.9 });
+
+      await page.locator('#issueType').selectOption('incorrect_info');
+      await page.locator('#issueDescription').fill('Status messages should not land below the fold.');
+      await modalContent.evaluate((el) => { el.scrollTop = el.scrollHeight; });
+      await page.locator('.submit-btn').tap();
+
+      await expect(page.locator('.report-form-status.pending')).toBeInViewport({ ratio: 0.9 });
+      await expect(page.locator('.report-form-status.success')).toBeInViewport({ ratio: 0.9 });
+    } finally {
+      await context.close();
+    }
+  });
+
   test('report form does not ghost-focus the issue type select on touch devices', async ({ browser, baseURL }) => {
     // Regression test: programmatically focusing a <select> on a touch device
     // leaves it "ghost-focused" without opening the native picker, so the
@@ -832,12 +888,7 @@ test.describe('Flagfilter UI flows', () => {
     // dropdown. Focus is therefore only moved automatically when the device
     // has a fine pointer (mouse/trackpad) — both when the form opens and
     // after a report has been submitted.
-    const context = await browser.newContext({
-      baseURL,
-      hasTouch: true,
-      isMobile: true,
-      viewport: { width: 390, height: 844 },
-    });
+    const context = await createPhoneContext(browser, baseURL);
     const page = await context.newPage();
     try {
       await stubTurnstile(page);

@@ -59,6 +59,18 @@ function focusIfFinePointer(element) {
     }
 }
 
+// The modal body is its own scroll container and the report flow lives at the
+// bottom of it, so anything revealed there — the form itself, and every status
+// message — lands below the fold for a reader who has already scrolled down.
+// 'nearest' scrolls the least amount needed and does nothing when the element
+// is already visible.
+function revealInScrollParent(element) {
+    element.scrollIntoView({
+        block: 'nearest',
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+    });
+}
+
 function loadTurnstileScript() {
     if (!turnstileScriptPromise) {
         turnstileScriptPromise = new Promise((resolve, reject) => {
@@ -950,6 +962,8 @@ function showFlagInfoModal(flag) {
             followUpLine.appendChild(issueLink);
             statusMessage.appendChild(followUpLine);
         }
+
+        revealInScrollParent(statusMessage);
     }
 
     reportBtn.addEventListener('click', () => {
@@ -958,6 +972,10 @@ function showFlagInfoModal(flag) {
         reportBtn.style.display = 'none';
         reportBtn.setAttribute('aria-expanded', 'true');
         focusIfFinePointer(form.querySelector('#issueType'));
+        // A fine pointer gets this for free from focus(); a touch device does
+        // not, and the form opens exactly where the trigger button used to be —
+        // at the very bottom of the modal.
+        revealInScrollParent(reportForm);
     });
 
     // Handle form submission
