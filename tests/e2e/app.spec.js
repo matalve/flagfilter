@@ -740,20 +740,34 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('#userEmail')).toHaveAttribute('maxlength', '254');
   });
 
-  test('report form does not ghost-focus the issue type select on touch devices', async ({ browser }) => {
+  test('report form does not ghost-focus the issue type select on touch devices', async ({ browser, baseURL }) => {
     // Regression test: programmatically focusing a <select> on a touch device
     // leaves it "ghost-focused" without opening the native picker, so the
     // first physical tap just clears the focus instead of opening the
     // dropdown. Focus is therefore only moved automatically when the device
-    // has a fine pointer (mouse/trackpad).
+    // has a fine pointer (mouse/trackpad) — both when the form opens and
+    // after a report has been submitted.
     const context = await browser.newContext({
-      baseURL: 'http://127.0.0.1:4173',
+      baseURL,
       hasTouch: true,
       isMobile: true,
       viewport: { width: 390, height: 844 },
     });
     const page = await context.newPage();
     try {
+      await page.route('**/api/report-issue', async (route) => {
+        await route.fulfill({
+          status: 200,
+          contentType: 'application/json',
+          body: JSON.stringify({
+            success: true,
+            partial: false,
+            destinations: { telegram: true, github: false },
+            githubIssueUrl: null
+          })
+        });
+      });
+
       await gotoApp(page, 'en');
       await page.locator('.learn-more-btn').first().tap();
       await expect(page.locator('#flagModalTitle')).toBeVisible();
@@ -767,6 +781,15 @@ test.describe('Flagfilter UI flows', () => {
       // ...so the first tap on it focuses it and opens the native picker.
       await page.locator('#issueType').tap();
       await expect(page.locator('#issueType')).toBeFocused();
+
+      // The same applies after a successful submit: the form stays open, so
+      // re-focusing the select there would ghost-focus it all over again.
+      await page.locator('#issueType').selectOption('incorrect_info');
+      await page.locator('#issueDescription').fill('Reported from a touch device.');
+      await page.locator('.submit-btn').tap();
+
+      await expect(page.locator('.report-form-status.success')).toBeVisible();
+      await expect(page.locator('#issueType')).not.toBeFocused();
     } finally {
       await context.close();
     }

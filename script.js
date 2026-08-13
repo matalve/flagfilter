@@ -48,6 +48,16 @@ function safeStorageSet(key, value) {
 const TURNSTILE_SITE_KEY = '';
 let turnstileScriptPromise = null;
 
+// Programmatic focus on a <select> leaves it "ghost-focused" on touch devices:
+// the native picker stays closed and the first physical tap only clears the
+// focus. Move focus automatically only on devices with a fine pointer
+// (mouse/trackpad). See #146.
+function focusIfFinePointer(element) {
+    if (element && window.matchMedia('(pointer: fine)').matches) {
+        element.focus();
+    }
+}
+
 function loadTurnstileScript() {
     if (!turnstileScriptPromise) {
         turnstileScriptPromise = new Promise((resolve, reject) => {
@@ -833,6 +843,15 @@ function showFlagInfoModal(flag) {
     const statusMessage = reportForm.querySelector('.report-form-status');
     let turnstileWidgetId = null;
 
+    // Turnstile tokens are single-use, and the form stays open after a submit —
+    // mint a fresh one after every attempt so the next report is not rejected
+    // with a spent token. No-op while the widget is not configured. See #146.
+    function resetTurnstileWidget() {
+        if (turnstileWidgetId !== null && window.turnstile) {
+            window.turnstile.reset(turnstileWidgetId);
+        }
+    }
+
     function clearReportStatus() {
         statusMessage.hidden = true;
         statusMessage.className = 'report-form-status';
@@ -870,15 +889,7 @@ function showFlagInfoModal(flag) {
         reportForm.style.display = 'block';
         reportBtn.style.display = 'none';
         reportBtn.setAttribute('aria-expanded', 'true');
-        // Only move focus automatically on devices with a fine pointer
-        // (mouse/trackpad). On touch devices, programmatic focus on a <select>
-        // leaves it "ghost-focused" without opening the native picker, so the
-        // first physical tap just clears the focus instead of opening the
-        // dropdown.
-        const firstField = form.querySelector('#issueType');
-        if (firstField && window.matchMedia('(pointer: fine)').matches) {
-            firstField.focus();
-        }
+        focusIfFinePointer(form.querySelector('#issueType'));
 
         // Render the bot-protection widget only once the form is visible (and
         // only when a site key is configured). See #146.
@@ -922,20 +933,15 @@ function showFlagInfoModal(flag) {
                     showReportStatus('success', t('report_success'));
                 }
                 form.reset();
-                const issueTypeField = form.querySelector('#issueType');
-                if (issueTypeField) {
-                    issueTypeField.focus();
-                }
+                resetTurnstileWidget();
+                focusIfFinePointer(form.querySelector('#issueType'));
             } else {
                 throw new Error(result.error || t('failed_to_submit_report'));
             }
         } catch (error) {
             showReportStatus('error', t('report_error'));
             console.error('Error submitting report:', error);
-            // Turnstile tokens are single-use: mint a fresh one for the retry.
-            if (turnstileWidgetId !== null && window.turnstile) {
-                window.turnstile.reset(turnstileWidgetId);
-            }
+            resetTurnstileWidget();
         }
     });
 
