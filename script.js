@@ -339,11 +339,19 @@ function initDarkMode() {
     // Follow system theme changes live — but only until the user picks a side.
     // The system-derived choice is deliberately not saved: persisting it would
     // freeze whatever the system happened to be on first visit.
-    systemDark.addEventListener('change', (event) => {
+    const onSystemThemeChange = (event) => {
         if (safeStorageGet('darkMode') === null) {
             setDarkMode(event.matches);
         }
-    });
+    };
+    // MediaQueryList only gained addEventListener in Safari 14; older versions
+    // expose just addListener. Guard both so a missing method cannot throw here
+    // and take down the rest of initApp.
+    if (typeof systemDark.addEventListener === 'function') {
+        systemDark.addEventListener('change', onSystemThemeChange);
+    } else if (typeof systemDark.addListener === 'function') {
+        systemDark.addListener(onSystemThemeChange);
+    }
 
     darkModeToggle.addEventListener('click', () => {
         const enabled = !document.documentElement.classList.contains('dark-mode');
