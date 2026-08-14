@@ -319,60 +319,44 @@ async function loadTranslations(language) {
         : await loadJson(`i18n/flags/${language}.json`, {});
 }
 
-// Dark mode toggle functionality
+// Dark mode functionality. The dark-mode class lives on <html> so the inline
+// snippet in <head> can set it before first paint (see index.html); this
+// function owns it from here on. The toggle icons follow the class via CSS
+// (.dark-mode .dark-mode-toggle …), so toggling the class is the whole state
+// change. See #143.
 function initDarkMode() {
     const darkModeToggle = document.getElementById('darkModeToggle');
-    const sunIcon = document.querySelector('.sun-icon');
-    const moonIcon = document.querySelector('.moon-icon');
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
 
-    // Check if user has a saved preference
-    const savedDarkMode = safeStorageGet('darkMode');
-
-    // Apply saved preference or use system preference
-    if (savedDarkMode !== null) {
-        // User has a saved preference
-        if (savedDarkMode === 'true') {
-            document.body.classList.add('dark-mode');
-            sunIcon.style.display = 'none';
-            moonIcon.style.display = 'block';
-        } else {
-            document.body.classList.remove('dark-mode');
-            sunIcon.style.display = 'block';
-            moonIcon.style.display = 'none';
-        }
-    } else {
-        // No saved preference, check system preference
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.body.classList.add('dark-mode');
-            sunIcon.style.display = 'none';
-            moonIcon.style.display = 'block';
-            // Save this preference
-            safeStorageSet('darkMode', 'true');
-        } else {
-            document.body.classList.remove('dark-mode');
-            sunIcon.style.display = 'block';
-            moonIcon.style.display = 'none';
-            // Save this preference
-            safeStorageSet('darkMode', 'false');
-        }
+    function setDarkMode(enabled) {
+        document.documentElement.classList.toggle('dark-mode', enabled);
     }
 
-    // Toggle dark mode
-    darkModeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
+    // A saved choice wins; without one, start from the system theme.
+    const savedDarkMode = safeStorageGet('darkMode');
+    setDarkMode(savedDarkMode !== null ? savedDarkMode === 'true' : systemDark.matches);
 
-        // Update icons
-        if (document.body.classList.contains('dark-mode')) {
-            sunIcon.style.display = 'none';
-            moonIcon.style.display = 'block';
-            // Save preference
-            safeStorageSet('darkMode', 'true');
-        } else {
-            sunIcon.style.display = 'block';
-            moonIcon.style.display = 'none';
-            // Save preference
-            safeStorageSet('darkMode', 'false');
+    // Follow system theme changes live — but only until the user picks a side.
+    // The system-derived choice is deliberately not saved: persisting it would
+    // freeze whatever the system happened to be on first visit.
+    const onSystemThemeChange = (event) => {
+        if (safeStorageGet('darkMode') === null) {
+            setDarkMode(event.matches);
         }
+    };
+    // MediaQueryList only gained addEventListener in Safari 14; older versions
+    // expose just addListener. Guard both so a missing method cannot throw here
+    // and take down the rest of initApp.
+    if (typeof systemDark.addEventListener === 'function') {
+        systemDark.addEventListener('change', onSystemThemeChange);
+    } else if (typeof systemDark.addListener === 'function') {
+        systemDark.addListener(onSystemThemeChange);
+    }
+
+    darkModeToggle.addEventListener('click', () => {
+        const enabled = !document.documentElement.classList.contains('dark-mode');
+        setDarkMode(enabled);
+        safeStorageSet('darkMode', String(enabled));
     });
 }
 

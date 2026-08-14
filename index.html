@@ -18,6 +18,26 @@
          the data fetch. The href must match the grid's <img> src exactly (see rebuildFlags
          in script.js) to avoid a double fetch. -->
     <link rel="preload" as="image" href="https://flagcdn.com/w320/ad.webp" fetchpriority="high">
+    <!-- Apply the theme before first paint so a saved or system dark preference
+         does not flash the light theme first. Mirrors the storage key and the
+         fallback logic in initDarkMode() in script.js — keep the two in sync.
+         Inline on purpose: it must run before the deferred app script, and the
+         CSP already allows inline scripts. See #143. -->
+    <script>
+        (function () {
+            var saved = null;
+            try {
+                saved = localStorage.getItem('darkMode');
+            } catch (error) {
+                // Storage can be denied outright (private mode, blocked cookies)
+                // — fall through to the system theme.
+            }
+            var dark = saved !== null
+                ? saved === 'true'
+                : window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.documentElement.classList.toggle('dark-mode', dark);
+        })();
+    </script>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
