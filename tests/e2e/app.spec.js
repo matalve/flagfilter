@@ -493,6 +493,22 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('html')).toHaveClass(/dark-mode/);
   });
 
+  test('app initializes when MediaQueryList only has addListener (older Safari)', async ({ page }) => {
+    // MediaQueryList gained addEventListener in Safari 14; before that only
+    // addListener exists. initDarkMode must fall back instead of throwing and
+    // aborting initApp before translations and flags load. See #143.
+    await page.addInitScript(() => {
+      MediaQueryList.prototype.addEventListener = undefined;
+    });
+    await gotoApp(page, 'en');
+
+    await expect(page.locator('.flag-card').first()).toBeVisible();
+
+    // The addListener fallback still tracks the system theme live.
+    await page.emulateMedia({ colorScheme: 'dark' });
+    await expect(page.locator('html')).toHaveClass(/dark-mode/);
+  });
+
   test('filter and reset icons stay inline SVG after a language switch', async ({ page }) => {
     await page.locator('#languageSelect').selectOption('es');
     // setButtonLabel re-attaches the SVG icon
