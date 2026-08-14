@@ -422,8 +422,10 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('link[rel="preconnect"][href="https://flagcdn.com"]')).toHaveCount(1);
   });
 
-  test('the main script is deferred (kept off the critical path)', async ({ page }) => {
-    await expect(page.locator('script[src="script.js"][defer]')).toHaveCount(1);
+  test('the main script is a module (kept off the critical path)', async ({ page }) => {
+    // Module scripts are deferred by default, so this keeps script.js off the
+    // critical path just like the old defer attribute did. See #143.
+    await expect(page.locator('script[src="script.js"][type="module"]')).toHaveCount(1);
   });
 
   test('renders icons as inline SVG, not Font Awesome', async ({ page }) => {
