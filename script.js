@@ -22,6 +22,80 @@ const DEFAULT_LANGUAGE = 'en';
 const QUERY_FILTER_DATA_KEYS = ['color', 'continent', 'pattern', 'symbol', 'motive', 'people', 'ideology', 'text'];
 const AMAZON_ASSOCIATE_TAG = 'flagfilter-20';
 
+// localStorage can throw on every access (private mode, blocked storage — notably
+// Safari). Route all persistence through these helpers so a denied store degrades
+// to "no persistence" instead of aborting initApp. See #146.
+function safeStorageGet(key) {
+    try {
+        return localStorage.getItem(key);
+    } catch (error) {
+        return null;
+    }
+}
+
+function safeStorageSet(key, value) {
+    try {
+        localStorage.setItem(key, value);
+    } catch (error) {
+        // Storage unavailable — the app keeps working without persistence.
+    }
+}
+
+// Cloudflare Turnstile bot protection for the report form. The site key is
+// public by design; the matching TURNSTILE_SECRET_KEY lives as a secret on the
+// Pages project. Until that secret is set the widget renders but the server
+// skips verification, so reports keep going through. See #146.
+const TURNSTILE_SITE_KEY = '0x4AAAAAAEO8-UkMVW5o0VjW';
+const TURNSTILE_TIMEOUT_MS = 30000;
+// Cloudflare can ask the reader to tick a box. That runs at their pace, not the
+// network's, so the fallback gets a longer budget once the challenge is theirs.
+const TURNSTILE_INTERACTION_TIMEOUT_MS = 120000;
+let turnstileScriptPromise = null;
+
+// Programmatic focus on a <select> leaves it "ghost-focused" on touch devices:
+// the native picker stays closed and the first physical tap only clears the
+// focus. Move focus automatically only on devices with a fine pointer
+// (mouse/trackpad). See #146.
+function focusIfFinePointer(element) {
+    if (element && window.matchMedia('(pointer: fine)').matches) {
+        element.focus();
+    }
+}
+
+// The modal body is its own scroll container and the report flow lives at the
+// bottom of it, so anything revealed there — the form itself, and every status
+// message — lands below the fold for a reader who has already scrolled down.
+// 'nearest' scrolls the least amount needed and does nothing when the element
+// is already visible.
+function revealInScrollParent(element) {
+    element.scrollIntoView({
+        block: 'nearest',
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+    });
+}
+
+function loadTurnstileScript() {
+    if (!turnstileScriptPromise) {
+        turnstileScriptPromise = new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+            script.async = true;
+            script.onload = resolve;
+            script.onerror = reject;
+            document.head.appendChild(script);
+        });
+
+        // Only success is worth caching. Holding on to a rejected promise would
+        // turn one network hiccup into a session where every later report fails
+        // verification until the page is reloaded.
+        turnstileScriptPromise.catch(() => {
+            turnstileScriptPromise = null;
+        });
+    }
+
+    return turnstileScriptPromise;
+}
+
 function getLanguageFromUrl() {
     const lang = new URLSearchParams(window.location.search).get('lang');
     return SUPPORTED_LANGUAGES.includes(lang) ? lang : null;
@@ -37,7 +111,7 @@ function getInitialLanguage() {
         return queryLanguage;
     }
 
-    const savedLanguage = localStorage.getItem('language');
+    const savedLanguage = safeStorageGet('language');
     if (SUPPORTED_LANGUAGES.includes(savedLanguage)) {
         return savedLanguage;
     }
@@ -252,7 +326,7 @@ function initDarkMode() {
     const moonIcon = document.querySelector('.moon-icon');
 
     // Check if user has a saved preference
-    const savedDarkMode = localStorage.getItem('darkMode');
+    const savedDarkMode = safeStorageGet('darkMode');
 
     // Apply saved preference or use system preference
     if (savedDarkMode !== null) {
@@ -273,13 +347,13 @@ function initDarkMode() {
             sunIcon.style.display = 'none';
             moonIcon.style.display = 'block';
             // Save this preference
-            localStorage.setItem('darkMode', 'true');
+            safeStorageSet('darkMode', 'true');
         } else {
             document.body.classList.remove('dark-mode');
             sunIcon.style.display = 'block';
             moonIcon.style.display = 'none';
             // Save this preference
-            localStorage.setItem('darkMode', 'false');
+            safeStorageSet('darkMode', 'false');
         }
     }
 
@@ -292,12 +366,12 @@ function initDarkMode() {
             sunIcon.style.display = 'none';
             moonIcon.style.display = 'block';
             // Save preference
-            localStorage.setItem('darkMode', 'true');
+            safeStorageSet('darkMode', 'true');
         } else {
             sunIcon.style.display = 'block';
             moonIcon.style.display = 'none';
             // Save preference
-            localStorage.setItem('darkMode', 'false');
+            safeStorageSet('darkMode', 'false');
         }
     });
 }
@@ -458,7 +532,7 @@ async function switchLanguage(language) {
     }
 
     currentLanguage = language;
-    localStorage.setItem('language', language);
+    safeStorageSet('language', language);
     updateLanguageInUrl(language);
     await loadTranslations(language);
     applyStaticTranslations();
@@ -669,6 +743,8 @@ function showFlagInfoModal(flag) {
     // Create modal content
     const modalContent = document.createElement('div');
     modalContent.className = 'modal-content';
+    // Set again further down, once the report form exists, so closing the modal
+    // also tears down any Turnstile widget it rendered.
     modal._closeHandler = () => closeDynamicModal(modal);
 
     // Create close button
@@ -678,7 +754,7 @@ function showFlagInfoModal(flag) {
     closeBtn.innerHTML = '&times;';
     closeBtn.setAttribute('aria-label', t('close'));
     closeBtn.addEventListener('click', () => {
-        closeDynamicModal(modal);
+        closeAnyModal(modal);
     });
 
     // Create flag image
@@ -736,7 +812,6 @@ function showFlagInfoModal(flag) {
         <h3>${t('report_issue')}</h3>
         <form id="reportForm">
             <input type="hidden" name="flagCode" value="${flag.code}">
-            <input type="hidden" name="flagName" value="${flag.name}">
 
             <div class="form-group">
                 <label for="issueType">${t('type_of_issue_label')}:</label>
@@ -752,22 +827,33 @@ function showFlagInfoModal(flag) {
             <div class="form-group">
                 <label for="issueDescription">${t('description_label')}:</label>
                 <textarea name="issueDescription" id="issueDescription" required
+                    maxlength="2000"
                     placeholder="${t('issue_description_placeholder')}"></textarea>
             </div>
 
             <div class="form-group">
                 <label for="userEmail">${t('your_email_optional_label')}:</label>
                 <input type="email" name="userEmail" id="userEmail"
+                    maxlength="254"
                     placeholder="${t('email_placeholder')}">
             </div>
+
+            ${TURNSTILE_SITE_KEY ? '<div class="turnstile-widget"></div>' : ''}
 
             <div class="form-actions">
                 <button type="submit" class="submit-btn">${t('submit_report')}</button>
                 <button type="button" class="cancel-btn">${t('cancel')}</button>
             </div>
 
-            <div class="report-form-status" role="status" aria-live="polite" hidden></div>
         </form>
+
+        <!-- Outside the form: the receipt has to survive the form being hidden
+             once a report has been sent. -->
+        <div class="report-form-status" role="status" aria-live="polite" hidden></div>
+
+        <div class="form-actions report-form-done" hidden>
+            <button type="button" class="close-report-btn">${t('close')}</button>
+        </div>
     `;
 
     // Assemble modal
@@ -787,7 +873,106 @@ function showFlagInfoModal(flag) {
     const reportBtn = flagInfo.querySelector('.report-issue-btn');
     const form = reportForm.querySelector('#reportForm');
     const cancelBtn = reportForm.querySelector('.cancel-btn');
+    const doneActions = reportForm.querySelector('.report-form-done');
+    const closeReportBtn = reportForm.querySelector('.close-report-btn');
     const statusMessage = reportForm.querySelector('.report-form-status');
+    const submitBtn = reportForm.querySelector('.submit-btn');
+    let turnstileWidgetId = null;
+    let pendingVerification = null;
+    let verificationTimeoutId = null;
+
+    // The challenge runs when the report is submitted, not when the form opens.
+    // Running it up front minted a token for every form that was opened and
+    // abandoned, and left the widget sitting in the form looking like an
+    // unfinished step once a report had been sent. See #146.
+    function clearVerificationTimeout() {
+        if (verificationTimeoutId !== null) {
+            window.clearTimeout(verificationTimeoutId);
+            verificationTimeoutId = null;
+        }
+    }
+
+    // Only ever one timer in flight: restarting replaces the previous one.
+    function startVerificationTimeout(delayMs) {
+        clearVerificationTimeout();
+        verificationTimeoutId = window.setTimeout(() => settleVerification(null, 'turnstile-timeout'), delayMs);
+    }
+
+    function settleVerification(token, errorCode) {
+        // Drop this attempt's timeout with it. Left running, it would still fire
+        // later and settle whatever attempt happened to be pending by then —
+        // rejecting a retry that was doing nothing wrong.
+        clearVerificationTimeout();
+
+        const pending = pendingVerification;
+        pendingVerification = null;
+
+        if (!pending) {
+            return;
+        }
+
+        if (token) {
+            pending.resolve(token);
+        } else {
+            pending.reject(new Error(errorCode));
+        }
+    }
+
+    async function renderTurnstileWidget() {
+        await loadTurnstileScript();
+
+        if (turnstileWidgetId === null) {
+            turnstileWidgetId = window.turnstile.render(reportForm.querySelector('.turnstile-widget'), {
+                sitekey: TURNSTILE_SITE_KEY,
+                // Wait for turnstile.execute() instead of challenging on render.
+                execution: 'execute',
+                // Stay out of the layout unless Cloudflare needs the user to act.
+                appearance: 'interaction-only',
+                callback: (token) => settleVerification(token),
+                'before-interactive-callback': () => {
+                    showReportStatus('pending', t('report_verify_interaction'));
+                    // The wait is now the reader ticking a box, so the short
+                    // network-shaped budget would cut them off mid-interaction.
+                    startVerificationTimeout(TURNSTILE_INTERACTION_TIMEOUT_MS);
+                },
+                'error-callback': () => {
+                    settleVerification(null, 'turnstile-error');
+                    return true;
+                },
+                'timeout-callback': () => settleVerification(null, 'turnstile-timeout'),
+                'expired-callback': () => settleVerification(null, 'turnstile-expired')
+            });
+        }
+
+        return turnstileWidgetId;
+    }
+
+    // Resolves with a fresh token, or '' when Turnstile is not configured. Tokens
+    // are single-use, so the widget is reset before every run.
+    async function requestTurnstileToken() {
+        if (!TURNSTILE_SITE_KEY) {
+            return '';
+        }
+
+        const widgetId = await renderTurnstileWidget();
+        window.turnstile.reset(widgetId);
+
+        return new Promise((resolve, reject) => {
+            pendingVerification = { resolve, reject };
+            // Belt and braces: Turnstile has its own timeout-callback, but a
+            // challenge that never settles would otherwise leave the form
+            // disabled with no way out.
+            startVerificationTimeout(TURNSTILE_TIMEOUT_MS);
+            window.turnstile.execute(widgetId);
+        });
+    }
+
+    function removeTurnstileWidget() {
+        if (turnstileWidgetId !== null && window.turnstile) {
+            window.turnstile.remove(turnstileWidgetId);
+            turnstileWidgetId = null;
+        }
+    }
 
     function clearReportStatus() {
         statusMessage.hidden = true;
@@ -819,6 +1004,8 @@ function showFlagInfoModal(flag) {
             followUpLine.appendChild(issueLink);
             statusMessage.appendChild(followUpLine);
         }
+
+        revealInScrollParent(statusMessage);
     }
 
     reportBtn.addEventListener('click', () => {
@@ -826,21 +1013,39 @@ function showFlagInfoModal(flag) {
         reportForm.style.display = 'block';
         reportBtn.style.display = 'none';
         reportBtn.setAttribute('aria-expanded', 'true');
-        const firstField = form.querySelector('#issueType');
-        if (firstField) {
-            firstField.focus();
-        }
+        focusIfFinePointer(form.querySelector('#issueType'));
+        // A fine pointer gets this for free from focus(); a touch device does
+        // not, and the form opens exactly where the trigger button used to be —
+        // at the very bottom of the modal.
+        revealInScrollParent(reportForm);
     });
 
     // Handle form submission
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        clearReportStatus();
 
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
+        // Turnstile injects its own hidden cf-turnstile-response input; the token
+        // this request uses is the one minted below, so drop the form copy.
+        delete data['cf-turnstile-response'];
+
+        // Verification and sending both take a moment, so the form says what it
+        // is doing and stops accepting a second submit while it works.
+        submitBtn.disabled = true;
+        showReportStatus('pending', t('report_verifying'));
 
         try {
+            try {
+                data.turnstileToken = await requestTurnstileToken();
+            } catch (error) {
+                console.error('Turnstile verification failed:', error);
+                showReportStatus('error', t('report_verification_failed'));
+                return;
+            }
+
+            showReportStatus('pending', t('report_sending'));
+
             const response = await fetch('/api/report-issue', {
                 method: 'POST',
                 headers: {
@@ -852,39 +1057,63 @@ function showFlagInfoModal(flag) {
             const result = await response.json();
 
             if (response.ok) {
+                // The report is sent, so Submit and Cancel no longer describe
+                // anything the reader can do: swap the whole form for its
+                // receipt and a single way out. Hide before showing the status,
+                // so it is scrolled into view against the final layout.
+                form.reset();
+                form.hidden = true;
+                doneActions.hidden = false;
+
                 if (result.githubIssueUrl) {
                     showReportStatus('success', t('report_success'), result.githubIssueUrl, t('report_success_with_issue_link'));
                 } else {
                     showReportStatus('success', t('report_success'));
                 }
-                form.reset();
-                const issueTypeField = form.querySelector('#issueType');
-                if (issueTypeField) {
-                    issueTypeField.focus();
-                }
+
+                closeReportBtn.focus();
             } else {
                 throw new Error(result.error || t('failed_to_submit_report'));
             }
         } catch (error) {
             showReportStatus('error', t('report_error'));
             console.error('Error submitting report:', error);
+        } finally {
+            submitBtn.disabled = false;
         }
     });
 
-    // Handle cancel button
-    cancelBtn.addEventListener('click', () => {
+    // Cancel means "never mind, I am staying here", so it collapses the panel
+    // back to the trigger button with the form ready for a fresh report.
+    function collapseReportForm() {
         clearReportStatus();
         form.reset();
+        form.hidden = false;
+        doneActions.hidden = true;
         reportForm.style.display = 'none';
         reportBtn.style.display = 'inline-flex';
         reportBtn.setAttribute('aria-expanded', 'false');
         reportBtn.focus();
-    });
+    }
+
+    cancelBtn.addEventListener('click', collapseReportForm);
+
+    // Close means the reader is done: dismiss the whole dialog. Collapsing back
+    // to the trigger button looked like nothing had happened, since the modal
+    // was already scrolled to the end.
+    closeReportBtn.addEventListener('click', () => closeAnyModal(modal));
+
+    // A modal is built per open and dropped on close, so unregister the widget
+    // with Turnstile as well instead of only detaching its DOM node.
+    modal._closeHandler = () => {
+        removeTurnstileWidget();
+        closeDynamicModal(modal);
+    };
 
     // Close modal when clicking outside
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
-            closeDynamicModal(modal);
+            closeAnyModal(modal);
         }
     });
 
@@ -923,9 +1152,14 @@ function processHtmlContent(htmlContent) {
         .trim()
         .replace(/\s+/g, '+');
 
-    // Replace links with ?q= parameter to make them open the flag modal.
-    // Use baseFlagInfo (English source names) for lookup so translated UI names do not break links.
-    return htmlContent.replace(/<a href="\?q=([^"]+)">([^<]+)<\/a>/g, (match, queryValue, linkText) => {
+    // Parse with DOMParser instead of rewriting the HTML with regex, so links
+    // keep working even if flaginfo.json content gains attributes or nested
+    // markup. ?q= links are resolved against baseFlagInfo (English source names)
+    // so translated UI names do not break them. See #146.
+    const doc = new DOMParser().parseFromString(htmlContent, 'text/html');
+
+    doc.querySelectorAll('a[href^="?q="]').forEach((link) => {
+        const queryValue = link.getAttribute('href').slice('?q='.length);
         const normalizedQuery = normalizeForQuery(queryValue);
 
         const matchedBaseFlag = baseFlagInfo.find((info) =>
@@ -933,16 +1167,25 @@ function processHtmlContent(htmlContent) {
         );
 
         if (matchedBaseFlag) {
-            return `<a href="#" class="flag-link" data-flag-code="${matchedBaseFlag.shortname}">${linkText}</a>`;
+            link.setAttribute('href', '#');
+            link.classList.add('flag-link');
+            link.setAttribute('data-flag-code', matchedBaseFlag.shortname);
+            return;
         }
 
         const matchedByCode = flags.find((flag) => flag.code.toLowerCase() === queryValue.toLowerCase());
         if (matchedByCode) {
-            return `<a href="#" class="flag-link" data-flag-code="${matchedByCode.code}">${linkText}</a>`;
+            link.setAttribute('href', '#');
+            link.classList.add('flag-link');
+            link.setAttribute('data-flag-code', matchedByCode.code);
+            return;
         }
 
-        return linkText;
+        // Unresolvable link: keep the link text, drop the anchor (same as before).
+        link.replaceWith(...link.childNodes);
     });
+
+    return doc.body.innerHTML;
 }
 
 // Search is debounced so typing does not trigger a filter pass plus grid render
@@ -1157,7 +1400,7 @@ function toggleFilterSection(header) {
     const sectionId = section.dataset.sectionId;
     const isCollapsed = section.classList.contains('collapsed');
     syncFilterSectionState(section);
-    localStorage.setItem(`filterSection_${sectionId}`, isCollapsed);
+    safeStorageSet(`filterSection_${sectionId}`, isCollapsed);
 }
 
 // Collapse the filter panels back to their default layout (the advanced "More filters"
@@ -1169,7 +1412,7 @@ function resetFilterSectionsToDefault() {
         const shouldCollapse = sectionId === 'more';
         section.classList.toggle('collapsed', shouldCollapse);
         syncFilterSectionState(section);
-        localStorage.setItem(`filterSection_${sectionId}`, shouldCollapse);
+        safeStorageSet(`filterSection_${sectionId}`, shouldCollapse);
     });
 }
 
@@ -1177,7 +1420,7 @@ function resetFilterSectionsToDefault() {
 function initializeFilterSections() {
     document.querySelectorAll('.filter-section').forEach(section => {
         const sectionId = section.dataset.sectionId;
-        const isCollapsed = localStorage.getItem(`filterSection_${sectionId}`) === 'true';
+        const isCollapsed = safeStorageGet(`filterSection_${sectionId}`) === 'true';
 
         if (isCollapsed || sectionId === 'more') {
             section.classList.add('collapsed');

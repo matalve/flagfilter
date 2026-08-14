@@ -41,6 +41,20 @@ Optional:
 
 - `GITHUB_ISSUE_LABELS` default: `reported-from-site`
 - `GITHUB_ISSUE_LABEL_PREFIX` default: `flag`
+- `TURNSTILE_SECRET_KEY` enables Cloudflare Turnstile verification on `/api/report-issue`
+
+Turnstile bot protection is split across two keys:
+
+- the **site key** is public and lives in `script.js` (`TURNSTILE_SITE_KEY`); an empty
+  value renders no widget
+- the **secret key** is a Cloudflare Pages secret (`TURNSTILE_SECRET_KEY`); when it is
+  unset the server skips verification entirely
+
+Set the site key before the secret. A site key without a secret is harmless — the
+widget renders and reports still go through — while a secret without a site key
+rejects every report with 403, because no token is ever minted. Pages reads
+environment variables at deploy time, so a new secret needs a redeploy to take
+effect, in both the Production and Preview environments.
 
 `GITHUB_OWNER` and `GITHUB_REPO` are also defined in `wrangler.toml`.
 

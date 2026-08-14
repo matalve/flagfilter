@@ -1,3 +1,105 @@
+const ISSUE_TYPE_LABELS = {
+    incorrect_info: 'incorrect-info',
+    missing_info: 'missing-info',
+    broken_link: 'broken-link',
+    other: 'other'
+};
+
+// Matches the shortname formats used in flaginfo.json: two-letter country codes
+// plus the four UK subdivision codes (gb-eng, gb-nir, gb-sct, gb-wls).
+const FLAG_CODE_PATTERN = /^[a-z]{2}(-[a-z]{3})?$/;
+const MAX_DESCRIPTION_LENGTH = 2000;
+const MAX_EMAIL_LENGTH = 254;
+// Deliberately simple: one @ with non-empty local and domain parts.
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function jsonResponse(payload, status, headers) {
+    return new Response(JSON.stringify(payload), { status, headers });
+}
+
+// flaginfo.json is ~220 KB and immutable for the lifetime of a deployment, so
+// the code-to-name map is built once per isolate rather than on every report.
+let flagNamesPromise = null;
+
+async function loadFlagNames(context) {
+    try {
+        const flagInfoUrl = new URL('/flaginfo.json', context.request.url);
+        const response = context.env.ASSETS
+            ? await context.env.ASSETS.fetch(new Request(flagInfoUrl.toString()))
+            : await fetch(flagInfoUrl.toString());
+
+        if (!response.ok) {
+            return null;
+        }
+
+        const flagInfo = await response.json();
+        if (!Array.isArray(flagInfo)) {
+            return null;
+        }
+
+        return new Map(
+            flagInfo
+                .filter((info) => info && typeof info.shortname === 'string' && typeof info.name === 'string')
+                .map((info) => [info.shortname, info.name])
+        );
+    } catch (error) {
+        console.error('Could not load flaginfo.json:', error);
+        return null;
+    }
+}
+
+// Resolve the flag name server-side from flagCode: the client-supplied flagName
+// could diverge from the code or be entirely fabricated. See #146.
+async function getFlagNameByCode(context, code) {
+    if (!flagNamesPromise) {
+        flagNamesPromise = loadFlagNames(context);
+    }
+
+    const flagNames = await flagNamesPromise;
+    if (!flagNames) {
+        // Never cache a failed load: one transient error would otherwise reject
+        // every report this isolate handles for the rest of its life.
+        flagNamesPromise = null;
+        return null;
+    }
+
+    return flagNames.get(code) || null;
+}
+
+// Cloudflare Turnstile bot protection. Dormant until TURNSTILE_SECRET_KEY is set
+// on the Pages project (and the matching site key is configured in script.js);
+// without a secret configured, verification is skipped entirely. See #146.
+async function verifyTurnstileToken(context, token) {
+    if (!context.env.TURNSTILE_SECRET_KEY) {
+        return true;
+    }
+
+    if (!token) {
+        return false;
+    }
+
+    try {
+        const result = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({
+                secret: context.env.TURNSTILE_SECRET_KEY,
+                response: token
+            }).toString()
+        });
+
+        if (!result.ok) {
+            return false;
+        }
+
+        const verification = await result.json();
+        return verification.success === true;
+    } catch (error) {
+        console.error('Turnstile verification failed:', error);
+        return false;
+    }
+}
+
 export async function onRequestPost(context) {
     const jsonHeaders = {
         'Content-Type': 'application/json',
@@ -13,31 +115,32 @@ export async function onRequestPost(context) {
         );
 
         if (!hasTelegramConfig && !hasGitHubConfig) {
-            return new Response(JSON.stringify({
+            return jsonResponse({
                 success: false,
                 error: 'Issue reporting is not configured on this server.'
-            }), {
-                status: 503,
-                headers: jsonHeaders
-            });
+            }, 503, jsonHeaders);
         }
 
-        const { flagCode, flagName, issueType, issueDescription, userEmail } = await context.request.json();
+        const { flagCode, issueType, issueDescription, userEmail, turnstileToken } = await context.request.json();
 
         // Input validation
-        if (!flagCode || !flagName || !issueType || !issueDescription) {
-            return new Response(JSON.stringify({ 
-                success: false, 
-                error: 'Missing required fields' 
-            }), {
-                status: 400,
-                headers: jsonHeaders
-            });
+        if (!flagCode || !issueType || !issueDescription) {
+            return jsonResponse({
+                success: false,
+                error: 'Missing required fields'
+            }, 400, jsonHeaders);
+        }
+
+        const turnstileOk = await verifyTurnstileToken(context, String(turnstileToken || ''));
+        if (!turnstileOk) {
+            return jsonResponse({
+                success: false,
+                error: 'Bot verification failed'
+            }, 403, jsonHeaders);
         }
 
         const sanitize = (value) => String(value || '').replace(/[<>]/g, '').trim();
-        const sanitizedFlagCode = sanitize(flagCode);
-        const sanitizedFlagName = sanitize(flagName);
+        const sanitizedFlagCode = sanitize(flagCode).toLowerCase();
         const sanitizedIssueType = sanitize(issueType);
         const sanitizedDescription = sanitize(issueDescription);
         const sanitizedEmail = sanitize(userEmail);
@@ -48,17 +151,54 @@ export async function onRequestPost(context) {
             .map((label) => label.trim())
             .filter(Boolean);
 
-        const issueTypeLabels = {
-            incorrect_info: 'incorrect-info',
-            missing_info: 'missing-info',
-            broken_link: 'broken-link',
-            other: 'other'
-        };
+        if (!FLAG_CODE_PATTERN.test(sanitizedFlagCode)) {
+            return jsonResponse({
+                success: false,
+                error: 'Invalid flag code'
+            }, 400, jsonHeaders);
+        }
+
+        const flagName = await getFlagNameByCode(context, sanitizedFlagCode);
+        if (!flagName) {
+            return jsonResponse({
+                success: false,
+                error: 'Unknown flag code'
+            }, 400, jsonHeaders);
+        }
+        const sanitizedFlagName = sanitize(flagName);
+
+        if (!ISSUE_TYPE_LABELS[sanitizedIssueType]) {
+            return jsonResponse({
+                success: false,
+                error: 'Invalid issue type'
+            }, 400, jsonHeaders);
+        }
+
+        if (sanitizedDescription === '') {
+            return jsonResponse({
+                success: false,
+                error: 'Missing required fields'
+            }, 400, jsonHeaders);
+        }
+
+        if (sanitizedDescription.length > MAX_DESCRIPTION_LENGTH) {
+            return jsonResponse({
+                success: false,
+                error: 'Description is too long'
+            }, 400, jsonHeaders);
+        }
+
+        if (hasContactEmail && (sanitizedEmail.length > MAX_EMAIL_LENGTH || !EMAIL_PATTERN.test(sanitizedEmail))) {
+            return jsonResponse({
+                success: false,
+                error: 'Invalid email address'
+            }, 400, jsonHeaders);
+        }
 
         const githubLabels = [
             ...configuredLabels,
-            issueTypeLabels[sanitizedIssueType] || 'other',
-            `${labelPrefix}:${sanitizedFlagCode.toLowerCase()}`
+            ISSUE_TYPE_LABELS[sanitizedIssueType],
+            `${labelPrefix}:${sanitizedFlagCode}`
         ];
 
         const telegramMessage = `
@@ -133,16 +273,13 @@ ${sanitizedEmail ? `Contact Email: ${sanitizedEmail}` : ''}
         }
 
         if (successCount === 0) {
-            return new Response(JSON.stringify({
+            return jsonResponse({
                 success: false,
                 error: 'Failed to send report'
-            }), {
-                status: 502,
-                headers: jsonHeaders
-            });
+            }, 502, jsonHeaders);
         }
 
-        return new Response(JSON.stringify({
+        return jsonResponse({
             success: true,
             partial: failures.length > 0,
             destinations: {
@@ -150,18 +287,12 @@ ${sanitizedEmail ? `Contact Email: ${sanitizedEmail}` : ''}
                 github: hasGitHubConfig && !failures.includes('github')
             },
             githubIssueUrl
-        }), {
-            status: 200,
-            headers: jsonHeaders
-        });
+        }, 200, jsonHeaders);
     } catch (error) {
         console.error('Error sending report:', error);
-        return new Response(JSON.stringify({ 
-            success: false, 
-            error: 'Failed to send report' 
-        }), {
-            status: 500,
-            headers: jsonHeaders
-        });
+        return jsonResponse({
+            success: false,
+            error: 'Failed to send report'
+        }, 500, jsonHeaders);
     }
-} 
+}

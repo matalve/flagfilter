@@ -23,6 +23,55 @@ async function openFlagModalBySearch(page, searchTerm) {
   await expect(page.locator('#flagModalTitle')).toBeVisible();
 }
 
+// Submitting a report loads Turnstile from challenges.cloudflare.com. Cloudflare
+// is not what these tests exercise, and the test host is not one of the widget's
+// allowed hostnames, so serve a stand-in that resolves the challenge immediately.
+// It records how many widgets were rendered, which is what proves the challenge
+// runs on submit rather than when the form opens.
+const TURNSTILE_STUB = `
+  (() => {
+    const widgets = new Map();
+    let nextId = 0;
+
+    window.turnstile = {
+      render(container, options) {
+        window.__turnstileRenders += 1;
+        const id = 'stub-' + (nextId += 1);
+        widgets.set(id, options);
+        return id;
+      },
+      execute(id) {
+        const options = widgets.get(id);
+        window.setTimeout(() => options && options.callback('stub-token-' + id), 10);
+      },
+      reset() {},
+      remove(id) {
+        widgets.delete(id);
+      }
+    };
+  })();
+`;
+
+async function stubTurnstile(page) {
+  await page.addInitScript(() => {
+    window.__turnstileRenders = 0;
+  });
+  await page.route('**challenges.cloudflare.com/**', (route) => route.fulfill({
+    status: 200,
+    contentType: 'application/javascript',
+    body: TURNSTILE_STUB
+  }));
+}
+
+function createPhoneContext(browser, baseURL) {
+  return browser.newContext({
+    baseURL,
+    hasTouch: true,
+    isMobile: true,
+    viewport: { width: 390, height: 844 },
+  });
+}
+
 async function waitForNextTask(page) {
   await page.evaluate(() => new Promise((resolve) => {
     window.setTimeout(resolve, 0);
@@ -31,6 +80,7 @@ async function waitForNextTask(page) {
 
 test.describe('Flagfilter UI flows', () => {
   test.beforeEach(async ({ page }) => {
+    await stubTurnstile(page);
     await gotoApp(page, 'en');
   });
 
@@ -707,6 +757,224 @@ test.describe('Flagfilter UI flows', () => {
     const successBox = page.locator('.report-form-status.success');
     await expect(successBox).toContainText('Thank you for your report! We will review it soon.');
     await expect(successBox).not.toContainText('GitHub issue was automatically created.');
-    await expect(page.locator('#issueType')).toBeFocused();
+    await expect(page.locator('.close-report-btn')).toBeFocused();
+  });
+
+  test('app still works when localStorage access is denied', async ({ page }) => {
+    // Private mode / blocked storage (notably Safari) can make every
+    // localStorage access throw; the app must degrade to no persistence
+    // instead of aborting initApp. See #146.
+    await page.addInitScript(() => {
+      Storage.prototype.getItem = () => { throw new DOMException('Access is denied', 'SecurityError'); };
+      Storage.prototype.setItem = () => { throw new DOMException('Access is denied', 'SecurityError'); };
+    });
+    await gotoApp(page, 'en');
+
+    await page.locator('#searchInput').fill('sweden');
+    await expect(page.locator('.flag-card')).toHaveCount(1);
+
+    await page.locator('#darkModeToggle').click();
+    await expect(page.locator('body')).toHaveClass(/dark-mode/);
+
+    const moreSection = page.locator('.filter-section[data-section-id="more"]');
+    await moreSection.locator('.filter-header').click();
+    await expect(moreSection).not.toHaveClass(/collapsed/);
+  });
+
+  test('report form caps description and email length', async ({ page }) => {
+    // Mirrors the server-side length limits from #146 on the client side.
+    await openFirstFlagModal(page);
+    await page.locator('.report-issue-btn').click();
+
+    await expect(page.locator('#issueDescription')).toHaveAttribute('maxlength', '2000');
+    await expect(page.locator('#userEmail')).toHaveAttribute('maxlength', '254');
+  });
+
+  test('a sent report replaces the form with a receipt and a single Close button', async ({ page }) => {
+    // Submit and Cancel describe nothing the reader can still do once the
+    // report is on its way, so the form gives way to its receipt.
+    await page.route('**/api/report-issue', async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          success: true,
+          partial: false,
+          destinations: { telegram: true, github: false },
+          githubIssueUrl: null
+        })
+      });
+    });
+
+    await openFirstFlagModal(page);
+    await page.locator('.report-issue-btn').click();
+
+    // Nothing to close before anything has been sent.
+    await expect(page.locator('.close-report-btn')).toBeHidden();
+
+    await page.locator('#issueType').selectOption('incorrect_info');
+    await page.locator('#issueDescription').fill('The form should close itself out.');
+    await page.locator('.submit-btn').click();
+
+    await expect(page.locator('.report-form-status.success')).toBeVisible();
+    await expect(page.locator('.submit-btn')).toBeHidden();
+    await expect(page.locator('.cancel-btn')).toBeHidden();
+    await expect(page.locator('.close-report-btn')).toBeVisible();
+    await expect(page.locator('.close-report-btn')).toBeFocused();
+
+    // Close dismisses the dialog rather than dropping the reader back into the
+    // modal they were already looking at.
+    await page.locator('.close-report-btn').click();
+    await expect(page.locator('#flagModalTitle')).toHaveCount(0);
+
+    // Re-opening the flag gives a clean form again.
+    await openFirstFlagModal(page);
+    await page.locator('.report-issue-btn').click();
+    await expect(page.locator('.submit-btn')).toBeVisible();
+    await expect(page.locator('.close-report-btn')).toBeHidden();
+    await expect(page.locator('#issueDescription')).toHaveValue('');
+    await expect(page.locator('.report-form-status')).toBeHidden();
+  });
+
+  test('bot verification runs on submit, not when the report form opens', async ({ page }) => {
+    // Opening a report form used to mint a token, which meant a challenge for
+    // every abandoned form and a widget left sitting in the form afterwards.
+    // The challenge now runs as part of submitting. See #146.
+    let submittedBody = null;
+    await page.route('**/api/report-issue', async (route) => {
+      submittedBody = route.request().postDataJSON();
+      // Hold the response briefly so the pending state is observable.
+      await new Promise((resolve) => setTimeout(resolve, 400));
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          success: true,
+          partial: false,
+          destinations: { telegram: true, github: false },
+          githubIssueUrl: null
+        })
+      });
+    });
+
+    await openFirstFlagModal(page);
+    await page.locator('.report-issue-btn').click();
+    await expect(page.locator('#reportFormPanel')).toBeVisible();
+
+    // No widget while the user is still filling the form in.
+    expect(await page.evaluate(() => window.__turnstileRenders)).toBe(0);
+
+    await page.locator('#issueType').selectOption('incorrect_info');
+    await page.locator('#issueDescription').fill('Verification should run on submit.');
+    await page.locator('.submit-btn').click();
+
+    // The form says what it is doing and refuses a second submit meanwhile.
+    await expect(page.locator('.report-form-status.pending')).toBeVisible();
+    await expect(page.locator('.submit-btn')).toBeDisabled();
+
+    await expect(page.locator('.report-form-status.success')).toBeVisible();
+    await expect(page.locator('.submit-btn')).toBeEnabled();
+
+    expect(await page.evaluate(() => window.__turnstileRenders)).toBe(1);
+    expect(submittedBody.turnstileToken).toMatch(/^stub-token-/);
+    expect(submittedBody['cf-turnstile-response']).toBeUndefined();
+  });
+
+  test('the report form and its status messages stay in view on a phone', async ({ browser, baseURL }) => {
+    // The modal body scrolls on its own and the report flow sits at the bottom
+    // of it, so opening the form and every status message that follows was
+    // appended below the fold for a reader already scrolled to the end.
+    const context = await createPhoneContext(browser, baseURL);
+    const page = await context.newPage();
+    try {
+      await stubTurnstile(page);
+      await page.route('**/api/report-issue', async (route) => {
+        // Hold the response so the pending state can be checked on its own.
+        await new Promise((resolve) => setTimeout(resolve, 400));
+        await route.fulfill({
+          status: 200,
+          contentType: 'application/json',
+          body: JSON.stringify({
+            success: true,
+            partial: false,
+            destinations: { telegram: true, github: false },
+            githubIssueUrl: null
+          })
+        });
+      });
+
+      await gotoApp(page, 'en');
+      await page.locator('.learn-more-btn').first().tap();
+      await expect(page.locator('#flagModalTitle')).toBeVisible();
+
+      // The static info modal is always in the DOM, so pick the flag modal.
+      const modalContent = page.locator('.modal-content').filter({ has: page.locator('#flagModalTitle') });
+      await modalContent.evaluate((el) => { el.scrollTop = el.scrollHeight; });
+
+      await page.locator('.report-issue-btn').tap();
+      await expect(page.locator('#reportFormPanel')).toBeInViewport({ ratio: 0.1 });
+      await expect(page.locator('#issueType')).toBeInViewport({ ratio: 0.9 });
+
+      await page.locator('#issueType').selectOption('incorrect_info');
+      await page.locator('#issueDescription').fill('Status messages should not land below the fold.');
+      await modalContent.evaluate((el) => { el.scrollTop = el.scrollHeight; });
+      await page.locator('.submit-btn').tap();
+
+      await expect(page.locator('.report-form-status.pending')).toBeInViewport({ ratio: 0.9 });
+      await expect(page.locator('.report-form-status.success')).toBeInViewport({ ratio: 0.9 });
+    } finally {
+      await context.close();
+    }
+  });
+
+  test('report form does not ghost-focus the issue type select on touch devices', async ({ browser, baseURL }) => {
+    // Regression test: programmatically focusing a <select> on a touch device
+    // leaves it "ghost-focused" without opening the native picker, so the
+    // first physical tap just clears the focus instead of opening the
+    // dropdown. Focus is therefore only moved automatically when the device
+    // has a fine pointer (mouse/trackpad) — both when the form opens and
+    // after a report has been submitted.
+    const context = await createPhoneContext(browser, baseURL);
+    const page = await context.newPage();
+    try {
+      await stubTurnstile(page);
+      await page.route('**/api/report-issue', async (route) => {
+        await route.fulfill({
+          status: 200,
+          contentType: 'application/json',
+          body: JSON.stringify({
+            success: true,
+            partial: false,
+            destinations: { telegram: true, github: false },
+            githubIssueUrl: null
+          })
+        });
+      });
+
+      await gotoApp(page, 'en');
+      await page.locator('.learn-more-btn').first().tap();
+      await expect(page.locator('#flagModalTitle')).toBeVisible();
+
+      await page.locator('.report-issue-btn').tap();
+      await expect(page.locator('#reportFormPanel')).toBeVisible();
+
+      // The select must not be pre-focused on coarse-pointer devices...
+      await expect(page.locator('#issueType')).not.toBeFocused();
+
+      // ...so the first tap on it focuses it and opens the native picker.
+      await page.locator('#issueType').tap();
+      await expect(page.locator('#issueType')).toBeFocused();
+
+      // Sending replaces the form with its receipt, so the select is gone
+      // rather than sitting there ghost-focused.
+      await page.locator('#issueType').selectOption('incorrect_info');
+      await page.locator('#issueDescription').fill('Reported from a touch device.');
+      await page.locator('.submit-btn').tap();
+
+      await expect(page.locator('.report-form-status.success')).toBeVisible();
+      await expect(page.locator('#issueType')).toBeHidden();
+    } finally {
+      await context.close();
+    }
   });
 });
