@@ -3,7 +3,11 @@
 // teardown when it closes. Split out of script.js; see #143.
 import { state } from './state.js';
 import { focusIfFinePointer, revealInScrollParent } from './util.js';
-import { t } from './i18n.js';
+import { t } from './translate.js';
+
+// Module-local: a private one-shot cache for the Turnstile script tag, not
+// application state anything else has business touching.
+let turnstileScriptPromise = null;
 
 // Cloudflare Turnstile bot protection for the report form. The site key is
 // public by design; the matching TURNSTILE_SECRET_KEY lives as a secret on the
@@ -16,8 +20,8 @@ const TURNSTILE_TIMEOUT_MS = 30000;
 const TURNSTILE_INTERACTION_TIMEOUT_MS = 120000;
 
 function loadTurnstileScript() {
-    if (!state.turnstileScriptPromise) {
-        state.turnstileScriptPromise = new Promise((resolve, reject) => {
+    if (!turnstileScriptPromise) {
+        turnstileScriptPromise = new Promise((resolve, reject) => {
             const script = document.createElement('script');
             script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
             script.async = true;
@@ -29,12 +33,12 @@ function loadTurnstileScript() {
         // Only success is worth caching. Holding on to a rejected promise would
         // turn one network hiccup into a session where every later report fails
         // verification until the page is reloaded.
-        state.turnstileScriptPromise.catch(() => {
-            state.turnstileScriptPromise = null;
+        turnstileScriptPromise.catch(() => {
+            turnstileScriptPromise = null;
         });
     }
 
-    return state.turnstileScriptPromise;
+    return turnstileScriptPromise;
 }
 
 // Build the report-issue panel for a flag modal. Owns the whole report flow —

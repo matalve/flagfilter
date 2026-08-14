@@ -10,12 +10,12 @@ import {
     setButtonLabel,
     updateAllToggleButtonStates
 } from './util.js';
+import { t } from './translate.js';
 import { rebuildFlags } from './flags.js';
 import { applyFilters } from './filters.js';
 
-const searchInput = document.getElementById('searchInput');
-const resetFiltersButton = document.getElementById('resetFiltersButton');
-const languageSelect = document.getElementById('languageSelect');
+// Looked up inside the functions that use them rather than at import time; see
+// the note in filters.js and #143.
 
 const SUPPORTED_LANGUAGES = ['en', 'es'];
 const DEFAULT_LANGUAGE = 'en';
@@ -50,13 +50,6 @@ function updateLanguageInUrl(language) {
     window.history.replaceState({}, '', url);
 }
 
-export function t(key, vars = {}) {
-    const template = hasTextValue(state.uiTranslations[key])
-        ? state.uiTranslations[key]
-        : (hasTextValue(state.fallbackUiTranslations[key]) ? state.fallbackUiTranslations[key] : key);
-    return template.replace(/\{(\w+)\}/g, (_, varName) => vars[varName] ?? `{${varName}}`);
-}
-
 async function loadTranslations(language) {
     state.fallbackUiTranslations = await loadJson('i18n/ui/en.json', {});
     state.uiTranslations = language === 'en'
@@ -71,6 +64,8 @@ async function loadTranslations(language) {
 function applyStaticTranslations() {
     document.documentElement.lang = state.currentLanguage;
     document.title = t('page_title');
+    const searchInput = document.getElementById('searchInput');
+    const resetFiltersButton = document.getElementById('resetFiltersButton');
     searchInput.placeholder = t('search_placeholder');
     searchInput.setAttribute('aria-label', t('search_input_aria'));
     resetFiltersButton.innerHTML = `<svg class="icon" aria-hidden="true"><use href="#i-rotate-left"></use></svg> ${t('reset_button')}`;
@@ -165,6 +160,7 @@ export async function switchLanguage(language) {
         applyFilters();
     }
 
+    const languageSelect = document.getElementById('languageSelect');
     if (languageSelect) {
         languageSelect.value = language;
     }

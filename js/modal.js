@@ -3,7 +3,7 @@
 // script.js; see #143.
 import { state } from './state.js';
 import { getFlagImageDimensions } from './util.js';
-import { t } from './i18n.js';
+import { t } from './translate.js';
 import { getBaseFlagInfoByCode } from './flags.js';
 import { createReportForm } from './report.js';
 

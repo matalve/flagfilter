@@ -18,6 +18,19 @@
          the data fetch. The href must match the grid's <img> src exactly (see rebuildFlags
          in script.js) to avoid a double fetch. -->
     <link rel="preload" as="image" href="https://flagcdn.com/w320/ad.webp" fetchpriority="high">
+    <!-- The module graph is only discoverable one hop at a time: the browser has to
+         fetch and parse script.js before it learns about js/*.js, and modal.js before
+         it learns about report.js. Declaring them here collapses that into a single
+         round trip. Unsupported browsers ignore the hint. See #143. -->
+    <link rel="modulepreload" href="js/state.js">
+    <link rel="modulepreload" href="js/util.js">
+    <link rel="modulepreload" href="js/translate.js">
+    <link rel="modulepreload" href="js/theme.js">
+    <link rel="modulepreload" href="js/i18n.js">
+    <link rel="modulepreload" href="js/flags.js">
+    <link rel="modulepreload" href="js/filters.js">
+    <link rel="modulepreload" href="js/modal.js">
+    <link rel="modulepreload" href="js/report.js">
     <!-- Apply the theme before first paint so a saved or system dark preference
          does not flash the light theme first. Mirrors the storage key and the
          fallback logic in initDarkMode() in script.js — keep the two in sync.

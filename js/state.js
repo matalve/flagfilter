@@ -12,7 +12,5 @@ export const state = {
     uiTranslations: {},
     fallbackUiTranslations: {},
     flagTranslations: {},
-    currentLanguage: 'en',
-    turnstileScriptPromise: null,
-    searchDebounceTimer: null
+    currentLanguage: 'en'
 };

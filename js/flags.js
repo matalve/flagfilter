@@ -8,9 +8,12 @@ import {
     hasTextValue,
     normalizeQueryValue
 } from './util.js';
-import { t } from './i18n.js';
+import { t } from './translate.js';
 
-const flagGrid = document.getElementById('flagGrid');
+// Looked up on demand rather than captured at import time; see #143.
+function flagGrid() {
+    return document.getElementById('flagGrid');
+}
 
 export function getBaseFlagInfoByCode(code) {
     return state.baseFlagInfo.find((info) => info.shortname === code);
@@ -81,7 +84,7 @@ export async function fetchFlags() {
         return state.flags;
     } catch (error) {
         console.error('Error fetching flag data:', error);
-        flagGrid.innerHTML = `<p class="error">${t('error_loading_flags')}</p>`;
+        flagGrid().innerHTML = `<p class="error">${t('error_loading_flags')}</p>`;
     }
 }
 
@@ -109,11 +112,11 @@ function buildFlagCards() {
 // ~250 cards per interaction. See #142.
 export function renderFlagGrid() {
     if (state.filteredFlags.length === 0) {
-        flagGrid.replaceChildren();
+        flagGrid().replaceChildren();
         const noResults = document.createElement('p');
         noResults.className = 'no-results';
         noResults.textContent = t('no_results');
-        flagGrid.appendChild(noResults);
+        flagGrid().appendChild(noResults);
         updateFlagCounter(0);
         return;
     }
@@ -134,11 +137,11 @@ export function renderFlagGrid() {
         }
 
         visibleCards.add(flagCard);
-        flagGrid.appendChild(flagCard);
+        flagGrid().appendChild(flagCard);
     });
 
     // Detach the cards that fell out of the result set.
-    Array.from(flagGrid.children).forEach((child) => {
+    Array.from(flagGrid().children).forEach((child) => {
         if (!visibleCards.has(child)) {
             child.remove();
         }

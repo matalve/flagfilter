@@ -11,7 +11,16 @@ import {
 } from './util.js';
 import { renderFlagGrid, updateFlagCounter } from './flags.js';
 
-const searchInput = document.getElementById('searchInput');
+// Looked up on demand rather than captured at import time. A module that grabs
+// DOM nodes while it is being imported can only ever be loaded into a browser
+// with the page already parsed, which rules out unit-testing this file's pure
+// logic under Node (see #141). See #143.
+function searchInput() {
+    return document.getElementById('searchInput');
+}
+
+// Module-local: this is a private timer handle, not shared app state.
+let searchDebounceTimer = null;
 
 const QUERY_FILTER_DATA_KEYS = ['color', 'continent', 'pattern', 'symbol', 'motive', 'people', 'ideology', 'text'];
 
@@ -74,7 +83,7 @@ function matchesSearchTerm(flag, normalizedTerm) {
 }
 
 function syncQueryParamFromUiState() {
-    const searchTokens = searchInput.value
+    const searchTokens = searchInput().value
         .trim()
         .toLowerCase()
         .split(/\s+/)
@@ -127,7 +136,7 @@ export function applyInitialQueryFromUrl() {
             updateToggleButtonState(button);
         });
 
-        searchInput.value = remainingSearchTerms.join(' ');
+        searchInput().value = remainingSearchTerms.join(' ');
     }
 
     // Render once, after the initial filter/search state is resolved, so the first
@@ -141,9 +150,9 @@ export function applyInitialQueryFromUrl() {
 export const SEARCH_DEBOUNCE_MS = 150;
 
 export function debounceSearch(query) {
-    clearTimeout(state.searchDebounceTimer);
-    state.searchDebounceTimer = setTimeout(() => {
-        state.searchDebounceTimer = null;
+    clearTimeout(searchDebounceTimer);
+    searchDebounceTimer = setTimeout(() => {
+        searchDebounceTimer = null;
         handleSearch(query);
     }, SEARCH_DEBOUNCE_MS);
 }
@@ -188,10 +197,10 @@ export function applyFilters() {
     const activeTexts = Array.from(document.querySelectorAll('.filter-btn[data-text].active'))
         .map(btn => btn.dataset.text);
 
-    const searchTerm = searchInput.value.toLowerCase().trim();
+    const searchTerm = searchInput().value.toLowerCase().trim();
 
     // Normalize once per filter pass instead of once per flag (see matchesSearchTerm).
-    const normalizedTerm = normalizeQueryValue(searchInput.value);
+    const normalizedTerm = normalizeQueryValue(searchInput().value);
 
     // Start with all flags or search results
     let results = searchTerm === ''
@@ -384,9 +393,9 @@ export function initializeFilterSections() {
 
 export function resetAllFilters() {
     // Cancel any pending debounced search so it cannot re-filter after the reset.
-    clearTimeout(state.searchDebounceTimer);
-    state.searchDebounceTimer = null;
-    searchInput.value = '';
+    clearTimeout(searchDebounceTimer);
+    searchDebounceTimer = null;
+    searchInput().value = '';
     document.querySelectorAll('.filter-btn').forEach(button => {
         button.classList.remove('active');
         button.disabled = false;
