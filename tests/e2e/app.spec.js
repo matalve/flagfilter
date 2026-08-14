@@ -441,11 +441,56 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('.dark-mode-toggle svg.sun-icon')).toHaveCount(1);
     await expect(page.locator('.dark-mode-toggle svg.moon-icon')).toHaveCount(1);
 
-    const body = page.locator('body');
-    const wasDark = await body.evaluate((b) => b.classList.contains('dark-mode'));
+    // The dark-mode class lives on <html> (set before first paint) — see #143.
+    const html = page.locator('html');
+    const wasDark = await html.evaluate((el) => el.classList.contains('dark-mode'));
     await page.locator('#darkModeToggle').click();
-    const nowDark = await body.evaluate((b) => b.classList.contains('dark-mode'));
+    const nowDark = await html.evaluate((el) => el.classList.contains('dark-mode'));
     expect(nowDark).toBe(!wasDark);
+  });
+
+  test('applies a saved dark preference before the app script runs', async ({ page }) => {
+    // The theme class must come from the inline snippet in <head>, not from the
+    // deferred app script — that is what prevents a flash of the wrong theme.
+    // Block script.js so only the snippet can have applied the class. See #143.
+    await page.addInitScript(() => {
+      window.localStorage.setItem('darkMode', 'true');
+    });
+    await page.route('**/script.js', (route) => route.abort());
+    await page.goto('/?lang=en');
+    await expect(page.locator('html')).toHaveClass(/dark-mode/);
+  });
+
+  test('falls back to the system theme when nothing is saved', async ({ page }) => {
+    await page.emulateMedia({ colorScheme: 'dark' });
+    await page.goto('/?lang=en');
+    await expect(page.locator('html')).toHaveClass(/dark-mode/);
+  });
+
+  test('a saved preference wins over the system theme', async ({ page }) => {
+    await page.addInitScript(() => {
+      window.localStorage.setItem('darkMode', 'false');
+    });
+    await page.emulateMedia({ colorScheme: 'dark' });
+    await page.goto('/?lang=en');
+    await expect(page.locator('html')).not.toHaveClass(/dark-mode/);
+  });
+
+  test('tracks system theme changes until a preference is saved', async ({ page }) => {
+    // beforeEach loaded the app with the default (light) scheme and no saved
+    // preference, so the class follows the system live. See #143.
+    await expect(page.locator('html')).not.toHaveClass(/dark-mode/);
+    await page.emulateMedia({ colorScheme: 'dark' });
+    await expect(page.locator('html')).toHaveClass(/dark-mode/);
+    await page.emulateMedia({ colorScheme: 'light' });
+    await expect(page.locator('html')).not.toHaveClass(/dark-mode/);
+
+    // Once the user picks a side, the choice is saved and wins over the system.
+    // The class is currently off, so the toggle switches dark on and saves it.
+    await page.locator('#darkModeToggle').click();
+    await expect(page.locator('html')).toHaveClass(/dark-mode/);
+    await page.emulateMedia({ colorScheme: 'light' });
+    await expect(page.locator('html')).toHaveClass(/dark-mode/);
   });
 
   test('filter and reset icons stay inline SVG after a language switch', async ({ page }) => {
@@ -774,7 +819,7 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('.flag-card')).toHaveCount(1);
 
     await page.locator('#darkModeToggle').click();
-    await expect(page.locator('body')).toHaveClass(/dark-mode/);
+    await expect(page.locator('html')).toHaveClass(/dark-mode/);
 
     const moreSection = page.locator('.filter-section[data-section-id="more"]');
     await moreSection.locator('.filter-header').click();
