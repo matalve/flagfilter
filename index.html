@@ -14,10 +14,13 @@
     <!-- Warm the connection to the flag image host early (every flag loads from here);
          no crossorigin since the images are plain non-CORS <img> requests. -->
     <link rel="preconnect" href="https://flagcdn.com">
-    <!-- Preload the first flag (Andorra) as the LCP image so it is discoverable before
-         the data fetch. The href must match the grid's <img> src exactly (see rebuildFlags
-         in script.js) to avoid a double fetch. -->
-    <link rel="preload" as="image" href="https://flagcdn.com/w320/ad.webp" fetchpriority="high">
+    <!-- Preload the first flag (Afghanistan) as the LCP image so it is discoverable
+         before the data fetch. The href must match the grid's <img> src exactly (see
+         rebuildFlags in js/flags.js) to avoid a double fetch. The grid is sorted by
+         localized name (#123), and "af" happens to come first in both English and
+         Spanish — a language whose first flag differs would fall back to a second
+         fetch, not a broken page. -->
+    <link rel="preload" as="image" href="https://flagcdn.com/w320/af.webp" fetchpriority="high">
     <!-- The module graph is only discoverable one hop at a time: the browser has to
          fetch and parse script.js before it learns about js/*.js, and modal.js before
          it learns about report.js. Declaring them here collapses that into a single

@@ -67,6 +67,15 @@ export function rebuildFlags() {
             searchText
         };
     });
+    // Sort by the name people actually read, not by ISO code. In code order the
+    // grid opened Andorra, United Arab Emirates, Afghanistan — "ae" sorting
+    // second is baffling when the card says United Arab Emirates. The collator
+    // is accent-aware and language-specific; rebuildFlags already runs on every
+    // language switch, so the order follows the UI. One collator for the whole
+    // sort rather than a localeCompare call per comparison. See #123.
+    const collator = new Intl.Collator(state.currentLanguage);
+    state.flags.sort((a, b) => collator.compare(a.name, b.name));
+
     state.flagsByCode = new Map(state.flags.map((flag) => [flag.code, flag]));
     buildFlagCards();
 }
