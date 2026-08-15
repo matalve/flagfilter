@@ -60,51 +60,17 @@ document.querySelectorAll('.filter-btn[data-continent]').forEach(button => {
     button.addEventListener('click', () => handleContinentFilter(button.dataset.continent));
 });
 
-document.querySelectorAll('.filter-btn[data-pattern]').forEach(button => {
-    button.addEventListener('click', () => {
-        button.classList.toggle('active');
-        updateToggleButtonState(button);
-        applyFilters();
-    });
-});
-
-document.querySelectorAll('.filter-btn[data-symbol]').forEach(button => {
-    button.addEventListener('click', () => {
-        button.classList.toggle('active');
-        updateToggleButtonState(button);
-        applyFilters();
-    });
-});
-
-document.querySelectorAll('.filter-btn[data-motive]').forEach(button => {
-    button.addEventListener('click', () => {
-        button.classList.toggle('active');
-        updateToggleButtonState(button);
-        applyFilters();
-    });
-});
-
-document.querySelectorAll('.filter-btn[data-people]').forEach(button => {
-    button.addEventListener('click', () => {
-        button.classList.toggle('active');
-        updateToggleButtonState(button);
-        applyFilters();
-    });
-});
-
-document.querySelectorAll('.filter-btn[data-ideology]').forEach(button => {
-    button.addEventListener('click', () => {
-        button.classList.toggle('active');
-        updateToggleButtonState(button);
-        applyFilters();
-    });
-});
-
-document.querySelectorAll('.filter-btn[data-text]').forEach(button => {
-    button.addEventListener('click', () => {
-        button.classList.toggle('active');
-        updateToggleButtonState(button);
-        applyFilters();
+// Colour and continent have their own handlers above; every other kind is a
+// plain toggle, so they share one. Was seven copies of the same three lines,
+// which is how a new filter kind ends up silently inert — adding one is now a
+// word in this list.
+['pattern', 'symbol', 'motive', 'people', 'ideology', 'text', 'family'].forEach((kind) => {
+    document.querySelectorAll(`.filter-btn[data-${kind}]`).forEach(button => {
+        button.addEventListener('click', () => {
+            button.classList.toggle('active');
+            updateToggleButtonState(button);
+            applyFilters();
+        });
     });
 });
 

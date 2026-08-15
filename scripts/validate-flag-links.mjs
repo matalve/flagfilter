@@ -23,10 +23,6 @@ const INDEX_HTML_PATH = process.argv[4] || 'index.html';
 // stops matching anything is itself an error, so this list cannot quietly rot
 // into a lie about the content.
 const KNOWN_UNRESOLVED = [
-    'pan-african',
-    'pan-arab',
-    'pan-slavic',
-    'british',
     'nordic',
     'nordic+cross',
     // These three have an obvious target and only need the content edit:
@@ -41,7 +37,7 @@ const TEXT_FIELDS = ['symbolism', 'funfacts'];
 const LINK_PATTERN = /<a href="\?q=([^"]+)"/g;
 // The filter kinds ?q= understands, kept in step with QUERY_FILTER_DATA_KEYS in
 // js/filters.js.
-const FILTER_DATA_KEYS = ['color', 'continent', 'pattern', 'symbol', 'motive', 'people', 'ideology', 'text'];
+const FILTER_DATA_KEYS = ['color', 'continent', 'pattern', 'symbol', 'motive', 'people', 'ideology', 'text', 'family'];
 
 // Byte-for-byte the normalization in processHtmlContent(); the whole point of
 // this script is to answer "would the runtime resolve this?", so any drift here

@@ -1144,12 +1144,10 @@ h1 {
     font-weight: 600;
 }
 
-.compact-filter-group .pattern-filters,
-.compact-filter-group .symbol-filters,
-.compact-filter-group .motive-filters,
-.compact-filter-group .people-filters,
-.compact-filter-group .ideology-filters,
-.compact-filter-group .text-filters {
+/* Every compact group's button container, matched structurally rather than by
+   listing each one: a new group used to land here with no layout at all and one
+   button per line. Continent opts out — it keeps the grid from above. */
+.compact-filter-group > div:not(.continent-filters) {
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
@@ -1188,6 +1186,21 @@ h1 {
     font-size: 0.8rem;
 }
 
+/* The flag family buttons carry a real flag rather than a sprite symbol, so they
+   opt out of the 1em square the .icon class imposes. The border keeps flags with
+   white edges (Czechia's wedge, the Union Jack's fimbriation) from bleeding into
+   the button in either theme. Declared after the .filter-btn .icon rules so it
+   wins on source order at equal specificity. See #141. */
+.filter-btn .flag-icon {
+    width: 20px;
+    height: 15px;
+    min-width: 20px;
+    border-radius: 2px;
+    border: 1px solid var(--border-color);
+    object-fit: cover;
+    vertical-align: -0.2em;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .compact-filter-group {
@@ -1200,12 +1213,7 @@ h1 {
         margin-bottom: 0.25rem;
     }
     
-    .compact-filter-group .pattern-filters,
-    .compact-filter-group .symbol-filters,
-    .compact-filter-group .motive-filters,
-    .compact-filter-group .people-filters,
-    .compact-filter-group .ideology-filters,
-    .compact-filter-group .text-filters {
+    .compact-filter-group > div:not(.continent-filters) {
         width: 100%;
     }
 }

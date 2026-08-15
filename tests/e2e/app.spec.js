@@ -403,6 +403,76 @@ test.describe('Flagfilter UI flows', () => {
     await expect(firstImage).toHaveAttribute('loading', 'eager');
   });
 
+  test('every compact filter group lays its buttons out the same way', async ({ page }) => {
+    // The layout selectors used to list each group by name, so a new group
+    // landed with no layout at all: one button per line on a phone. See #141.
+    await page.locator('.filter-section[data-section-id="more"] .filter-header').click();
+
+    const displays = await page.locator('.compact-filter-group > div').evaluateAll(
+      (containers) => containers.map((container) => ({
+        className: container.className,
+        display: getComputedStyle(container).display
+      }))
+    );
+
+    expect(displays.length).toBeGreaterThan(1);
+    displays.forEach(({ className, display }) => {
+      // Continent keeps the grid from the shared rule; everything else is flex.
+      expect(display, className).toBe(className.includes('continent') ? 'grid' : 'flex');
+    });
+  });
+
+  test('flag family buttons show an example flag that survives a language switch', async ({ page }) => {
+    // setButtonLabel() rebuilds a button's contents around its .icon element, so
+    // the example flag has to carry that class or it disappears the first time
+    // someone switches language. See #141.
+    await page.locator('.filter-section[data-section-id="more"] .filter-header').click();
+
+    const panArab = page.locator('.filter-btn[data-family="pan-arab"] img.flag-icon');
+    await expect(panArab).toHaveAttribute('src', 'https://flagcdn.com/20x15/jo.webp');
+    await expect(panArab).toHaveAttribute('alt', '');
+
+    await page.locator('#languageSelect').selectOption('es');
+    await expect(page.locator('.filter-btn[data-family="pan-arab"]')).toContainText('Panárabe');
+    await expect(panArab).toHaveAttribute('src', 'https://flagcdn.com/20x15/jo.webp');
+  });
+
+  test('flag family filters read a curated tag, not the colour set', async ({ page }) => {
+    // Pan-Slavic is the case that makes the point: as a colour query
+    // (blue + white + red) it returns 81 flags, most of them not Slavic. The tag
+    // says the flag belongs to the tradition. See #141.
+    await page.locator('.filter-section[data-section-id="more"] .filter-header').click();
+
+    const panSlavic = page.locator('.filter-btn[data-family="pan-slavic"]');
+    await expect(panSlavic).toBeEnabled();
+    await panSlavic.click();
+
+    await expect(page.locator('.flag-card h3', { hasText: /^Croatia$/ })).toHaveCount(1);
+    await expect(page.locator('.flag-card h3', { hasText: /^France$/ })).toHaveCount(0);
+    await expect(page.locator('.flag-card h3', { hasText: /^United States$/ })).toHaveCount(0);
+  });
+
+  test('a family link in flag prose applies the family filter', async ({ page }) => {
+    // These links were plain text until the family filters existed to receive
+    // them: nothing resolved ?q=pan-arab, so the anchor was unwrapped.
+    await openFlagModalBySearch(page, 'jordan');
+
+    await page.locator('.flag-info-details a.filter-link', { hasText: 'Pan-Arab' }).click();
+
+    await expect(page.locator('#flagModalTitle')).toHaveCount(0);
+    await expect(page.locator('.filter-btn[data-family="pan-arab"]')).toHaveClass(/active/);
+    await expect(page.locator('.flag-card h3', { hasText: /^Jordan$/ })).toHaveCount(1);
+    await expect(page.locator('.flag-card h3', { hasText: /^Sweden$/ })).toHaveCount(0);
+  });
+
+  test('the flag family group is localized', async ({ page }) => {
+    await gotoApp(page, 'es');
+    await page.locator('.filter-section[data-section-id="more"] .filter-header').click();
+
+    await expect(page.locator('.compact-filter-group h3', { hasText: 'Familia de banderas' })).toHaveCount(1);
+    await expect(page.locator('.filter-btn[data-family="pan-african"]')).toContainText('Panafricana');
+  });
+
   test('a filter link in flag prose stays a real ?q= link', async ({ page }) => {
     // These are how a reader discovers what else is filterable while reading, so
     // the anchor survives with its href intact — it works without JS and can be
