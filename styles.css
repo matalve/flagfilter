@@ -1144,12 +1144,10 @@ h1 {
     font-weight: 600;
 }
 
-.compact-filter-group .pattern-filters,
-.compact-filter-group .symbol-filters,
-.compact-filter-group .motive-filters,
-.compact-filter-group .people-filters,
-.compact-filter-group .ideology-filters,
-.compact-filter-group .text-filters {
+/* Every compact group's button container, matched structurally rather than by
+   listing each one: a new group used to land here with no layout at all and one
+   button per line. Continent opts out — it keeps the grid from above. */
+.compact-filter-group > div:not(.continent-filters) {
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
@@ -1200,12 +1198,7 @@ h1 {
         margin-bottom: 0.25rem;
     }
     
-    .compact-filter-group .pattern-filters,
-    .compact-filter-group .symbol-filters,
-    .compact-filter-group .motive-filters,
-    .compact-filter-group .people-filters,
-    .compact-filter-group .ideology-filters,
-    .compact-filter-group .text-filters {
+    .compact-filter-group > div:not(.continent-filters) {
         width: 100%;
     }
 }

@@ -403,6 +403,25 @@ test.describe('Flagfilter UI flows', () => {
     await expect(firstImage).toHaveAttribute('loading', 'eager');
   });
 
+  test('every compact filter group lays its buttons out the same way', async ({ page }) => {
+    // The layout selectors used to list each group by name, so a new group
+    // landed with no layout at all: one button per line on a phone. See #141.
+    await page.locator('.filter-section[data-section-id="more"] .filter-header').click();
+
+    const displays = await page.locator('.compact-filter-group > div').evaluateAll(
+      (containers) => containers.map((container) => ({
+        className: container.className,
+        display: getComputedStyle(container).display
+      }))
+    );
+
+    expect(displays.length).toBeGreaterThan(1);
+    displays.forEach(({ className, display }) => {
+      // Continent keeps the grid from the shared rule; everything else is flex.
+      expect(display, className).toBe(className.includes('continent') ? 'grid' : 'flex');
+    });
+  });
+
   test('flag family filters read a curated tag, not the colour set', async ({ page }) => {
     // Pan-Slavic is the case that makes the point: as a colour query
     // (blue + white + red) it returns 81 flags, most of them not Slavic. The tag
