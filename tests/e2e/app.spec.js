@@ -393,7 +393,7 @@ test.describe('Flagfilter UI flows', () => {
 
   test('eager/high-priority image follows the initial ?q= filter, not the unfiltered list', async ({ page }) => {
     // On a filtered landing the grid renders once already-filtered, so the
-    // prioritized LCP image is the filtered first flag (Sweden), not Andorra.
+    // prioritized LCP image is the filtered first flag (Sweden), not Afghanistan.
     await gotoApp(page, 'en', 'blue sweden');
     await expect(page.locator('.flag-card')).toHaveCount(1);
 
@@ -403,6 +403,27 @@ test.describe('Flagfilter UI flows', () => {
     await expect(firstImage).toHaveAttribute('loading', 'eager');
   });
 
+  test('flags are ordered by their displayed name, not by country code', async ({ page }) => {
+    // In code order the grid opened Andorra, United Arab Emirates, Afghanistan —
+    // "ae" landing second is baffling when the card reads United Arab Emirates.
+    // People scan the name they can see. See #123.
+    const names = await page.locator('.flag-card h3').allTextContents();
+
+    expect(names.length).toBeGreaterThan(200);
+    expect(names[0]).toBe('Afghanistan');
+    expect(names).toEqual([...names].sort((a, b) => a.localeCompare(b, 'en')));
+  });
+
+  test('the order re-sorts for the language being displayed', async ({ page }) => {
+    await gotoApp(page, 'es');
+    const names = await page.locator('.flag-card h3').allTextContents();
+
+    expect(names).toEqual([...names].sort((a, b) => a.localeCompare(b, 'es')));
+    // Germany is "Alemania" in Spanish and sorts before Andorra — which cannot
+    // happen in code order, where "ad" precedes "de".
+    expect(names.indexOf('Alemania')).toBeLessThan(names.indexOf('Andorra'));
+  });
+
   test('flag images are served as WebP', async ({ page }) => {
     await expect(page.locator('.flag-card img').first())
       .toHaveAttribute('src', /flagcdn\.com\/w320\/[a-z]+\.webp$/);
@@ -410,12 +431,12 @@ test.describe('Flagfilter UI flows', () => {
 
   test('the first flag is preloaded as the LCP image and matches its grid src', async ({ page }) => {
     const preload = page.locator('link[rel="preload"][as="image"]');
-    await expect(preload).toHaveAttribute('href', 'https://flagcdn.com/w320/ad.webp');
+    await expect(preload).toHaveAttribute('href', 'https://flagcdn.com/w320/af.webp');
     await expect(preload).toHaveAttribute('fetchpriority', 'high');
 
     // The preload must match the rendered src exactly, otherwise the browser fetches twice.
     await expect(page.locator('.flag-card img').first())
-      .toHaveAttribute('src', 'https://flagcdn.com/w320/ad.webp');
+      .toHaveAttribute('src', 'https://flagcdn.com/w320/af.webp');
   });
 
   test('preconnects to the flag image host', async ({ page }) => {
