@@ -403,6 +403,35 @@ test.describe('Flagfilter UI flows', () => {
     await expect(firstImage).toHaveAttribute('loading', 'eager');
   });
 
+  test('a filter link in flag prose stays a real ?q= link', async ({ page }) => {
+    // These are how a reader discovers what else is filterable while reading, so
+    // the anchor survives with its href intact — it works without JS and can be
+    // opened in a new tab. See #141.
+    await openFlagModalBySearch(page, 'sweden');
+
+    const filterLink = page.locator('.flag-info-details a.filter-link', { hasText: 'cross' });
+    await expect(filterLink).toHaveAttribute('href', '?q=cross');
+  });
+
+  test('following a filter link filters the grid without reloading', async ({ page }) => {
+    await openFlagModalBySearch(page, 'sweden');
+
+    // Pin the document so a full navigation would be visible as a reset.
+    await page.evaluate(() => { window.__notReloaded = true; });
+
+    await page.locator('.flag-info-details a.filter-link', { hasText: 'cross' }).click();
+
+    // The modal gives way to the filtered grid, and the leftover search that
+    // found Sweden is cleared — the link lands on exactly its own view.
+    await expect(page.locator('#flagModalTitle')).toHaveCount(0);
+    await expect(page.locator('.filter-btn[data-pattern="cross"]')).toHaveClass(/active/);
+    await expect(page.locator('#searchInput')).toHaveValue('');
+    await expect(page.locator('.flag-card')).not.toHaveCount(0);
+    await expect.poll(async () => new URL(await page.url()).searchParams.get('q')).toBe('cross');
+
+    expect(await page.evaluate(() => window.__notReloaded)).toBe(true);
+  });
+
   test('flags are ordered by their displayed name, not by country code', async ({ page }) => {
     // In code order the grid opened Andorra, United Arab Emirates, Afghanistan —
     // "ae" landing second is baffling when the card reads United Arab Emirates.

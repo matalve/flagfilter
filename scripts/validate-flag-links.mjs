@@ -191,7 +191,7 @@ const staleKnown = KNOWN_UNRESOLVED.filter((target) => !matchedKnown.has(target)
 if (filterLinks.length > 0) {
     const distinct = [...new Set(filterLinks.map((link) => link.target))].sort();
     console.log(`NOTE: ${filterLinks.length} link(s) point at filter terms rather than flags: ${distinct.join(', ')}`);
-    console.log('      processHtmlContent() only rewrites flag links, so these render as plain text today.');
+    console.log('      These stay real ?q= links and apply the filter when followed.');
 }
 
 if (known.length > 0) {
