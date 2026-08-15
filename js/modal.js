@@ -5,6 +5,7 @@ import { state } from './state.js';
 import { getFlagImageDimensions } from './util.js';
 import { t } from './translate.js';
 import { getBaseFlagInfoByCode } from './flags.js';
+import { applyQueryAsFilterState, queryMatchesAnyFilter } from './filters.js';
 import { createReportForm } from './report.js';
 
 const AMAZON_ASSOCIATE_TAG = 'flagfilter-20';
@@ -199,6 +200,21 @@ export function showFlagInfoModal(flag) {
                 }
             });
         });
+
+        // Filter links keep their real ?q= href, so they work without JS and can
+        // be opened in a new tab. The handler only spares the in-page reader a
+        // full page load. See #141.
+        modal.querySelectorAll('.filter-link').forEach((link) => {
+            link.addEventListener('click', (event) => {
+                if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) {
+                    return;
+                }
+
+                event.preventDefault();
+                closeAnyModal(modal);
+                applyQueryAsFilterState(link.dataset.query);
+            });
+        });
     }, 0);
 }
 
@@ -250,7 +266,19 @@ function processHtmlContent(htmlContent) {
             return;
         }
 
-        // Unresolvable link: keep the link text, drop the anchor (same as before).
+        // Not a flag, but the query names at least one filter — "christianity",
+        // "cross", "sun". Those are a way to discover what else is filterable
+        // while reading, so the anchor stays and keeps its real ?q= href; only
+        // the class and the decoded query are added for the in-page handler.
+        // See #141.
+        const filterQuery = decodeURIComponent(queryValue.replace(/\+/g, ' '));
+        if (queryMatchesAnyFilter(filterQuery)) {
+            link.classList.add('filter-link');
+            link.dataset.query = filterQuery;
+            return;
+        }
+
+        // Resolves to nothing: keep the link text, drop the anchor (same as before).
         link.replaceWith(...link.childNodes);
     });
 

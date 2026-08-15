@@ -133,6 +133,12 @@ Translation contributions are welcome:
 - GitHub Actions workflow: `.github/workflows/ui-tests.yml`
 - Data sources: `flaginfo.json` and `https://flagcdn.com/w320/{code}.png`
 - `flaginfo.json` is validated in CI (required fields, unique codes, continent coverage): `node scripts/validate-flaginfo.mjs`
+- Flag cross-links (`<a href="?q=…">` inside `symbolism`/`funfacts`, in `flaginfo.json` and every
+  `i18n/flags/*.json`) are validated in CI: `node scripts/validate-flag-links.mjs`. A link that
+  resolves to nothing is not a visible error — the runtime drops the anchor and keeps the text —
+  so the check exists to make that failure loud. Targets resolve against the English flag names
+  and codes in `flaginfo.json` whatever language the prose is in, so a translated link target is
+  a broken one.
 
 ## Support
 

@@ -97,39 +97,79 @@ function syncQueryParamFromUiState() {
     updateQueryInUrl(queryTokens.join(' '));
 }
 
+// Split a raw ?q= string into the filter buttons it names and the words left
+// over as search text. Longest phrase first, so a multi-word filter value wins
+// over its individual words.
+function resolveQuery(rawQuery) {
+    const rawWords = rawQuery.trim().split(/\s+/).filter(Boolean);
+    const filterButtons = getFilterButtonsWithQueryMetadata();
+    const matchedButtons = new Set();
+    const remainingSearchTerms = [];
+
+    for (let index = 0; index < rawWords.length;) {
+        let matchedEntry = null;
+
+        for (let end = rawWords.length; end > index; end -= 1) {
+            const phrase = normalizeQueryValue(rawWords.slice(index, end).join(' '));
+            const entry = filterButtons.find((candidate) => (
+                !matchedButtons.has(candidate.button) && candidate.aliases.has(phrase)
+            ));
+
+            if (entry) {
+                matchedEntry = { entry, end };
+                break;
+            }
+        }
+
+        if (matchedEntry) {
+            matchedButtons.add(matchedEntry.entry.button);
+            index = matchedEntry.end;
+            continue;
+        }
+
+        remainingSearchTerms.push(rawWords[index]);
+        index += 1;
+    }
+
+    return { matchedButtons, remainingSearchTerms };
+}
+
+// Does this ?q= name at least one filter? Used to decide whether a link in flag
+// prose is worth keeping as a link. See #141.
+export function queryMatchesAnyFilter(rawQuery) {
+    if (!hasTextValue(rawQuery)) {
+        return false;
+    }
+
+    return resolveQuery(rawQuery).matchedButtons.size > 0;
+}
+
+// Apply a ?q= string as the complete filter state, replacing whatever was
+// active. Used by the filter links inside flag prose: following one should land
+// the reader on exactly that view, not on it plus their leftover filters.
+export function applyQueryAsFilterState(rawQuery) {
+    document.querySelectorAll('.filter-btn.active').forEach((button) => {
+        button.classList.remove('active');
+        updateToggleButtonState(button);
+    });
+
+    const { matchedButtons, remainingSearchTerms } = resolveQuery(rawQuery);
+
+    matchedButtons.forEach((button) => {
+        button.classList.add('active');
+        updateToggleButtonState(button);
+    });
+
+    searchInput().value = remainingSearchTerms.join(' ');
+    updateQueryInUrl(rawQuery.trim());
+    applyFilters();
+}
+
 export function applyInitialQueryFromUrl() {
     const rawQuery = getQueryFromUrl();
 
     if (hasTextValue(rawQuery)) {
-        const rawWords = rawQuery.trim().split(/\s+/).filter(Boolean);
-        const filterButtons = getFilterButtonsWithQueryMetadata();
-        const matchedButtons = new Set();
-        const remainingSearchTerms = [];
-
-        for (let index = 0; index < rawWords.length;) {
-            let matchedEntry = null;
-
-            for (let end = rawWords.length; end > index; end -= 1) {
-                const phrase = normalizeQueryValue(rawWords.slice(index, end).join(' '));
-                const entry = filterButtons.find((candidate) => (
-                    !matchedButtons.has(candidate.button) && candidate.aliases.has(phrase)
-                ));
-
-                if (entry) {
-                    matchedEntry = { entry, end };
-                    break;
-                }
-            }
-
-            if (matchedEntry) {
-                matchedButtons.add(matchedEntry.entry.button);
-                index = matchedEntry.end;
-                continue;
-            }
-
-            remainingSearchTerms.push(rawWords[index]);
-            index += 1;
-        }
+        const { matchedButtons, remainingSearchTerms } = resolveQuery(rawQuery);
 
         matchedButtons.forEach((button) => {
             button.classList.add('active');
