@@ -22,7 +22,7 @@ function searchInput() {
 // Module-local: this is a private timer handle, not shared app state.
 let searchDebounceTimer = null;
 
-const QUERY_FILTER_DATA_KEYS = ['color', 'continent', 'pattern', 'symbol', 'motive', 'people', 'ideology', 'text'];
+const QUERY_FILTER_DATA_KEYS = ['color', 'continent', 'pattern', 'symbol', 'motive', 'people', 'ideology', 'text', 'family'];
 
 function getQueryFromUrl() {
     return new URLSearchParams(window.location.search).get('q') || '';
@@ -237,6 +237,9 @@ export function applyFilters() {
     const activeTexts = Array.from(document.querySelectorAll('.filter-btn[data-text].active'))
         .map(btn => btn.dataset.text);
 
+    const activeFamilies = Array.from(document.querySelectorAll('.filter-btn[data-family].active'))
+        .map(btn => btn.dataset.family);
+
     const searchTerm = searchInput().value.toLowerCase().trim();
 
     // Normalize once per filter pass instead of once per flag (see matchesSearchTerm).
@@ -298,6 +301,15 @@ export function applyFilters() {
     if (activeTexts.length > 0) {
         results = results.filter(flag =>
             activeTexts.some(text => flag.tags.includes(text))
+        );
+    }
+
+    // Apply flag family filters. These read a curated tag rather than the colour
+    // set: a flag carrying red, black, white and green is not thereby pan-Arab,
+    // so the palette cannot stand in for the tradition. See #141.
+    if (activeFamilies.length > 0) {
+        results = results.filter(flag =>
+            activeFamilies.some(family => flag.tags.includes(family))
         );
     }
 

@@ -88,7 +88,7 @@ function applyStaticTranslations() {
     if (filterHeaders[1]) filterHeaders[1].textContent = t('more_filters');
 
     const groupHeadings = document.querySelectorAll('.compact-filter-group h3');
-    const groupHeadingKeys = ['continent', 'pattern', 'symbol', 'motive', 'people_or_clothing', 'ideology', 'text'];
+    const groupHeadingKeys = ['continent', 'pattern', 'symbol', 'motive', 'people_or_clothing', 'ideology', 'text', 'flag_family'];
     groupHeadings.forEach((heading, index) => {
         heading.textContent = t(groupHeadingKeys[index]);
     });
@@ -119,6 +119,10 @@ function applyStaticTranslations() {
 
     document.querySelectorAll('.filter-btn[data-ideology]').forEach(button => {
         setButtonLabel(button, t(`ideology_${button.dataset.ideology}`));
+    });
+
+    document.querySelectorAll('.filter-btn[data-family]').forEach(button => {
+        setButtonLabel(button, t(`family_${button.dataset.family}`));
     });
 
     document.querySelectorAll('.filter-btn[data-text]').forEach(button => {
