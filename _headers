@@ -33,7 +33,22 @@
 /i18n/*
   Cache-Control: public, max-age=3600, s-maxage=21600, stale-while-revalidate=86400
 
+# The app is a module graph: script.js imports js/*.js. Entry and modules carry
+# the same max-age so they at least age in step — the modulepreload hints in
+# index.html mean the whole graph is fetched in one burst, so it also expires in
+# one burst.
+#
+# The residual risk is accepted deliberately: a deploy landing between two page
+# loads can leave a visitor running a cached entry point against freshly
+# deployed modules, and if that deploy renamed or moved an export, the import
+# fails and the page does not boot. Deploys that rename exports are rare, and
+# revalidating ten files on every page load costs more than the risk is worth.
+# Hashed filenames (script.<hash>.js) would remove the trade-off entirely, but
+# need a build step this project deliberately does not have. See #143.
 /script.js
+  Cache-Control: public, max-age=86400
+
+/js/*
   Cache-Control: public, max-age=86400
 
 /styles.css
