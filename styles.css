@@ -1186,6 +1186,21 @@ h1 {
     font-size: 0.8rem;
 }
 
+/* The flag family buttons carry a real flag rather than a sprite symbol, so they
+   opt out of the 1em square the .icon class imposes. The border keeps flags with
+   white edges (Czechia's wedge, the Union Jack's fimbriation) from bleeding into
+   the button in either theme. Declared after the .filter-btn .icon rules so it
+   wins on source order at equal specificity. See #141. */
+.filter-btn .flag-icon {
+    width: 20px;
+    height: 15px;
+    min-width: 20px;
+    border-radius: 2px;
+    border: 1px solid var(--border-color);
+    object-fit: cover;
+    vertical-align: -0.2em;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .compact-filter-group {

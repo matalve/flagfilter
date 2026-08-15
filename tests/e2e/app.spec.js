@@ -422,6 +422,21 @@ test.describe('Flagfilter UI flows', () => {
     });
   });
 
+  test('flag family buttons show an example flag that survives a language switch', async ({ page }) => {
+    // setButtonLabel() rebuilds a button's contents around its .icon element, so
+    // the example flag has to carry that class or it disappears the first time
+    // someone switches language. See #141.
+    await page.locator('.filter-section[data-section-id="more"] .filter-header').click();
+
+    const panArab = page.locator('.filter-btn[data-family="pan-arab"] img.flag-icon');
+    await expect(panArab).toHaveAttribute('src', 'https://flagcdn.com/20x15/jo.webp');
+    await expect(panArab).toHaveAttribute('alt', '');
+
+    await page.locator('#languageSelect').selectOption('es');
+    await expect(page.locator('.filter-btn[data-family="pan-arab"]')).toContainText('Panárabe');
+    await expect(panArab).toHaveAttribute('src', 'https://flagcdn.com/20x15/jo.webp');
+  });
+
   test('flag family filters read a curated tag, not the colour set', async ({ page }) => {
     // Pan-Slavic is the case that makes the point: as a colour query
     // (blue + white + red) it returns 81 flags, most of them not Slavic. The tag
