@@ -11,6 +11,10 @@ This file documents how AI coding assistants should work in this repository.
 - The flag detail modal contains Amazon Associates shop links (tag `flagfilter-20`).
   Affiliate links must keep `rel="noopener noreferrer sponsored nofollow"` and the
   localized disclosure line next to them.
+- `flag-baseline/` holds 40px copies of every flag, used only to detect that flagcdn
+  changed an image. Never reference them from the page and never edit them by hand —
+  they are meaningful precisely because they record what upstream served the last time
+  a human agreed to it. See the Flag image watch section in README.
 
 ## Branching and git workflow
 
@@ -43,8 +47,9 @@ This file documents how AI coding assistants should work in this repository.
   `i18n/ui/en.json` and `i18n/ui/es.json`.
 - Icons are an inline SVG `<symbol>` sprite in `index.html` (Font Awesome 6 solid
   paths, ids `#i-*`). Add new icons to the sprite; do not add icon CDNs or webfonts.
-- `index.html` preloads the first flag image (`w320/ad.webp`) as the LCP image.
-  Any change that alters which flag renders first must update that preload.
+- `index.html` preloads the first flag image (`w320/af.webp`) as the LCP image.
+  The grid is sorted by localized name, so that is Afghanistan. Any change that
+  alters which flag renders first must update that preload.
 
 ## Testing strategy
 
@@ -52,6 +57,15 @@ This file documents how AI coding assistants should work in this repository.
 - Expand Playwright coverage incrementally.
 - Use mocked API responses in UI tests when external services are not the thing being tested.
 - Before adding new tests, prefer building from the latest green test baseline in `master`.
+- A *Flag images changed upstream* pull request is never a rubber stamp. The diff shows
+  each changed flag before and after; merging accepts the new picture, which is the only
+  reason a human is in the loop at all. Then follow the checklist in the PR body: a
+  changed flag invalidates its tags, its `symbolism` and `funfacts` in both
+  `flaginfo.json` and every `i18n/flags/*.json`, its `adopted` date, and possibly its
+  flag family membership.
+- If that workflow fails, it is telling you something. It refuses to write when more than
+  ten images differ, because that is a re-encode upstream rather than ten countries
+  redesigning their flags. Do not raise the threshold to make it pass.
 
 ## Cloudflare-specific guidance
 

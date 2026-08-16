@@ -133,18 +133,69 @@ Translation contributions are welcome:
 - GitHub Actions workflow: `.github/workflows/ui-tests.yml`
 - Data sources: `flaginfo.json` and `https://flagcdn.com/w320/{code}.png`
 - `flaginfo.json` is validated in CI (required fields, unique codes, continent coverage): `node scripts/validate-flaginfo.mjs`
-- Flag images are watched for upstream changes weekly by `.github/workflows/flag-images.yml`,
-  which runs `node scripts/sync-flag-images.mjs`. It compares `flag-baseline/` — 40px-wide
-  copies kept only for this comparison, never served to the page — against flagcdn's pack and
-  opens a pull request when anything differs, so the change arrives as a visual diff. Merging
-  accepts the new baseline; the images are deliberately not updated on their own. A changed
-  flag invalidates its tags, prose and adopted date, so the PR body lists what to re-check.
+- Flag images are watched for upstream changes weekly: see [Flag image watch](#flag-image-watch)
 - Flag cross-links (`<a href="?q=…">` inside `symbolism`/`funfacts`, in `flaginfo.json` and every
   `i18n/flags/*.json`) are validated in CI: `node scripts/validate-flag-links.mjs`. A link that
   resolves to nothing is not a visible error — the runtime drops the anchor and keeps the text —
   so the check exists to make that failure loud. Targets resolve against the English flag names
   and codes in `flaginfo.json` whatever language the prose is in, so a translated link target is
   a broken one.
+
+## Flag image watch
+
+Flag images are served from flagcdn at runtime and never re-read, so a country that
+changes its flag changes the picture on the site while the tags, colours, symbolism
+and fun facts keep describing the old one. Nothing breaks and nothing looks wrong —
+the page is just incorrect until somebody notices by eye. This is the watchdog for
+that.
+
+`.github/workflows/flag-images.yml` runs `node scripts/sync-flag-images.mjs` every
+Monday, and can be run on demand from the Actions tab. The script downloads
+flagcdn's `w40` pack, compares it to `flag-baseline/`, and opens a pull request when
+anything differs.
+
+### What `flag-baseline/` is
+
+40px-wide copies of every flag the site carries, one PNG per code, plus
+`upstream-only.txt` listing codes flagcdn has that `flaginfo.json` does not.
+
+It is detection data, not assets. Nothing on the page references these images, and
+nothing should start to — they exist so that a change arrives as a diff GitHub
+renders side by side, which is a two-second judgement instead of a description to
+interpret. Do not edit them by hand: the whole point is that they say what flagcdn
+served the last time a human agreed to it.
+
+### When a pull request arrives
+
+It will be titled *Flag images changed upstream*, and the diff is the evidence:
+each changed flag shown before and after. Merging accepts the new baseline, which
+is why the workflow cannot do it — a human has to look at the pictures.
+
+Merging is not the end of the job. A changed flag invalidates more than the image,
+and the PR body lists it per flag:
+
+- colour tags, and any pattern, symbol or motive tag that described the old design
+- `symbolism` and `funfacts` in `flaginfo.json` **and** every `i18n/flags/*.json` overlay
+- `adopted`, which is now a different date
+- membership in the flag family filters
+
+The PR may also report codes flagcdn has that the site lacks (a flag the site
+cannot show) and codes the site carries that flagcdn dropped (the grid is
+requesting an image that will not resolve).
+
+### When it fails
+
+Failure is deliberate and loud, because a watchdog that fails quietly is worse than
+none:
+
+- **More than ten images differ.** That is not ten countries redesigning their flags
+  in a week; it is a re-encode or a layout change upstream. Nothing is written and
+  the job fails, so the noise never reaches a pull request. Check the pack by hand.
+- **The host is unreachable, or the pack is not shaped as expected.** Same treatment.
+
+`node scripts/sync-flag-images.mjs --pack=<zip>` compares against a local archive
+instead of downloading one, which is how the logic gets exercised without network
+access.
 
 ## Support
 
