@@ -493,17 +493,28 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('.flag-card h3', { hasText: /^United States$/ })).toHaveCount(0);
   });
 
-  test('the Nordic family is the cross tradition, not every flag with a cross', async ({ page }) => {
-    // Switzerland is the case worth naming: white cross, Christianity, European,
-    // and not Nordic. Only the curated tag separates it from the five. See #167.
+  test('the Nordic family is the region, not every flag with a cross', async ({ page }) => {
+    // Two cases make the boundary: Switzerland has the cross and is not Nordic,
+    // Greenland is Nordic and has no cross — which is exactly what its own
+    // funfacts claim, so the filter is how a reader checks it. See #167.
     await page.locator('.filter-section[data-section-id="more"] .filter-header').click();
 
     await page.locator('.filter-btn[data-family="nordic"]').click();
 
-    await expect(page.locator('.flag-card')).toHaveCount(5);
+    await expect(page.locator('.flag-card')).toHaveCount(9);
     await expect(page.locator('.flag-card h3', { hasText: /^Denmark$/ })).toHaveCount(1);
-    await expect(page.locator('.flag-card h3', { hasText: /^Iceland$/ })).toHaveCount(1);
+    await expect(page.locator('.flag-card h3', { hasText: /^Greenland$/ })).toHaveCount(1);
     await expect(page.locator('.flag-card h3', { hasText: /^Switzerland$/ })).toHaveCount(0);
+  });
+
+  test('the two halves of "Nordic cross" link to their own filters', async ({ page }) => {
+    // The phrase names two things — a tradition and a shape — and neither word
+    // is a synonym for the other, so each carries its own target. See #167.
+    await openFlagModalBySearch(page, 'denmark');
+
+    const details = page.locator('.flag-info-details');
+    await expect(details.locator('a.filter-link', { hasText: /^Nordic$/ })).toHaveAttribute('href', '?q=nordic');
+    await expect(details.locator('a.filter-link', { hasText: /^cross$/ }).first()).toHaveAttribute('href', '?q=cross');
   });
 
   test('a family button example flag is itself in that family', async ({ page }) => {
