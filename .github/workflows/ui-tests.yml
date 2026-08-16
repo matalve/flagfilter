@@ -1,12 +1,22 @@
 name: UI Tests
 
+# flag-baseline/ is detection data for the flag image watch (#175) — PNGs no page
+# references and no test reads. A pull request that only touches them has nothing
+# for Playwright to run against, and because that PR is opened by
+# github-actions[bot], a queued run would sit at "waiting for approval" instead of
+# just being pointless. Skipping the trigger removes the prompt rather than
+# answering it every week.
 on:
   pull_request:
     branches:
       - master
+    paths-ignore:
+      - 'flag-baseline/**'
   push:
     branches:
       - master
+    paths-ignore:
+      - 'flag-baseline/**'
 
 jobs:
   playwright:
