@@ -519,7 +519,13 @@ test.describe('Flagfilter UI flows', () => {
   test('a flag link written as a country code opens that flag', async ({ page }) => {
     // Côte d'Ivoire's name carries a parenthetical alias, so no readable ?q=name
     // matches it; the code is the target instead. See #167.
-    await openFlagModalBySearch(page, 'ireland');
+    // Not openFlagModalBySearch: "ireland" also matches Northern Ireland.
+    await page.locator('#searchInput').fill('ireland');
+    await page.locator('.flag-card')
+      .filter({ has: page.locator('h3', { hasText: /^Ireland$/ }) })
+      .locator('.learn-more-btn')
+      .click();
+    await expect(page.locator('#flagModalTitle')).toHaveText('Ireland');
 
     const ivorianLink = page.locator('.flag-info-details .flag-link', { hasText: 'Ivorian flag' });
     await expect(ivorianLink).toHaveAttribute('data-flag-code', 'ci');
