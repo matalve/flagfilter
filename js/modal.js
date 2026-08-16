@@ -101,7 +101,7 @@ export function showFlagInfoModal(flag) {
     const closeBtn = document.createElement('button');
     closeBtn.className = 'close-btn';
     closeBtn.type = 'button';
-    closeBtn.innerHTML = '&times;';
+    closeBtn.innerHTML = '<svg class="icon" aria-hidden="true"><use href="#i-xmark"></use></svg>';
     closeBtn.setAttribute('aria-label', t('close'));
     closeBtn.addEventListener('click', () => {
         closeAnyModal(modal);
