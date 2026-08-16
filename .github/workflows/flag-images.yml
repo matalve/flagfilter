@@ -1,0 +1,73 @@
+name: Flag image watch
+
+# Countries change their flags — Syria in 2025, Afghanistan in 2021 — and the
+# site would keep describing the old one indefinitely, because it renders images
+# from flagcdn at runtime and never re-reads them. This notices. See #175.
+on:
+  schedule:
+    # Weekly. Flags change every year or two, which is exactly the interval at
+    # which nobody is watching for it.
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    name: Check upstream flag images
+    runs-on: ubuntu-latest
+    # Scheduled workflows run on forks too, where the push and the PR would fail.
+    if: github.repository == 'matalve/flagfilter'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+
+      - name: Sync the baseline against flagcdn
+        run: node scripts/sync-flag-images.mjs --body-out="${RUNNER_TEMP}/pr-body.md"
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if [ -z "$(git status --porcelain flag-baseline)" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No upstream flag image changed."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open or update the pull request
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          BRANCH=chore/flag-image-sync
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # One long-lived branch rather than one per run: a second change while
+          # the first is unreviewed should update that PR, not open a rival.
+          git checkout -B "$BRANCH"
+          git add flag-baseline
+          git commit -m "Flag images changed upstream (#175)"
+          git push --force-with-lease origin "$BRANCH"
+
+          if gh pr view "$BRANCH" --json number >/dev/null 2>&1; then
+            gh pr edit "$BRANCH" --body-file "${RUNNER_TEMP}/pr-body.md"
+            echo "Updated the open pull request."
+          else
+            gh pr create \
+              --base master \
+              --head "$BRANCH" \
+              --title "Flag images changed upstream (#175)" \
+              --body-file "${RUNNER_TEMP}/pr-body.md"
+          fi

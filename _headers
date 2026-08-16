@@ -80,6 +80,13 @@
 /site.webmanifest
   Cache-Control: public, max-age=86400
 
+# Baseline images for the flag image watch (#175). They ship with the site
+# because Pages serves the repo root, but they are detection data — never
+# referenced by a page, and not something to index.
+/flag-baseline/*
+  X-Robots-Tag: noindex
+  Cache-Control: public, max-age=86400
+
 /robots.txt
   Cache-Control: public, max-age=86400
 
