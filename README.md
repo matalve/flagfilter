@@ -133,6 +133,12 @@ Translation contributions are welcome:
 - GitHub Actions workflow: `.github/workflows/ui-tests.yml`
 - Data sources: `flaginfo.json` and `https://flagcdn.com/w320/{code}.png`
 - `flaginfo.json` is validated in CI (required fields, unique codes, continent coverage): `node scripts/validate-flaginfo.mjs`
+- Flag images are watched for upstream changes weekly by `.github/workflows/flag-images.yml`,
+  which runs `node scripts/sync-flag-images.mjs`. It compares `flag-baseline/` — 40px-wide
+  copies kept only for this comparison, never served to the page — against flagcdn's pack and
+  opens a pull request when anything differs, so the change arrives as a visual diff. Merging
+  accepts the new baseline; the images are deliberately not updated on their own. A changed
+  flag invalidates its tags, prose and adopted date, so the PR body lists what to re-check.
 - Flag cross-links (`<a href="?q=…">` inside `symbolism`/`funfacts`, in `flaginfo.json` and every
   `i18n/flags/*.json`) are validated in CI: `node scripts/validate-flag-links.mjs`. A link that
   resolves to nothing is not a visible error — the runtime drops the anchor and keeps the text —

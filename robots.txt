@@ -1,3 +1,5 @@
 User-agent: *
 Allow: /
+# Detection data for the flag image watch (#175), not content.
+Disallow: /flag-baseline/
 Sitemap: https://flagfilter.com/sitemap.xml 
