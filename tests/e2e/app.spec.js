@@ -348,6 +348,47 @@ test.describe('Flagfilter UI flows', () => {
     await expect(learnMoreButton).toBeFocused();
   });
 
+  test('the modal close button stays reachable on a phone', async ({ browser, baseURL }) => {
+    // It used to be absolutely positioned inside the scrolling modal body, so it
+    // scrolled away and left a dialog covering the screen with no visible exit.
+    // See #173.
+    const context = await createPhoneContext(browser, baseURL);
+    const page = await context.newPage();
+    try {
+      await stubTurnstile(page);
+      await gotoApp(page, 'en');
+      await page.locator('.learn-more-btn').first().tap();
+      await expect(page.locator('#flagModalTitle')).toBeVisible();
+
+      const modalContent = page.locator('.modal-content').filter({ has: page.locator('#flagModalTitle') });
+      const closeBtn = modalContent.locator('.close-btn');
+
+      await expect(closeBtn).toBeInViewport({ ratio: 0.9 });
+
+      // A tap target under 44x44 is the other half of the complaint.
+      const box = await closeBtn.boundingBox();
+      expect(box.width).toBeGreaterThanOrEqual(44);
+      expect(box.height).toBeGreaterThanOrEqual(44);
+
+      await modalContent.evaluate((el) => { el.scrollTop = el.scrollHeight; });
+      await expect(closeBtn).toBeInViewport({ ratio: 0.9 });
+
+      await closeBtn.tap();
+      await expect(page.locator('#flagModalTitle')).toHaveCount(0);
+    } finally {
+      await context.close();
+    }
+  });
+
+  test('close buttons use the sprite, not a text glyph', async ({ page }) => {
+    await openFirstFlagModal(page);
+    await expect(page.locator('.modal-content .close-btn use[href="#i-xmark"]').first()).toHaveCount(1);
+    await page.keyboard.press('Escape');
+
+    await page.locator('#infoButton').click();
+    await expect(page.locator('#infoModal .close-btn use[href="#i-xmark"]')).toHaveCount(1);
+  });
+
   test('modal close button closes the flag modal', async ({ page }) => {
     await page.locator('.learn-more-btn').first().click();
 
