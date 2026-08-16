@@ -560,14 +560,14 @@ test.describe('Flagfilter UI flows', () => {
     // These are how a reader discovers what else is filterable while reading, so
     // the anchor survives with its href intact — it works without JS and can be
     // opened in a new tab. See #141.
-    await openFlagModalBySearch(page, 'sweden');
+    await openFlagModalBySearch(page, 'denmark');
 
     const filterLink = page.locator('.flag-info-details a.filter-link', { hasText: 'cross' });
     await expect(filterLink).toHaveAttribute('href', '?q=cross');
   });
 
   test('following a filter link filters the grid without reloading', async ({ page }) => {
-    await openFlagModalBySearch(page, 'sweden');
+    await openFlagModalBySearch(page, 'denmark');
 
     // Pin the document so a full navigation would be visible as a reset.
     await page.evaluate(() => { window.__notReloaded = true; });
