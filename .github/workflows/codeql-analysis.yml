@@ -11,12 +11,20 @@
 #
 name: "CodeQL"
 
+# flag-baseline/ holds PNGs for the flag image watch (#175); there is no code in
+# there for CodeQL to analyze, and a bot-opened PR touching only those files would
+# otherwise queue a run awaiting approval. The weekly schedule below still scans
+# the whole repository regardless of what any individual PR touched.
 on:
   push:
     branches: [ "master" ]
+    paths-ignore:
+      - 'flag-baseline/**'
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [ "master" ]
+    paths-ignore:
+      - 'flag-baseline/**'
   schedule:
     - cron: '42 1 * * 6'
 

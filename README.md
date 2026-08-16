@@ -183,6 +183,13 @@ The PR may also report codes flagcdn has that the site lacks (a flag the site
 cannot show) and codes the site carries that flagcdn dropped (the grid is
 requesting an image that will not resolve).
 
+UI Tests and CodeQL do not run on it. Both workflows ignore `flag-baseline/**`,
+because a PR touching only those PNGs gives Playwright nothing to exercise and
+CodeQL nothing to analyze — and since the PR is opened by a bot, a queued run
+would sit awaiting approval rather than reporting anything. Cloudflare Pages
+still builds a preview. The weekly CodeQL schedule scans the whole repository
+regardless.
+
 ### When it fails
 
 Failure is deliberate and loud, because a watchdog that fails quietly is worse than
