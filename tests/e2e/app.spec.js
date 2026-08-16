@@ -538,6 +538,51 @@ test.describe('Flagfilter UI flows', () => {
       .toHaveAttribute('src', 'https://flagcdn.com/w320/af.webp');
   });
 
+  test('the icon set is declared and served', async ({ page, request }) => {
+    // The whole set was deleted by the April 2025 rework, so this pins the head
+    // markup and that the files behind it actually exist. See #138.
+    await expect(page.locator('link[rel="icon"][sizes="32x32"]')).toHaveAttribute('href', '/favicon-32x32.png');
+    await expect(page.locator('link[rel="icon"][sizes="16x16"]')).toHaveAttribute('href', '/favicon-16x16.png');
+    await expect(page.locator('link[rel="apple-touch-icon"]')).toHaveAttribute('href', '/apple-touch-icon.png');
+    await expect(page.locator('link[rel="manifest"]')).toHaveAttribute('href', '/site.webmanifest');
+    await expect(page.locator('link[rel="mask-icon"]')).toHaveAttribute('href', '/safari-pinned-tab.svg');
+
+    for (const path of [
+      '/favicon.ico',
+      '/favicon-32x32.png',
+      '/favicon-16x16.png',
+      '/apple-touch-icon.png',
+      '/android-chrome-192x192.png',
+      '/android-chrome-512x512.png',
+      '/safari-pinned-tab.svg',
+      '/opengraph.png',
+      '/site.webmanifest'
+    ]) {
+      const response = await request.get(path);
+      expect(response.status(), path).toBe(200);
+      // /favicon.ico is requested by browsers whether or not anything links to
+      // it; answering with the HTML page is the bug this closes.
+      expect(response.headers()['content-type'], path).not.toContain('text/html');
+    }
+  });
+
+  test('the manifest lists icons that exist', async ({ request }) => {
+    const manifest = await (await request.get('/site.webmanifest')).json();
+
+    expect(manifest.icons.length).toBeGreaterThan(0);
+    for (const icon of manifest.icons) {
+      expect((await request.get(icon.src)).status(), icon.src).toBe(200);
+    }
+  });
+
+  test('social previews point at an absolute image URL', async ({ page }) => {
+    // A relative og:image is why the original never rendered a preview: most
+    // scrapers do not resolve it against the page URL. See #138.
+    const image = page.locator('meta[property="og:image"]');
+    await expect(image).toHaveAttribute('content', /^https:\/\//);
+    await expect(image).toHaveAttribute('content', /opengraph\.png$/);
+  });
+
   test('preconnects to the flag image host', async ({ page }) => {
     await expect(page.locator('link[rel="preconnect"][href="https://flagcdn.com"]')).toHaveCount(1);
   });
