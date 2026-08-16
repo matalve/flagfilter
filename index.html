@@ -10,7 +10,23 @@
     <meta property="og:title" content="Flagfilter - Filtering and Exploring Flags">
     <meta property="og:description" content="Explore and filter flags from around the world. Search by country name, filter by colors and continents, and discover interesting flag facts.">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://flagfilter.com/">
+    <!-- Absolute URL on purpose: most scrapers (Slack, iMessage, LinkedIn) will not
+         resolve a relative og:image, which is why the original never rendered. -->
+    <meta property="og:image" content="https://flagfilter.com/opengraph.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="627">
     <link rel="canonical" href="https://flagfilter.com/">
+    <!-- Icon set restored from a40dbfd^ — it was deleted wholesale by the April 2025
+         rework, not missing by design. /favicon.ico is deliberately a real file even
+         though nothing links to it: browsers that ignore the <link> tags request it
+         anyway, and that request is what was 404ing into the HTML response. See #138. -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#4f46e5">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#4f46e5">
     <!-- Warm the connection to the flag image host early (every flag loads from here);
          no crossorigin since the images are plain non-CORS <img> requests. -->
     <link rel="preconnect" href="https://flagcdn.com">
