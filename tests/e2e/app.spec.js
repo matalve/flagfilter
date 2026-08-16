@@ -493,6 +493,42 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('.flag-card h3', { hasText: /^United States$/ })).toHaveCount(0);
   });
 
+  test('the Nordic family is the cross tradition, not every flag with a cross', async ({ page }) => {
+    // Switzerland is the case worth naming: white cross, Christianity, European,
+    // and not Nordic. Only the curated tag separates it from the five. See #167.
+    await page.locator('.filter-section[data-section-id="more"] .filter-header').click();
+
+    await page.locator('.filter-btn[data-family="nordic"]').click();
+
+    await expect(page.locator('.flag-card')).toHaveCount(5);
+    await expect(page.locator('.flag-card h3', { hasText: /^Denmark$/ })).toHaveCount(1);
+    await expect(page.locator('.flag-card h3', { hasText: /^Iceland$/ })).toHaveCount(1);
+    await expect(page.locator('.flag-card h3', { hasText: /^Switzerland$/ })).toHaveCount(0);
+  });
+
+  test('a family button example flag is itself in that family', async ({ page }) => {
+    // Ethiopia sits on the Pan-African button but was not tagged pan-african, so
+    // the filter returned everything except the flag pictured on it. See #167.
+    await page.locator('.filter-section[data-section-id="more"] .filter-header').click();
+
+    await page.locator('.filter-btn[data-family="pan-african"]').click();
+
+    await expect(page.locator('.flag-card h3', { hasText: /^Ethiopia$/ })).toHaveCount(1);
+  });
+
+  test('a flag link written as a country code opens that flag', async ({ page }) => {
+    // Côte d'Ivoire's name carries a parenthetical alias, so no readable ?q=name
+    // matches it; the code is the target instead. See #167.
+    await openFlagModalBySearch(page, 'ireland');
+
+    const ivorianLink = page.locator('.flag-info-details .flag-link', { hasText: 'Ivorian flag' });
+    await expect(ivorianLink).toHaveAttribute('data-flag-code', 'ci');
+
+    await waitForNextTask(page);
+    await ivorianLink.click();
+    await expect(page.locator('#flagModalTitle')).toHaveText("Côte d'Ivoire (Ivory Coast)");
+  });
+
   test('a family link in flag prose applies the family filter', async ({ page }) => {
     // These links were plain text until the family filters existed to receive
     // them: nothing resolved ?q=pan-arab, so the anchor was unwrapped.
