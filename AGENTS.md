@@ -67,6 +67,46 @@ This file documents how AI coding assistants should work in this repository.
   ten images differ, because that is a re-encode upstream rather than ten countries
   redesigning their flags. Do not raise the threshold to make it pass.
 
+## Translations (POEditor)
+
+- `i18n/flags/*.json` lives in two places: hand-edited in this repository, and in
+  POEditor, where volunteers translate. The two drift, and nothing detects it.
+- **Any change to flag prose is a sync obligation.** If a PR touches `symbolism` or
+  `funfacts` — in `flaginfo.json` or in an overlay — say so in the PR body and remind
+  the owner to sync POEditor. A reworded English source leaves the overlay translating
+  a sentence that no longer exists.
+- **Never sync blind, in either direction.** `pull` overwrites the repository and
+  `push` overwrites POEditor; both are silent. Download to a scratch path first and
+  compare, then decide the direction from what you see:
+
+  ```
+  scripts/poeditor-flags-sync.sh pull es /tmp/es-poeditor.json
+  jq -n --slurpfile a i18n/flags/es.json --slurpfile b /tmp/es-poeditor.json '
+    $a[0] as $repo | $b[0] as $poe |
+    (($repo|keys) + ($poe|keys) | unique) as $ks |
+    $ks[] | select($repo[.] != $poe[.]) |
+    "=== \(.) ===\nrepo:     \($repo[.])\npoeditor: \($poe[.])\n"
+  ' -r
+  ```
+
+  The path is relative to the working directory: run it from the repository root, or
+  the file lands somewhere harmless-looking and the comparison silently passes.
+- The direction is usually **push**. The repository has been the working copy for
+  every flag-text change so far; POEditor holds what was last uploaded.
+- The assistant sandbox cannot run this: `POEDITOR_API_TOKEN` is a secret it does not
+  have and should not be given (cloud environment variables are plaintext readable by
+  anyone using the environment, and `api.poeditor.com` is not on the Trusted
+  allowlist). The owner runs it locally.
+- **Always hand over the environment lines with the sync command.** The owner sets
+  them per terminal session and does not keep them in a dotfile, so a sync
+  instruction without them is incomplete:
+
+  ```
+  read -rs "POEDITOR_API_TOKEN?POEDITOR token: "
+  export POEDITOR_API_TOKEN
+  export POEDITOR_PROJECT_ID=654073
+  ```
+
 ## Cloudflare-specific guidance
 
 - Treat Cloudflare Pages as the production source of truth.
@@ -118,6 +158,11 @@ This file documents how AI coding assistants should work in this repository.
 - Deliver what was asked, at the scope intended. Make routine judgment calls yourself, and check in only when different readings of the request would lead to materially different work. If the request seems mistaken or a better approach exists, say so in a sentence and continue with the task as asked rather than quietly narrowing, widening, or transforming it. Finish the whole task, and stop short of actions that are clearly beyond what was asked.
 - Delegate to a subagent only for large tasks that are genuinely independent and parallelizable, such as a wide multi-file investigation. Do not delegate work you can finish yourself in a handful of tool calls, and do not use subagents to verify or double-check your own work. If one subagent can complete the task, use one rather than several, and keep spawn counts low.
 - Only correct an earlier statement when the error would change the user's code, conclusions, or decisions. State corrections plainly and briefly, then continue the task. For slips that change nothing for the user, make the fix and move on without noting it.
+- **End a session by saying how to clean up after it.** Anything written outside the
+  repository — a POEditor download in `/tmp`, a scratch comparison file — and any
+  credential exported into the owner's shell is invisible in `git status` and will
+  otherwise sit there. List the exact `rm`, `unset` and `git clean -nd` commands,
+  and never suggest `git clean -fd` without the dry run first.
 - When a change is ready to look at, give the Cloudflare Pages preview link for the
   branch. Prefer the per-deployment URL from the Pages check
   (`https://<hash>.flagfilter.pages.dev`) over the branch alias: `/script.js` and
