@@ -1,0 +1,8 @@
+# Cases the audit will not call. Not applied by any script — move a line into
+# proposals.tsv yourself if you decide it, or leave it here. See #174.
+#
+# Columns: code, tag, add|remove, confidence, why.
+ad	hat	add	low	A bishop's mitre is headwear, but "hat" may be meant more narrowly than that.
+bt	yellow	add	low	The upper field reads as saffron; it is tagged orange, and both are defensible.
+mp	building	add	low	The latte stone is a carved monument rather than a building.
+pn	hat	add	low	A tilted helmet sits above the shield as the crest.

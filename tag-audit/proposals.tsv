@@ -1,0 +1,29 @@
+# Tag audit proposals — pilot batch, every 8th flag by code (32 of 254). See #174.
+#
+# HOW TO REVIEW: delete the rows you disagree with. What survives is applied.
+# Nothing else to fill in; the deletions are themselves the record of your call.
+#
+# WHEN YOU ARE DONE:
+#     git add tag-audit/
+#     git commit -m "Review tag audit proposals"
+#     git push
+# Then say so, and the agent runs scripts/apply-tag-audit.mjs, the validators and
+# the Playwright suite. Do not edit proposals.original.tsv — the difference
+# between it and this file is how your rejections get remembered.
+#
+# Columns: code, tag, add|remove, confidence, why.
+ad	shield	add	high	The arms are a quartered heraldic shield.
+ad	motto	add	high	The scroll below the shield reads VIRTVS VNITA FORTIOR.
+ad	ribbon	add	medium	The motto sits on a banderole under the shield.
+ba	white	add	high	The band of stars is white; no white is tagged.
+bj	vertical	add	high	The green band at the hoist is vertical, crossing the two horizontals.
+cf	vertical	add	high	The red band down the centre is vertical, crossing the four horizontals.
+gw	vertical	add	high	The red band at the hoist is vertical, crossing the two horizontals.
+eg	shield	add	medium	The eagle of Saladin carries an escutcheon on its breast.
+eg	ribbon	add	medium	The country name sits on a scroll below the eagle.
+mp	vegetation	add	high	The ring around the star is a lei of flowers and leaves.
+ni	triangle	add	high	The emblem is a triangle containing the volcanoes.
+ni	circle	add	medium	The triangle sits inside a lettered ring.
+pn	flag	add	high	The canton is the Union Jack, a flag within the flag.
+pn	shield	add	high	The arms are on a shield, below a crest.
+mx	waves	add	medium	Water runs beneath the cactus, the same feature tagged waves on es.
