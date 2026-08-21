@@ -158,6 +158,11 @@ This file documents how AI coding assistants should work in this repository.
 - Deliver what was asked, at the scope intended. Make routine judgment calls yourself, and check in only when different readings of the request would lead to materially different work. If the request seems mistaken or a better approach exists, say so in a sentence and continue with the task as asked rather than quietly narrowing, widening, or transforming it. Finish the whole task, and stop short of actions that are clearly beyond what was asked.
 - Delegate to a subagent only for large tasks that are genuinely independent and parallelizable, such as a wide multi-file investigation. Do not delegate work you can finish yourself in a handful of tool calls, and do not use subagents to verify or double-check your own work. If one subagent can complete the task, use one rather than several, and keep spawn counts low.
 - Only correct an earlier statement when the error would change the user's code, conclusions, or decisions. State corrections plainly and briefly, then continue the task. For slips that change nothing for the user, make the fix and move on without noting it.
+- **End a session by saying how to clean up after it.** Anything written outside the
+  repository — a POEditor download in `/tmp`, a scratch comparison file — and any
+  credential exported into the owner's shell is invisible in `git status` and will
+  otherwise sit there. List the exact `rm`, `unset` and `git clean -nd` commands,
+  and never suggest `git clean -fd` without the dry run first.
 - When a change is ready to look at, give the Cloudflare Pages preview link for the
   branch. Prefer the per-deployment URL from the Pages check
   (`https://<hash>.flagfilter.pages.dev`) over the branch alias: `/script.js` and
