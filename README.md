@@ -114,14 +114,46 @@ Required environment variables:
 
 Examples:
 
-- Pull: `POEDITOR_API_TOKEN=... POEDITOR_PROJECT_ID=654073 scripts/poeditor-flags-sync.sh pull es i18n/flags/es.json`
-- Push: `POEDITOR_API_TOKEN=... POEDITOR_PROJECT_ID=654073 scripts/poeditor-flags-sync.sh push es i18n/flags/es.json`
+- Pull, to a scratch path for comparison: `scripts/poeditor-flags-sync.sh pull es /tmp/es-poeditor.json`
+- Push, once the comparison says that is the right direction: `scripts/poeditor-flags-sync.sh push es i18n/flags/es.json`
+
+Set the two variables with `export` in the shell you are working in, rather than
+inline on the command, so the token does not land in shell history.
 
 Validation and coverage:
 
 - `scripts/validate-flags-i18n.sh i18n/flags/es.json flaginfo.json`
 - `scripts/validate-flags-i18n.sh --strict-empty i18n/flags/es.json flaginfo.json`
 - `scripts/flags-translation-coverage.sh i18n/flags/es.json flaginfo.json`
+
+Before syncing in either direction, check which way the drift goes. `pull` overwrites
+the repository and `push` overwrites POEditor, both without asking, and the two copies
+do drift: flag prose is edited by hand here, while POEditor holds whatever was last
+uploaded. Download to a scratch path and compare first — never straight onto
+`i18n/flags/es.json`, and run it from the repository root, since the output path is
+relative to the working directory:
+
+```
+read -rs "POEDITOR_API_TOKEN?POEDITOR token: "
+export POEDITOR_API_TOKEN
+export POEDITOR_PROJECT_ID=654073
+
+scripts/poeditor-flags-sync.sh pull es /tmp/es-poeditor.json
+jq -n --slurpfile a i18n/flags/es.json --slurpfile b /tmp/es-poeditor.json '
+  $a[0] as $repo | $b[0] as $poe |
+  (($repo|keys) + ($poe|keys) | unique) as $ks |
+  $ks[] | select($repo[.] != $poe[.]) |
+  "=== \(.) ===\nrepo:     \($repo[.])\npoeditor: \($poe[.])\n"
+' -r
+```
+
+Read the differing strings before choosing. A key that is empty in POEditor and filled
+here is not a translation waiting to arrive — it is one that would be deleted by a
+pull. So far the answer has always been `push`.
+
+Changing flag prose obliges a sync. When `symbolism` or `funfacts` changes in
+`flaginfo.json` or in an overlay, POEditor still holds the translation of the sentence
+you replaced, and nothing will tell you.
 
 Translation contributions are welcome:
 

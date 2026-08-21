@@ -67,6 +67,46 @@ This file documents how AI coding assistants should work in this repository.
   ten images differ, because that is a re-encode upstream rather than ten countries
   redesigning their flags. Do not raise the threshold to make it pass.
 
+## Translations (POEditor)
+
+- `i18n/flags/*.json` lives in two places: hand-edited in this repository, and in
+  POEditor, where volunteers translate. The two drift, and nothing detects it.
+- **Any change to flag prose is a sync obligation.** If a PR touches `symbolism` or
+  `funfacts` — in `flaginfo.json` or in an overlay — say so in the PR body and remind
+  the owner to sync POEditor. A reworded English source leaves the overlay translating
+  a sentence that no longer exists.
+- **Never sync blind, in either direction.** `pull` overwrites the repository and
+  `push` overwrites POEditor; both are silent. Download to a scratch path first and
+  compare, then decide the direction from what you see:
+
+  ```
+  scripts/poeditor-flags-sync.sh pull es /tmp/es-poeditor.json
+  jq -n --slurpfile a i18n/flags/es.json --slurpfile b /tmp/es-poeditor.json '
+    $a[0] as $repo | $b[0] as $poe |
+    (($repo|keys) + ($poe|keys) | unique) as $ks |
+    $ks[] | select($repo[.] != $poe[.]) |
+    "=== \(.) ===\nrepo:     \($repo[.])\npoeditor: \($poe[.])\n"
+  ' -r
+  ```
+
+  The path is relative to the working directory: run it from the repository root, or
+  the file lands somewhere harmless-looking and the comparison silently passes.
+- The direction is usually **push**. The repository has been the working copy for
+  every flag-text change so far; POEditor holds what was last uploaded.
+- The assistant sandbox cannot run this: `POEDITOR_API_TOKEN` is a secret it does not
+  have and should not be given (cloud environment variables are plaintext readable by
+  anyone using the environment, and `api.poeditor.com` is not on the Trusted
+  allowlist). The owner runs it locally.
+- **Always hand over the environment lines with the sync command.** The owner sets
+  them per terminal session and does not keep them in a dotfile, so a sync
+  instruction without them is incomplete:
+
+  ```
+  read -rs "POEDITOR_API_TOKEN?POEDITOR token: "
+  export POEDITOR_API_TOKEN
+  export POEDITOR_PROJECT_ID=654073
+  ```
+
 ## Cloudflare-specific guidance
 
 - Treat Cloudflare Pages as the production source of truth.
