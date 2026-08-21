@@ -153,7 +153,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Aruba"
   },
   {
-    "tags": "åland islands aland blue yellow red cross christianity",
+    "tags": "åland islands aland blue yellow red cross christianity nordic",
     "shortname": "ax",
     "continent": "europe",
     "name": "Åland Islands",
@@ -555,7 +555,7 @@
     "proportion": "1:2",
     "adopted": "1902",
     "symbolism": "The three blue stripes: The three military districts in which Cuba was divided at the time.<br>White: Purity of the patriot cause, the light.<br>Red triangle: Originating from the French Revolution and the three ideals of liberty, equality and fraternity: red for the blood and the courage.<br>Star: Independence.<br>",
-    "funfacts": "It is one of the three flags of a currently communist country (the others being <a href=\"?q=laos\">Laos</a> and <a href=\"?q=nepal\">Nepal</a>) that does not use any <a href=\"?q=communist\">communist</a> symbolism.<br>It was the model for the flag of Puerto Rico adopted in 1892 by the Puerto Rican Revolutionary Committee, a pro-independence group that worked under the auspices of the Cuban Revolutionary Party.<br>",
+    "funfacts": "It is one of the three flags of a currently communist country (the others being <a href=\"?q=laos\">Laos</a> and <a href=\"?q=nepal\">Nepal</a>) that does not use any <a href=\"?q=communism\">communist</a> symbolism.<br>It was the model for the flag of Puerto Rico adopted in 1892 by the Puerto Rican Revolutionary Committee, a pro-independence group that worked under the auspices of the Cuban Revolutionary Party.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Cuba"
   },
   {
@@ -636,13 +636,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Djibouti"
   },
   {
-    "tags": "denmark red white cross christianity",
+    "tags": "denmark red white cross christianity nordic",
     "shortname": "dk",
     "continent": "europe",
     "name": "Denmark",
     "proportion": "28:37",
     "adopted": "1219",
-    "symbolism": "White: Peace and honesty.<br>Red: Hardiness, bravery, strength and valour.<br>The cross is a Nordic <a href=\"?q=cross\">cross</a> which represent <a href=\"?q=christianity\">Christianity</a>.<br>",
+    "symbolism": "White: Peace and honesty.<br>Red: Hardiness, bravery, strength and valour.<br>The cross is a <a href=\"?q=nordic\">Nordic</a> <a href=\"?q=cross\">cross</a> which represent <a href=\"?q=christianity\">Christianity</a>.<br>",
     "funfacts": "The flag holds the world record of being the oldest continuously used national flag.<br>According to legend, the Danish flag fell from heaven on June 15, 1219, during the Battle of Lyndanisse (near modern Tallinn, Estonia) as a sign from God of his support for King Valdemar II against the pagan Estonians.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Denmark"
   },
@@ -746,7 +746,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Spain"
   },
   {
-    "tags": "ethiopia green yellow red blue triangle star circle horizontal",
+    "tags": "ethiopia green yellow red blue triangle star circle horizontal pan-african",
     "shortname": "et",
     "continent": "africa",
     "name": "Ethiopia",
@@ -757,13 +757,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Ethiopia"
   },
   {
-    "tags": "finland blue white cross christianity",
+    "tags": "finland blue white cross christianity nordic",
     "shortname": "fi",
     "continent": "europe",
     "name": "Finland",
     "proportion": "11:18",
     "adopted": "1918",
-    "symbolism": "Blue: The country's thousands of lakes and the sky.<br>White: The snow that covers the land in winter.<br>Cross: A Nordic <a href=\"?q=cross\">cross</a> which represents <a href=\"?q=christianity\">Christianity</a>.<br>",
+    "symbolism": "Blue: The country's thousands of lakes and the sky.<br>White: The snow that covers the land in winter.<br>Cross: A <a href=\"?q=nordic\">Nordic</a> <a href=\"?q=cross\">cross</a> which represents <a href=\"?q=christianity\">Christianity</a>.<br>",
     "funfacts": "Like <a href=\"?q=sweden\">Sweden</a>'s, Finland's national flag is based on the Nordic cross. It was adopted after independence from Russia, when many patriotic Finns wanted a special flag for their country, but its design dates back to the 19th century.<br>The current blue-crossed design was first used in Finland by Nyländska Jaktklubben, a yacht club founded in Helsinki in 1861.<br>As a special custom in Finland, the flag is flown at Midsummer from 6 pm of Midsummer eve until 9 pm of Midsummer's day. This is done to symbolize the fact that the darkness does not come to any part of Finland during Midsummer's Night.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Finland"
   },
@@ -801,13 +801,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Federated_States_of_Micronesia"
   },
   {
-    "tags": "faroe islands white red blue cross",
+    "tags": "faroe islands white red blue cross nordic",
     "shortname": "fo",
     "continent": "europe",
     "name": "Faroe Islands",
     "proportion": "8:11",
     "adopted": "1940",
-    "symbolism": "Cross: A Nordic <a href=\"?q=cross\">cross</a> which represents <a href=\"?q=christianity\">Christianity</a>.<br>White: The creators of the flag, the foam of the sea and the pure, radiant sky of the Faroe Islands.<br>Blue and red: Other Scandinavian and nordic flags; representing the Faroe Islands' bonds with other Nordic countries.<br>",
+    "symbolism": "Cross: A <a href=\"?q=nordic\">Nordic</a> <a href=\"?q=cross\">cross</a> which represents <a href=\"?q=christianity\">Christianity</a>.<br>White: The creators of the flag, the foam of the sea and the pure, radiant sky of the Faroe Islands.<br>Blue and red: Other Scandinavian and nordic flags; representing the Faroe Islands' bonds with other Nordic countries.<br>",
     "funfacts": "On 25 April, 1940, the British occupation government approved the flag for use by Faroese vessels as Britain did not want the same flag as German-occupied Denmark to be used.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Faroe_Islands"
   },
@@ -939,7 +939,7 @@
     "name": "Ghana",
     "proportion": "2:3",
     "adopted": "1966",
-    "symbolism": "Red: The blood of forefathers who led the struggle of independence and shared their blood through death.<br>Gold: The mineral resources mostly found in the Ashanti region of Ghana, helping to harness the wealth of the country.<br>Green: The rich forests and natural wealth that provides the nation with oil, food and cash crops, such as cocoa, timber and sheabutter.<br>The Black star of Africa: The emancipation of Africa and unity against colonialism. Also found in the flags of <a href=\"?q=guinea-bissau\">Guinea-Bissau</a> and <a href=\"?q=sao+tome+principe\">São Tomé and Príncipe</a>.<br>",
+    "symbolism": "Red: The blood of forefathers who led the struggle of independence and shared their blood through death.<br>Gold: The mineral resources mostly found in the Ashanti region of Ghana, helping to harness the wealth of the country.<br>Green: The rich forests and natural wealth that provides the nation with oil, food and cash crops, such as cocoa, timber and sheabutter.<br>The Black star of Africa: The emancipation of Africa and unity against colonialism. Also found in the flags of <a href=\"?q=guinea-bissau\">Guinea-Bissau</a> and <a href=\"?q=sao+tome+and+principe\">São Tomé and Príncipe</a>.<br>",
     "funfacts": "The Ghanaian flag was the second African flag after the flag of the <a href=\"?q=ethiopia\">Ethiopian</a> Empire to feature the colours of the <a href=\"?q=pan-african\">Pan-African</a> movement.<br>The flag's design influenced that of the flag of <a href=\"?q=guinea-bissau\">Guinea-Bissau</a>.<br>The nickname of the Ghanaian national football team is the \"Black Stars\".<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Ghana"
   },
@@ -955,14 +955,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Gibraltar"
   },
   {
-    "tags": "greenland red white horizontal circle",
+    "tags": "greenland red white horizontal circle nordic",
     "shortname": "gl",
     "continent": "northAmerica",
     "name": "Greenland",
     "proportion": "2:3",
     "adopted": "1989",
     "symbolism": "White stripe: The glaciers and ice cap, which cover more than 80% of the island.<br>Red stripe: The ocean.<br>Red semicircle: The sun, with its bottom part sunk in the ocean.<br>White semicircle: The icebergs and pack ice.<br>",
-    "funfacts": "The flag of Greenland is the only national flag of a nordic country or territory without a Nordic <a href=\"?q=cross\">cross</a>.<br>In 1985 it was reported that Greenland's flag had exactly the same motif as the flag of a Danish rowing club, which was founded before Greenland's flag was chosen. It is not clear whether this is a case of plagiarism or just a coincidence, but the rowing club gave Greenland permission to use their flag.<br>",
+    "funfacts": "The flag of Greenland is the only national flag of a nordic country or territory without a <a href=\"?q=nordic\">Nordic</a> <a href=\"?q=cross\">cross</a>.<br>In 1985 it was reported that Greenland's flag had exactly the same motif as the flag of a Danish rowing club, which was founded before Greenland's flag was chosen. It is not clear whether this is a case of plagiarism or just a coincidence, but the rowing club gave Greenland permission to use their flag.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Greenland"
   },
   {
@@ -1158,7 +1158,7 @@
     "proportion": "1:2",
     "adopted": "1916",
     "symbolism": "Green: Roman Catholics.<br>Orange: The minority Protestants who were supporters of William of Orange.<br>White: A lasting peace and hope for union between Protestants and Catholics in Ireland.<br>",
-    "funfacts": "The oldest known reference to the use of the three colours of green, white and orange as a nationalist emblem dates from September 1830 when tricolour cockades were worn at a meeting held to celebrate the <a href=\"?q=france\">French</a> Revolution of that year.<br>The <a href=\"?q=ivory+coast\">Ivorian flag</a> has a similar colour layout to the flag of the Irish flag, but with the orange on the hoist side and a shorter proportion (2:3 instead of 1:2). Due to this similarity, in Northern Ireland, Ulster loyalists have sometimes desecrated the Ivorian flag, mistaking it for the Irish one.<br>",
+    "funfacts": "The oldest known reference to the use of the three colours of green, white and orange as a nationalist emblem dates from September 1830 when tricolour cockades were worn at a meeting held to celebrate the <a href=\"?q=france\">French</a> Revolution of that year.<br>The <a href=\"?q=ci\">Ivorian flag</a> has a similar colour layout to the flag of the Irish flag, but with the orange on the hoist side and a shorter proportion (2:3 instead of 1:2). Due to this similarity, in Northern Ireland, Ulster loyalists have sometimes desecrated the Ivorian flag, mistaking it for the Irish one.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Ireland"
   },
   {
@@ -1228,13 +1228,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Iran"
   },
   {
-    "tags": "iceland blue red white cross christianity",
+    "tags": "iceland blue red white cross christianity nordic",
     "shortname": "is",
     "continent": "europe",
     "name": "Iceland",
     "proportion": "18:25",
     "adopted": "1944",
-    "symbolism": "Cross: A Nordic <a href=\"?q=cross\">cross</a> which represents <a href=\"?q=christianity\">Christianity</a>.<br>Red: The fire produced by the island's volcanoes.<br>White: The ice and snow that covers Iceland<br>Blue: The mountains of the island.<br>",
+    "symbolism": "Cross: A <a href=\"?q=nordic\">Nordic</a> <a href=\"?q=cross\">cross</a> which represents <a href=\"?q=christianity\">Christianity</a>.<br>Red: The fire produced by the island's volcanoes.<br>White: The ice and snow that covers Iceland<br>Blue: The mountains of the island.<br>",
     "funfacts": "According to a legend described in Andrew Evans' Iceland, a red cloth with a white cross fell from the heavens, ensuring <a href=\"?q=denmark\">Danish</a> victory at the Battle of Valdemar in the 13th century. Denmark then used the cross on its flag throughout its nordic territories as a sign of divine right. Upon Iceland's independence, they continued to use the <a href=\"?q=christianity\">Christian</a> symbol.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Iceland"
   },
@@ -1422,7 +1422,7 @@
     "proportion": "2:3",
     "adopted": "1975",
     "symbolism": "White disk: The unity of the Lao people and a full moon against the Mekong River.<br>Red: The blood shed by the Lao people on both banks of the Mekong River in their struggle for freedom and independence from the French.<br>Blue: The Mekong River itself, a symbol of the nation's prosperity.<br>",
-    "funfacts": "It is one of the three flags of a currently communist country (the others being <a href=\"?q=cuba\">Cuba</a> and <a href=\"?q=nepal\">Nepal</a>) that does not use any <a href=\"?q=communist\">communist</a> symbolism.<br>",
+    "funfacts": "It is one of the three flags of a currently communist country (the others being <a href=\"?q=cuba\">Cuba</a> and <a href=\"?q=nepal\">Nepal</a>) that does not use any <a href=\"?q=communism\">communist</a> symbolism.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Laos"
   },
   {
@@ -1866,7 +1866,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Netherlands"
   },
   {
-    "tags": "norway blue red white cross christianity",
+    "tags": "norway blue red white cross christianity nordic",
     "shortname": "no",
     "continent": "europe",
     "name": "Norway",
@@ -1884,7 +1884,7 @@
     "proportion": "It's complicated.",
     "adopted": "1962",
     "symbolism": "Red: The bravery of Nepali people and it also represents the color of the rhododendron, Nepal's national flower.<br>Blue: Peace.<br>Moon: The cool weather of the Himalayas and the calm demeanor and purity of spirit of the Nepali people.<br>Sun: The heat and the high temperature of the southern lowlands (Terai) and the Nepali peoples fierce resolve.<br>",
-    "funfacts": "Until 1962, the flag's emblems, both the sun and the crescent moon, had human faces, but they were removed to modernize the flag.<br>It is one of the three flags of a currently communist country that does not use any <a href=\"?q=communist\">communist</a> symbolism (the others being <a href=\"?q=cuba\">Cuba</a> and <a href=\"?q=laos\">Laos</a>).<br>",
+    "funfacts": "Until 1962, the flag's emblems, both the sun and the crescent moon, had human faces, but they were removed to modernize the flag.<br>It is one of the three flags of a currently communist country that does not use any <a href=\"?q=communism\">communist</a> symbolism (the others being <a href=\"?q=cuba\">Cuba</a> and <a href=\"?q=laos\">Laos</a>).<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Nepal"
   },
   {
@@ -2196,14 +2196,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Sudan"
   },
   {
-    "tags": "sweden blue yellow cross christianity",
+    "tags": "sweden blue yellow cross christianity nordic",
     "shortname": "se",
     "continent": "europe",
     "name": "Sweden",
     "proportion": "5:8",
     "adopted": "1906",
     "symbolism": "Cross: Christianity.<br>Colours are of unknown origin.<br>",
-    "funfacts": "Blue and yellow have been used as Swedish colours at least since Magnus III's royal coat of arms of 1275.<br>Based on the design of the flag of <a href=\"?q=denmark\">Denmark</a>, the Nordic <a href=\"?q=cross\">cross</a> is used in the flags of the nordic countries.<br>",
+    "funfacts": "Blue and yellow have been used as Swedish colours at least since Magnus III's royal coat of arms of 1275.<br>Based on the design of the flag of <a href=\"?q=denmark\">Denmark</a>, the <a href=\"?q=nordic\">Nordic</a> <a href=\"?q=cross\">cross</a> is used in the flags of the nordic countries.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Sweden"
   },
   {
@@ -2240,7 +2240,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Slovenia"
   },
   {
-    "tags": "svalbard and jan mayen red white blue cross norway christianity",
+    "tags": "svalbard and jan mayen red white blue cross norway christianity nordic",
     "shortname": "sj",
     "continent": "europe",
     "name": "Svalbard and Jan Mayen",

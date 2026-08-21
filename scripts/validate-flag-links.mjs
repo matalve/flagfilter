@@ -17,20 +17,9 @@ const FLAG_INFO_PATH = process.argv[2] || 'flaginfo.json';
 const FLAG_I18N_DIR = process.argv[3] || 'i18n/flags';
 const INDEX_HTML_PATH = process.argv[4] || 'index.html';
 
-// Link targets that are known to resolve to nothing and are waiting on the
-// content pass in #167. They render as plain text today, so nothing is
-// visibly broken — but they are not accepted silently either: an entry that
-// stops matching anything is itself an error, so this list cannot quietly rot
-// into a lie about the content.
-const KNOWN_UNRESOLVED = [
-    'nordic',
-    'nordic+cross',
-    // These three have an obvious target and only need the content edit:
-    // communism (a filter), and the flags st and ci.
-    'communist',
-    'sao+tome+principe',
-    'ivory+coast'
-];
+// There is deliberately no allowlist here. It carried five targets while #167
+// was open and is gone with them: every link now resolves to a flag or to a
+// filter, so an unresolvable one is a plain failure with nowhere to be parked.
 
 const TEXT_FIELDS = ['symbolism', 'funfacts'];
 // Mirrors the a[href^="?q="] selector the runtime uses.
@@ -159,9 +148,6 @@ readdirSync(FLAG_I18N_DIR)
 
 const broken = [];
 const filterLinks = [];
-const known = [];
-const knownSet = new Set(KNOWN_UNRESOLVED);
-const matchedKnown = new Set();
 
 sources.forEach((link) => {
     const normalized = normalizeForQuery(link.target);
@@ -172,27 +158,13 @@ sources.forEach((link) => {
         filterLinks.push(link);
         return;
     }
-    if (knownSet.has(link.target)) {
-        matchedKnown.add(link.target);
-        known.push(link);
-        return;
-    }
     broken.push(link);
 });
-
-// An allowlist that outlives the problem it describes is worse than none: it
-// silently blesses whatever drifts into it later.
-const staleKnown = KNOWN_UNRESOLVED.filter((target) => !matchedKnown.has(target));
 
 if (filterLinks.length > 0) {
     const distinct = [...new Set(filterLinks.map((link) => link.target))].sort();
     console.log(`NOTE: ${filterLinks.length} link(s) point at filter terms rather than flags: ${distinct.join(', ')}`);
     console.log('      These stay real ?q= links and apply the filter when followed.');
-}
-
-if (known.length > 0) {
-    const distinct = [...matchedKnown].sort();
-    console.log(`NOTE: ${known.length} known-unresolved link(s) awaiting a content pass: ${distinct.join(', ')}`);
 }
 
 const failures = [];
@@ -202,14 +174,10 @@ broken.forEach((link) => {
     failures.push(`${link.file} ${link.where}: ?q=${link.target}${hint ? ` (did you mean "${hint}"?)` : ''}`);
 });
 
-staleKnown.forEach((target) => {
-    failures.push(`KNOWN_UNRESOLVED lists "${target}", which no longer appears — remove it from the list`);
-});
-
 if (failures.length > 0) {
     console.error(`FAIL: ${failures.length} problem(s) with flag links:`);
     failures.forEach((failure) => console.error(`  - ${failure}`));
     process.exit(1);
 }
 
-console.log(`OK: ${sources.length} flag links checked; ${sources.length - known.length - filterLinks.length} resolve to a flag.`);
+console.log(`OK: ${sources.length} flag links checked; ${sources.length - filterLinks.length} resolve to a flag.`);

@@ -493,6 +493,59 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('.flag-card h3', { hasText: /^United States$/ })).toHaveCount(0);
   });
 
+  test('the Nordic family is the region, not every flag with a cross', async ({ page }) => {
+    // Two cases make the boundary: Switzerland has the cross and is not Nordic,
+    // Greenland is Nordic and has no cross — which is exactly what its own
+    // funfacts claim, so the filter is how a reader checks it. See #167.
+    await page.locator('.filter-section[data-section-id="more"] .filter-header').click();
+
+    await page.locator('.filter-btn[data-family="nordic"]').click();
+
+    await expect(page.locator('.flag-card')).toHaveCount(9);
+    await expect(page.locator('.flag-card h3', { hasText: /^Denmark$/ })).toHaveCount(1);
+    await expect(page.locator('.flag-card h3', { hasText: /^Greenland$/ })).toHaveCount(1);
+    await expect(page.locator('.flag-card h3', { hasText: /^Switzerland$/ })).toHaveCount(0);
+  });
+
+  test('the two halves of "Nordic cross" link to their own filters', async ({ page }) => {
+    // The phrase names two things — a tradition and a shape — and neither word
+    // is a synonym for the other, so each carries its own target. See #167.
+    await openFlagModalBySearch(page, 'denmark');
+
+    const details = page.locator('.flag-info-details');
+    await expect(details.locator('a.filter-link', { hasText: /^Nordic$/ })).toHaveAttribute('href', '?q=nordic');
+    await expect(details.locator('a.filter-link', { hasText: /^cross$/ }).first()).toHaveAttribute('href', '?q=cross');
+  });
+
+  test('a family button example flag is itself in that family', async ({ page }) => {
+    // Ethiopia sits on the Pan-African button but was not tagged pan-african, so
+    // the filter returned everything except the flag pictured on it. See #167.
+    await page.locator('.filter-section[data-section-id="more"] .filter-header').click();
+
+    await page.locator('.filter-btn[data-family="pan-african"]').click();
+
+    await expect(page.locator('.flag-card h3', { hasText: /^Ethiopia$/ })).toHaveCount(1);
+  });
+
+  test('a flag link written as a country code opens that flag', async ({ page }) => {
+    // Côte d'Ivoire's name carries a parenthetical alias, so no readable ?q=name
+    // matches it; the code is the target instead. See #167.
+    // Not openFlagModalBySearch: "ireland" also matches Northern Ireland.
+    await page.locator('#searchInput').fill('ireland');
+    await page.locator('.flag-card')
+      .filter({ has: page.locator('h3', { hasText: /^Ireland$/ }) })
+      .locator('.learn-more-btn')
+      .click();
+    await expect(page.locator('#flagModalTitle')).toHaveText('Ireland');
+
+    const ivorianLink = page.locator('.flag-info-details .flag-link', { hasText: 'Ivorian flag' });
+    await expect(ivorianLink).toHaveAttribute('data-flag-code', 'ci');
+
+    await waitForNextTask(page);
+    await ivorianLink.click();
+    await expect(page.locator('#flagModalTitle')).toHaveText("Côte d'Ivoire (Ivory Coast)");
+  });
+
   test('a family link in flag prose applies the family filter', async ({ page }) => {
     // These links were plain text until the family filters existed to receive
     // them: nothing resolved ?q=pan-arab, so the anchor was unwrapped.
@@ -518,14 +571,14 @@ test.describe('Flagfilter UI flows', () => {
     // These are how a reader discovers what else is filterable while reading, so
     // the anchor survives with its href intact — it works without JS and can be
     // opened in a new tab. See #141.
-    await openFlagModalBySearch(page, 'sweden');
+    await openFlagModalBySearch(page, 'denmark');
 
     const filterLink = page.locator('.flag-info-details a.filter-link', { hasText: 'cross' });
     await expect(filterLink).toHaveAttribute('href', '?q=cross');
   });
 
   test('following a filter link filters the grid without reloading', async ({ page }) => {
-    await openFlagModalBySearch(page, 'sweden');
+    await openFlagModalBySearch(page, 'denmark');
 
     // Pin the document so a full navigation would be visible as a reset.
     await page.evaluate(() => { window.__notReloaded = true; });
