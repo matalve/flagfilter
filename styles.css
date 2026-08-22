@@ -763,6 +763,10 @@ h1 {
     text-align: center;
     font-size: 1rem;
     color: var(--text-color);
+    /* Cards stretch to the tallest in their row, so a two-line country name next
+       door used to leave this card's button floating mid-card. The name absorbs
+       the slack instead, which pins every Learn more to the bottom edge. */
+    flex-grow: 1;
 }
 
 .flag-info {
