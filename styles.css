@@ -17,9 +17,8 @@
     --shadow-3: 0 4px 8px rgba(0, 0, 0, 0.12);
     --shadow-4: 0 10px 25px rgba(0, 0, 0, 0.20);
     --input-bg: white;
-    --filter-btn-bg: white;
-    --filter-btn-color: #333;
-    --filter-btn-hover: #f0f0f0;
+    --filter-btn-bg: #e6efee;
+    --filter-btn-hover: #d9e6e4;
     --filter-btn-active-bg: #1e8080;
     --filter-btn-active-color: #ffffff;
     --no-results-color: #666;
@@ -27,6 +26,11 @@
     --header-top-bg: transparent;
     --header-bg: #146767;
     --header-hoist: #44bbbb;
+    /* Corner radius scale. Three steps and nothing else: small surfaces,
+       cards and panels, and anything you press. Circles stay circles. */
+    --r-1: 8px;
+    --r-2: 16px;
+    --r-pill: 999px;
 }
 
 .dark-mode {
@@ -42,9 +46,8 @@
     --shadow-3: 0 4px 8px rgba(0, 0, 0, 0.55);
     --shadow-4: 0 10px 25px rgba(0, 0, 0, 0.70);
     --input-bg: #16213e;
-    --filter-btn-bg: #16213e;
-    --filter-btn-color: #e6e6e6;
-    --filter-btn-hover: #0f3460;
+    --filter-btn-bg: #334553;
+    --filter-btn-hover: #3d5162;
     --filter-btn-active-bg: #74c8c5;
     --filter-btn-active-color: #0d1f21;
     --no-results-color: #aaa;
@@ -111,7 +114,7 @@ body {
     width: min(680px, 100%);
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    border-radius: 20px;
+    border-radius: var(--r-2);
     padding: 2rem;
     box-shadow: 0 18px 40px -20px rgba(30, 128, 128, 0.35);
     text-align: center;
@@ -142,7 +145,7 @@ body {
 
 header {
     background: var(--header-bg);
-    border-radius: 16px;
+    border-radius: var(--r-2);
     padding: 2rem;
     margin-bottom: 2rem;
     box-shadow: 0 10px 25px -5px rgba(30, 128, 128, 0.3);
@@ -184,7 +187,7 @@ header::before {
     gap: 0.4rem;
     background: rgba(255, 255, 255, 0.2);
     color: white;
-    border-radius: 999px;
+    border-radius: var(--r-pill);
     padding: 0.45rem 0.7rem;
     box-shadow: var(--shadow-2);
 }
@@ -289,7 +292,7 @@ h1 {
 .title-reset:focus-visible {
     outline: 2px solid currentColor;
     outline-offset: 4px;
-    border-radius: 4px;
+    border-radius: var(--r-1);
 }
 
 .dark-mode-toggle {
@@ -348,7 +351,7 @@ h1 {
     width: 100%;
     padding: 1rem 4.25rem 1rem 3rem;
     border: none;
-    border-radius: 12px;
+    border-radius: var(--r-pill);
     font-size: 1rem;
     transition: all 0.3s ease;
     background-color: rgba(255, 255, 255, 0.9);
@@ -368,7 +371,7 @@ h1 {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 8px;
+    border-radius: var(--r-1);
     background: rgba(30, 128, 128, 0.12);
     border: 1px solid rgba(30, 128, 128, 0.18);
     color: var(--primary-color);
@@ -383,7 +386,7 @@ h1 {
     z-index: 1;
     flex-shrink: 0;
     border: none;
-    border-radius: 10px;
+    border-radius: var(--r-pill);
     height: 48px;
     padding: 0 0.9rem;
     background: rgba(255, 255, 255, 0.2);
@@ -433,7 +436,7 @@ h1 {
 
 .filter-section {
     margin-bottom: 1.5rem;
-    border-radius: 12px;
+    border-radius: var(--r-2);
     overflow: hidden;
     background-color: var(--card-bg);
     box-shadow: var(--shadow-1);
@@ -526,7 +529,7 @@ h1 {
 .filter-section .filter-section {
     margin: 0.5rem 0;
     border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: var(--r-1);
     background-color: var(--card-bg);
 }
 
@@ -556,9 +559,9 @@ h1 {
 /* General filter button styles */
 .filter-btn {
     padding: 0.5rem 0.75rem;
-    border-radius: 6px;
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
+    border-radius: var(--r-pill);
+    background-color: var(--filter-btn-bg);
+    border: 1px solid transparent;
     color: var(--text-color);
     font-size: 0.9rem;
     font-weight: 500;
@@ -586,7 +589,7 @@ h1 {
 }
 
 .filter-btn:not(:disabled):hover {
-    background-color: var(--hover-bg);
+    background-color: var(--filter-btn-hover);
     transform: translateY(-2px);
     box-shadow: var(--shadow-3);
 }
@@ -663,7 +666,7 @@ h1 {
 @media (max-width: 768px) {
     header {
         padding: 1.5rem;
-        border-radius: 12px;
+        border-radius: var(--r-2);
     }
     
     h1 {
@@ -724,7 +727,7 @@ h1 {
 
 .flag-card {
     background-color: var(--card-bg);
-    border-radius: 12px;
+    border-radius: var(--r-2);
     overflow: hidden;
     box-shadow: var(--shadow-2);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -741,7 +744,7 @@ h1 {
 .flag-card img {
     width: 100%;
     height: auto;
-    border-radius: 8px;
+    border-radius: var(--r-1);
     box-shadow: var(--shadow-1);
     aspect-ratio: 3/2;
     object-fit: cover;
@@ -861,9 +864,9 @@ h1 {
     justify-content: center;
     gap: 8px;
     padding: 8px 16px;
-    border-radius: 8px;
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
+    border-radius: var(--r-pill);
+    background-color: var(--filter-btn-bg);
+    border: 1px solid transparent;
     color: var(--text-color);
     font-size: 14px;
     font-weight: 500;
@@ -877,7 +880,7 @@ h1 {
 }
 
 .continent-filters .filter-btn:hover {
-    background-color: var(--hover-bg);
+    background-color: var(--filter-btn-hover);
     transform: translateY(-2px);
     box-shadow: var(--shadow-3);
 }
@@ -922,15 +925,6 @@ h1 {
 }
 
 /* Dark mode adjustments */
-.dark-mode .continent-filters .filter-btn {
-    background-color: var(--card-bg);
-    border-color: var(--border-color);
-}
-
-.dark-mode .continent-filters .filter-btn:hover {
-    background-color: var(--hover-bg);
-}
-
 .dark-mode .continent-filters .filter-btn.active {
     background-color: var(--filter-btn-active-bg);
     color: var(--filter-btn-active-color);
@@ -955,7 +949,7 @@ h1 {
     background-color: var(--primary-fill);
     color: white;
     border: none;
-    border-radius: 6px;
+    border-radius: var(--r-pill);
     cursor: pointer;
     font-weight: 500;
     transition: background-color 0.2s ease;
@@ -983,7 +977,7 @@ h1 {
 
 .modal-content {
     background-color: var(--card-bg);
-    border-radius: 12px;
+    border-radius: var(--r-2);
     padding: 2rem;
     max-width: 800px;
     width: 100%;
@@ -1031,7 +1025,7 @@ h1 {
     width: 100%;
     max-width: 400px;
     height: auto;
-    border-radius: 8px;
+    border-radius: var(--r-1);
     margin: 0 auto 1.5rem;
     display: block;
     box-shadow: var(--shadow-3);
@@ -1088,7 +1082,7 @@ h1 {
     background-color: transparent;
     color: var(--primary-color);
     border: 1px solid var(--primary-color);
-    border-radius: 6px;
+    border-radius: var(--r-pill);
     font-weight: 500;
     text-decoration: none;
     transition: background-color 0.2s ease, color 0.2s ease;
@@ -1115,7 +1109,7 @@ h1 {
     background-color: var(--primary-fill);
     color: white !important;
     text-decoration: none;
-    border-radius: 6px;
+    border-radius: var(--r-pill);
     font-weight: 500;
     transition: background-color 0.2s ease;
     border-bottom: none !important;
@@ -1147,7 +1141,7 @@ h1 {
     margin-bottom: 1rem;
     padding: 0.75rem;
     background: var(--card-bg);
-    border-radius: 8px;
+    border-radius: var(--r-1);
     border: 1px solid var(--border-color);
 }
 
@@ -1191,7 +1185,7 @@ h1 {
     padding: 0.5rem 0.8rem;
     font-size: 0.85rem;
     margin: 0;
-    border-radius: 6px;
+    border-radius: var(--r-pill);
     min-width: 80px;
 }
 
@@ -1263,7 +1257,7 @@ h1 {
     background: linear-gradient(135deg, rgba(30, 128, 128, 0.12) 0%, rgba(18, 89, 95, 0.16) 100%);
     color: var(--primary-color);
     border: 1px solid rgba(30, 128, 128, 0.22);
-    border-radius: 999px;
+    border-radius: var(--r-pill);
     cursor: pointer;
     font-weight: 600;
     letter-spacing: 0.01em;
@@ -1282,7 +1276,7 @@ h1 {
     margin-top: 2rem;
     padding: 1.5rem;
     background-color: var(--card-bg);
-    border-radius: 8px;
+    border-radius: var(--r-1);
     border: 1px solid var(--border-color);
 }
 
@@ -1309,7 +1303,7 @@ h1 {
     width: 100%;
     padding: 0.75rem;
     border: 1px solid var(--border-color);
-    border-radius: 6px;
+    border-radius: var(--r-1);
     background-color: var(--card-bg);
     color: var(--text-color);
     font-size: 1rem;
@@ -1329,7 +1323,7 @@ h1 {
 .report-form-status {
     margin-top: 1rem;
     padding: 0.9rem 1rem;
-    border-radius: 10px;
+    border-radius: var(--r-1);
     border: 1px solid var(--border-color);
     background: rgba(15, 23, 42, 0.03);
     color: var(--text-color);
@@ -1412,7 +1406,7 @@ h1 {
 .close-report-btn {
     padding: 0.75rem 1.5rem;
     border: none;
-    border-radius: 6px;
+    border-radius: var(--r-pill);
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
