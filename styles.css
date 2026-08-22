@@ -2,6 +2,9 @@
     --primary-color: #1e8080;
     --primary-fill: #1e8080;
     --text-color: #1f2937;
+    /* The page background is a variable so the dark-mode class can live on
+       <html> (set before first paint by the inline snippet in index.html)
+       while the background itself still paints on body. See #143. */
     --bg-color: #f9fafb;
     --card-bg: #ffffff;
     --border-color: #e5e7eb;
@@ -22,14 +25,8 @@
     --no-results-color: #666;
     --error-color: #e74c3c;
     --header-top-bg: transparent;
-    /* The page background is a variable so the dark-mode class can live on
-       <html> (set before first paint by the inline snippet in index.html)
-       while the background itself still paints on body. See #143. */
-    --bg-image:
-        radial-gradient(circle at 100% 100%, rgba(30, 128, 128, 0.03) 0%, transparent 50%),
-        radial-gradient(circle at 0% 0%, rgba(30, 128, 128, 0.03) 0%, transparent 50%),
-        linear-gradient(45deg, rgba(30, 128, 128, 0.02) 25%, transparent 25%, transparent 75%, rgba(30, 128, 128, 0.02) 75%),
-        linear-gradient(45deg, rgba(30, 128, 128, 0.02) 25%, transparent 25%, transparent 75%, rgba(30, 128, 128, 0.02) 75%);
+    --header-bg: #146767;
+    --header-hoist: #44bbbb;
 }
 
 .dark-mode {
@@ -44,11 +41,6 @@
     --shadow-2: 0 4px 6px rgba(0, 0, 0, 0.45);
     --shadow-3: 0 4px 8px rgba(0, 0, 0, 0.55);
     --shadow-4: 0 10px 25px rgba(0, 0, 0, 0.70);
-    --bg-image:
-        radial-gradient(circle at 100% 100%, rgba(68, 187, 187, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 0% 0%, rgba(68, 187, 187, 0.05) 0%, transparent 50%),
-        linear-gradient(45deg, rgba(68, 187, 187, 0.03) 25%, transparent 25%, transparent 75%, rgba(68, 187, 187, 0.03) 75%),
-        linear-gradient(45deg, rgba(68, 187, 187, 0.03) 25%, transparent 25%, transparent 75%, rgba(68, 187, 187, 0.03) 75%);
     --input-bg: #16213e;
     --filter-btn-bg: #16213e;
     --filter-btn-color: #e6e6e6;
@@ -58,6 +50,7 @@
     --no-results-color: #aaa;
     --error-color: #e74c3c;
     --header-top-bg: #16213e;
+    --header-bg: #12504e;
 }
 
 * {
@@ -102,9 +95,6 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     min-height: 100vh;
-    background-image: var(--bg-image);
-    background-size: 100% 100%, 100% 100%, 60px 60px, 60px 60px;
-    background-position: 0 0, 0 0, 0 0, 30px 30px;
     line-height: 1.6;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -151,7 +141,7 @@ body {
 }
 
 header {
-    background: linear-gradient(135deg, var(--primary-fill) 0%, #12595f 100%);
+    background: var(--header-bg);
     border-radius: 16px;
     padding: 2rem;
     margin-bottom: 2rem;
@@ -160,16 +150,16 @@ header {
     overflow: hidden;
 }
 
+/* The stripe sits where a flag's hoist does, in the mark's own colour. It
+   replaces the two white radial glows this pseudo-element used to carry. */
 header::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
     bottom: 0;
-    background-image: 
-        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    width: 10px;
+    background: var(--header-hoist);
     z-index: 1;
 }
 
@@ -944,11 +934,6 @@ h1 {
 .dark-mode .continent-filters .filter-btn.active {
     background-color: var(--filter-btn-active-bg);
     color: var(--filter-btn-active-color);
-}
-
-/* Dark mode header adjustments */
-.dark-mode header {
-    background: linear-gradient(135deg, #146767 0%, #0e4a50 100%);
 }
 
 .dark-mode #searchInput {
