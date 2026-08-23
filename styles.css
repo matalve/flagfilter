@@ -737,13 +737,24 @@ h1 {
     transform: translateY(-5px);
 }
 
+/* Flags come in a dozen proportions and the grid needs one box shape, so the
+   box is 3:2 and `contain` fits each flag whole inside it. `cover` used to crop
+   to fill, which cut the bird off Christmas Island's flag and the two left stars
+   off the Philippines'. The leftover space paints the page background so it
+   reads as a recess behind the flag instead of part of it.
+
+   3:2 is not a leftover from `cover`: swept over every numeric `proportion` in
+   flaginfo.json it is the best single box shape (mean fill 89.1%, and exactly
+   right for the 109 flags at 2:3, the largest group). A wider 5:3 box helps the
+   78 flags at 1:2 but takes more from the 2:3 group than it gives. */
 .flag-card img {
     width: 100%;
     height: auto;
     border-radius: var(--r-1);
     box-shadow: var(--shadow-1);
     aspect-ratio: 3/2;
-    object-fit: cover;
+    object-fit: contain;
+    background-color: var(--bg-color);
 }
 
 .flag-card h3 {

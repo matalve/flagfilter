@@ -399,6 +399,15 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('#flagModalTitle')).toHaveCount(0);
   });
 
+  test('grid flag images are fitted whole rather than cropped to fill the box', async ({ page }) => {
+    // The box was filled with `object-fit: cover`, which trimmed the wider flags:
+    // Christmas Island lost its bird and the Philippines its two left stars. The
+    // box stays 3:2 so the grid rows line up; the flag is letterboxed inside it.
+    const flagImage = page.locator('.flag-card img').first();
+    await expect(flagImage).toHaveCSS('object-fit', 'contain');
+    await expect(flagImage).toHaveCSS('aspect-ratio', '3 / 2');
+  });
+
   test('grid flag images declare explicit dimensions to avoid layout shift', async ({ page }) => {
     const flagImage = page.locator('.flag-card img').first();
     await expect(flagImage).toHaveAttribute('width', '320');

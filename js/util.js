@@ -93,8 +93,8 @@ export async function loadJson(path, fallbackValue = {}) {
 
 // flagcdn serves every w320 image at 320px wide; the height follows the flag's proportion.
 export const FLAG_IMAGE_SOURCE_WIDTH = 320;
-// The grid crops every flag to a uniform 3:2 box (see `.flag-card img` in styles.css),
-// so reserve that ratio up front to avoid layout shift while images load.
+// The grid fits every flag inside a uniform 3:2 box (see `.flag-card img` in
+// styles.css), so reserve that ratio up front to avoid layout shift while images load.
 export const FLAG_GRID_IMAGE_HEIGHT = Math.round(FLAG_IMAGE_SOURCE_WIDTH * 2 / 3);
 // Eagerly load the first row(s) of above-the-fold flag images instead of lazily,
 // so the LCP image (the first one) is not deferred behind the data fetch. See #108.
