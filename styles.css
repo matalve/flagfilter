@@ -16,14 +16,12 @@
     --shadow-2: 0 4px 6px rgba(0, 0, 0, 0.10);
     --shadow-3: 0 4px 8px rgba(0, 0, 0, 0.12);
     --shadow-4: 0 10px 25px rgba(0, 0, 0, 0.20);
-    --input-bg: white;
     --filter-btn-bg: #e6efee;
     --filter-btn-hover: #d9e6e4;
     --filter-btn-active-bg: #1e8080;
     --filter-btn-active-color: #ffffff;
     --no-results-color: #666;
     --error-color: #e74c3c;
-    --header-top-bg: transparent;
     --header-bg: #146767;
     --header-hoist: #44bbbb;
     /* Corner radius scale. Three steps and nothing else: small surfaces,
@@ -45,14 +43,12 @@
     --shadow-2: 0 4px 6px rgba(0, 0, 0, 0.45);
     --shadow-3: 0 4px 8px rgba(0, 0, 0, 0.55);
     --shadow-4: 0 10px 25px rgba(0, 0, 0, 0.70);
-    --input-bg: #16213e;
     --filter-btn-bg: #334553;
     --filter-btn-hover: #3d5162;
     --filter-btn-active-bg: #74c8c5;
     --filter-btn-active-color: #0d1f21;
     --no-results-color: #aaa;
     --error-color: #e74c3c;
-    --header-top-bg: #16213e;
     --header-bg: #12504e;
 }
 
