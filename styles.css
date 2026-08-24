@@ -210,6 +210,20 @@ header::before {
     font-weight: 700;
     cursor: pointer;
     outline: none;
+    /* The native arrow is the widest part of this control and every browser
+       draws it differently. The sprite's chevron below replaces it. */
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 0;
+}
+
+/* Not the .icon class: this wants to be smaller than the 1em square that sets,
+   and it is the same chevron the filter headers use. */
+.language-caret {
+    width: 0.6rem;
+    height: 0.6rem;
+    fill: currentColor;
+    flex-shrink: 0;
 }
 
 .language-select option {
@@ -524,10 +538,15 @@ h1 {
 }
 
 /* Filter containers */
+/* 120px, not 140px. `auto-fill` fits whole tracks and `1fr` makes the survivors
+   absorb the whole row, so just below every width where one more column would fit,
+   the chips balloon. At 140px that happened three times: 481-493px (2 chips of
+   212px), 585-641px (3 of 188.7px) and 762-789px. A smaller minimum changes column
+   count more often, which caps how far any single chip can stretch. See #194. */
 .color-filters, .continent-filters, .pattern-filters, .symbol-filters, 
 .motive-filters, .people-filters, .ideology-filters, .text-filters {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     gap: 0.5rem;
     width: 100%;
 }
@@ -686,7 +705,17 @@ h1 {
     }
     
     .language-select-wrapper {
-        padding: 0.4rem 0.6rem;
+        padding: 0.3rem 0.5rem;
+        gap: 0.3rem;
+    }
+    
+    .language-select-wrapper .icon {
+        font-size: 0.8rem;
+    }
+    
+    .language-select {
+        font-size: 0.85rem;
+        font-weight: 600;
     }
     
     .info-button {
@@ -1205,6 +1234,37 @@ h1 {
 }
 
 @media (max-width: 600px) {
+    /* A phone used to spend 58 of its 390 pixels on inset before any content was
+       drawn: 16px of container padding a side, 12px of card padding a side, plus
+       the cards' 1px borders. Here the page runs to the screen edge instead. The
+       cards give up their side borders and corner radius, which is the price of
+       the width; they keep their top and bottom borders so the sections still
+       read as separate cards. Takes the filter grid from 332px to 358px. See #194.
+       The two-class selector is deliberate: `.filter-section .filter-content`
+       further up wins over a bare `.filter-content` at any width. */
+    .container {
+        padding: 1rem 0;
+    }
+    
+    header {
+        border-radius: 0;
+        padding: 1.25rem 1rem;
+    }
+    
+    .filter-section {
+        border-radius: 0;
+        border-left: 0;
+        border-right: 0;
+    }
+    
+    .filter-header {
+        padding: 1rem;
+    }
+    
+    .filter-section .filter-content {
+        padding: 1rem;
+    }
+    
     .reset-filters-btn {
         padding: 0 0.7rem;
     }

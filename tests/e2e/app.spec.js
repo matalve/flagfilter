@@ -432,6 +432,45 @@ test.describe('Flagfilter UI flows', () => {
     }
   });
 
+  test('filter chips never stretch into a full-width pancake', async ({ browser, baseURL }) => {
+    // `auto-fill` fits whole tracks and `1fr` makes the survivors absorb the row,
+    // so a large minimum ballooned the chips just below every width where one more
+    // column would fit: 212px at 490px, 188.7px at 640px. See #194.
+    for (const width of [490, 640]) {
+      const context = await browser.newContext({ baseURL, viewport: { width, height: 700 } });
+      const page = await context.newPage();
+      try {
+        await stubTurnstile(page);
+        await gotoApp(page, 'en');
+        const chip = await page.locator('.color-filters .filter-btn').first().boundingBox();
+        expect(chip.width, `chip is a pancake at ${width}px`).toBeLessThan(170);
+      } finally {
+        await context.close();
+      }
+    }
+  });
+
+  test('the page runs to the screen edge on a phone', async ({ browser, baseURL }) => {
+    // A 390px phone used to spend 58px on inset before any content was drawn. See #194.
+    const context = await createPhoneContext(browser, baseURL);
+    const page = await context.newPage();
+    try {
+      await stubTurnstile(page);
+      await gotoApp(page, 'en');
+      const grid = await page.locator('.color-filters').boundingBox();
+      expect(grid.width).toBeGreaterThanOrEqual(350);
+    } finally {
+      await context.close();
+    }
+  });
+
+  test('the language selector draws its own chevron instead of the native arrow', async ({ page }) => {
+    // The native arrow is the widest part of the control and differs per browser. See #194.
+    await expect(page.locator('.language-select-wrapper .language-caret use[href="#i-chevron-down"]'))
+      .toHaveCount(1);
+    await expect(page.locator('#languageSelect')).toHaveCSS('appearance', 'none');
+  });
+
   test('close buttons use the sprite, not a text glyph', async ({ page }) => {
     await openFirstFlagModal(page);
     await expect(page.locator('.modal-content .close-btn use[href="#i-xmark"]').first()).toHaveCount(1);
