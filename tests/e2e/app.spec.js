@@ -380,6 +380,58 @@ test.describe('Flagfilter UI flows', () => {
     }
   });
 
+  test('the header controls stay inside the header on a phone', async ({ browser, baseURL }) => {
+    // `.header-top` was one unbreakable row, so on a narrow phone the controls
+    // overflowed it and `header { overflow: hidden }` clipped the dark-mode
+    // toggle away completely — invisible and unreachable. See #194.
+    const context = await browser.newContext({
+      baseURL,
+      hasTouch: true,
+      isMobile: true,
+      viewport: { width: 320, height: 700 },
+    });
+    const page = await context.newPage();
+    try {
+      await stubTurnstile(page);
+      await gotoApp(page, 'en');
+
+      const header = await page.locator('header').boundingBox();
+      for (const selector of ['.language-select-wrapper', '#infoButton', '#darkModeToggle']) {
+        const box = await page.locator(selector).boundingBox();
+        expect(box, `${selector} has no box`).not.toBeNull();
+        expect(box.x, `${selector} starts left of the header`).toBeGreaterThanOrEqual(header.x);
+        expect(box.x + box.width, `${selector} runs past the header's right edge`)
+          .toBeLessThanOrEqual(header.x + header.width);
+      }
+    } finally {
+      await context.close();
+    }
+  });
+
+  test('the language selector keeps its distance from the site title on a phone', async ({ browser, baseURL }) => {
+    // At 390px the pill sat flush against the title with a 0px gap. See #194.
+    const context = await createPhoneContext(browser, baseURL);
+    const page = await context.newPage();
+    try {
+      await stubTurnstile(page);
+      await gotoApp(page, 'en');
+
+      const title = await page.locator('.title-reset').boundingBox();
+      const language = await page.locator('.language-select-wrapper').boundingBox();
+
+      const sharesARow = language.y < title.y + title.height && title.y < language.y + language.height;
+      if (sharesARow) {
+        expect(language.x - (title.x + title.width)).toBeGreaterThanOrEqual(8);
+      } else {
+        // Wrapped onto its own line, which is the intended fallback on narrow
+        // phones; it must still clear the title vertically.
+        expect(language.y).toBeGreaterThanOrEqual(title.y + title.height);
+      }
+    } finally {
+      await context.close();
+    }
+  });
+
   test('close buttons use the sprite, not a text glyph', async ({ page }) => {
     await openFirstFlagModal(page);
     await expect(page.locator('.modal-content .close-btn use[href="#i-xmark"]').first()).toHaveCount(1);

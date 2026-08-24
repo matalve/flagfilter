@@ -162,19 +162,30 @@ header::before {
     z-index: 1;
 }
 
+/* The title and the controls used to sit in one unbreakable row. On a phone that
+   row does not fit: at 390px the language pill ended up flush against the title
+   (a 0px gap), and below ~380px the controls overflowed the header, where the
+   `overflow: hidden` above clipped the dark-mode toggle away entirely. The gap
+   guarantees they never touch, and wrapping is the safety valve for widths where
+   one row is impossible at a 40px tap target. See #194. */
 .header-top {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    gap: 0.75rem 1rem;
     margin-bottom: 1.5rem;
     position: relative;
     z-index: 2;
 }
 
+/* Keeps the controls against the right edge in both states: `space-between` on a
+   wrapped line has only one item to place, and would put it on the left. */
 .header-buttons {
     display: flex;
     gap: 0.75rem;
     align-items: center;
+    margin-left: auto;
 }
 
 .language-select-wrapper {
@@ -669,6 +680,19 @@ h1 {
         font-size: 2rem;
     }
     
+    /* Every pixel here is one the header-top row does not have to wrap for. */
+    .header-buttons {
+        gap: 0.5rem;
+    }
+    
+    .language-select-wrapper {
+        padding: 0.4rem 0.6rem;
+    }
+    
+    .info-button {
+        padding: 0.5rem;
+    }
+    
     .dark-mode-toggle {
         padding: 0.5rem;
     }
@@ -699,6 +723,14 @@ h1 {
 }
 
 @media (max-width: 480px) {
+    /* At 2rem the row still overflows 390px — the most common phone width — by
+       11px even with the trimmed controls above. 1.75rem clears it and leaves a
+       22px gap. This has to sit after the 768px block that sets 2rem, and it is
+       why the duplicate copy of that rule further down had to go. */
+    h1 {
+        font-size: 1.75rem;
+    }
+
     .color-filters, .continent-filters, .pattern-filters, .symbol-filters, 
     .motive-filters, .people-filters, .ideology-filters, .text-filters {
         grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
@@ -786,10 +818,6 @@ h1 {
 @media (max-width: 768px) {
     .container {
         padding: 1rem;
-    }
-    
-    h1 {
-        font-size: 2rem;
     }
     
     .flag-grid {
