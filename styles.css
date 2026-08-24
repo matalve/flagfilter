@@ -601,10 +601,25 @@ h1 {
     justify-content: center;
     gap: 0.5rem;
     text-align: center;
-    white-space: nowrap;
+    /* The label wraps rather than being sliced. `text-overflow: ellipsis` used to
+       sit here and never fired: the label is an anonymous flex item inside this
+       flex container, so the property does not apply to it. "North America" was
+       cut mid-word at every width — 16px over the chip on a phone, 5px over on a
+       1280px desktop, and 16px over in Spanish ("América del Norte"). See #194. */
+    white-space: normal;
+    overflow-wrap: break-word;
+    line-height: 1.25;
     overflow: hidden;
-    text-overflow: ellipsis;
     height: 100%;
+}
+
+/* Balanced rather than greedy line breaking, so "América del Norte" wraps to two
+   even lines instead of "América / del / Norte". Only reachable because the label
+   is a real element; as a flex item it is blockified, which is what `text-wrap`
+   needs. */
+.filter-label {
+    text-wrap: balance;
+    min-width: 0;
 }
 
 .filter-btn:disabled,
@@ -764,6 +779,15 @@ h1 {
     .motive-filters, .people-filters, .ideology-filters, .text-filters {
         grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
         gap: 0.3rem;
+    }
+
+    /* Continent labels are the longest in the set. At three columns a phone left
+       them about 51px of text width, so "North America" broke over two lines and
+       "América del Norte" over three. Two roomier columns fit either on one line.
+       Declared after the shared rule above: same specificity, so source order is
+       what decides. */
+    .continent-filters {
+        grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
     }
 
     .filter-btn {

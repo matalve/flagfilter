@@ -471,6 +471,32 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('#languageSelect')).toHaveCSS('appearance', 'none');
   });
 
+  test('filter labels are never cut off mid-word', async ({ browser, baseURL }) => {
+    // The label was a bare text node inside a flex container, so it was an
+    // anonymous flex item that no text property could address: `text-overflow:
+    // ellipsis` never fired and "North America" was sliced. Spanish is the worst
+    // case — "América del Norte" is longer still. See #194.
+    const context = await createPhoneContext(browser, baseURL);
+    const page = await context.newPage();
+    try {
+      await stubTurnstile(page);
+      for (const language of ['en', 'es']) {
+        await gotoApp(page, language);
+        await page.locator('.filter-section[data-section-id="more"] .filter-header').click();
+        await expect(page.locator('.continent-filters .filter-btn').first()).toBeVisible();
+
+        const cut = await page.locator('.continent-filters .filter-btn').evaluateAll(
+          (nodes) => nodes
+            .filter((node) => node.scrollWidth > node.clientWidth + 1)
+            .map((node) => node.textContent.trim())
+        );
+        expect(cut, `labels cut off in ${language}`).toEqual([]);
+      }
+    } finally {
+      await context.close();
+    }
+  });
+
   test('close buttons use the sprite, not a text glyph', async ({ page }) => {
     await openFirstFlagModal(page);
     await expect(page.locator('.modal-content .close-btn use[href="#i-xmark"]').first()).toHaveCount(1);
