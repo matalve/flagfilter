@@ -30,9 +30,10 @@ tricolour band tying the wreath on Mexico, the ribbons wound round the pillars o
 Spain. The lettered banderole under Andorra's shield and the scroll under Egypt's
 eagle are not that, whatever they are made of.
 
-**Water inside a coat of arms is not `waves`.** The lake beneath Mexico's cactus is
-not a wave pattern in the flag's design, and neither is anything else painted inside
-an emblem.
+**`waves` is about how water is drawn, not whether water is there.** Bands of wavy
+lines are waves: the blue and white ones at the foot of each of Spain's pillars.
+Lake Texcoco at the base of Mexico's emblem is water too — drawn in the Aztec
+convention as turquoise curls — and is not waves.
 
 ## Candidates for the removal pass
 
@@ -40,5 +41,3 @@ Found while auditing, not acted on. Removals are their own round with their own
 review:
 
 - `mx` carries `flag`, and there is no flag depicted in the design.
-- `es` carries `waves` for the water beneath its pillars, which the rule above says
-  is not waves.
