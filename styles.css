@@ -188,46 +188,37 @@ header::before {
     margin-left: auto;
 }
 
-.language-select-wrapper {
+/* On a site about flags, the language control is a flag: the one you are reading
+   now, and pressing it switches to the other language. The whole button is the
+   target — the previous pill had a chevron sitting outside the <select>, so the
+   part that looked most like the control was the one part that did nothing. The
+   flag is 28x21 but the padding takes the hit area to 44x40. See #194. */
+.language-toggle {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    border-radius: var(--r-pill);
-    padding: 0.45rem 0.7rem;
-    box-shadow: var(--shadow-2);
-}
-
-.language-select-wrapper .icon {
-    font-size: 0.9rem;
-}
-
-.language-select {
-    background: transparent;
-    color: white;
-    border: none;
-    font-weight: 700;
+    justify-content: center;
+    padding: 0.6rem 0.5rem;
+    background: none;
+    border: 0;
+    border-radius: var(--r-1);
     cursor: pointer;
-    outline: none;
-    /* The native arrow is the widest part of this control and every browser
-       draws it differently. The sprite's chevron below replaces it. */
-    appearance: none;
-    -webkit-appearance: none;
-    padding-right: 0;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    transition: background-color 0.2s ease;
 }
 
-/* Not the .icon class: this wants to be smaller than the 1em square that sets,
-   and it is the same chevron the filter headers use. */
-.language-caret {
-    width: 0.6rem;
-    height: 0.6rem;
-    fill: currentColor;
-    flex-shrink: 0;
+.language-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.18);
 }
 
-.language-select option {
-    color: #111827;
+/* The border keeps flags with white edges from bleeding into the teal header,
+   the same reason .filter-btn .flag-icon carries one. */
+.language-flag {
+    display: block;
+    width: 28px;
+    height: 21px;
+    border-radius: 3px;
+    border: 1px solid rgba(255, 255, 255, 0.55);
 }
 
 .info-button {
@@ -277,10 +268,6 @@ header::before {
 
 .dark-mode .info-button:hover {
     background: rgba(255, 255, 255, 0.2);
-}
-
-.dark-mode .language-select-wrapper {
-    background: rgba(255, 255, 255, 0.12);
 }
 
 h1 {
@@ -501,7 +488,7 @@ h1 {
 .dark-mode-toggle:focus-visible,
 .reset-filters-btn:focus-visible,
 .filter-btn:focus-visible,
-.language-select:focus-visible,
+.language-toggle:focus-visible,
 #searchInput:focus-visible {
     outline: 3px solid rgba(30, 128, 128, 0.35);
     outline-offset: 3px;
@@ -717,20 +704,6 @@ h1 {
     /* Every pixel here is one the header-top row does not have to wrap for. */
     .header-buttons {
         gap: 0.5rem;
-    }
-    
-    .language-select-wrapper {
-        padding: 0.3rem 0.5rem;
-        gap: 0.3rem;
-    }
-    
-    .language-select-wrapper .icon {
-        font-size: 0.8rem;
-    }
-    
-    .language-select {
-        font-size: 0.85rem;
-        font-weight: 600;
     }
     
     .info-button {

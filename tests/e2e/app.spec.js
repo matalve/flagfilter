@@ -201,7 +201,7 @@ test.describe('Flagfilter UI flows', () => {
   });
 
   test('switching to Spanish updates key UI labels', async ({ page }) => {
-    await page.locator('#languageSelect').selectOption('es');
+    await page.locator('#languageToggle').click();
 
     await expect(page.locator('#resetFiltersButton')).toContainText('Reiniciar');
     await expect(page.locator('.filter-section').first()).toContainText('Filtrar por color');
@@ -216,7 +216,7 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('.flag-card')).toHaveCount(1);
     await expect(flagImage).toHaveAttribute('alt', 'Flag of Sweden');
 
-    await page.locator('#languageSelect').selectOption('es');
+    await page.locator('#languageToggle').click();
     await expect(flagImage).toHaveAttribute('alt', 'Bandera de Suecia');
   });
 
@@ -298,7 +298,7 @@ test.describe('Flagfilter UI flows', () => {
     // find nothing after switching to Spanish. See #144.
     await page.locator('#searchInput').fill('espana');
     await expect(page.locator('.flag-card')).toHaveCount(0);
-    await page.locator('#languageSelect').selectOption('es');
+    await page.locator('#languageToggle').click();
     await expect(page.locator('.flag-card')).toHaveCount(1);
     await expect(page.locator('.flag-card h3')).toHaveText(['España']);
   });
@@ -396,7 +396,7 @@ test.describe('Flagfilter UI flows', () => {
       await gotoApp(page, 'en');
 
       const header = await page.locator('header').boundingBox();
-      for (const selector of ['.language-select-wrapper', '#infoButton', '#darkModeToggle']) {
+      for (const selector of ['#languageToggle', '#infoButton', '#darkModeToggle']) {
         const box = await page.locator(selector).boundingBox();
         expect(box, `${selector} has no box`).not.toBeNull();
         expect(box.x, `${selector} starts left of the header`).toBeGreaterThanOrEqual(header.x);
@@ -417,7 +417,7 @@ test.describe('Flagfilter UI flows', () => {
       await gotoApp(page, 'en');
 
       const title = await page.locator('.title-reset').boundingBox();
-      const language = await page.locator('.language-select-wrapper').boundingBox();
+      const language = await page.locator('#languageToggle').boundingBox();
 
       const sharesARow = language.y < title.y + title.height && title.y < language.y + language.height;
       if (sharesARow) {
@@ -464,11 +464,22 @@ test.describe('Flagfilter UI flows', () => {
     }
   });
 
-  test('the language selector draws its own chevron instead of the native arrow', async ({ page }) => {
-    // The native arrow is the widest part of the control and differs per browser. See #194.
-    await expect(page.locator('.language-select-wrapper .language-caret use[href="#i-chevron-down"]'))
-      .toHaveCount(1);
-    await expect(page.locator('#languageSelect')).toHaveCSS('appearance', 'none');
+  test('the language control is a flag, and all of it switches the language', async ({ page }) => {
+    // The pill it replaced had a chevron sitting outside the <select>, so the part
+    // that looked most like the control was the one part that did nothing. See #194.
+    const toggle = page.locator('#languageToggle');
+    await expect(toggle.locator('img.language-flag')).toHaveAttribute('src', /\/gb\.webp$/);
+    await expect(toggle).toHaveAttribute('aria-label', 'Switch to Spanish');
+
+    const box = await toggle.boundingBox();
+    expect(box.width).toBeGreaterThanOrEqual(40);
+    expect(box.height).toBeGreaterThanOrEqual(40);
+
+    // A click anywhere in the button, including the padding, switches and swaps the flag.
+    await toggle.click({ position: { x: 2, y: 2 } });
+    await expect(page.locator('.learn-more-btn').first()).toHaveText('Saber más');
+    await expect(toggle.locator('img.language-flag')).toHaveAttribute('src', /\/es\.webp$/);
+    await expect(toggle).toHaveAttribute('aria-label', 'Cambiar a inglés');
   });
 
   test('filter labels are never cut off mid-word', async ({ browser, baseURL }) => {
@@ -599,7 +610,7 @@ test.describe('Flagfilter UI flows', () => {
     await expect(panArab).toHaveAttribute('src', 'https://flagcdn.com/20x15/jo.webp');
     await expect(panArab).toHaveAttribute('alt', '');
 
-    await page.locator('#languageSelect').selectOption('es');
+    await page.locator('#languageToggle').click();
     await expect(page.locator('.filter-btn[data-family="pan-arab"]')).toContainText('Panárabe');
     await expect(panArab).toHaveAttribute('src', 'https://flagcdn.com/20x15/jo.webp');
   });
@@ -897,7 +908,7 @@ test.describe('Flagfilter UI flows', () => {
   });
 
   test('filter and reset icons stay inline SVG after a language switch', async ({ page }) => {
-    await page.locator('#languageSelect').selectOption('es');
+    await page.locator('#languageToggle').click();
     // setButtonLabel re-attaches the SVG icon
     await expect(page.locator('.filter-btn[data-continent="africa"] use')).toHaveAttribute('href', '#i-hippo');
     // applyStaticTranslations rebuilds the reset button's inner HTML with the SVG icon

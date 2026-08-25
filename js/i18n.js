@@ -83,6 +83,23 @@ function applyStaticTranslations() {
     infoButton.setAttribute('aria-label', t('info_button_aria'));
     darkModeToggle.setAttribute('aria-label', t('dark_mode_aria'));
 
+    // The header flag shows the language being read; pressing it switches to the
+    // other one. Both the picture and what the button promises change together,
+    // so they live in one place rather than in the click handler. See #194.
+    const languageToggle = document.getElementById('languageToggle');
+    if (languageToggle) {
+        const target = state.currentLanguage === 'es' ? 'en' : 'es';
+        const flagCode = state.currentLanguage === 'es' ? 'es' : 'gb';
+        languageToggle.dataset.targetLanguage = target;
+        languageToggle.setAttribute('aria-label', t(`switch_to_${target}_aria`));
+
+        const flag = languageToggle.querySelector('.language-flag');
+        if (flag) {
+            flag.src = `https://flagcdn.com/28x21/${flagCode}.webp`;
+            flag.srcset = `https://flagcdn.com/56x42/${flagCode}.webp 2x`;
+        }
+    }
+
     const filterHeaders = document.querySelectorAll('.filter-section .filter-header .filter-title');
     if (filterHeaders[0]) filterHeaders[0].textContent = t('filter_by_color');
     if (filterHeaders[1]) filterHeaders[1].textContent = t('more_filters');
@@ -164,8 +181,4 @@ export async function switchLanguage(language) {
         applyFilters();
     }
 
-    const languageSelect = document.getElementById('languageSelect');
-    if (languageSelect) {
-        languageSelect.value = language;
-    }
 }
