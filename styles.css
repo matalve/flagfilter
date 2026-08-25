@@ -146,7 +146,10 @@ header {
     margin-bottom: 2rem;
     box-shadow: 0 10px 25px -5px rgba(30, 128, 128, 0.3);
     position: relative;
-    overflow: hidden;
+    /* Not `hidden`: the language menu drops out of the header and was being
+       clipped away. The hoist stripe below rounds its own left corners instead
+       of relying on this to trim them. See #194. */
+    overflow: visible;
 }
 
 /* The stripe sits where a flag's hoist does, in the mark's own colour. It
@@ -159,50 +162,139 @@ header::before {
     bottom: 0;
     width: 10px;
     background: var(--header-hoist);
+    /* Follows the header's own corners now that the header no longer clips. */
+    border-radius: var(--r-2) 0 0 var(--r-2);
     z-index: 1;
 }
 
+/* The title and the controls used to sit in one unbreakable row. On a phone that
+   row does not fit: at 390px the language pill ended up flush against the title
+   (a 0px gap), and below ~380px the controls overflowed the header, where the
+   `overflow: hidden` above clipped the dark-mode toggle away entirely. The gap
+   guarantees they never touch, and wrapping is the safety valve for widths where
+   one row is impossible at a 40px tap target. See #194. */
 .header-top {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    gap: 0.75rem 1rem;
     margin-bottom: 1.5rem;
     position: relative;
-    z-index: 2;
+    /* Above .search-container, which is also positioned and comes later in the
+       DOM. The language menu drops over that row, and at an equal z-index the
+       search field won and painted through it. See #194. */
+    z-index: 3;
 }
 
+/* Keeps the controls against the right edge in both states: `space-between` on a
+   wrapped line has only one item to place, and would put it on the left. */
 .header-buttons {
     display: flex;
     gap: 0.75rem;
     align-items: center;
+    margin-left: auto;
 }
 
-.language-select-wrapper {
+/* On a site about flags, the language is chosen by picking a flag. The button
+   shows the language being read; the menu under it holds the others. */
+.language-picker {
+    position: relative;
+}
+
+.language-button {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    background: rgba(255, 255, 255, 0.2);
+    gap: 0.3rem;
+    padding: 0.5rem 0.45rem;
+    /* Matches the round buttons beside it, so the row lines up and the press
+       target is the 40px the other two already are. */
+    min-height: 40px;
+    border: 0;
+    background: none;
+    border-radius: var(--r-1);
     color: white;
-    border-radius: var(--r-pill);
-    padding: 0.45rem 0.7rem;
-    box-shadow: var(--shadow-2);
-}
-
-.language-select-wrapper .icon {
-    font-size: 0.9rem;
-}
-
-.language-select {
-    background: transparent;
-    color: white;
-    border: none;
-    font-weight: 700;
     cursor: pointer;
-    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    transition: background-color 0.2s ease;
 }
 
-.language-select option {
-    color: #111827;
+.language-button:hover {
+    background-color: rgba(255, 255, 255, 0.18);
+}
+
+/* Anchored to the picker, drawn above the search row below it. The header's
+   own `overflow` has to stay visible for this to be seen at all — see the
+   note on `header`. */
+.language-menu {
+    position: absolute;
+    top: calc(100% + 0.35rem);
+    right: 0;
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.35rem;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--r-1);
+    box-shadow: var(--shadow-4);
+}
+
+.language-menu[hidden] {
+    display: none;
+}
+
+.language-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* 40px tall whatever the flag's proportion, so every option is the same
+       press target. */
+    min-height: 40px;
+    padding: 0.35rem 0.6rem;
+    border: 0;
+    background: none;
+    border-radius: var(--r-1);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    transition: background-color 0.2s ease;
+}
+
+.language-option:hover {
+    background-color: var(--hover-bg);
+}
+
+/* Height-addressed rather than boxed: flagcdn's h20 keeps each flag's own
+   proportion, so the Union Jack stays 2:1 instead of being squashed into a
+   4:3 slot. Widths therefore differ between languages, which is the point.
+   The border keeps flags with white edges off the teal, the same reason
+   .filter-btn .flag-icon carries one. */
+.language-flag {
+    display: block;
+    height: 20px;
+    width: auto;
+    border-radius: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+.language-caret {
+    width: 0.6rem;
+    height: 0.6rem;
+    fill: currentColor;
+    flex-shrink: 0;
+}
+
+.language-button:focus-visible {
+    outline: 3px solid rgba(255, 255, 255, 0.75);
+    outline-offset: 2px;
+}
+
+.language-option:focus-visible {
+    outline: 3px solid rgba(30, 128, 128, 0.35);
+    outline-offset: 2px;
 }
 
 .info-button {
@@ -252,10 +344,6 @@ header::before {
 
 .dark-mode .info-button:hover {
     background: rgba(255, 255, 255, 0.2);
-}
-
-.dark-mode .language-select-wrapper {
-    background: rgba(255, 255, 255, 0.12);
 }
 
 h1 {
@@ -476,7 +564,6 @@ h1 {
 .dark-mode-toggle:focus-visible,
 .reset-filters-btn:focus-visible,
 .filter-btn:focus-visible,
-.language-select:focus-visible,
 #searchInput:focus-visible {
     outline: 3px solid rgba(30, 128, 128, 0.35);
     outline-offset: 3px;
@@ -513,10 +600,15 @@ h1 {
 }
 
 /* Filter containers */
+/* 120px, not 140px. `auto-fill` fits whole tracks and `1fr` makes the survivors
+   absorb the whole row, so just below every width where one more column would fit,
+   the chips balloon. At 140px that happened three times: 481-493px (2 chips of
+   212px), 585-641px (3 of 188.7px) and 762-789px. A smaller minimum changes column
+   count more often, which caps how far any single chip can stretch. See #194. */
 .color-filters, .continent-filters, .pattern-filters, .symbol-filters, 
 .motive-filters, .people-filters, .ideology-filters, .text-filters {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     gap: 0.5rem;
     width: 100%;
 }
@@ -571,10 +663,25 @@ h1 {
     justify-content: center;
     gap: 0.5rem;
     text-align: center;
-    white-space: nowrap;
+    /* The label wraps rather than being sliced. `text-overflow: ellipsis` used to
+       sit here and never fired: the label is an anonymous flex item inside this
+       flex container, so the property does not apply to it. "North America" was
+       cut mid-word at every width — 16px over the chip on a phone, 5px over on a
+       1280px desktop, and 16px over in Spanish ("América del Norte"). See #194. */
+    white-space: normal;
+    overflow-wrap: break-word;
+    line-height: 1.25;
     overflow: hidden;
-    text-overflow: ellipsis;
     height: 100%;
+}
+
+/* Balanced rather than greedy line breaking, so "América del Norte" wraps to two
+   even lines instead of "América / del / Norte". Only reachable because the label
+   is a real element; as a flex item it is blockified, which is what `text-wrap`
+   needs. */
+.filter-label {
+    text-wrap: balance;
+    min-width: 0;
 }
 
 .filter-btn:disabled,
@@ -669,6 +776,15 @@ h1 {
         font-size: 2rem;
     }
     
+    /* Every pixel here is one the header-top row does not have to wrap for. */
+    .header-buttons {
+        gap: 0.5rem;
+    }
+    
+    .info-button {
+        padding: 0.5rem;
+    }
+    
     .dark-mode-toggle {
         padding: 0.5rem;
     }
@@ -699,10 +815,27 @@ h1 {
 }
 
 @media (max-width: 480px) {
+    /* At 2rem the row still overflows 390px — the most common phone width — by
+       11px even with the trimmed controls above. 1.75rem clears it and leaves a
+       22px gap. This has to sit after the 768px block that sets 2rem, and it is
+       why the duplicate copy of that rule further down had to go. */
+    h1 {
+        font-size: 1.75rem;
+    }
+
     .color-filters, .continent-filters, .pattern-filters, .symbol-filters, 
     .motive-filters, .people-filters, .ideology-filters, .text-filters {
         grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
         gap: 0.3rem;
+    }
+
+    /* Continent labels are the longest in the set. At three columns a phone left
+       them about 51px of text width, so "North America" broke over two lines and
+       "América del Norte" over three. Two roomier columns fit either on one line.
+       Declared after the shared rule above: same specificity, so source order is
+       what decides. */
+    .continent-filters {
+        grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
     }
 
     .filter-btn {
@@ -786,10 +919,6 @@ h1 {
 @media (max-width: 768px) {
     .container {
         padding: 1rem;
-    }
-    
-    h1 {
-        font-size: 2rem;
     }
     
     .flag-grid {
@@ -1177,6 +1306,42 @@ h1 {
 }
 
 @media (max-width: 600px) {
+    /* A phone used to spend 58 of its 390 pixels on inset before any content was
+       drawn: 16px of container padding a side, 12px of card padding a side, plus
+       the cards' 1px borders. Here the page runs to the screen edge instead. The
+       cards give up their side borders and corner radius, which is the price of
+       the width; they keep their top and bottom borders so the sections still
+       read as separate cards. Takes the filter grid from 332px to 358px. See #194.
+       The two-class selector is deliberate: `.filter-section .filter-content`
+       further up wins over a bare `.filter-content` at any width. */
+    .container {
+        padding: 1rem 0;
+    }
+    
+    header {
+        border-radius: 0;
+        padding: 1.25rem 1rem;
+    }
+    
+    /* Square header, square stripe. */
+    header::before {
+        border-radius: 0;
+    }
+    
+    .filter-section {
+        border-radius: 0;
+        border-left: 0;
+        border-right: 0;
+    }
+    
+    .filter-header {
+        padding: 1rem;
+    }
+    
+    .filter-section .filter-content {
+        padding: 1rem;
+    }
+    
     .reset-filters-btn {
         padding: 0 0.7rem;
     }

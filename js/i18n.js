@@ -17,7 +17,14 @@ import { applyFilters } from './filters.js';
 // Looked up inside the functions that use them rather than at import time; see
 // the note in filters.js and #143.
 
-const SUPPORTED_LANGUAGES = ['en', 'es'];
+export const SUPPORTED_LANGUAGES = ['en', 'es'];
+// Which flag stands for which language in the header picker. A flag is a country
+// and a language is not, so these are choices rather than facts: English is shown
+// as the Union Jack, Spanish as Spain.
+export const LANGUAGE_FLAGS = { en: 'gb', es: 'es' };
+// Each language named in itself, which is what a reader looking for their own
+// language recognises. These are not translated.
+export const LANGUAGE_NAMES = { en: 'English', es: 'Español' };
 const DEFAULT_LANGUAGE = 'en';
 
 function getLanguageFromUrl() {
@@ -164,8 +171,4 @@ export async function switchLanguage(language) {
         applyFilters();
     }
 
-    const languageSelect = document.getElementById('languageSelect');
-    if (languageSelect) {
-        languageSelect.value = language;
-    }
 }

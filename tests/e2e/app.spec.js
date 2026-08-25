@@ -72,6 +72,13 @@ function createPhoneContext(browser, baseURL) {
   });
 }
 
+// The language control is a flag menu, not a <select>: open it, then pick the
+// only other language's flag. See #194.
+async function switchToSpanish(page) {
+  await page.locator('#languageButton').click();
+  await page.locator('.language-option[data-language="es"]').click();
+}
+
 async function waitForNextTask(page) {
   await page.evaluate(() => new Promise((resolve) => {
     window.setTimeout(resolve, 0);
@@ -201,7 +208,7 @@ test.describe('Flagfilter UI flows', () => {
   });
 
   test('switching to Spanish updates key UI labels', async ({ page }) => {
-    await page.locator('#languageSelect').selectOption('es');
+    await switchToSpanish(page);
 
     await expect(page.locator('#resetFiltersButton')).toContainText('Reiniciar');
     await expect(page.locator('.filter-section').first()).toContainText('Filtrar por color');
@@ -216,7 +223,7 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('.flag-card')).toHaveCount(1);
     await expect(flagImage).toHaveAttribute('alt', 'Flag of Sweden');
 
-    await page.locator('#languageSelect').selectOption('es');
+    await switchToSpanish(page);
     await expect(flagImage).toHaveAttribute('alt', 'Bandera de Suecia');
   });
 
@@ -298,7 +305,7 @@ test.describe('Flagfilter UI flows', () => {
     // find nothing after switching to Spanish. See #144.
     await page.locator('#searchInput').fill('espana');
     await expect(page.locator('.flag-card')).toHaveCount(0);
-    await page.locator('#languageSelect').selectOption('es');
+    await switchToSpanish(page);
     await expect(page.locator('.flag-card')).toHaveCount(1);
     await expect(page.locator('.flag-card h3')).toHaveText(['España']);
   });
@@ -375,6 +382,195 @@ test.describe('Flagfilter UI flows', () => {
 
       await closeBtn.tap();
       await expect(page.locator('#flagModalTitle')).toHaveCount(0);
+    } finally {
+      await context.close();
+    }
+  });
+
+  test('the header controls stay inside the header on a phone', async ({ browser, baseURL }) => {
+    // `.header-top` was one unbreakable row, so on a narrow phone the controls
+    // overflowed it and `header { overflow: hidden }` clipped the dark-mode
+    // toggle away completely — invisible and unreachable. See #194.
+    const context = await browser.newContext({
+      baseURL,
+      hasTouch: true,
+      isMobile: true,
+      viewport: { width: 320, height: 700 },
+    });
+    const page = await context.newPage();
+    try {
+      await stubTurnstile(page);
+      await gotoApp(page, 'en');
+
+      const header = await page.locator('header').boundingBox();
+      for (const selector of ['#languageButton', '#infoButton', '#darkModeToggle']) {
+        const box = await page.locator(selector).boundingBox();
+        expect(box, `${selector} has no box`).not.toBeNull();
+        expect(box.x, `${selector} starts left of the header`).toBeGreaterThanOrEqual(header.x);
+        expect(box.x + box.width, `${selector} runs past the header's right edge`)
+          .toBeLessThanOrEqual(header.x + header.width);
+      }
+    } finally {
+      await context.close();
+    }
+  });
+
+  test('the language selector keeps its distance from the site title on a phone', async ({ browser, baseURL }) => {
+    // At 390px the pill sat flush against the title with a 0px gap. See #194.
+    const context = await createPhoneContext(browser, baseURL);
+    const page = await context.newPage();
+    try {
+      await stubTurnstile(page);
+      await gotoApp(page, 'en');
+
+      const title = await page.locator('.title-reset').boundingBox();
+      const language = await page.locator('#languageButton').boundingBox();
+
+      const sharesARow = language.y < title.y + title.height && title.y < language.y + language.height;
+      if (sharesARow) {
+        expect(language.x - (title.x + title.width)).toBeGreaterThanOrEqual(8);
+      } else {
+        // Wrapped onto its own line, which is the intended fallback on narrow
+        // phones; it must still clear the title vertically.
+        expect(language.y).toBeGreaterThanOrEqual(title.y + title.height);
+      }
+    } finally {
+      await context.close();
+    }
+  });
+
+  test('filter chips never stretch into a full-width pancake', async ({ browser, baseURL }) => {
+    // `auto-fill` fits whole tracks and `1fr` makes the survivors absorb the row,
+    // so a large minimum ballooned the chips just below every width where one more
+    // column would fit: 212px at 490px, 188.7px at 640px. See #194.
+    for (const width of [490, 640]) {
+      const context = await browser.newContext({ baseURL, viewport: { width, height: 700 } });
+      const page = await context.newPage();
+      try {
+        await stubTurnstile(page);
+        await gotoApp(page, 'en');
+        const chip = await page.locator('.color-filters .filter-btn').first().boundingBox();
+        expect(chip.width, `chip is a pancake at ${width}px`).toBeLessThan(170);
+      } finally {
+        await context.close();
+      }
+    }
+  });
+
+  test('the page runs to the screen edge on a phone', async ({ browser, baseURL }) => {
+    // A 390px phone used to spend 58px on inset before any content was drawn. See #194.
+    const context = await createPhoneContext(browser, baseURL);
+    const page = await context.newPage();
+    try {
+      await stubTurnstile(page);
+      await gotoApp(page, 'en');
+      const grid = await page.locator('.color-filters').boundingBox();
+      expect(grid.width).toBeGreaterThanOrEqual(350);
+    } finally {
+      await context.close();
+    }
+  });
+
+  test('the language menu offers the languages you are not reading', async ({ page }) => {
+    const button = page.locator('#languageButton');
+    const menu = page.locator('#languageMenu');
+
+    // Closed, showing the language being read.
+    await expect(button.locator('img.language-flag')).toHaveAttribute('src', /\/h20\/gb\.webp$/);
+    await expect(button).toHaveAttribute('aria-expanded', 'false');
+    await expect(menu).toBeHidden();
+
+    await button.click();
+    await expect(button).toHaveAttribute('aria-expanded', 'true');
+    await expect(menu).toBeVisible();
+
+    // English is on the button, so the menu holds Spanish and nothing else.
+    await expect(menu.locator('.language-option')).toHaveCount(1);
+    const spanish = menu.locator('.language-option[data-language="es"]');
+    await expect(spanish).toHaveAttribute('aria-label', 'Español');
+    await expect(spanish.locator('img.language-flag')).toHaveAttribute('src', /\/h20\/es\.webp$/);
+
+    await spanish.click();
+    await expect(page.locator('.learn-more-btn').first()).toHaveText('Saber más');
+    await expect(menu).toBeHidden();
+
+    // Now the pair is the other way round.
+    await expect(button.locator('img.language-flag')).toHaveAttribute('src', /\/h20\/es\.webp$/);
+    await button.click();
+    await expect(menu.locator('.language-option')).toHaveCount(1);
+    await expect(menu.locator('.language-option[data-language="en"]')).toHaveAttribute('aria-label', 'English');
+  });
+
+  test('the language flags keep their own proportion', async ({ page }) => {
+    // Asking flagcdn for a 28x21 box squashed the 2:1 Union Jack to three
+    // quarters of its width, which is what bent its diagonals. See #194.
+    const flag = page.locator('#languageButton img.language-flag');
+    const box = await flag.boundingBox();
+    // A 1px border each side puts 2:1 a shade under; a 4:3 slot measures 1.33.
+    expect(box.width / box.height).toBeGreaterThan(1.8);
+    expect(box.width / box.height).toBeLessThan(2.1);
+  });
+
+  test('the language menu is reachable from the keyboard and escapes on Escape', async ({ page }) => {
+    const button = page.locator('#languageButton');
+    const menu = page.locator('#languageMenu');
+
+    await button.focus();
+    await page.keyboard.press('ArrowDown');
+    await expect(menu).toBeVisible();
+    await expect(menu.locator('.language-option[data-language="es"]')).toBeFocused();
+
+    await page.keyboard.press('Escape');
+    await expect(menu).toBeHidden();
+    await expect(button).toBeFocused();
+  });
+
+  test('the open language menu is on top of the search row it covers', async ({ page }) => {
+    // .header-top and .search-container both sat at z-index 2, and the search row
+    // comes later in the DOM, so it painted straight through the menu. See #194.
+    await page.locator('#languageButton').click();
+    const option = page.locator('.language-option[data-language="es"]');
+    await expect(option).toBeVisible();
+
+    const box = await option.boundingBox();
+    const onTop = await page.evaluate(([x, y]) => {
+      const el = document.elementFromPoint(x, y);
+      return Boolean(el && el.closest('#languageMenu'));
+    }, [box.x + box.width / 2, box.y + box.height / 2]);
+    expect(onTop, 'something else is painted over the language menu').toBe(true);
+  });
+
+  test('the header does not clip the language menu', async ({ page }) => {
+    // The menu drops out of the button, and header used to be `overflow: hidden`
+    // to trim the hoist stripe. With two languages the menu is short enough to
+    // land inside the header box anyway; a third would put it past the edge and
+    // the clip would eat it. See #194.
+    await page.locator('#languageButton').click();
+    await expect(page.locator('#languageMenu')).toBeVisible();
+    await expect(page.locator('header')).not.toHaveCSS('overflow', 'hidden');
+  });
+
+  test('filter labels are never cut off mid-word', async ({ browser, baseURL }) => {
+    // The label was a bare text node inside a flex container, so it was an
+    // anonymous flex item that no text property could address: `text-overflow:
+    // ellipsis` never fired and "North America" was sliced. Spanish is the worst
+    // case — "América del Norte" is longer still. See #194.
+    const context = await createPhoneContext(browser, baseURL);
+    const page = await context.newPage();
+    try {
+      await stubTurnstile(page);
+      for (const language of ['en', 'es']) {
+        await gotoApp(page, language);
+        await page.locator('.filter-section[data-section-id="more"] .filter-header').click();
+        await expect(page.locator('.continent-filters .filter-btn').first()).toBeVisible();
+
+        const cut = await page.locator('.continent-filters .filter-btn').evaluateAll(
+          (nodes) => nodes
+            .filter((node) => node.scrollWidth > node.clientWidth + 1)
+            .map((node) => node.textContent.trim())
+        );
+        expect(cut, `labels cut off in ${language}`).toEqual([]);
+      }
     } finally {
       await context.close();
     }
@@ -482,7 +678,7 @@ test.describe('Flagfilter UI flows', () => {
     await expect(panArab).toHaveAttribute('src', 'https://flagcdn.com/20x15/jo.webp');
     await expect(panArab).toHaveAttribute('alt', '');
 
-    await page.locator('#languageSelect').selectOption('es');
+    await switchToSpanish(page);
     await expect(page.locator('.filter-btn[data-family="pan-arab"]')).toContainText('Panárabe');
     await expect(panArab).toHaveAttribute('src', 'https://flagcdn.com/20x15/jo.webp');
   });
@@ -780,7 +976,7 @@ test.describe('Flagfilter UI flows', () => {
   });
 
   test('filter and reset icons stay inline SVG after a language switch', async ({ page }) => {
-    await page.locator('#languageSelect').selectOption('es');
+    await switchToSpanish(page);
     // setButtonLabel re-attaches the SVG icon
     await expect(page.locator('.filter-btn[data-continent="africa"] use')).toHaveAttribute('href', '#i-hippo');
     // applyStaticTranslations rebuilds the reset button's inner HTML with the SVG icon

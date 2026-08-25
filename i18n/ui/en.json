@@ -121,5 +121,6 @@
   "view_github_issue": "View GitHub issue",
   "failed_to_submit_report": "Failed to submit report",
   "report_error": "Sorry, there was an error submitting your report. Please try again later.",
-  "error_loading_flags": "Error loading flags. Please try again later."
+  "error_loading_flags": "Error loading flags. Please try again later.",
+  "language_picker_aria": "Select language"
 }

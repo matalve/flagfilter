@@ -55,7 +55,17 @@ export function setButtonLabel(button, label) {
     button.innerHTML = '';
     button.appendChild(icon);
     icon.setAttribute('aria-hidden', 'true');
-    button.append(` ${label}`);
+
+    // The label goes in an element of its own rather than straight onto the
+    // button. A bare text node inside a flex container is an anonymous flex item,
+    // which no text property can address — `text-overflow` and `text-wrap` both
+    // silently did nothing, and long labels like "North America" were sliced off
+    // mid-word. See #194. The button's own `gap` provides the spacing that the
+    // leading space used to.
+    const text = document.createElement('span');
+    text.className = 'filter-label';
+    text.textContent = label;
+    button.appendChild(text);
 }
 
 export function updateToggleButtonState(button) {

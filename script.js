@@ -4,6 +4,7 @@
 import { state } from './js/state.js';
 import { isEditableTarget, updateToggleButtonState } from './js/util.js';
 import { getInitialLanguage, switchLanguage } from './js/i18n.js';
+import { initLanguagePicker } from './js/language-picker.js';
 import { fetchFlags } from './js/flags.js';
 import {
     applyFilters,
@@ -22,7 +23,6 @@ import { initDarkMode } from './js/theme.js';
 const searchInput = document.getElementById('searchInput');
 const flagGrid = document.getElementById('flagGrid');
 const resetFiltersButton = document.getElementById('resetFiltersButton');
-const languageSelect = document.getElementById('languageSelect');
 
 // One delegated listener for every "Learn more" button, registered once on the
 // grid instead of one listener per button on every render.
@@ -79,6 +79,8 @@ async function initApp() {
     initDarkMode();
     const initialLanguage = getInitialLanguage();
     await switchLanguage(initialLanguage);
+    // Renders from state.currentLanguage, so it goes after the initial switch.
+    initLanguagePicker();
     const loadedFlags = await fetchFlags();
     initializeFilterSections();
     // Only render once the data loaded; on fetch failure fetchFlags returns
@@ -86,12 +88,6 @@ async function initApp() {
     if (loadedFlags) {
         applyInitialQueryFromUrl();
     }
-}
-
-if (languageSelect) {
-    languageSelect.addEventListener('change', (event) => {
-        switchLanguage(event.target.value);
-    });
 }
 
 document.addEventListener('keydown', (event) => {
