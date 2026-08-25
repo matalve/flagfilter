@@ -1,6 +1,6 @@
 [
   {
-    "tags": "andorra blue yellow red animal text vertical christianity",
+    "tags": "andorra blue yellow red animal text vertical christianity shield motto",
     "shortname": "ad",
     "continent": "europe",
     "name": "Andorra",
@@ -175,7 +175,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Azerbaijan"
   },
   {
-    "tags": "bosnia and herzegovina blue yellow triangle star",
+    "tags": "bosnia and herzegovina blue yellow triangle star white",
     "shortname": "ba",
     "continent": "europe",
     "name": "Bosnia and Herzegovina",
@@ -702,7 +702,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Estonia"
   },
   {
-    "tags": "egypt red white black yellow horizontal bird animal text name pan-arab",
+    "tags": "egypt red white black yellow horizontal bird animal text name pan-arab shield",
     "shortname": "eg",
     "continent": "africa",
     "name": "Egypt",
@@ -1668,7 +1668,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Macau"
   },
   {
-    "tags": "northern mariana islands blue white grey circle star",
+    "tags": "northern mariana islands blue white grey circle star vegetation",
     "shortname": "mp",
     "continent": "oceania",
     "name": "Northern Mariana Islands",
@@ -1844,7 +1844,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Nigeria"
   },
   {
-    "tags": "nicaragua blue white horizontal mountain waves hat text name",
+    "tags": "nicaragua blue white horizontal mountain waves hat text name triangle",
     "shortname": "ni",
     "continent": "northAmerica",
     "name": "Nicaragua",
@@ -2020,7 +2020,7 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Saint_Pierre_and_Miquelon"
   },
   {
-    "tags": "pitcairn islands blue white red yellow green cross vegetation ribbon british",
+    "tags": "pitcairn islands blue white red yellow green cross vegetation ribbon british shield",
     "shortname": "pn",
     "continent": "oceania",
     "name": "Pitcairn Islands",
