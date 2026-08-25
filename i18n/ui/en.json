@@ -122,6 +122,5 @@
   "failed_to_submit_report": "Failed to submit report",
   "report_error": "Sorry, there was an error submitting your report. Please try again later.",
   "error_loading_flags": "Error loading flags. Please try again later.",
-  "switch_to_en_aria": "Switch to English",
-  "switch_to_es_aria": "Switch to Spanish"
+  "language_picker_aria": "Select language"
 }

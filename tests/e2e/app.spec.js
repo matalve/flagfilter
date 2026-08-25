@@ -201,7 +201,7 @@ test.describe('Flagfilter UI flows', () => {
   });
 
   test('switching to Spanish updates key UI labels', async ({ page }) => {
-    await page.locator('#languageToggle').click();
+    await page.locator('#languageSelect').selectOption('es');
 
     await expect(page.locator('#resetFiltersButton')).toContainText('Reiniciar');
     await expect(page.locator('.filter-section').first()).toContainText('Filtrar por color');
@@ -216,7 +216,7 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('.flag-card')).toHaveCount(1);
     await expect(flagImage).toHaveAttribute('alt', 'Flag of Sweden');
 
-    await page.locator('#languageToggle').click();
+    await page.locator('#languageSelect').selectOption('es');
     await expect(flagImage).toHaveAttribute('alt', 'Bandera de Suecia');
   });
 
@@ -298,7 +298,7 @@ test.describe('Flagfilter UI flows', () => {
     // find nothing after switching to Spanish. See #144.
     await page.locator('#searchInput').fill('espana');
     await expect(page.locator('.flag-card')).toHaveCount(0);
-    await page.locator('#languageToggle').click();
+    await page.locator('#languageSelect').selectOption('es');
     await expect(page.locator('.flag-card')).toHaveCount(1);
     await expect(page.locator('.flag-card h3')).toHaveText(['España']);
   });
@@ -396,7 +396,7 @@ test.describe('Flagfilter UI flows', () => {
       await gotoApp(page, 'en');
 
       const header = await page.locator('header').boundingBox();
-      for (const selector of ['#languageToggle', '#infoButton', '#darkModeToggle']) {
+      for (const selector of ['.language-picker', '#infoButton', '#darkModeToggle']) {
         const box = await page.locator(selector).boundingBox();
         expect(box, `${selector} has no box`).not.toBeNull();
         expect(box.x, `${selector} starts left of the header`).toBeGreaterThanOrEqual(header.x);
@@ -417,7 +417,7 @@ test.describe('Flagfilter UI flows', () => {
       await gotoApp(page, 'en');
 
       const title = await page.locator('.title-reset').boundingBox();
-      const language = await page.locator('#languageToggle').boundingBox();
+      const language = await page.locator('.language-picker').boundingBox();
 
       const sharesARow = language.y < title.y + title.height && title.y < language.y + language.height;
       if (sharesARow) {
@@ -464,22 +464,33 @@ test.describe('Flagfilter UI flows', () => {
     }
   });
 
-  test('the language control is a flag, and all of it switches the language', async ({ page }) => {
-    // The pill it replaced had a chevron sitting outside the <select>, so the part
-    // that looked most like the control was the one part that did nothing. See #194.
-    const toggle = page.locator('#languageToggle');
-    await expect(toggle.locator('img.language-flag')).toHaveAttribute('src', /\/gb\.webp$/);
-    await expect(toggle).toHaveAttribute('aria-label', 'Switch to Spanish');
+  test('the whole language picker opens the list, and the flag follows the language', async ({ page }) => {
+    // The pill this replaced drew its chevron outside the <select>, so the part that
+    // looked most like the control was the one part that did nothing. The select now
+    // covers the picker exactly. See #194.
+    const picker = page.locator('.language-picker');
+    const select = page.locator('#languageSelect');
 
-    const box = await toggle.boundingBox();
-    expect(box.width).toBeGreaterThanOrEqual(40);
-    expect(box.height).toBeGreaterThanOrEqual(40);
+    const pickerBox = await picker.boundingBox();
+    const selectBox = await select.boundingBox();
+    expect(Math.abs(selectBox.x - pickerBox.x)).toBeLessThanOrEqual(1);
+    expect(Math.abs(selectBox.y - pickerBox.y)).toBeLessThanOrEqual(1);
+    expect(Math.abs(selectBox.width - pickerBox.width)).toBeLessThanOrEqual(1);
+    expect(Math.abs(selectBox.height - pickerBox.height)).toBeLessThanOrEqual(1);
 
-    // A click anywhere in the button, including the padding, switches and swaps the flag.
-    await toggle.click({ position: { x: 2, y: 2 } });
+    // Height-addressed flags keep their own proportion: the Union Jack is 2:1.
+    const flag = picker.locator('img.language-flag');
+    await expect(flag).toHaveAttribute('src', /\/h20\/gb\.webp$/);
+    const flagBox = await flag.boundingBox();
+    // The box carries a 1px border, so 2:1 measures a shade under. A 4:3 slot,
+    // which is what squashed it before, would measure 1.33.
+    expect(flagBox.width / flagBox.height).toBeGreaterThan(1.8);
+    expect(flagBox.width / flagBox.height).toBeLessThan(2.1);
+
+    await select.selectOption('es');
     await expect(page.locator('.learn-more-btn').first()).toHaveText('Saber más');
-    await expect(toggle.locator('img.language-flag')).toHaveAttribute('src', /\/es\.webp$/);
-    await expect(toggle).toHaveAttribute('aria-label', 'Cambiar a inglés');
+    await expect(flag).toHaveAttribute('src', /\/h20\/es\.webp$/);
+    await expect(select).toHaveAttribute('aria-label', 'Seleccionar idioma');
   });
 
   test('filter labels are never cut off mid-word', async ({ browser, baseURL }) => {
@@ -610,7 +621,7 @@ test.describe('Flagfilter UI flows', () => {
     await expect(panArab).toHaveAttribute('src', 'https://flagcdn.com/20x15/jo.webp');
     await expect(panArab).toHaveAttribute('alt', '');
 
-    await page.locator('#languageToggle').click();
+    await page.locator('#languageSelect').selectOption('es');
     await expect(page.locator('.filter-btn[data-family="pan-arab"]')).toContainText('Panárabe');
     await expect(panArab).toHaveAttribute('src', 'https://flagcdn.com/20x15/jo.webp');
   });
@@ -908,7 +919,7 @@ test.describe('Flagfilter UI flows', () => {
   });
 
   test('filter and reset icons stay inline SVG after a language switch', async ({ page }) => {
-    await page.locator('#languageToggle').click();
+    await page.locator('#languageSelect').selectOption('es');
     // setButtonLabel re-attaches the SVG icon
     await expect(page.locator('.filter-btn[data-continent="africa"] use')).toHaveAttribute('href', '#i-hippo');
     // applyStaticTranslations rebuilds the reset button's inner HTML with the SVG icon

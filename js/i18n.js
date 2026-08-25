@@ -18,6 +18,10 @@ import { applyFilters } from './filters.js';
 // the note in filters.js and #143.
 
 const SUPPORTED_LANGUAGES = ['en', 'es'];
+// Which flag stands for which language in the header picker. A flag is a country
+// and a language is not, so these are choices rather than facts: English is shown
+// as the Union Jack, Spanish as Spain.
+const LANGUAGE_FLAGS = { en: 'gb', es: 'es' };
 const DEFAULT_LANGUAGE = 'en';
 
 function getLanguageFromUrl() {
@@ -83,20 +87,22 @@ function applyStaticTranslations() {
     infoButton.setAttribute('aria-label', t('info_button_aria'));
     darkModeToggle.setAttribute('aria-label', t('dark_mode_aria'));
 
-    // The header flag shows the language being read; pressing it switches to the
-    // other one. Both the picture and what the button promises change together,
-    // so they live in one place rather than in the click handler. See #194.
-    const languageToggle = document.getElementById('languageToggle');
-    if (languageToggle) {
-        const target = state.currentLanguage === 'es' ? 'en' : 'es';
-        const flagCode = state.currentLanguage === 'es' ? 'es' : 'gb';
-        languageToggle.dataset.targetLanguage = target;
-        languageToggle.setAttribute('aria-label', t(`switch_to_${target}_aria`));
+    // The header flag shows the language being read. Adding a language means one
+    // more entry here and one more <option>; nothing else in the control cares
+    // how many there are. See #194.
+    const languageSelect = document.getElementById('languageSelect');
+    if (languageSelect) {
+        languageSelect.value = state.currentLanguage;
+        languageSelect.setAttribute('aria-label', t('language_picker_aria'));
 
-        const flag = languageToggle.querySelector('.language-flag');
-        if (flag) {
-            flag.src = `https://flagcdn.com/28x21/${flagCode}.webp`;
-            flag.srcset = `https://flagcdn.com/56x42/${flagCode}.webp 2x`;
+        const flag = languageSelect.parentElement.querySelector('.language-flag');
+        const flagCode = LANGUAGE_FLAGS[state.currentLanguage];
+        if (flag && flagCode) {
+            // h20 asks for a height and lets the width follow the flag's own
+            // proportion, so nothing is stretched. See `.language-flag`.
+            flag.src = `https://flagcdn.com/h20/${flagCode}.webp`;
+            flag.srcset = `https://flagcdn.com/h40/${flagCode}.webp 2x`;
+            flag.removeAttribute('width');
         }
     }
 

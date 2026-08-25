@@ -22,7 +22,7 @@ import { initDarkMode } from './js/theme.js';
 const searchInput = document.getElementById('searchInput');
 const flagGrid = document.getElementById('flagGrid');
 const resetFiltersButton = document.getElementById('resetFiltersButton');
-const languageToggle = document.getElementById('languageToggle');
+const languageSelect = document.getElementById('languageSelect');
 
 // One delegated listener for every "Learn more" button, registered once on the
 // grid instead of one listener per button on every render.
@@ -88,9 +88,9 @@ async function initApp() {
     }
 }
 
-if (languageToggle) {
-    languageToggle.addEventListener('click', () => {
-        switchLanguage(languageToggle.dataset.targetLanguage);
+if (languageSelect) {
+    languageSelect.addEventListener('change', (event) => {
+        switchLanguage(event.target.value);
     });
 }
 

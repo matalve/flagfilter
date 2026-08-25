@@ -122,6 +122,5 @@
   "failed_to_submit_report": "No se pudo enviar el reporte",
   "report_error": "Lo sentimos, hubo un error al enviar tu reporte. Inténtalo de nuevo más tarde.",
   "error_loading_flags": "Error al cargar las banderas. Inténtalo de nuevo más tarde.",
-  "switch_to_en_aria": "Cambiar a inglés",
-  "switch_to_es_aria": "Cambiar a español"
+  "language_picker_aria": "Seleccionar idioma"
 }
