@@ -168,6 +168,8 @@ if (dryRun) {
             ? ''
             : '# Proposals a human declined, so later audits stay quiet about them.\n' +
               '# Columns: code, tag, action, baseline image hash at the time, justification.\n' +
+              '# The code column is ISO 3166-1 alpha-2; look one up at\n' +
+              '# https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes\n' +
               '# The hash expires the rejection: when flagcdn changes the flag, the question\n' +
               '# was answered about a different picture and may be asked again. Delete a line\n' +
               '# to reopen a question early. See #174.\n';

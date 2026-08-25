@@ -25,14 +25,20 @@ depicted as an object in the design, the way standards flank the arms on Ecuador
 **An object that is two things gets both tags.** An axe is a `tool` and a `weapon`,
 not whichever is closer. Belize already carries both, so this is existing practice.
 
-## Open questions
+**A motto scroll is not a `ribbon`.** `ribbon` is for a ribbon as an object — the
+tricolour band tying the wreath on Mexico, the ribbons wound round the pillars on
+Spain. The lettered banderole under Andorra's shield and the scroll under Egypt's
+eagle are not that, whatever they are made of.
 
-Not rules. These are patterns visible in what has been rejected so far, and the audit
-should keep sending them to `needs-a-human.tsv` until somebody decides:
+**Water inside a coat of arms is not `waves`.** The lake beneath Mexico's cactus is
+not a wave pattern in the flag's design, and neither is anything else painted inside
+an emblem.
 
-- **Is a motto scroll a `ribbon`?** Proposed for Andorra's banderole and the scroll
-  under Egypt's eagle; both declined. `ribbon` may be meant for decorative ribbons
-  only — Spain's and Mexico's are that kind.
-- **Is water inside a coat of arms `waves`?** Proposed for the water beneath Mexico's
-  cactus and declined, though Spain carries `waves` for the water beneath its pillars.
-  Whichever way this goes, the two flags currently disagree with each other.
+## Candidates for the removal pass
+
+Found while auditing, not acted on. Removals are their own round with their own
+review:
+
+- `mx` carries `flag`, and there is no flag depicted in the design.
+- `es` carries `waves` for the water beneath its pillars, which the rule above says
+  is not waves.

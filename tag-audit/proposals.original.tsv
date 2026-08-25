@@ -11,6 +11,8 @@
 # the Playwright suite. Do not edit proposals.original.tsv — the difference
 # between it and this file is how your rejections get remembered.
 #
+# The code column is ISO 3166-1 alpha-2; look one up at
+# https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes
 # Columns: code, tag, add|remove, confidence, why.
 ad	shield	add	high	The arms are a quartered heraldic shield.
 ad	motto	add	high	The scroll below the shield reads VIRTVS VNITA FORTIOR.
