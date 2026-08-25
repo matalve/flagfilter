@@ -1,0 +1,13 @@
+# Proposals a human declined, so later audits stay quiet about them.
+# Columns: code, tag, action, baseline image hash at the time, justification.
+# The hash expires the rejection: when flagcdn changes the flag, the question
+# was answered about a different picture and may be asked again. Delete a line
+# to reopen a question early. See #174.
+ad	ribbon	add	2a1878763ac4dd15	The motto sits on a banderole under the shield.
+bj	vertical	add	54647be96aa489b3	The green band at the hoist is vertical, crossing the two horizontals.
+cf	vertical	add	6159f6d8129dc414	The red band down the centre is vertical, crossing the four horizontals.
+gw	vertical	add	cb9a27aa036f3436	The red band at the hoist is vertical, crossing the two horizontals.
+eg	ribbon	add	f24e6d38ff8e18a0	The country name sits on a scroll below the eagle.
+ni	circle	add	d91ea2ad93595053	The triangle sits inside a lettered ring.
+pn	flag	add	27f5911746706850	The canton is the Union Jack, a flag within the flag.
+mx	waves	add	323c56a91a0e8db1	Water runs beneath the cactus, the same feature tagged waves on es.
