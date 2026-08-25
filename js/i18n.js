@@ -17,11 +17,14 @@ import { applyFilters } from './filters.js';
 // Looked up inside the functions that use them rather than at import time; see
 // the note in filters.js and #143.
 
-const SUPPORTED_LANGUAGES = ['en', 'es'];
+export const SUPPORTED_LANGUAGES = ['en', 'es'];
 // Which flag stands for which language in the header picker. A flag is a country
 // and a language is not, so these are choices rather than facts: English is shown
 // as the Union Jack, Spanish as Spain.
-const LANGUAGE_FLAGS = { en: 'gb', es: 'es' };
+export const LANGUAGE_FLAGS = { en: 'gb', es: 'es' };
+// Each language named in itself, which is what a reader looking for their own
+// language recognises. These are not translated.
+export const LANGUAGE_NAMES = { en: 'English', es: 'Español' };
 const DEFAULT_LANGUAGE = 'en';
 
 function getLanguageFromUrl() {
@@ -86,25 +89,6 @@ function applyStaticTranslations() {
     const infoModal = document.getElementById('infoModal');
     infoButton.setAttribute('aria-label', t('info_button_aria'));
     darkModeToggle.setAttribute('aria-label', t('dark_mode_aria'));
-
-    // The header flag shows the language being read. Adding a language means one
-    // more entry here and one more <option>; nothing else in the control cares
-    // how many there are. See #194.
-    const languageSelect = document.getElementById('languageSelect');
-    if (languageSelect) {
-        languageSelect.value = state.currentLanguage;
-        languageSelect.setAttribute('aria-label', t('language_picker_aria'));
-
-        const flag = languageSelect.parentElement.querySelector('.language-flag');
-        const flagCode = LANGUAGE_FLAGS[state.currentLanguage];
-        if (flag && flagCode) {
-            // h20 asks for a height and lets the width follow the flag's own
-            // proportion, so nothing is stretched. See `.language-flag`.
-            flag.src = `https://flagcdn.com/h20/${flagCode}.webp`;
-            flag.srcset = `https://flagcdn.com/h40/${flagCode}.webp 2x`;
-            flag.removeAttribute('width');
-        }
-    }
 
     const filterHeaders = document.querySelectorAll('.filter-section .filter-header .filter-title');
     if (filterHeaders[0]) filterHeaders[0].textContent = t('filter_by_color');

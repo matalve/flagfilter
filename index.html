@@ -143,20 +143,22 @@
             <div class="header-top">
                 <h1><button type="button" id="titleReset" class="title-reset">Flagfilter</button></h1>
                 <div class="header-buttons">
-                    <!-- The flag shows the language being read; the <select> on top of
-                         it covers the whole control, so a press anywhere opens the
-                         list. Keeping a real <select> is what lets the list grow past
-                         two languages. The flag and the value are set by
-                         applyStaticTranslations. -->
+                    <!-- A native <select> cannot put a picture in an option, and the
+                         options here are flags, so this is a button plus a menu that
+                         js/language-picker.js fills with every language except the one
+                         being read. The flag below is the English default; the picker
+                         replaces it on init and after every switch. -->
                     <div class="language-picker">
-                        <img class="language-flag" src="https://flagcdn.com/h20/gb.webp"
-                             srcset="https://flagcdn.com/h40/gb.webp 2x"
-                             width="40" height="20" alt="" decoding="async">
-                        <svg class="language-caret" aria-hidden="true"><use href="#i-chevron-down"></use></svg>
-                        <select id="languageSelect" class="language-select" aria-label="Select language">
-                            <option value="en">English</option>
-                            <option value="es">Español</option>
-                        </select>
+                        <button type="button" id="languageButton" class="language-button"
+                                aria-haspopup="menu" aria-expanded="false"
+                                aria-controls="languageMenu" aria-label="Select language">
+                            <img class="language-flag" src="https://flagcdn.com/h20/gb.webp"
+                                 srcset="https://flagcdn.com/h40/gb.webp 2x"
+                                 width="40" height="20" alt="" decoding="async">
+                            <svg class="language-caret" aria-hidden="true"><use href="#i-chevron-down"></use></svg>
+                        </button>
+                        <div id="languageMenu" class="language-menu" role="menu"
+                             aria-label="Select language" hidden></div>
                     </div>
                     <button id="infoButton" class="info-button" aria-label="Information">
                         <svg class="icon" aria-hidden="true"><use href="#i-question-circle"></use></svg>

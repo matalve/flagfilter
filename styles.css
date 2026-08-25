@@ -146,7 +146,10 @@ header {
     margin-bottom: 2rem;
     box-shadow: 0 10px 25px -5px rgba(30, 128, 128, 0.3);
     position: relative;
-    overflow: hidden;
+    /* Not `hidden`: the language menu drops out of the header and was being
+       clipped away. The hoist stripe below rounds its own left corners instead
+       of relying on this to trim them. See #194. */
+    overflow: visible;
 }
 
 /* The stripe sits where a flag's hoist does, in the mark's own colour. It
@@ -159,6 +162,8 @@ header::before {
     bottom: 0;
     width: 10px;
     background: var(--header-hoist);
+    /* Follows the header's own corners now that the header no longer clips. */
+    border-radius: var(--r-2) 0 0 var(--r-2);
     z-index: 1;
 }
 
@@ -176,7 +181,10 @@ header::before {
     gap: 0.75rem 1rem;
     margin-bottom: 1.5rem;
     position: relative;
-    z-index: 2;
+    /* Above .search-container, which is also positioned and comes later in the
+       DOM. The language menu drops over that row, and at an equal z-index the
+       search field won and painted through it. See #194. */
+    z-index: 3;
 }
 
 /* Keeps the controls against the right edge in both states: `space-between` on a
@@ -188,13 +196,13 @@ header::before {
     margin-left: auto;
 }
 
-/* On a site about flags, the language control is a flag: the one you are reading
-   now. The <select> is stretched over the whole control at zero opacity, so a
-   press anywhere on it opens the native list — the pill this replaced drew its
-   chevron outside the <select>, which made the part that looked most like the
-   control the one part that did nothing. */
+/* On a site about flags, the language is chosen by picking a flag. The button
+   shows the language being read; the menu under it holds the others. */
 .language-picker {
     position: relative;
+}
+
+.language-button {
     display: inline-flex;
     align-items: center;
     gap: 0.3rem;
@@ -202,13 +210,61 @@ header::before {
     /* Matches the round buttons beside it, so the row lines up and the press
        target is the 40px the other two already are. */
     min-height: 40px;
+    border: 0;
+    background: none;
     border-radius: var(--r-1);
     color: white;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
     transition: background-color 0.2s ease;
 }
 
-.language-picker:hover {
+.language-button:hover {
     background-color: rgba(255, 255, 255, 0.18);
+}
+
+/* Anchored to the picker, drawn above the search row below it. The header's
+   own `overflow` has to stay visible for this to be seen at all — see the
+   note on `header`. */
+.language-menu {
+    position: absolute;
+    top: calc(100% + 0.35rem);
+    right: 0;
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.35rem;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--r-1);
+    box-shadow: var(--shadow-4);
+}
+
+.language-menu[hidden] {
+    display: none;
+}
+
+.language-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* 40px tall whatever the flag's proportion, so every option is the same
+       press target. */
+    min-height: 40px;
+    padding: 0.35rem 0.6rem;
+    border: 0;
+    background: none;
+    border-radius: var(--r-1);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    transition: background-color 0.2s ease;
+}
+
+.language-option:hover {
+    background-color: var(--hover-bg);
 }
 
 /* Height-addressed rather than boxed: flagcdn's h20 keeps each flag's own
@@ -231,27 +287,13 @@ header::before {
     flex-shrink: 0;
 }
 
-/* The real control: invisible, but covering every pixel of the picker. */
-.language-select {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    border: 0;
-    padding: 0;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-}
-
-.language-select option {
-    color: #111827;
-}
-
-/* The select itself is invisible, so its focus ring would be too. */
-.language-picker:has(.language-select:focus-visible) {
+.language-button:focus-visible {
     outline: 3px solid rgba(255, 255, 255, 0.75);
+    outline-offset: 2px;
+}
+
+.language-option:focus-visible {
+    outline: 3px solid rgba(30, 128, 128, 0.35);
     outline-offset: 2px;
 }
 
@@ -1279,6 +1321,11 @@ h1 {
     header {
         border-radius: 0;
         padding: 1.25rem 1rem;
+    }
+    
+    /* Square header, square stripe. */
+    header::before {
+        border-radius: 0;
     }
     
     .filter-section {
