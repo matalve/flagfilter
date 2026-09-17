@@ -90,6 +90,11 @@ function applyStaticTranslations() {
     infoButton.setAttribute('aria-label', t('info_button_aria'));
     darkModeToggle.setAttribute('aria-label', t('dark_mode_aria'));
 
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+    if (scrollToTopBtn) {
+        scrollToTopBtn.setAttribute('aria-label', t('scroll_to_top_aria'));
+    }
+
     const filterHeaders = document.querySelectorAll('.filter-section .filter-header .filter-title');
     if (filterHeaders[0]) filterHeaders[0].textContent = t('filter_by_color');
     if (filterHeaders[1]) filterHeaders[1].textContent = t('more_filters');

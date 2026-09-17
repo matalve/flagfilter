@@ -18,6 +18,7 @@ import {
 } from './js/filters.js';
 import { closeModal, openModal, showFlagInfoModal } from './js/modal.js';
 import { initDarkMode } from './js/theme.js';
+import { initScrollToTop } from './js/scroll-to-top.js';
 
 // DOM Elements
 const searchInput = document.getElementById('searchInput');
@@ -77,6 +78,7 @@ document.querySelectorAll('.filter-btn[data-continent]').forEach(button => {
 // Initialize the app
 async function initApp() {
     initDarkMode();
+    initScrollToTop();
     const initialLanguage = getInitialLanguage();
     await switchLanguage(initialLanguage);
     // Renders from state.currentLanguage, so it goes after the initial switch.

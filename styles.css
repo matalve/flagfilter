@@ -415,6 +415,44 @@ h1 {
     display: block;
 }
 
+.scroll-to-top-btn {
+    display: none;
+    position: fixed;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    z-index: 10;
+    width: 3rem;
+    height: 3rem;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    background: var(--primary-fill);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: var(--shadow-2);
+    opacity: 0;
+    transform: translateY(0.5rem);
+    transition: opacity 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+}
+
+.scroll-to-top-btn.visible {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scroll-to-top-btn:hover {
+    background-color: #146767;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .scroll-to-top-btn {
+        transition: none;
+    }
+}
+
 .search-container {
     position: relative;
     max-width: 720px;
@@ -564,6 +602,7 @@ h1 {
 .dark-mode-toggle:focus-visible,
 .reset-filters-btn:focus-visible,
 .filter-btn:focus-visible,
+.scroll-to-top-btn:focus-visible,
 #searchInput:focus-visible {
     outline: 3px solid rgba(30, 128, 128, 0.35);
     outline-offset: 3px;

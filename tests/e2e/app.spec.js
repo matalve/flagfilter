@@ -207,6 +207,19 @@ test.describe('Flagfilter UI flows', () => {
     await expect.poll(async () => new URL(await page.url()).searchParams.get('q')).toBeNull();
   });
 
+  test('the scroll-to-top button appears on scroll and returns to the top', async ({ page }) => {
+    await gotoApp(page, 'en');
+    const scrollToTopBtn = page.locator('#scrollToTopBtn');
+
+    await expect(scrollToTopBtn).toBeHidden();
+
+    await page.evaluate(() => window.scrollTo(0, 800));
+    await expect(scrollToTopBtn).toBeVisible();
+
+    await scrollToTopBtn.click();
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+  });
+
   test('switching to Spanish updates key UI labels', async ({ page }) => {
     await switchToSpanish(page);
 
