@@ -162,6 +162,36 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('.flag-card h3', { hasText: /^China$/ })).toHaveCount(1);
   });
 
+  test('selecting a flag family greys out families with no overlapping flags', async ({ page }) => {
+    // Regression test: flag family was missing from the filter types that get
+    // greyed out when they would return zero results, so its buttons stayed
+    // active-looking regardless of what was already selected (#182).
+    await page.locator('.filter-section[data-section-id="more"] .filter-header').click();
+
+    const nordic = page.locator('.filter-btn[data-family="nordic"]');
+    const panArab = page.locator('.filter-btn[data-family="pan-arab"]');
+
+    await expect(panArab).toBeEnabled();
+    await nordic.click();
+
+    await expect(panArab).toBeDisabled();
+    await expect(nordic).toBeEnabled();
+  });
+
+  test('an active filter button stays clickable when combined with a zero-result search', async ({ page }) => {
+    // Regression test: updateFilterButtonStates disables any button that would
+    // add a zero-match filter, but an already-active button combined with an
+    // unrelated search also lands at zero results — disabling it then locks
+    // out the only way to remove that filter (raised on #182's fix).
+    await page.locator('.filter-btn[data-color="black"]').click();
+    await expect(page.locator('.filter-btn[data-color="black"]')).toHaveClass(/active/);
+
+    await page.locator('#searchInput').fill('zzzznomatch');
+    await expect(page.locator('.flag-card')).toHaveCount(0);
+
+    await expect(page.locator('.filter-btn[data-color="black"]')).toBeEnabled();
+  });
+
   test('reset clears combined search and filter state', async ({ page }) => {
     const searchInput = page.locator('#searchInput');
     const yellowFilter = page.locator('.filter-btn[data-color="yellow"]');
