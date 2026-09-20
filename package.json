@@ -2,6 +2,7 @@
   "name": "flagfilter",
   "version": "1.1.0",
   "private": true,
+  "type": "module",
   "description": "Cloudflare Pages app for browsing and filtering national flags",
   "devDependencies": {
     "@playwright/test": "^1.52.0"

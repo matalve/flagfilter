@@ -17,9 +17,9 @@
 import { createHash } from 'node:crypto';
 import { appendFileSync, existsSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
+import { FILTER_TERMS } from '../js/filter-config.js';
 
 const FLAG_INFO_PATH = 'flaginfo.json';
-const INDEX_HTML_PATH = 'index.html';
 const BASELINE_DIR = 'flag-baseline';
 const AUDIT_DIR = 'tag-audit';
 const ORIGINAL_PATH = path.join(AUDIT_DIR, 'proposals.original.tsv');
@@ -37,8 +37,6 @@ const PROTECTED_TAGS = new Set([
     'christianity', 'islam', 'judaism', 'buddhism', 'hinduism', 'communism',
     'africa', 'asia', 'europe', 'northAmerica', 'oceania', 'southAmerica'
 ]);
-
-const FILTER_DATA_KEYS = ['color', 'continent', 'pattern', 'symbol', 'motive', 'people', 'ideology', 'text', 'family'];
 
 const dryRun = process.argv.includes('--dry-run');
 const failures = [];
@@ -59,15 +57,6 @@ function readRows(filePath) {
         });
 }
 
-// The filter buttons in index.html are the vocabulary; a tag outside it filters
-// nothing, so proposing one is a bug rather than a finding. Read them rather
-// than duplicating the list here, exactly as validate-flag-links.mjs does.
-function readFilterTerms() {
-    const html = readFileSync(INDEX_HTML_PATH, 'utf8');
-    const pattern = new RegExp(`data-(?:${FILTER_DATA_KEYS.join('|')})="([^"]+)"`, 'g');
-    return new Set([...html.matchAll(pattern)].map((match) => match[1]));
-}
-
 // A rejection is an answer about a particular picture. When flagcdn changes a
 // flag the picture is a different one, so the answer no longer binds and the
 // tag may be proposed again. #175 keeps flag-baseline/ in step with upstream,
@@ -78,7 +67,10 @@ function baselineHash(code) {
     return createHash('sha256').update(readFileSync(imagePath)).digest('hex').slice(0, 16);
 }
 
-const filterTerms = readFilterTerms();
+// The vocabulary is js/filter-config.js — the same list the buttons in
+// index.html are held equal to. A tag outside it filters nothing, so proposing
+// one is a bug rather than a finding.
+const filterTerms = FILTER_TERMS;
 const flags = JSON.parse(readFileSync(FLAG_INFO_PATH, 'utf8'));
 const flagsByCode = new Map(flags.map((flag) => [flag.shortname, flag]));
 
@@ -111,7 +103,7 @@ reviewed.forEach((row) => {
         failures.push(`${where}: action must be add or remove, got "${row.action}"`);
     }
     if (!filterTerms.has(row.tag)) {
-        failures.push(`${where}: "${row.tag}" is not a filter term in ${INDEX_HTML_PATH}, so it would filter nothing`);
+        failures.push(`${where}: "${row.tag}" is not a filter term in js/filter-config.js, so it would filter nothing`);
     }
     if (PROTECTED_TAGS.has(row.tag)) {
         failures.push(`${where}: "${row.tag}" is not decided by looking at the image and must not be audited`);

@@ -12,10 +12,10 @@
 
 import { readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
+import { FILTER_TERMS } from '../js/filter-config.js';
 
 const FLAG_INFO_PATH = process.argv[2] || 'flaginfo.json';
 const FLAG_I18N_DIR = process.argv[3] || 'i18n/flags';
-const INDEX_HTML_PATH = process.argv[4] || 'index.html';
 
 // There is deliberately no allowlist here. It carried five targets while #167
 // was open and is gone with them: every link now resolves to a flag or to a
@@ -24,10 +24,6 @@ const INDEX_HTML_PATH = process.argv[4] || 'index.html';
 const TEXT_FIELDS = ['symbolism', 'funfacts'];
 // Mirrors the a[href^="?q="] selector the runtime uses.
 const LINK_PATTERN = /<a href="\?q=([^"]+)"/g;
-// The filter kinds ?q= understands, kept in step with QUERY_FILTER_DATA_KEYS in
-// js/filters.js.
-const FILTER_DATA_KEYS = ['color', 'continent', 'pattern', 'symbol', 'motive', 'people', 'ideology', 'text', 'family'];
-
 // Byte-for-byte the normalization in processHtmlContent(); the whole point of
 // this script is to answer "would the runtime resolve this?", so any drift here
 // makes the answer wrong.
@@ -60,14 +56,6 @@ function collectLinks(text) {
         targets.push(match[1]);
     }
     return targets;
-}
-
-// The filter buttons in index.html are what ?q= actually resolves against at
-// runtime, so they are the source of truth rather than a list duplicated here.
-function readFilterTerms(htmlPath) {
-    const html = readFileSync(htmlPath, 'utf8');
-    const pattern = new RegExp(`data-(?:${FILTER_DATA_KEYS.join('|')})="([^"]+)"`, 'g');
-    return new Set(Array.from(html.matchAll(pattern), (match) => match[1].toLowerCase()));
 }
 
 // Cheap edit distance, only ever run on the handful of targets that failed.
@@ -115,7 +103,9 @@ if (!Array.isArray(flags)) {
 // the translated flags. A "translated" link target is therefore a broken one.
 const flagNames = new Set(flags.map((flag) => normalizeForQuery(flag.name || '')));
 const flagCodes = new Set(flags.map((flag) => (flag.shortname || '').toLowerCase()));
-const filterTerms = readFilterTerms(INDEX_HTML_PATH);
+// The same vocabulary the runtime resolves ?q= against (js/filter-config.js);
+// a Playwright test holds it equal to the buttons in index.html.
+const filterTerms = new Set([...FILTER_TERMS].map((term) => term.toLowerCase()));
 const suggestionPool = [...flagNames, ...flagCodes, ...filterTerms];
 
 const sources = [];
