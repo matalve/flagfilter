@@ -150,6 +150,20 @@ test.describe('Flagfilter UI flows', () => {
     await expect.poll(async () => page.locator('.flag-card').count()).toBeLessThan(initialCards);
   });
 
+  test('colour filters match whole tag words, not substrings of the country name', async ({ page }) => {
+    // Regression test: colours were derived with a substring test on the tags
+    // string, which also carries the country name, so "greenland" made
+    // Greenland a green flag (#200).
+    await gotoApp(page, 'en', 'greenland');
+    await expect(page.locator('.flag-card h3', { hasText: /^Greenland$/ })).toHaveCount(1);
+
+    // With only Greenland in the result set, Green is greyed out because no
+    // visible flag carries it, while its real colours stay available.
+    await expect(page.locator('.filter-btn[data-color="green"]')).toBeDisabled();
+    await expect(page.locator('.filter-btn[data-color="red"]')).toBeEnabled();
+    await expect(page.locator('.filter-btn[data-color="white"]')).toBeEnabled();
+  });
+
   test('communism ideology filter is enabled and returns its tagged flags', async ({ page }) => {
     // Expand "More filters" (collapsed by default) to reach the ideology buttons.
     await page.locator('.filter-section[data-section-id="more"] .filter-header').click();

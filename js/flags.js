@@ -43,8 +43,11 @@ export function rebuildFlags() {
         const code = info.shortname;
         const url = `https://flagcdn.com/w320/${code}.webp`;
         const tags = info.tags || '';
+        const tagWords = tags.split(' ');
         const colorTags = ['red', 'blue', 'green', 'yellow', 'white', 'black', 'brown', 'purple', 'orange'];
-        const colors = colorTags.filter(color => tags.includes(color));
+        // Whole-word match: the tags string also carries the country name, and a
+        // substring test made Greenland "green". See #200.
+        const colors = colorTags.filter(color => tagWords.includes(color));
 
         // Precompute one normalized search haystack per flag (localized name +
         // English base name + code + tags), so matchesSearchTerm becomes a single
@@ -62,7 +65,7 @@ export function rebuildFlags() {
             continent: info.continent || null,
             name: info.name || code.toUpperCase(),
             colors,
-            tags: tags.split(' '),
+            tags: tagWords,
             info,
             searchText
         };
