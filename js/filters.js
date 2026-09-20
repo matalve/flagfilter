@@ -357,8 +357,11 @@ function updateFilterButtonStates(currentResults) {
                 wouldHaveResults = availableTags.has(value);
             }
 
-            // Disable button if it would result in 0 flags
-            if (!wouldHaveResults) {
+            // Disable button if it would result in 0 flags. An already-active
+            // button is exempt: currentResults reflects its own filter already
+            // applied, so combining it with a zero-match search would otherwise
+            // disable the one button the user needs to click to remove it.
+            if (!wouldHaveResults && !button.classList.contains('active')) {
                 button.disabled = true;
                 button.classList.add('disabled');
             }
