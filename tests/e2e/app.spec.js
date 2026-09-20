@@ -162,6 +162,22 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('.flag-card h3', { hasText: /^China$/ })).toHaveCount(1);
   });
 
+  test('selecting a flag family greys out families with no overlapping flags', async ({ page }) => {
+    // Regression test: flag family was missing from the filter types that get
+    // greyed out when they would return zero results, so its buttons stayed
+    // active-looking regardless of what was already selected (#182).
+    await page.locator('.filter-section[data-section-id="more"] .filter-header').click();
+
+    const nordic = page.locator('.filter-btn[data-family="nordic"]');
+    const panArab = page.locator('.filter-btn[data-family="pan-arab"]');
+
+    await expect(panArab).toBeEnabled();
+    await nordic.click();
+
+    await expect(panArab).toBeDisabled();
+    await expect(nordic).toBeEnabled();
+  });
+
   test('reset clears combined search and filter state', async ({ page }) => {
     const searchInput = page.locator('#searchInput');
     const yellowFilter = page.locator('.filter-btn[data-color="yellow"]');

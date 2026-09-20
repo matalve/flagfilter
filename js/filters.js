@@ -340,7 +340,7 @@ function updateFilterButtonStates(currentResults) {
     });
 
     // Check each filter type
-    const filterTypes = ['color', 'continent', 'pattern', 'symbol', 'motive', 'people', 'ideology', 'text'];
+    const filterTypes = ['color', 'continent', 'pattern', 'symbol', 'motive', 'people', 'ideology', 'text', 'family'];
 
     filterTypes.forEach(type => {
         const buttons = document.querySelectorAll(`.filter-btn[data-${type}]`);
