@@ -43,19 +43,18 @@ export function rebuildFlags() {
         const info = localizeFlagInfo(baseInfo);
         const code = info.shortname;
         const url = `https://flagcdn.com/w320/${code}.webp`;
-        const tags = info.tags || '';
-        const tagWords = tags.split(' ');
-        // Whole-word match: the tags string also carries the country name, and a
-        // substring test made Greenland "green". See #200.
-        const colors = COLOR_VALUES.filter((color) => tagWords.includes(color));
+        const tags = info.tags || [];
+        const colors = COLOR_VALUES.filter((color) => tags.includes(color));
 
         // Precompute one normalized search haystack per flag (localized name +
-        // English base name + code + tags), so matchesSearchTerm becomes a single
-        // includes() that folds diacritics and works regardless of UI language.
-        // Each field is normalized separately and joined with a NUL sentinel that
-        // the query normalization always strips, so a search term can never match
-        // across a field boundary (e.g. "spain es"). See #144 and #151.
-        const searchText = [info.name || '', baseInfo.name || '', code, tags]
+        // English base name + code + tags + aliases), so matchesSearchTerm becomes
+        // a single includes() that folds diacritics and works regardless of UI
+        // language. Each field is normalized separately and joined with a NUL
+        // sentinel that the query normalization always strips, so a search term
+        // can never match across a field boundary (e.g. "spain es"). See #144
+        // and #151. Aliases are the spellings the name does not give you —
+        // "burma", "usa", "great britain" — and the search-only keywords of #184.
+        const searchText = [info.name || '', baseInfo.name || '', code, ...tags, ...(info.aliases || [])]
             .map(normalizeQueryValue)
             .join(String.fromCharCode(0));
 
@@ -65,7 +64,7 @@ export function rebuildFlags() {
             continent: info.continent || null,
             name: info.name || code.toUpperCase(),
             colors,
-            tags: tagWords,
+            tags,
             info,
             searchText
         };

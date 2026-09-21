@@ -127,7 +127,7 @@ const noop = [];
 
 reviewed.forEach((row) => {
     const flag = flagsByCode.get(row.code);
-    const words = String(flag.tags || '').split(' ').filter(Boolean);
+    const words = flag.tags;
     const has = words.includes(row.tag);
 
     if (row.action === 'add' && has) {
@@ -139,13 +139,11 @@ reviewed.forEach((row) => {
         return;
     }
 
-    // Only vocabulary words move. The tag string also carries name words and
-    // search aliases — "burma", "usa", "great britain" — and nothing here can
-    // reach them, because the only writes are appending or dropping one term
-    // that had to be a filter term to get this far.
+    // Search aliases live in their own field ("burma", "usa", "great britain")
+    // and nothing here can reach them; tags is vocabulary only. See #203.
     flag.tags = row.action === 'add'
-        ? [...words, row.tag].join(' ')
-        : words.filter((word) => word !== row.tag).join(' ');
+        ? [...words, row.tag]
+        : words.filter((word) => word !== row.tag);
 
     applied.push(`${row.action === 'add' ? '+' : '-'} ${row.code} ${row.tag}`);
 });
