@@ -1,4 +1,4 @@
-// The filter vocabulary and how each group combines, in one place. Everything
+// The filter vocabulary, in one place. Everything
 // that needs to know "which filter groups exist" — click binding, applyFilters,
 // the greyed-out state, ?q= parsing, label translation, the Node validators —
 // reads this instead of carrying its own copy. #182 was one of those copies
@@ -10,69 +10,63 @@
 // key:     the data-* attribute on the buttons, the ?q= token kind, and the
 //          i18n key prefix (`${key}_${value}`).
 // field:   which flag property the value is looked up in.
-// combine: 'all' — a flag must carry every active value (colours: red AND blue).
-//          'any' — a flag must carry at least one (continents: Africa OR Asia).
 // heading: i18n key of the group's <h3>, absent for colour, which is a section.
+//
+// Every active value must match, within a group and across groups: red AND
+// blue, star AND moon. That is what the greyed-out state has always promised —
+// a button is enabled only when some visible flag carries its value — and until
+// #206 the non-colour groups delivered the union instead.
 export const FILTER_GROUPS = [
     {
         key: 'color',
         field: 'colors',
-        combine: 'all',
         values: ['red', 'blue', 'green', 'yellow', 'white', 'black', 'brown', 'purple', 'orange']
     },
     {
         key: 'continent',
         field: 'continent',
-        combine: 'any',
         heading: 'continent',
         values: ['africa', 'asia', 'europe', 'northAmerica', 'southAmerica', 'oceania']
     },
     {
         key: 'pattern',
         field: 'tags',
-        combine: 'any',
         heading: 'pattern',
         values: ['cross', 'vertical', 'horizontal', 'triangle', 'diagonal', 'whitney_smith']
     },
     {
         key: 'symbol',
         field: 'tags',
-        combine: 'any',
         heading: 'symbol',
         values: ['flag', 'sun', 'star', 'moon', 'circle', 'fleur-de-lis', 'waves']
     },
     {
         key: 'motive',
         field: 'tags',
-        combine: 'any',
         heading: 'motive',
         values: ['building', 'weapon', 'map', 'tool', 'boat', 'animal', 'bird', 'vegetation', 'mountain', 'shield']
     },
     {
         key: 'people',
         field: 'tags',
-        combine: 'any',
         heading: 'people_or_clothing',
         values: ['face', 'crown', 'human', 'hat', 'hand']
     },
     {
         key: 'ideology',
         field: 'tags',
-        combine: 'any',
         heading: 'ideology',
         values: ['christianity', 'islam', 'communism', 'buddhism', 'hinduism', 'judaism']
     },
     {
         key: 'text',
         field: 'tags',
-        combine: 'any',
         heading: 'text',
         values: ['text', 'motto', 'name', 'ribbon']
     },
     {
         key: 'family',
         field: 'tags',
-        combine: 'any',
         heading: 'flag_family',
         values: ['pan-african', 'pan-arab', 'pan-slavic', 'british', 'nordic']
     }

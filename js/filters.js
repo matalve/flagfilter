@@ -222,18 +222,17 @@ export function applyFilters() {
         ? [...state.flags]
         : state.flags.filter((flag) => matchesSearchTerm(flag, normalizedTerm));
 
-    // Groups are AND-ed together; within a group, `combine` decides (see
-    // filter-config.js). Flag family reads a curated tag rather than the colour
-    // set: a flag carrying red, black, white and green is not thereby pan-Arab,
-    // so the palette cannot stand in for the tradition. See #141.
+    // Every active value must match (see filter-config.js). Flag family reads a
+    // curated tag rather than the colour set: a flag carrying red, black, white
+    // and green is not thereby pan-Arab, so the palette cannot stand in for the
+    // tradition. See #141.
     FILTER_GROUPS.forEach((group) => {
         const active = Array.from(document.querySelectorAll(`.filter-btn[data-${group.key}].active`))
             .map((button) => button.dataset[group.key]);
         if (active.length === 0) {
             return;
         }
-        const method = group.combine === 'all' ? 'every' : 'some';
-        results = results.filter((flag) => active[method]((value) => flagHasValue(flag, group, value)));
+        results = results.filter((flag) => active.every((value) => flagHasValue(flag, group, value)));
     });
 
     state.filteredFlags = results;

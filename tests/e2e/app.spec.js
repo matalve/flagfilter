@@ -174,6 +174,22 @@ test.describe('Flagfilter UI flows', () => {
     await expect.poll(async () => page.locator('.flag-card').count()).toBeLessThan(initialCards);
   });
 
+  test('a second value in the same group narrows the result, never widens it', async ({ page }) => {
+    // Regression test: non-colour groups combined their values with OR, so
+    // adding Moon to Star grew the list from 95 to 98 while the greyed-out
+    // state had promised the intersection (#206).
+    await page.locator('.filter-section[data-section-id="more"] .filter-header').click();
+    const cards = page.locator('.flag-card');
+
+    await page.locator('.filter-btn[data-symbol="star"]').click();
+    await expect.poll(() => cards.count()).toBeGreaterThan(0);
+    const starOnly = await cards.count();
+
+    await page.locator('.filter-btn[data-symbol="moon"]').click();
+    await expect.poll(() => cards.count()).toBeLessThan(starOnly);
+    await expect(page.locator('.flag-card h3', { hasText: /^Pakistan$/ })).toHaveCount(1);
+  });
+
   test('colour filters match whole tag words, not substrings of the country name', async ({ page }) => {
     // Regression test: colours were derived with a substring test on the tags
     // string, which also carries the country name, so "greenland" made

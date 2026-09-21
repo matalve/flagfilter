@@ -99,6 +99,7 @@ URL query behavior:
 
 - `?q=...` can prefill the search field on load
 - recognized filter terms such as `red`, `europe`, or `cross` activate the matching filter buttons
+- every active filter must match: `?q=star moon` shows flags with a star *and* a moon, not either
 - remaining query terms stay in the search field
 - `Reset` clears both the UI state and the `q` parameter
 
