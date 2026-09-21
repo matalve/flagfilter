@@ -7,8 +7,7 @@ import {
     loadJson,
     safeStorageGet,
     safeStorageSet,
-    setButtonLabel,
-    updateAllToggleButtonStates
+    setButtonLabel
 } from './util.js';
 import { t } from './translate.js';
 import { rebuildFlags } from './flags.js';
@@ -131,8 +130,6 @@ function applyStaticTranslations() {
         <p><strong>${t('help_translate_label')}:</strong> <a href="https://poeditor.com/join/project/P7N0JxV3wI" target="_blank" rel="noopener noreferrer">${t('help_translate_link_text')}</a></p>
         ${translationDisclaimer}
     `;
-
-    updateAllToggleButtonStates();
 }
 
 export async function switchLanguage(language) {

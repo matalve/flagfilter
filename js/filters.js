@@ -6,11 +6,10 @@ import {
     hasTextValue,
     normalizeQueryValue,
     safeStorageGet,
-    safeStorageSet,
-    updateToggleButtonState
+    safeStorageSet
 } from './util.js';
-import { renderFlagGrid, updateFlagCounter } from './flags.js';
-import { FILTER_GROUPS, FILTER_KEYS, flagHasValue } from './filter-config.js';
+import { renderFlagGrid } from './flags.js';
+import { FILTER_GROUPS, flagHasValue } from './filter-config.js';
 
 // Looked up on demand rather than captured at import time. A module that grabs
 // DOM nodes while it is being imported can only ever be loaded into a browser
@@ -37,72 +36,51 @@ function updateQueryInUrl(query) {
     window.history.replaceState({}, '', url);
 }
 
-function getFilterButtonsWithQueryMetadata() {
-    return Array.from(document.querySelectorAll('.filter-btn')).map((button) => {
-        const dataKey = FILTER_KEYS.find((key) => button.dataset[key]);
-        if (!dataKey) {
-            return null;
-        }
+// Every filter value with the spellings ?q= accepts for it, built once from the
+// config rather than read off the buttons on every query.
+const QUERY_ENTRIES = FILTER_GROUPS.flatMap((group) => group.values.map((value) => {
+    const normalizedValue = normalizeQueryValue(value);
+    return {
+        key: group.key,
+        value,
+        aliases: new Set([normalizedValue, normalizedValue.replace(/\s+/g, '')])
+    };
+}));
 
-        const value = button.dataset[dataKey];
-        const normalizedValue = normalizeQueryValue(value);
-        const aliases = new Set([
-            normalizedValue,
-            normalizedValue.replace(/\s+/g, '')
-        ]);
-
-        return {
-            button,
-            dataKey,
-            value,
-            aliases
-        };
-    }).filter(Boolean);
-}
-
-function getActiveFilterQueryValues() {
-    const activeValues = [];
-
-    FILTER_KEYS.forEach((key) => {
-        document.querySelectorAll(`.filter-btn[data-${key}].active`).forEach((button) => {
-            activeValues.push(button.dataset[key]);
-        });
-    });
-
-    return activeValues;
+export function createEmptyFilters() {
+    return Object.fromEntries(FILTER_GROUPS.map((group) => [group.key, new Set()]));
 }
 
 function matchesSearchTerm(flag, normalizedTerm) {
-    // The term is normalized once per search by the caller (handleSearch /
-    // applyFilters), not once per flag comparison. An empty normalized term
-    // here means the input only contained characters the normalization strips
-    // (e.g. punctuation) and matches nothing; a truly empty search is handled
-    // by the callers and shows all flags.
+    // The term is normalized once per filter pass, not once per flag comparison.
+    // An empty normalized term here means the input only contained characters
+    // the normalization strips (e.g. punctuation) and matches nothing; a truly
+    // empty search is handled by applyFilters and shows all flags.
     return normalizedTerm !== '' && flag.searchText.includes(normalizedTerm);
 }
 
-function syncQueryParamFromUiState() {
-    const searchTokens = searchInput().value
+// ?q= carries the whole filter state: active values in config order, then the
+// search words.
+function syncQueryParamFromState() {
+    const filterTokens = FILTER_GROUPS.flatMap((group) => (
+        group.values.filter((value) => state.filters[group.key].has(value))
+    ));
+    const searchTokens = state.search
         .trim()
         .toLowerCase()
         .split(/\s+/)
         .filter(Boolean);
 
-    const queryTokens = [
-        ...getActiveFilterQueryValues(),
-        ...searchTokens
-    ];
-
-    updateQueryInUrl(queryTokens.join(' '));
+    updateQueryInUrl([...filterTokens, ...searchTokens].join(' '));
 }
 
-// Split a raw ?q= string into the filter buttons it names and the words left
+// Split a raw ?q= string into the filter values it names and the words left
 // over as search text. Longest phrase first, so a multi-word filter value wins
 // over its individual words.
 function resolveQuery(rawQuery) {
     const rawWords = rawQuery.trim().split(/\s+/).filter(Boolean);
-    const filterButtons = getFilterButtonsWithQueryMetadata();
-    const matchedButtons = new Set();
+    const filters = createEmptyFilters();
+    const matched = new Set();
     const remainingSearchTerms = [];
 
     for (let index = 0; index < rawWords.length;) {
@@ -110,8 +88,8 @@ function resolveQuery(rawQuery) {
 
         for (let end = rawWords.length; end > index; end -= 1) {
             const phrase = normalizeQueryValue(rawWords.slice(index, end).join(' '));
-            const entry = filterButtons.find((candidate) => (
-                !matchedButtons.has(candidate.button) && candidate.aliases.has(phrase)
+            const entry = QUERY_ENTRIES.find((candidate) => (
+                !matched.has(candidate) && candidate.aliases.has(phrase)
             ));
 
             if (entry) {
@@ -121,7 +99,8 @@ function resolveQuery(rawQuery) {
         }
 
         if (matchedEntry) {
-            matchedButtons.add(matchedEntry.entry.button);
+            matched.add(matchedEntry.entry);
+            filters[matchedEntry.entry.key].add(matchedEntry.entry.value);
             index = matchedEntry.end;
             continue;
         }
@@ -130,7 +109,7 @@ function resolveQuery(rawQuery) {
         index += 1;
     }
 
-    return { matchedButtons, remainingSearchTerms };
+    return { filters, matchedCount: matched.size, search: remainingSearchTerms.join(' ') };
 }
 
 // Does this ?q= name at least one filter? Used to decide whether a link in flag
@@ -140,27 +119,23 @@ export function queryMatchesAnyFilter(rawQuery) {
         return false;
     }
 
-    return resolveQuery(rawQuery).matchedButtons.size > 0;
+    return resolveQuery(rawQuery).matchedCount > 0;
 }
 
-// Apply a ?q= string as the complete filter state, replacing whatever was
-// active. Used by the filter links inside flag prose: following one should land
-// the reader on exactly that view, not on it plus their leftover filters.
+// Replace the whole filter state with what a ?q= string names. The search box
+// is written from state here, not read: while typing, the box leads and the
+// debounced handler copies it into state.search.
+function setStateFromQuery(rawQuery) {
+    const { filters, search } = resolveQuery(rawQuery);
+    state.filters = filters;
+    state.search = search;
+    searchInput().value = search;
+}
+
+// Used by the filter links inside flag prose: following one should land the
+// reader on exactly that view, not on it plus their leftover filters.
 export function applyQueryAsFilterState(rawQuery) {
-    document.querySelectorAll('.filter-btn.active').forEach((button) => {
-        button.classList.remove('active');
-        updateToggleButtonState(button);
-    });
-
-    const { matchedButtons, remainingSearchTerms } = resolveQuery(rawQuery);
-
-    matchedButtons.forEach((button) => {
-        button.classList.add('active');
-        updateToggleButtonState(button);
-    });
-
-    searchInput().value = remainingSearchTerms.join(' ');
-    updateQueryInUrl(rawQuery.trim());
+    setStateFromQuery(rawQuery);
     applyFilters();
 }
 
@@ -168,14 +143,7 @@ export function applyInitialQueryFromUrl() {
     const rawQuery = getQueryFromUrl();
 
     if (hasTextValue(rawQuery)) {
-        const { matchedButtons, remainingSearchTerms } = resolveQuery(rawQuery);
-
-        matchedButtons.forEach((button) => {
-            button.classList.add('active');
-            updateToggleButtonState(button);
-        });
-
-        searchInput().value = remainingSearchTerms.join(' ');
+        setStateFromQuery(rawQuery);
     }
 
     // Render once, after the initial filter/search state is resolved, so the first
@@ -188,37 +156,24 @@ export function applyInitialQueryFromUrl() {
 // per keystroke; it settles ~150 ms after the last input. See #142.
 export const SEARCH_DEBOUNCE_MS = 150;
 
+// State takes the text at once so a filter click inside the debounce window
+// still sees what the box says; only the filter pass waits.
 export function debounceSearch(query) {
+    state.search = query;
     clearTimeout(searchDebounceTimer);
     searchDebounceTimer = setTimeout(() => {
         searchDebounceTimer = null;
-        handleSearch(query);
+        applyFilters();
     }, SEARCH_DEBOUNCE_MS);
 }
 
-// Search functionality
-function handleSearch(query) {
-    // Normalize once per search instead of once per flag (see matchesSearchTerm).
-    const normalizedTerm = normalizeQueryValue(query);
-
-    if (query.trim() === '') {
-        applyFilters();
-        return;
-    }
-
-    state.filteredFlags = state.flags.filter((flag) => matchesSearchTerm(flag, normalizedTerm));
-    applyFilters();
-}
-
-// Apply all active filters
+// Compute the result set from state, then render everything that depends on
+// it: the grid, the buttons and the URL.
 export function applyFilters() {
-    const searchTerm = searchInput().value.toLowerCase().trim();
-
     // Normalize once per filter pass instead of once per flag (see matchesSearchTerm).
-    const normalizedTerm = normalizeQueryValue(searchInput().value);
+    const normalizedTerm = normalizeQueryValue(state.search);
 
-    // Start with all flags or search results
-    let results = searchTerm === ''
+    let results = state.search.trim() === ''
         ? [...state.flags]
         : state.flags.filter((flag) => matchesSearchTerm(flag, normalizedTerm));
 
@@ -227,8 +182,7 @@ export function applyFilters() {
     // and green is not thereby pan-Arab, so the palette cannot stand in for the
     // tradition. See #141.
     FILTER_GROUPS.forEach((group) => {
-        const active = Array.from(document.querySelectorAll(`.filter-btn[data-${group.key}].active`))
-            .map((button) => button.dataset[group.key]);
+        const active = [...state.filters[group.key]];
         if (active.length === 0) {
             return;
         }
@@ -237,17 +191,12 @@ export function applyFilters() {
 
     state.filteredFlags = results;
     renderFlagGrid();
-    updateFilterButtonStates(results);
-    syncQueryParamFromUiState();
+    renderFilterButtons(results);
+    syncQueryParamFromState();
 }
 
-function updateFilterButtonStates(currentResults) {
-    // Reset all buttons to enabled state
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.disabled = false;
-        btn.classList.remove('disabled');
-    });
-
+// The buttons reflect state.filters; they are not where it lives.
+function renderFilterButtons(currentResults) {
     // Index the values present in the current results once (O(flags)) so each
     // filter-button test below is an O(1) lookup instead of an O(flags) scan.
     const available = {};
@@ -267,23 +216,30 @@ function updateFilterButtonStates(currentResults) {
 
     FILTER_GROUPS.forEach((group) => {
         document.querySelectorAll(`.filter-btn[data-${group.key}]`).forEach((button) => {
-            const wouldHaveResults = available[group.field].has(button.dataset[group.key]);
+            const value = button.dataset[group.key];
+            const active = state.filters[group.key].has(value);
 
-            // Disable button if it would result in 0 flags. An already-active
-            // button is exempt: currentResults reflects its own filter already
-            // applied, so combining it with a zero-match search would otherwise
-            // disable the one button the user needs to click to remove it.
-            if (!wouldHaveResults && !button.classList.contains('active')) {
-                button.disabled = true;
-                button.classList.add('disabled');
-            }
+            // Grey out a value no visible flag carries, since adding it would
+            // leave nothing. An active value is exempt: the results already
+            // reflect it, so a zero-match search would otherwise disable the
+            // one button the user needs to click to remove it.
+            const disabled = !active && !available[group.field].has(value);
+
+            button.classList.toggle('active', active);
+            button.setAttribute('aria-pressed', String(active));
+            button.disabled = disabled;
+            button.classList.toggle('disabled', disabled);
         });
     });
 }
 
-export function toggleFilterButton(button) {
-    button.classList.toggle('active');
-    updateToggleButtonState(button);
+export function toggleFilter(key, value) {
+    const values = state.filters[key];
+    if (values.has(value)) {
+        values.delete(value);
+    } else {
+        values.add(value);
+    }
     applyFilters();
 }
 
@@ -350,16 +306,8 @@ export function resetAllFilters() {
     // Cancel any pending debounced search so it cannot re-filter after the reset.
     clearTimeout(searchDebounceTimer);
     searchDebounceTimer = null;
+    state.filters = createEmptyFilters();
+    state.search = '';
     searchInput().value = '';
-    document.querySelectorAll('.filter-btn').forEach(button => {
-        button.classList.remove('active');
-        button.disabled = false;
-        button.classList.remove('disabled');
-        updateToggleButtonState(button);
-    });
-    state.filteredFlags = [...state.flags];
-    renderFlagGrid();
-    updateFilterButtonStates(state.flags);
-    updateFlagCounter(state.flags.length);
-    updateQueryInUrl('');
+    applyFilters();
 }

@@ -68,14 +68,6 @@ export function setButtonLabel(button, label) {
     button.appendChild(text);
 }
 
-export function updateToggleButtonState(button) {
-    button.setAttribute('aria-pressed', String(button.classList.contains('active')));
-}
-
-export function updateAllToggleButtonStates() {
-    document.querySelectorAll('.filter-btn').forEach(updateToggleButtonState);
-}
-
 export function normalizeQueryValue(value) {
     return String(value || '')
         .replace(/([a-z])([A-Z])/g, '$1 $2')
