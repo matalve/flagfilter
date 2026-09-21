@@ -13,6 +13,7 @@ import {
 import { t } from './translate.js';
 import { rebuildFlags } from './flags.js';
 import { applyFilters } from './filters.js';
+import { FILTER_GROUPS } from './filter-config.js';
 
 // Looked up inside the functions that use them rather than at import time; see
 // the note in filters.js and #143.
@@ -99,46 +100,20 @@ function applyStaticTranslations() {
     if (filterHeaders[0]) filterHeaders[0].textContent = t('filter_by_color');
     if (filterHeaders[1]) filterHeaders[1].textContent = t('more_filters');
 
-    const groupHeadings = document.querySelectorAll('.compact-filter-group h3');
-    const groupHeadingKeys = ['continent', 'pattern', 'symbol', 'motive', 'people_or_clothing', 'ideology', 'text', 'flag_family'];
-    groupHeadings.forEach((heading, index) => {
-        heading.textContent = t(groupHeadingKeys[index]);
-    });
-
-    document.querySelectorAll('.filter-btn[data-color]').forEach(button => {
-        button.textContent = t(`color_${button.dataset.color}`);
-    });
-
-    document.querySelectorAll('.filter-btn[data-continent]').forEach(button => {
-        setButtonLabel(button, t(`continent_${button.dataset.continent}`));
-    });
-
-    document.querySelectorAll('.filter-btn[data-pattern]').forEach(button => {
-        setButtonLabel(button, t(`pattern_${button.dataset.pattern}`));
-    });
-
-    document.querySelectorAll('.filter-btn[data-symbol]').forEach(button => {
-        setButtonLabel(button, t(`symbol_${button.dataset.symbol}`));
-    });
-
-    document.querySelectorAll('.filter-btn[data-motive]').forEach(button => {
-        setButtonLabel(button, t(`motive_${button.dataset.motive}`));
-    });
-
-    document.querySelectorAll('.filter-btn[data-people]').forEach(button => {
-        setButtonLabel(button, t(`people_${button.dataset.people}`));
-    });
-
-    document.querySelectorAll('.filter-btn[data-ideology]').forEach(button => {
-        setButtonLabel(button, t(`ideology_${button.dataset.ideology}`));
-    });
-
-    document.querySelectorAll('.filter-btn[data-family]').forEach(button => {
-        setButtonLabel(button, t(`family_${button.dataset.family}`));
-    });
-
-    document.querySelectorAll('.filter-btn[data-text]').forEach(button => {
-        setButtonLabel(button, t(`text_${button.dataset.text}`));
+    FILTER_GROUPS.forEach((group) => {
+        if (group.heading) {
+            // The <h3> sits beside the group's button container, so find it from
+            // there rather than by position in the page.
+            const heading = document.querySelector(`.${group.key}-filters`)
+                ?.closest('.compact-filter-group')
+                ?.querySelector('h3');
+            if (heading) {
+                heading.textContent = t(group.heading);
+            }
+        }
+        document.querySelectorAll(`.filter-btn[data-${group.key}]`).forEach((button) => {
+            setButtonLabel(button, t(`${group.key}_${button.dataset[group.key]}`));
+        });
     });
 
     const closeBtn = infoModal.querySelector('.close-btn');

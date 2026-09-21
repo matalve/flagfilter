@@ -2,20 +2,19 @@
 // Feature logic lives in the js/ modules; this file is just the composition
 // root. Split out of the old monolithic script.js; see #143.
 import { state } from './js/state.js';
-import { isEditableTarget, updateToggleButtonState } from './js/util.js';
+import { isEditableTarget } from './js/util.js';
 import { getInitialLanguage, switchLanguage } from './js/i18n.js';
 import { initLanguagePicker } from './js/language-picker.js';
 import { fetchFlags } from './js/flags.js';
 import {
-    applyFilters,
     applyInitialQueryFromUrl,
     debounceSearch,
-    handleColorFilter,
-    handleContinentFilter,
     initializeFilterSections,
     resetAllFilters,
-    resetFilterSectionsToDefault
+    resetFilterSectionsToDefault,
+    toggleFilterButton
 } from './js/filters.js';
+import { FILTER_KEYS } from './js/filter-config.js';
 import { closeModal, openModal, showFlagInfoModal } from './js/modal.js';
 import { initDarkMode } from './js/theme.js';
 import { initScrollToTop } from './js/scroll-to-top.js';
@@ -52,26 +51,11 @@ if (titleReset) {
     });
 }
 
-// Update event listeners for all filter types
-document.querySelectorAll('.filter-btn[data-color]').forEach(button => {
-    button.addEventListener('click', () => handleColorFilter(button.dataset.color));
-});
-
-document.querySelectorAll('.filter-btn[data-continent]').forEach(button => {
-    button.addEventListener('click', () => handleContinentFilter(button.dataset.continent));
-});
-
-// Colour and continent have their own handlers above; every other kind is a
-// plain toggle, so they share one. Was seven copies of the same three lines,
-// which is how a new filter kind ends up silently inert — adding one is now a
-// word in this list.
-['pattern', 'symbol', 'motive', 'people', 'ideology', 'text', 'family'].forEach((kind) => {
-    document.querySelectorAll(`.filter-btn[data-${kind}]`).forEach(button => {
-        button.addEventListener('click', () => {
-            button.classList.toggle('active');
-            updateToggleButtonState(button);
-            applyFilters();
-        });
+// Every filter button is a plain toggle. The kinds come from filter-config.js,
+// so a new group cannot be silently inert here.
+FILTER_KEYS.forEach((key) => {
+    document.querySelectorAll(`.filter-btn[data-${key}]`).forEach((button) => {
+        button.addEventListener('click', () => toggleFilterButton(button));
     });
 });
 

@@ -10,6 +10,7 @@ import {
     updateToggleButtonState
 } from './util.js';
 import { renderFlagGrid, updateFlagCounter } from './flags.js';
+import { FILTER_GROUPS, FILTER_KEYS, flagHasValue } from './filter-config.js';
 
 // Looked up on demand rather than captured at import time. A module that grabs
 // DOM nodes while it is being imported can only ever be loaded into a browser
@@ -21,8 +22,6 @@ function searchInput() {
 
 // Module-local: this is a private timer handle, not shared app state.
 let searchDebounceTimer = null;
-
-const QUERY_FILTER_DATA_KEYS = ['color', 'continent', 'pattern', 'symbol', 'motive', 'people', 'ideology', 'text', 'family'];
 
 function getQueryFromUrl() {
     return new URLSearchParams(window.location.search).get('q') || '';
@@ -40,7 +39,7 @@ function updateQueryInUrl(query) {
 
 function getFilterButtonsWithQueryMetadata() {
     return Array.from(document.querySelectorAll('.filter-btn')).map((button) => {
-        const dataKey = QUERY_FILTER_DATA_KEYS.find((key) => button.dataset[key]);
+        const dataKey = FILTER_KEYS.find((key) => button.dataset[key]);
         if (!dataKey) {
             return null;
         }
@@ -64,7 +63,7 @@ function getFilterButtonsWithQueryMetadata() {
 function getActiveFilterQueryValues() {
     const activeValues = [];
 
-    QUERY_FILTER_DATA_KEYS.forEach((key) => {
+    FILTER_KEYS.forEach((key) => {
         document.querySelectorAll(`.filter-btn[data-${key}].active`).forEach((button) => {
             activeValues.push(button.dataset[key]);
         });
@@ -213,33 +212,6 @@ function handleSearch(query) {
 
 // Apply all active filters
 export function applyFilters() {
-    const activeColors = Array.from(document.querySelectorAll('.filter-btn[data-color].active'))
-        .map(btn => btn.dataset.color);
-
-    const activeContinents = Array.from(document.querySelectorAll('.filter-btn[data-continent].active'))
-        .map(btn => btn.dataset.continent);
-
-    const activePatterns = Array.from(document.querySelectorAll('.filter-btn[data-pattern].active'))
-        .map(btn => btn.dataset.pattern);
-
-    const activeSymbols = Array.from(document.querySelectorAll('.filter-btn[data-symbol].active'))
-        .map(btn => btn.dataset.symbol);
-
-    const activeMotives = Array.from(document.querySelectorAll('.filter-btn[data-motive].active'))
-        .map(btn => btn.dataset.motive);
-
-    const activePeople = Array.from(document.querySelectorAll('.filter-btn[data-people].active'))
-        .map(btn => btn.dataset.people);
-
-    const activeIdeologies = Array.from(document.querySelectorAll('.filter-btn[data-ideology].active'))
-        .map(btn => btn.dataset.ideology);
-
-    const activeTexts = Array.from(document.querySelectorAll('.filter-btn[data-text].active'))
-        .map(btn => btn.dataset.text);
-
-    const activeFamilies = Array.from(document.querySelectorAll('.filter-btn[data-family].active'))
-        .map(btn => btn.dataset.family);
-
     const searchTerm = searchInput().value.toLowerCase().trim();
 
     // Normalize once per filter pass instead of once per flag (see matchesSearchTerm).
@@ -250,68 +222,19 @@ export function applyFilters() {
         ? [...state.flags]
         : state.flags.filter((flag) => matchesSearchTerm(flag, normalizedTerm));
 
-    // Apply color filters
-    if (activeColors.length > 0) {
-        results = results.filter(flag =>
-            activeColors.every(color => flag.colors.includes(color))
-        );
-    }
-
-    // Apply continent filters
-    if (activeContinents.length > 0) {
-        results = results.filter(flag => activeContinents.some(continent => flag.continent === continent));
-    }
-
-    // Apply pattern filters
-    if (activePatterns.length > 0) {
-        results = results.filter(flag =>
-            activePatterns.some(pattern => flag.tags.includes(pattern))
-        );
-    }
-
-    // Apply symbol filters
-    if (activeSymbols.length > 0) {
-        results = results.filter(flag =>
-            activeSymbols.some(symbol => flag.tags.includes(symbol))
-        );
-    }
-
-    // Apply motive filters
-    if (activeMotives.length > 0) {
-        results = results.filter(flag =>
-            activeMotives.some(motive => flag.tags.includes(motive))
-        );
-    }
-
-    // Apply people/clothing filters
-    if (activePeople.length > 0) {
-        results = results.filter(flag =>
-            activePeople.some(people => flag.tags.includes(people))
-        );
-    }
-
-    // Apply ideology filters
-    if (activeIdeologies.length > 0) {
-        results = results.filter(flag =>
-            activeIdeologies.some(ideology => flag.tags.includes(ideology))
-        );
-    }
-
-    // Apply text filters
-    if (activeTexts.length > 0) {
-        results = results.filter(flag =>
-            activeTexts.some(text => flag.tags.includes(text))
-        );
-    }
-
-    // Apply flag family filters. These read a curated tag rather than the colour
+    // Groups are AND-ed together; within a group, `combine` decides (see
+    // filter-config.js). Flag family reads a curated tag rather than the colour
     // set: a flag carrying red, black, white and green is not thereby pan-Arab,
     // so the palette cannot stand in for the tradition. See #141.
-    if (activeFamilies.length > 0) {
-        results = results.filter(flag =>
-            activeFamilies.some(family => flag.tags.includes(family))
-        );
-    }
+    FILTER_GROUPS.forEach((group) => {
+        const active = Array.from(document.querySelectorAll(`.filter-btn[data-${group.key}].active`))
+            .map((button) => button.dataset[group.key]);
+        if (active.length === 0) {
+            return;
+        }
+        const method = group.combine === 'all' ? 'every' : 'some';
+        results = results.filter((flag) => active[method]((value) => flagHasValue(flag, group, value)));
+    });
 
     state.filteredFlags = results;
     renderFlagGrid();
@@ -328,34 +251,24 @@ function updateFilterButtonStates(currentResults) {
 
     // Index the values present in the current results once (O(flags)) so each
     // filter-button test below is an O(1) lookup instead of an O(flags) scan.
-    const availableColors = new Set();
-    const availableContinents = new Set();
-    const availableTags = new Set();
-    currentResults.forEach(flag => {
-        flag.colors.forEach(color => availableColors.add(color));
-        if (flag.continent) {
-            availableContinents.add(flag.continent);
-        }
-        flag.tags.forEach(tag => availableTags.add(tag));
+    const available = {};
+    FILTER_GROUPS.forEach((group) => {
+        available[group.field] = available[group.field] || new Set();
+    });
+    currentResults.forEach((flag) => {
+        Object.entries(available).forEach(([field, set]) => {
+            const value = flag[field];
+            if (Array.isArray(value)) {
+                value.forEach((item) => set.add(item));
+            } else if (value) {
+                set.add(value);
+            }
+        });
     });
 
-    // Check each filter type
-    const filterTypes = ['color', 'continent', 'pattern', 'symbol', 'motive', 'people', 'ideology', 'text', 'family'];
-
-    filterTypes.forEach(type => {
-        const buttons = document.querySelectorAll(`.filter-btn[data-${type}]`);
-        buttons.forEach(button => {
-            const value = button.dataset[type];
-
-            // Test if adding this filter would still show results
-            let wouldHaveResults;
-            if (type === 'color') {
-                wouldHaveResults = availableColors.has(value);
-            } else if (type === 'continent') {
-                wouldHaveResults = availableContinents.has(value);
-            } else {
-                wouldHaveResults = availableTags.has(value);
-            }
+    FILTER_GROUPS.forEach((group) => {
+        document.querySelectorAll(`.filter-btn[data-${group.key}]`).forEach((button) => {
+            const wouldHaveResults = available[group.field].has(button.dataset[group.key]);
 
             // Disable button if it would result in 0 flags. An already-active
             // button is exempt: currentResults reflects its own filter already
@@ -369,19 +282,7 @@ function updateFilterButtonStates(currentResults) {
     });
 }
 
-// Color filter functionality
-export function handleColorFilter(color) {
-    if (color) {
-        const button = document.querySelector(`[data-color="${color}"]`);
-        button.classList.toggle('active');
-        updateToggleButtonState(button);
-    }
-
-    applyFilters();
-}
-
-export function handleContinentFilter(continent) {
-    const button = document.querySelector(`[data-continent="${continent}"]`);
+export function toggleFilterButton(button) {
     button.classList.toggle('active');
     updateToggleButtonState(button);
     applyFilters();

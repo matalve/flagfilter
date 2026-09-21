@@ -9,6 +9,7 @@ import {
     normalizeQueryValue
 } from './util.js';
 import { t } from './translate.js';
+import { COLOR_VALUES } from './filter-config.js';
 
 // Looked up on demand rather than captured at import time; see #143.
 function flagGrid() {
@@ -44,10 +45,9 @@ export function rebuildFlags() {
         const url = `https://flagcdn.com/w320/${code}.webp`;
         const tags = info.tags || '';
         const tagWords = tags.split(' ');
-        const colorTags = ['red', 'blue', 'green', 'yellow', 'white', 'black', 'brown', 'purple', 'orange'];
         // Whole-word match: the tags string also carries the country name, and a
         // substring test made Greenland "green". See #200.
-        const colors = colorTags.filter(color => tagWords.includes(color));
+        const colors = COLOR_VALUES.filter((color) => tagWords.includes(color));
 
         // Precompute one normalized search haystack per flag (localized name +
         // English base name + code + tags), so matchesSearchTerm becomes a single

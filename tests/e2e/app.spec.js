@@ -1,4 +1,5 @@
-const { test, expect } = require('@playwright/test');
+import { test, expect } from '@playwright/test';
+import { FILTER_GROUPS, FILTER_KEYS } from '../../js/filter-config.js';
 
 async function gotoApp(page, language = 'en', query = '') {
   const params = new URLSearchParams({ lang: language });
@@ -89,6 +90,29 @@ test.describe('Flagfilter UI flows', () => {
   test.beforeEach(async ({ page }) => {
     await stubTurnstile(page);
     await gotoApp(page, 'en');
+  });
+
+  test('the filter buttons in index.html match filter-config.js exactly', async ({ page }) => {
+    // The buttons stay in the markup; every loop over "which filters exist"
+    // reads the config. This is what keeps the two from drifting (#201).
+    const buttonsByKey = await page.evaluate((keys) => {
+      const found = Object.fromEntries(keys.map((key) => [key, []]));
+      const unknown = [];
+      document.querySelectorAll('.filter-btn').forEach((button) => {
+        const key = keys.find((candidate) => candidate in button.dataset);
+        if (key) {
+          found[key].push(button.dataset[key]);
+        } else {
+          unknown.push(button.outerHTML);
+        }
+      });
+      return { found, unknown };
+    }, FILTER_KEYS);
+
+    expect(buttonsByKey.unknown).toEqual([]);
+    for (const group of FILTER_GROUPS) {
+      expect(buttonsByKey.found[group.key], `data-${group.key} buttons`).toEqual(group.values);
+    }
   });
 
   test('app shell loads with search and reset controls', async ({ page }) => {
