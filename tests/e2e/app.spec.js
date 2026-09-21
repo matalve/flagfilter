@@ -144,6 +144,18 @@ test.describe('Flagfilter UI flows', () => {
     await expect(searchInput).toBeFocused();
   });
 
+  test('a filter click inside the search debounce window still uses the typed text', async ({ page }) => {
+    // Regression test: state.search is written on input, not when the 150 ms
+    // debounce fires, so a click that lands before it must not filter on the
+    // previous text (#202).
+    await page.locator('#searchInput').fill('sweden');
+    await page.locator('.filter-btn[data-color="blue"]').click();
+
+    await expect(page.locator('.flag-card')).toHaveCount(1);
+    await expect(page.locator('.flag-card h3', { hasText: /^Sweden$/ })).toHaveCount(1);
+    await expect.poll(async () => new URL(await page.url()).searchParams.get('q')).toBe('blue sweden');
+  });
+
   test('q URL parameter activates matching filter buttons and keeps remaining search text', async ({ page }) => {
     await gotoApp(page, 'en', 'blue sweden');
 
