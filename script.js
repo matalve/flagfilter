@@ -12,7 +12,7 @@ import {
     initializeFilterSections,
     resetAllFilters,
     resetFilterSectionsToDefault,
-    toggleFilterButton
+    toggleFilter
 } from './js/filters.js';
 import { FILTER_KEYS } from './js/filter-config.js';
 import { closeModal, openModal, showFlagInfoModal } from './js/modal.js';
@@ -55,7 +55,7 @@ if (titleReset) {
 // so a new group cannot be silently inert here.
 FILTER_KEYS.forEach((key) => {
     document.querySelectorAll(`.filter-btn[data-${key}]`).forEach((button) => {
-        button.addEventListener('click', () => toggleFilterButton(button));
+        button.addEventListener('click', () => toggleFilter(key, button.dataset[key]));
     });
 });
 
