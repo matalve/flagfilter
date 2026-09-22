@@ -45,6 +45,11 @@ This file documents how AI coding assistants should work in this repository.
   so markup stays compatible with the CSP.
 - Every user-facing string — including `aria-label`s and tooltips — needs keys in both
   `i18n/ui/en.json` and `i18n/ui/es.json`.
+- `js/filter-config.js` defines the filter groups and their values; the buttons live in
+  `index.html`. Adding or renaming a filter means editing both, and a Playwright test
+  fails if they disagree. Nothing else should carry its own copy of the list — that
+  drift is what #182 was. In `flaginfo.json`, `tags` holds these values and nothing
+  else (CI enforces it); a searchable word with no button goes in the flag's `aliases`.
 - Icons are an inline SVG `<symbol>` sprite in `index.html` (Font Awesome 6 solid
   paths, ids `#i-*`). Add new icons to the sprite; do not add icon CDNs or webfonts.
 - `index.html` preloads the first flag image (`w320/af.webp`) as the LCP image.
