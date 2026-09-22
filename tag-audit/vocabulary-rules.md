@@ -80,18 +80,28 @@ rather than re-derived per flag.
 is co-classification, not hierarchy: neither `tool` nor `weapon` contains the other,
 and the object earns both on its own merits.
 
-## Undecided: `sun` and `circle`
+## `sun` and `circle`: the drawing decides, not the word
 
-Not a convention — drift, and the only pair with it. **10 flags carry both, 9 carry
-only `sun`.** Close enough to a coin flip that the `circle` filter is unreliable
-today: filter on it and you get about half the suns.
+A sun earns `circle` when the design holds a closed round disc, and not otherwise.
+Same reading as the `moon` rule above: `circle` goes on a shape, not on an idea. The
+counts looked like a coin flip — 10 flags carried both and 9 carried only `sun` — but
+that split is mostly the rule already working, not drift.
 
-The rule that already exists ("a ring of text is not a `circle`") suggests `circle`
-means a circular shape deliberately in the design, which is also how the `moon` rule
-above resolved. A sun drawn as a disc would qualify; a sun drawn as rays alone would
-not. That reading has to be applied flag by flag, so it needs one decision and then a
-pass over the 19 — nobody should set it from the counts. Settle it before auditing in
-bulk, or the audit will propose whichever reading it happens to infer.
+**A disc is there.** All 10 that carry both earn it: Japan's plain disc, the solid sun
+bodies on Kazakhstan, North Macedonia, Namibia, New Caledonia, Rwanda and Taiwan, the
+faced disc on the Philippines, the ring around Kyrgyzstan's tunduk, and Palau's disc.
+
+**No disc.** A sun rising at the horizon is a semicircle: Antigua and Barbuda,
+Kiribati, Malawi. A starburst whose points meet with no body behind them is not a
+disc either: the Marshall Islands, and Nepal's twelve-pointed sun. All 5 correctly
+leave `circle` off.
+
+**Three are missing it**, and are recorded below rather than edited in by hand. The
+Sun of May on Argentina and Uruguay carries its face on an unmistakable round disc,
+and Guadeloupe's sun is a large round body with the rays worked into its edge.
+
+Ecuador is the one real question and is in `needs-a-human.tsv`: its sun is a small
+faced disc high on an oval shield, round but barely a design element in its own right.
 
 ## Motifs the vocabulary does not cover
 
@@ -118,3 +128,6 @@ The same as above, the other way round. Propose these in a batch rather than edi
 by hand:
 
 - `gp` depicts sugar cane — its `symbolism` says so — and carries no `vegetation`.
+- `ar` and `uy` carry `sun` without `circle`, and the Sun of May's face sits on a
+  closed round disc.
+- `gp` carries `sun` without `circle`; the sun's body is a large round disc.
