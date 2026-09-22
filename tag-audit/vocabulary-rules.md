@@ -41,6 +41,66 @@ lines are waves: the blue and white ones at the foot of each of Spain's pillars.
 Lake Texcoco at the base of Mexico's emblem is water too — drawn in the Aztec
 convention as turquoise curls — and is not waves.
 
+## When one tag implies another
+
+Some terms sit inside others. Where they do, the narrow tag is never enough on its
+own — a flag with a bird is a flag with an animal, and leaving `animal` off hides it
+from a filter it belongs in. Where they do not, adding the broad tag is wrong, not
+generous. The vocabulary gives no hint which is which, so each pair is decided here
+rather than re-derived per flag.
+
+**These imply the broader tag. Always propose both.**
+
+- `bird` implies `animal`. All 21 bird flags carry both today.
+- `motto` implies `text`, and so does `name`. All 19 and all 10 carry both.
+
+**These do not imply anything, and the broader tag is a separate finding.**
+
+- `crown` is not a `hat`. A crown is regalia, not headwear; all 10 crown flags leave
+  `hat` off. Whether a bishop's mitre is a `hat` is still open, in
+  `needs-a-human.tsv`.
+- `hand` is not `human`, and neither is `face` or `hat`. A body part or a garment
+  standing alone is not a person: Brunei's hands, the Red Hand of Ulster, the Sun of
+  May's face on Argentina and Uruguay, the four hat flags. `human` is for a figure
+  depicted as a figure, which is why only Belize, Montserrat and the British Virgin
+  Islands carry it. Belize is the one flag with both `face` and `human`, and it earns
+  both: the faces belong to the two figures.
+- `shield` is not `weapon`. Arms are on a shield on 11 flags; only 3 carry both, and
+  those have a weapon elsewhere in the design.
+
+**An object that is two things still gets both tags** — see the axe rule above. That
+is co-classification, not hierarchy: neither `tool` nor `weapon` contains the other,
+and the object earns both on its own merits.
+
+## Undecided: pairs the data does not agree on
+
+Not conventions — drift. Each of these needs one decision and then a pass to make
+the data match it. Settle them before auditing in bulk, or the audit will propose
+whichever reading it happens to infer.
+
+- **`sun` and `circle`: 10 flags carry both, 9 carry only `sun`.** Close enough to a
+  coin flip that the `circle` filter is unreliable today — filter on it and you get
+  about half the suns. The rule that already exists ("a ring of text is not a
+  `circle`") suggests `circle` means a circular shape deliberately in the design, in
+  which case a sun drawn as a disc qualifies and a sun drawn as rays alone does not.
+  That reading has to be applied flag by flag; nobody should set it from the counts.
+- **`moon` and `circle`: 2 of 20 carry both.** A crescent is not a circle, so the
+  convention looks settled — but the 2 are worth a look, since they may have a
+  separate circular element rather than a disagreement.
+- **`fleur-de-lis` and `vegetation`: 1 of 4 carries both.** A fleur-de-lis is a
+  stylised lily. Either it is vegetation and three flags are missing the tag, or it
+  is a heraldic charge and one flag has a tag too many.
+
+## Motifs the vocabulary does not cover
+
+`tags` holds filter terms only, so an audit that sees a recurring motif with no term
+has nowhere to put it and would otherwise drop the observation. Note it here instead,
+with the flags it was seen on. Enough entries pointing the same way is the argument
+for a new filter button, which is its own issue and its own PR — see #184. Do not
+add the term to `js/filter-config.js` as part of an audit batch.
+
+Nothing recorded yet.
+
 ## Candidates for the removal pass
 
 Found while auditing, not acted on. Removals are their own round with their own
