@@ -67,29 +67,31 @@ rather than re-derived per flag.
   both: the faces belong to the two figures.
 - `shield` is not `weapon`. Arms are on a shield on 11 flags; only 3 carry both, and
   those have a weapon elsewhere in the design.
+- `moon` is not `circle`. A crescent is not a circle, and the 2 flags of 20 carrying
+  both earn it elsewhere: Palau's disc is the full moon drawn as a disc, and Cocos
+  has a circular palm-tree badge beside its crescent. So `circle` goes on a disc, not
+  on the idea of a moon.
+- `fleur-de-lis` is not `vegetation`. It is a stylised lily, but it is carried as a
+  heraldic charge, and none of the 4 flags derives `vegetation` from it. Spain has
+  both because its arms depict a pomegranate for Granada, which is a plant in its own
+  right.
 
 **An object that is two things still gets both tags** — see the axe rule above. That
 is co-classification, not hierarchy: neither `tool` nor `weapon` contains the other,
 and the object earns both on its own merits.
 
-## Undecided: pairs the data does not agree on
+## Undecided: `sun` and `circle`
 
-Not conventions — drift. Each of these needs one decision and then a pass to make
-the data match it. Settle them before auditing in bulk, or the audit will propose
-whichever reading it happens to infer.
+Not a convention — drift, and the only pair with it. **10 flags carry both, 9 carry
+only `sun`.** Close enough to a coin flip that the `circle` filter is unreliable
+today: filter on it and you get about half the suns.
 
-- **`sun` and `circle`: 10 flags carry both, 9 carry only `sun`.** Close enough to a
-  coin flip that the `circle` filter is unreliable today — filter on it and you get
-  about half the suns. The rule that already exists ("a ring of text is not a
-  `circle`") suggests `circle` means a circular shape deliberately in the design, in
-  which case a sun drawn as a disc qualifies and a sun drawn as rays alone does not.
-  That reading has to be applied flag by flag; nobody should set it from the counts.
-- **`moon` and `circle`: 2 of 20 carry both.** A crescent is not a circle, so the
-  convention looks settled — but the 2 are worth a look, since they may have a
-  separate circular element rather than a disagreement.
-- **`fleur-de-lis` and `vegetation`: 1 of 4 carries both.** A fleur-de-lis is a
-  stylised lily. Either it is vegetation and three flags are missing the tag, or it
-  is a heraldic charge and one flag has a tag too many.
+The rule that already exists ("a ring of text is not a `circle`") suggests `circle`
+means a circular shape deliberately in the design, which is also how the `moon` rule
+above resolved. A sun drawn as a disc would qualify; a sun drawn as rays alone would
+not. That reading has to be applied flag by flag, so it needs one decision and then a
+pass over the 19 — nobody should set it from the counts. Settle it before auditing in
+bulk, or the audit will propose whichever reading it happens to infer.
 
 ## Motifs the vocabulary does not cover
 
@@ -107,3 +109,12 @@ Found while auditing, not acted on. Removals are their own round with their own
 review:
 
 - `mx` carries `flag`, and there is no flag depicted in the design.
+- `pw` carries both `sun` and `moon` for a single yellow disc, and the flag's own
+  `symbolism` says the disc is the full moon. There is nothing else on the flag.
+
+## Additions found while settling the rules
+
+The same as above, the other way round. Propose these in a batch rather than editing
+by hand:
+
+- `gp` depicts sugar cane — its `symbolism` says so — and carries no `vegetation`.
