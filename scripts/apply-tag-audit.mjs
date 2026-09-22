@@ -93,6 +93,15 @@ const previouslyRejected = new Map(
         .map((row) => [row.key, row.confidence])
 );
 
+// Rerunning the script on a batch that has already been applied is not a mistake:
+// the two proposals files still hold the same rows, so the same rejections are
+// derived every time, and the run has to be a no-op. Append without checking and
+// the ledger grows a duplicate set of every rejection per run, silently. A row
+// whose stored hash is stale is the other case entirely — the image changed, the
+// old rejection lapsed, and rejecting the proposal again earns a fresh line.
+const unrecorded = rejected.filter((row) => previouslyRejected.get(row.key) !== baselineHash(row.code));
+const alreadyRecorded = rejected.length - unrecorded.length;
+
 reviewed.forEach((row) => {
     const where = `${REVIEWED_PATH}:${row.lineNumber}`;
     if (!flagsByCode.has(row.code)) {
@@ -153,7 +162,7 @@ if (dryRun) {
 } else {
     writeFileSync(FLAG_INFO_PATH, `${JSON.stringify(flags, null, 2)}\n`);
 
-    if (rejected.length > 0) {
+    if (unrecorded.length > 0) {
         const header = existsSync(REJECTED_PATH)
             ? ''
             : '# Proposals a human declined, so later audits stay quiet about them.\n' +
@@ -163,7 +172,7 @@ if (dryRun) {
               '# The hash expires the rejection: when flagcdn changes the flag, the question\n' +
               '# was answered about a different picture and may be asked again. Delete a line\n' +
               '# to reopen a question early. See #174.\n';
-        appendFileSync(REJECTED_PATH, header + rejected
+        appendFileSync(REJECTED_PATH, header + unrecorded
             .map((row) => [row.code, row.tag, row.action, baselineHash(row.code), row.justification].join('\t'))
             .join('\n') + '\n');
     }
@@ -172,9 +181,13 @@ if (dryRun) {
 console.log(`${applied.length} change(s) applied to ${FLAG_INFO_PATH}:`);
 applied.forEach((change) => console.log(`  ${change}`));
 
-if (rejected.length > 0) {
-    console.log(`\n${rejected.length} proposal(s) declined and recorded in ${REJECTED_PATH}:`);
-    rejected.forEach((row) => console.log(`  ${row.code} ${row.tag}`));
+if (unrecorded.length > 0) {
+    console.log(`\n${unrecorded.length} proposal(s) declined and recorded in ${REJECTED_PATH}:`);
+    unrecorded.forEach((row) => console.log(`  ${row.code} ${row.tag}`));
+}
+
+if (alreadyRecorded > 0) {
+    console.log(`\n${alreadyRecorded} declined proposal(s) were already in ${REJECTED_PATH}; not written again.`);
 }
 
 if (handAdded.length > 0) {
