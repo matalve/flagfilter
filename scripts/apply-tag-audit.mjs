@@ -88,10 +88,29 @@ const originalKeys = new Set(original.map((row) => row.key));
 const rejected = original.filter((row) => !reviewedKeys.has(row.key));
 const handAdded = reviewed.filter((row) => !originalKeys.has(row.key));
 
-const previouslyRejected = new Map(
+// A rejection answers a question about one picture, so the ledger is keyed on the
+// proposal *and* the image hash, and one proposal can hold several lines: an entry
+// lapses when flagcdn changes the flag, and rejecting the renewed proposal writes a
+// second line. Keeping only the newest hash per proposal would be wrong in both
+// directions if an image ever returned to an earlier version — the duplicate check
+// below would write a line that already exists, and the standing check would let a
+// live rejection through. A set of composite keys has no such newest.
+// readRows is generic, so the hash column lands in the `confidence` position.
+const rejectionLedger = new Set(
     (existsSync(REJECTED_PATH) ? readRows(REJECTED_PATH) : [])
-        .map((row) => [row.key, row.confidence])
+        .map((row) => `${row.key}\t${row.confidence}`)
 );
+
+function isRecorded(row) {
+    return rejectionLedger.has(`${row.key}\t${baselineHash(row.code)}`);
+}
+
+// Rerunning the script on a batch that has already been applied is not a mistake:
+// the two proposals files still hold the same rows, so the same rejections are
+// derived every time, and the run has to be a no-op. Append without checking and
+// the ledger grows a duplicate set of every rejection per run, silently.
+const unrecorded = rejected.filter((row) => !isRecorded(row));
+const alreadyRecorded = rejected.length - unrecorded.length;
 
 reviewed.forEach((row) => {
     const where = `${REVIEWED_PATH}:${row.lineNumber}`;
@@ -110,8 +129,7 @@ reviewed.forEach((row) => {
     }
 
     // A rejection stands until the flag's picture changes.
-    const standing = previouslyRejected.get(row.key);
-    if (standing && standing === baselineHash(row.code)) {
+    if (isRecorded(row)) {
         failures.push(`${where}: this was rejected before and the image has not changed since — remove it from ${REJECTED_PATH} to reopen the question`);
     }
 });
@@ -153,7 +171,7 @@ if (dryRun) {
 } else {
     writeFileSync(FLAG_INFO_PATH, `${JSON.stringify(flags, null, 2)}\n`);
 
-    if (rejected.length > 0) {
+    if (unrecorded.length > 0) {
         const header = existsSync(REJECTED_PATH)
             ? ''
             : '# Proposals a human declined, so later audits stay quiet about them.\n' +
@@ -163,7 +181,7 @@ if (dryRun) {
               '# The hash expires the rejection: when flagcdn changes the flag, the question\n' +
               '# was answered about a different picture and may be asked again. Delete a line\n' +
               '# to reopen a question early. See #174.\n';
-        appendFileSync(REJECTED_PATH, header + rejected
+        appendFileSync(REJECTED_PATH, header + unrecorded
             .map((row) => [row.code, row.tag, row.action, baselineHash(row.code), row.justification].join('\t'))
             .join('\n') + '\n');
     }
@@ -172,9 +190,13 @@ if (dryRun) {
 console.log(`${applied.length} change(s) applied to ${FLAG_INFO_PATH}:`);
 applied.forEach((change) => console.log(`  ${change}`));
 
-if (rejected.length > 0) {
-    console.log(`\n${rejected.length} proposal(s) declined and recorded in ${REJECTED_PATH}:`);
-    rejected.forEach((row) => console.log(`  ${row.code} ${row.tag}`));
+if (unrecorded.length > 0) {
+    console.log(`\n${unrecorded.length} proposal(s) declined and recorded in ${REJECTED_PATH}:`);
+    unrecorded.forEach((row) => console.log(`  ${row.code} ${row.tag}`));
+}
+
+if (alreadyRecorded > 0) {
+    console.log(`\n${alreadyRecorded} declined proposal(s) were already in ${REJECTED_PATH}; not written again.`);
 }
 
 if (handAdded.length > 0) {
