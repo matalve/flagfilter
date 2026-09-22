@@ -17,7 +17,7 @@
 import { createHash } from 'node:crypto';
 import { appendFileSync, existsSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
-import { FILTER_TERMS } from '../js/filter-config.js';
+import { TAG_TERMS } from '../js/filter-config.js';
 
 const FLAG_INFO_PATH = 'flaginfo.json';
 const BASELINE_DIR = 'flag-baseline';
@@ -70,7 +70,7 @@ function baselineHash(code) {
 // The vocabulary is js/filter-config.js — the same list the buttons in
 // index.html are held equal to. A tag outside it filters nothing, so proposing
 // one is a bug rather than a finding.
-const filterTerms = FILTER_TERMS;
+const filterTerms = TAG_TERMS;
 const flags = JSON.parse(readFileSync(FLAG_INFO_PATH, 'utf8'));
 const flagsByCode = new Map(flags.map((flag) => [flag.shortname, flag]));
 

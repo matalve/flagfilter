@@ -4,7 +4,7 @@
 // Run: node scripts/validate-flaginfo.mjs
 
 import { readFileSync } from 'node:fs';
-import { FILTER_GROUPS, FILTER_TERMS } from '../js/filter-config.js';
+import { FILTER_GROUPS, TAG_TERMS } from '../js/filter-config.js';
 
 const KNOWN_CONTINENTS = FILTER_GROUPS.find((group) => group.key === 'continent').values;
 // Antarctic territories intentionally have no continent (there is no Antarctic filter).
@@ -45,13 +45,14 @@ flags.forEach((flag, index) => {
     });
 
     // tags is the filter vocabulary and nothing else: a word here that has no
-    // button filters nothing. Search-only keywords go in aliases. See #203.
+    // button filters nothing. Search-only keywords go in aliases; the continent
+    // has its own field and is not a tag either. See #203.
     if (!Array.isArray(flag.tags) || flag.tags.length === 0) {
         errors.push(`${label}: "tags" must be a non-empty array`);
     } else {
         flag.tags.forEach((tag) => {
-            if (!FILTER_TERMS.has(tag)) {
-                errors.push(`${label}: tag "${tag}" is not a filter term (js/filter-config.js); a search keyword belongs in "aliases"`);
+            if (!TAG_TERMS.has(tag)) {
+                errors.push(`${label}: tag "${tag}" is not a tag-backed filter term (js/filter-config.js); a search keyword belongs in "aliases", a continent in "continent"`);
             }
         });
         if (new Set(flag.tags).size !== flag.tags.length) {
