@@ -1,13 +1,15 @@
 #!/usr/bin/env node
-// Validates flaginfo.json: required fields, unique codes, and continent coverage.
+// Validates flaginfo.json: required fields, unique codes, continent coverage,
+// and that every tag is a filter term.
 // Run: node scripts/validate-flaginfo.mjs
 
 import { readFileSync } from 'node:fs';
+import { FILTER_GROUPS, TAG_TERMS } from '../js/filter-config.js';
 
-const KNOWN_CONTINENTS = ['africa', 'asia', 'europe', 'northAmerica', 'southAmerica', 'oceania'];
+const KNOWN_CONTINENTS = FILTER_GROUPS.find((group) => group.key === 'continent').values;
 // Antarctic territories intentionally have no continent (there is no Antarctic filter).
 const NO_CONTINENT = ['aq', 'bv', 'gs', 'hm', 'tf'];
-const REQUIRED_STRING_FIELDS = ['tags', 'shortname', 'name', 'proportion', 'adopted', 'symbolism', 'funfacts', 'wikipedialink'];
+const REQUIRED_STRING_FIELDS = ['shortname', 'name', 'proportion', 'adopted', 'symbolism', 'funfacts', 'wikipedialink'];
 
 const path = process.argv[2] || 'flaginfo.json';
 
@@ -41,6 +43,31 @@ flags.forEach((flag, index) => {
             errors.push(`${label}: missing or empty required field "${field}"`);
         }
     });
+
+    // tags is the filter vocabulary and nothing else: a word here that has no
+    // button filters nothing. Search-only keywords go in aliases; the continent
+    // has its own field and is not a tag either. See #203.
+    if (!Array.isArray(flag.tags) || flag.tags.length === 0) {
+        errors.push(`${label}: "tags" must be a non-empty array`);
+    } else {
+        flag.tags.forEach((tag) => {
+            if (!TAG_TERMS.has(tag)) {
+                errors.push(`${label}: tag "${tag}" is not a tag-backed filter term (js/filter-config.js); a search keyword belongs in "aliases", a continent in "continent"`);
+            }
+        });
+        if (new Set(flag.tags).size !== flag.tags.length) {
+            errors.push(`${label}: duplicate tags`);
+        }
+    }
+
+    if (flag.aliases !== undefined) {
+        const valid = Array.isArray(flag.aliases)
+            && flag.aliases.length > 0
+            && flag.aliases.every((alias) => typeof alias === 'string' && alias.trim() !== '');
+        if (!valid) {
+            errors.push(`${label}: "aliases" must be a non-empty array of strings when present`);
+        }
+    }
 
     if (flag.shortname) {
         if (seenCodes.has(flag.shortname)) {

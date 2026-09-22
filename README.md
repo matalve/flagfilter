@@ -166,7 +166,10 @@ Translation contributions are welcome:
 - Playwright tests: `tests/e2e/app.spec.js`
 - GitHub Actions workflow: `.github/workflows/ui-tests.yml`
 - Data sources: `flaginfo.json` and `https://flagcdn.com/w320/{code}.png`
-- `flaginfo.json` is validated in CI (required fields, unique codes, continent coverage): `node scripts/validate-flaginfo.mjs`
+- `flaginfo.json` is validated in CI (required fields, unique codes, continent coverage, and that
+  every `tags` entry is a filter term from `js/filter-config.js`): `node scripts/validate-flaginfo.mjs`.
+  A word that should be searchable but has no button — `burma`, `usa`, `carpet` — goes in the
+  flag's optional `aliases` array instead; both feed the search haystack.
 - Flag images are watched for upstream changes weekly: see [Flag image watch](#flag-image-watch)
 - Flag cross-links (`<a href="?q=…">` inside `symbolism`/`funfacts`, in `flaginfo.json` and every
   `i18n/flags/*.json`) are validated in CI: `node scripts/validate-flag-links.mjs`. A link that

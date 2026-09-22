@@ -79,6 +79,13 @@ export const COLOR_VALUES = FILTER_GROUPS.find((group) => group.key === 'color')
 // Every value that has a button, across all groups.
 export const FILTER_TERMS = new Set(FILTER_GROUPS.flatMap((group) => group.values));
 
+// The subset a flag's tags array may contain: the tag-backed groups plus the
+// colours, which flags.js derives from tags. A continent name in tags would
+// pass as a word but drive nothing, since that group reads flag.continent.
+export const TAG_TERMS = new Set(FILTER_GROUPS
+    .filter((group) => group.field === 'tags' || group.field === 'colors')
+    .flatMap((group) => group.values));
+
 // Does this flag carry this value, for this group? Continent is a single
 // string; colours and tags are arrays.
 export function flagHasValue(flag, group, value) {

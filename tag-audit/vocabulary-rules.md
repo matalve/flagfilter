@@ -7,6 +7,12 @@ making the same class of mistake.
 
 Read this before proposing anything. See #174.
 
+`tags` holds filter terms only, and `validate-flaginfo.mjs` rejects anything else.
+A word that describes the flag but has no button — `carpet` on Turkmenistan,
+`sphere` on Portugal — is a search keyword, not a tag, and lives in the flag's
+`aliases` array alongside the alternative names (`burma`, `usa`). Do not propose
+one as a tag, and do not propose removing one from `aliases`. See #184 and #203.
+
 ## Rules
 
 **`vertical` and `horizontal` describe the design, not any band in it.** The flag

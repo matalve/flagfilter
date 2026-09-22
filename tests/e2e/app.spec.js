@@ -360,6 +360,25 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('.flag-card h3')).toHaveText(['Timor-Leste (East Timor)']);
   });
 
+  test('search finds a flag by an alias the name does not contain', async ({ page }) => {
+    // Aliases moved out of the tags string into their own field (#203); this
+    // is what proves the field is wired into the search haystack.
+    const cases = [
+      ['burma', 'Myanmar'],
+      ['great britain', 'United Kingdom'],
+      ['carpet', 'Turkmenistan'],
+      // Phrases the punctuation-free spelling gives you and the name does not.
+      ['cote divoire', "Côte d'Ivoire (Ivory Coast)"],
+      ['sao tome principe', 'São Tomé and Príncipe'],
+      ['trinidad tobago', 'Trinidad and Tobago']
+    ];
+    for (const [term, expected] of cases) {
+      await page.locator('#searchInput').fill(term);
+      await expect(page.locator('.flag-card')).toHaveCount(1);
+      await expect(page.locator('.flag-card h3')).toHaveText(expected);
+    }
+  });
+
   test('search folds diacritics on flag names', async ({ page }) => {
     // "sao tome" (no diacritics) must find "São Tomé and Príncipe". See #144.
     await page.locator('#searchInput').fill('sao tome');

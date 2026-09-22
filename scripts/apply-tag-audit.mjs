@@ -17,7 +17,7 @@
 import { createHash } from 'node:crypto';
 import { appendFileSync, existsSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
-import { FILTER_TERMS } from '../js/filter-config.js';
+import { TAG_TERMS } from '../js/filter-config.js';
 
 const FLAG_INFO_PATH = 'flaginfo.json';
 const BASELINE_DIR = 'flag-baseline';
@@ -70,7 +70,7 @@ function baselineHash(code) {
 // The vocabulary is js/filter-config.js — the same list the buttons in
 // index.html are held equal to. A tag outside it filters nothing, so proposing
 // one is a bug rather than a finding.
-const filterTerms = FILTER_TERMS;
+const filterTerms = TAG_TERMS;
 const flags = JSON.parse(readFileSync(FLAG_INFO_PATH, 'utf8'));
 const flagsByCode = new Map(flags.map((flag) => [flag.shortname, flag]));
 
@@ -127,7 +127,7 @@ const noop = [];
 
 reviewed.forEach((row) => {
     const flag = flagsByCode.get(row.code);
-    const words = String(flag.tags || '').split(' ').filter(Boolean);
+    const words = flag.tags;
     const has = words.includes(row.tag);
 
     if (row.action === 'add' && has) {
@@ -139,13 +139,11 @@ reviewed.forEach((row) => {
         return;
     }
 
-    // Only vocabulary words move. The tag string also carries name words and
-    // search aliases — "burma", "usa", "great britain" — and nothing here can
-    // reach them, because the only writes are appending or dropping one term
-    // that had to be a filter term to get this far.
+    // Search aliases live in their own field ("burma", "usa", "great britain")
+    // and nothing here can reach them; tags is vocabulary only. See #203.
     flag.tags = row.action === 'add'
-        ? [...words, row.tag].join(' ')
-        : words.filter((word) => word !== row.tag).join(' ');
+        ? [...words, row.tag]
+        : words.filter((word) => word !== row.tag);
 
     applied.push(`${row.action === 'add' ? '+' : '-'} ${row.code} ${row.tag}`);
 });

@@ -1,6 +1,16 @@
 [
   {
-    "tags": "andorra blue yellow red animal text vertical christianity shield motto",
+    "tags": [
+      "blue",
+      "yellow",
+      "red",
+      "animal",
+      "text",
+      "vertical",
+      "christianity",
+      "shield",
+      "motto"
+    ],
     "shortname": "ad",
     "continent": "europe",
     "name": "Andorra",
@@ -11,7 +21,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Andorra"
   },
   {
-    "tags": "united arab emirates red green white black horizontal pan-arab",
+    "tags": [
+      "red",
+      "green",
+      "white",
+      "black",
+      "horizontal",
+      "pan-arab"
+    ],
     "shortname": "ae",
     "continent": "asia",
     "name": "United Arab Emirates",
@@ -22,7 +39,16 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_United_Arab_Emirates"
   },
   {
-    "tags": "afghanistan white black text motto name flag building islam",
+    "tags": [
+      "white",
+      "black",
+      "text",
+      "motto",
+      "name",
+      "flag",
+      "building",
+      "islam"
+    ],
     "shortname": "af",
     "continent": "asia",
     "name": "Afghanistan",
@@ -33,7 +59,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Afghanistan"
   },
   {
-    "tags": "antigua barbuda red black blue white sun triangle",
+    "tags": [
+      "red",
+      "black",
+      "blue",
+      "white",
+      "sun",
+      "triangle"
+    ],
+    "aliases": [
+      "antigua barbuda"
+    ],
     "shortname": "ag",
     "continent": "northAmerica",
     "name": "Antigua and Barbuda",
@@ -44,7 +80,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Antigua_and_Barbuda"
   },
   {
-    "tags": "anguilla blue red white orange cross british animal",
+    "tags": [
+      "blue",
+      "red",
+      "white",
+      "orange",
+      "cross",
+      "british",
+      "animal"
+    ],
     "shortname": "ai",
     "continent": "northAmerica",
     "name": "Anguilla",
@@ -55,7 +99,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Anguilla"
   },
   {
-    "tags": "albania red black bird animal",
+    "tags": [
+      "red",
+      "black",
+      "bird",
+      "animal"
+    ],
     "shortname": "al",
     "continent": "europe",
     "name": "Albania",
@@ -66,7 +115,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Albania"
   },
   {
-    "tags": "armenia red blue orange horizontal christianity",
+    "tags": [
+      "red",
+      "blue",
+      "orange",
+      "horizontal",
+      "christianity"
+    ],
     "shortname": "am",
     "continent": "asia",
     "name": "Armenia",
@@ -77,7 +132,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Armenia"
   },
   {
-    "tags": "angola red black star weapon horizontal",
+    "tags": [
+      "red",
+      "black",
+      "star",
+      "weapon",
+      "horizontal"
+    ],
     "shortname": "ao",
     "continent": "africa",
     "name": "Angola",
@@ -88,7 +149,11 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Angola"
   },
   {
-    "tags": "antarctica blue map white",
+    "tags": [
+      "blue",
+      "map",
+      "white"
+    ],
     "shortname": "aq",
     "name": "Antarctica",
     "proportion": "2:3",
@@ -98,7 +163,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Antarctica"
   },
   {
-    "tags": "argentina blue white yellow sun horizontal face",
+    "tags": [
+      "blue",
+      "white",
+      "yellow",
+      "sun",
+      "horizontal",
+      "face"
+    ],
     "shortname": "ar",
     "continent": "southAmerica",
     "name": "Argentina",
@@ -109,7 +181,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Argentina"
   },
   {
-    "tags": "american samoa blue white triangle red bird animal weapon",
+    "tags": [
+      "blue",
+      "white",
+      "triangle",
+      "red",
+      "bird",
+      "animal",
+      "weapon"
+    ],
     "shortname": "as",
     "continent": "oceania",
     "name": "American Samoa",
@@ -120,7 +200,11 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_American_Samoa"
   },
   {
-    "tags": "austria red white horizontal",
+    "tags": [
+      "red",
+      "white",
+      "horizontal"
+    ],
     "shortname": "at",
     "continent": "europe",
     "name": "Austria",
@@ -131,7 +215,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Austria"
   },
   {
-    "tags": "australia blue white red cross british star christianity",
+    "tags": [
+      "blue",
+      "white",
+      "red",
+      "cross",
+      "british",
+      "star",
+      "christianity"
+    ],
     "shortname": "au",
     "continent": "oceania",
     "name": "Australia",
@@ -142,7 +234,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Australia"
   },
   {
-    "tags": "aruba blue yellow red white star horizontal whitney_smith",
+    "tags": [
+      "blue",
+      "yellow",
+      "red",
+      "white",
+      "star",
+      "horizontal",
+      "whitney_smith"
+    ],
     "shortname": "aw",
     "continent": "northAmerica",
     "name": "Aruba",
@@ -153,7 +253,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Aruba"
   },
   {
-    "tags": "åland islands aland blue yellow red cross christianity nordic",
+    "tags": [
+      "blue",
+      "yellow",
+      "red",
+      "cross",
+      "christianity",
+      "nordic"
+    ],
     "shortname": "ax",
     "continent": "europe",
     "name": "Åland Islands",
@@ -164,7 +271,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_%C3%85land"
   },
   {
-    "tags": "azerbaijan blue red green moon star horizontal islam",
+    "tags": [
+      "blue",
+      "red",
+      "green",
+      "moon",
+      "star",
+      "horizontal",
+      "islam"
+    ],
     "shortname": "az",
     "continent": "asia",
     "name": "Azerbaijan",
@@ -175,7 +290,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Azerbaijan"
   },
   {
-    "tags": "bosnia and herzegovina blue yellow triangle star white",
+    "tags": [
+      "blue",
+      "yellow",
+      "triangle",
+      "star",
+      "white"
+    ],
     "shortname": "ba",
     "continent": "europe",
     "name": "Bosnia and Herzegovina",
@@ -186,7 +307,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Bosnia_and_Herzegovina"
   },
   {
-    "tags": "barbados blue yellow weapon vertical",
+    "tags": [
+      "blue",
+      "yellow",
+      "weapon",
+      "vertical"
+    ],
     "shortname": "bb",
     "continent": "northAmerica",
     "name": "Barbados",
@@ -197,7 +323,11 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Barbados"
   },
   {
-    "tags": "bangladesh green red circle",
+    "tags": [
+      "green",
+      "red",
+      "circle"
+    ],
     "shortname": "bd",
     "continent": "asia",
     "name": "Bangladesh",
@@ -208,7 +338,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Bangladesh"
   },
   {
-    "tags": "belgium black yellow red vertical",
+    "tags": [
+      "black",
+      "yellow",
+      "red",
+      "vertical"
+    ],
     "shortname": "be",
     "continent": "europe",
     "name": "Belgium",
@@ -219,7 +354,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Belgium"
   },
   {
-    "tags": "burkina faso red green yellow star horizontal pan-african",
+    "tags": [
+      "red",
+      "green",
+      "yellow",
+      "star",
+      "horizontal",
+      "pan-african"
+    ],
     "shortname": "bf",
     "continent": "africa",
     "name": "Burkina Faso",
@@ -230,7 +372,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Burkina_Faso"
   },
   {
-    "tags": "bulgaria white green red horizontal",
+    "tags": [
+      "white",
+      "green",
+      "red",
+      "horizontal"
+    ],
     "shortname": "bg",
     "continent": "europe",
     "name": "Bulgaria",
@@ -241,7 +388,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Bulgaria"
   },
   {
-    "tags": "bahrain white red triangle tool islam",
+    "tags": [
+      "white",
+      "red",
+      "triangle",
+      "tool",
+      "islam"
+    ],
     "shortname": "bh",
     "continent": "asia",
     "name": "Bahrain",
@@ -252,7 +405,16 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Bahrain"
   },
   {
-    "tags": "burundi green red white cross star triangle circle diagonal",
+    "tags": [
+      "green",
+      "red",
+      "white",
+      "cross",
+      "star",
+      "triangle",
+      "circle",
+      "diagonal"
+    ],
     "shortname": "bi",
     "continent": "africa",
     "name": "Burundi",
@@ -263,7 +425,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Burundi"
   },
   {
-    "tags": "benin green yellow red horizontal pan-african",
+    "tags": [
+      "green",
+      "yellow",
+      "red",
+      "horizontal",
+      "pan-african"
+    ],
     "shortname": "bj",
     "continent": "africa",
     "name": "Benin",
@@ -274,7 +442,22 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Benin"
   },
   {
-    "tags": "saint barthélemy barthelemy white blue red yellow horizontal animal bird crown building text cross fleur-de-lis star ribbon",
+    "tags": [
+      "white",
+      "blue",
+      "red",
+      "yellow",
+      "horizontal",
+      "animal",
+      "bird",
+      "crown",
+      "building",
+      "text",
+      "cross",
+      "fleur-de-lis",
+      "star",
+      "ribbon"
+    ],
     "shortname": "bl",
     "continent": "northAmerica",
     "name": "Saint Barthélemy",
@@ -285,7 +468,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_and_coat_of_arms_of_Saint_Barth%C3%A9lemy"
   },
   {
-    "tags": "bermuda red blue white cross british animal boat waves vegetation",
+    "tags": [
+      "red",
+      "blue",
+      "white",
+      "cross",
+      "british",
+      "animal",
+      "boat",
+      "waves",
+      "vegetation"
+    ],
     "shortname": "bm",
     "continent": "northAmerica",
     "name": "Bermuda",
@@ -296,7 +489,22 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Bermuda"
   },
   {
-    "tags": "brunei yellow black white red triangle text motto name hand ribbon moon flag diagonal islam",
+    "tags": [
+      "yellow",
+      "black",
+      "white",
+      "red",
+      "triangle",
+      "text",
+      "motto",
+      "name",
+      "hand",
+      "ribbon",
+      "moon",
+      "flag",
+      "diagonal",
+      "islam"
+    ],
     "shortname": "bn",
     "continent": "asia",
     "name": "Brunei",
@@ -307,7 +515,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Brunei"
   },
   {
-    "tags": "bolivia red yellow green horizontal",
+    "tags": [
+      "red",
+      "yellow",
+      "green",
+      "horizontal"
+    ],
     "shortname": "bo",
     "continent": "southAmerica",
     "name": "Bolivia",
@@ -318,7 +531,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Bolivia"
   },
   {
-    "tags": "bonaire blue white yellow red black triangle star whitney_smith diagonal",
+    "tags": [
+      "blue",
+      "white",
+      "yellow",
+      "red",
+      "black",
+      "triangle",
+      "star",
+      "whitney_smith",
+      "diagonal"
+    ],
     "shortname": "bq",
     "continent": "northAmerica",
     "name": "Bonaire",
@@ -329,7 +552,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Bonaire"
   },
   {
-    "tags": "brazil green yellow blue circle text motto star",
+    "tags": [
+      "green",
+      "yellow",
+      "blue",
+      "circle",
+      "text",
+      "motto",
+      "star"
+    ],
     "shortname": "br",
     "continent": "southAmerica",
     "name": "Brazil",
@@ -340,7 +571,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Brazil"
   },
   {
-    "tags": "bahamas black blue yellow triangle horizontal",
+    "tags": [
+      "black",
+      "blue",
+      "yellow",
+      "triangle",
+      "horizontal"
+    ],
     "shortname": "bs",
     "continent": "northAmerica",
     "name": "Bahamas",
@@ -351,7 +588,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Bahamas"
   },
   {
-    "tags": "bhutan orange white triangle animal diagonal buddhism",
+    "tags": [
+      "orange",
+      "white",
+      "triangle",
+      "animal",
+      "diagonal",
+      "buddhism"
+    ],
     "shortname": "bt",
     "continent": "asia",
     "name": "Bhutan",
@@ -362,7 +606,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Bhutan"
   },
   {
-    "tags": "bouvet island red white blue cross christianity",
+    "tags": [
+      "red",
+      "white",
+      "blue",
+      "cross",
+      "christianity"
+    ],
     "shortname": "bv",
     "name": "Bouvet Island",
     "proportion": "8:11",
@@ -372,7 +622,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Bouvet_Island"
   },
   {
-    "tags": "botswana blue white black horizontal",
+    "tags": [
+      "blue",
+      "white",
+      "black",
+      "horizontal"
+    ],
     "shortname": "bw",
     "continent": "africa",
     "name": "Botswana",
@@ -383,7 +638,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Botswana"
   },
   {
-    "tags": "belarus red green white horizontal",
+    "tags": [
+      "red",
+      "green",
+      "white",
+      "horizontal"
+    ],
     "shortname": "by",
     "continent": "europe",
     "name": "Belarus",
@@ -394,7 +654,24 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Belarus"
   },
   {
-    "tags": "belize blue red white green circle weapon tool horizontal text motto ribbon vegetation boat waves human face",
+    "tags": [
+      "blue",
+      "red",
+      "white",
+      "green",
+      "circle",
+      "weapon",
+      "tool",
+      "horizontal",
+      "text",
+      "motto",
+      "ribbon",
+      "vegetation",
+      "boat",
+      "waves",
+      "human",
+      "face"
+    ],
     "shortname": "bz",
     "continent": "northAmerica",
     "name": "Belize",
@@ -405,7 +682,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Belize"
   },
   {
-    "tags": "canada red white vertical vegetation",
+    "tags": [
+      "red",
+      "white",
+      "vertical",
+      "vegetation"
+    ],
     "shortname": "ca",
     "continent": "northAmerica",
     "name": "Canada",
@@ -416,7 +698,19 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Canada"
   },
   {
-    "tags": "cocos islands keeling islands green yellow brown star moon vegetation circle",
+    "tags": [
+      "green",
+      "yellow",
+      "brown",
+      "star",
+      "moon",
+      "vegetation",
+      "circle"
+    ],
+    "aliases": [
+      "cocos islands",
+      "keeling islands"
+    ],
     "shortname": "cc",
     "continent": "asia",
     "name": "Cocos (Keeling) Islands",
@@ -427,7 +721,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Cocos_(Keeling)_Islands"
   },
   {
-    "tags": "congo blue yellow red triangle star diagonal",
+    "tags": [
+      "blue",
+      "yellow",
+      "red",
+      "triangle",
+      "star",
+      "diagonal"
+    ],
     "shortname": "cd",
     "continent": "africa",
     "name": "Democratic Republic of the Congo",
@@ -438,7 +739,16 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Democratic_Republic_of_the_Congo"
   },
   {
-    "tags": "central africa blue white green yellow red star horizontal pan-african",
+    "tags": [
+      "blue",
+      "white",
+      "green",
+      "yellow",
+      "red",
+      "star",
+      "horizontal",
+      "pan-african"
+    ],
     "shortname": "cf",
     "continent": "africa",
     "name": "Central African Republic",
@@ -449,7 +759,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Central_African_Republic"
   },
   {
-    "tags": "congo brazzaville green yellow red triangle diagonal pan-african",
+    "tags": [
+      "green",
+      "yellow",
+      "red",
+      "triangle",
+      "diagonal",
+      "pan-african"
+    ],
+    "aliases": [
+      "congo brazzaville"
+    ],
     "shortname": "cg",
     "continent": "africa",
     "name": "Republic of the Congo",
@@ -460,7 +780,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Republic_of_the_Congo"
   },
   {
-    "tags": "switzerland red white cross christianity",
+    "tags": [
+      "red",
+      "white",
+      "cross",
+      "christianity"
+    ],
     "shortname": "ch",
     "continent": "europe",
     "name": "Switzerland",
@@ -471,7 +796,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Switzerland"
   },
   {
-    "tags": "côte d'ivoire cote divoire ivory coast orange white green vertical",
+    "tags": [
+      "orange",
+      "white",
+      "green",
+      "vertical"
+    ],
+    "aliases": [
+      "cote divoire"
+    ],
     "shortname": "ci",
     "continent": "africa",
     "name": "Côte d'Ivoire (Ivory Coast)",
@@ -482,7 +815,16 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Ivory_Coast"
   },
   {
-    "tags": "cook islands blue white red cross british star circle christianity",
+    "tags": [
+      "blue",
+      "white",
+      "red",
+      "cross",
+      "british",
+      "star",
+      "circle",
+      "christianity"
+    ],
     "shortname": "ck",
     "continent": "oceania",
     "name": "Cook Islands",
@@ -493,7 +835,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Cook_Islands"
   },
   {
-    "tags": "chile red white blue star horizontal",
+    "tags": [
+      "red",
+      "white",
+      "blue",
+      "star",
+      "horizontal"
+    ],
     "shortname": "cl",
     "continent": "southAmerica",
     "name": "Chile",
@@ -504,7 +852,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Chile"
   },
   {
-    "tags": "cameroon green red yellow vertical star pan-african",
+    "tags": [
+      "green",
+      "red",
+      "yellow",
+      "vertical",
+      "star",
+      "pan-african"
+    ],
     "shortname": "cm",
     "continent": "africa",
     "name": "Cameroon",
@@ -515,7 +870,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Cameroon"
   },
   {
-    "tags": "china red yellow star communism",
+    "tags": [
+      "red",
+      "yellow",
+      "star",
+      "communism"
+    ],
     "shortname": "cn",
     "continent": "asia",
     "name": "China",
@@ -526,7 +886,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_China"
   },
   {
-    "tags": "colombia yellow blue red horizontal",
+    "tags": [
+      "yellow",
+      "blue",
+      "red",
+      "horizontal"
+    ],
     "shortname": "co",
     "continent": "southAmerica",
     "name": "Colombia",
@@ -537,7 +902,19 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Colombia"
   },
   {
-    "tags": "costa rica blue white red vegetation star mountain horizontal text name ribbon flag",
+    "tags": [
+      "blue",
+      "white",
+      "red",
+      "vegetation",
+      "star",
+      "mountain",
+      "horizontal",
+      "text",
+      "name",
+      "ribbon",
+      "flag"
+    ],
     "shortname": "cr",
     "continent": "northAmerica",
     "name": "Costa Rica",
@@ -548,7 +925,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Costa_Rica"
   },
   {
-    "tags": "cuba blue white red triangle star horizontal",
+    "tags": [
+      "blue",
+      "white",
+      "red",
+      "triangle",
+      "star",
+      "horizontal"
+    ],
     "shortname": "cu",
     "continent": "northAmerica",
     "name": "Cuba",
@@ -559,7 +943,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Cuba"
   },
   {
-    "tags": "cape verde blue white red yellow horizontal star",
+    "tags": [
+      "blue",
+      "white",
+      "red",
+      "yellow",
+      "horizontal",
+      "star"
+    ],
     "shortname": "cv",
     "continent": "africa",
     "name": "Cape Verde",
@@ -570,7 +961,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Cape_Verde"
   },
   {
-    "tags": "curaçao curacao blue yellow white star horizontal",
+    "tags": [
+      "blue",
+      "yellow",
+      "white",
+      "star",
+      "horizontal"
+    ],
     "shortname": "cw",
     "continent": "northAmerica",
     "name": "Curaçao",
@@ -581,7 +978,18 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Cura%C3%A7ao"
   },
   {
-    "tags": "christmas island blue green white yellow triangle star animal bird map diagonal",
+    "tags": [
+      "blue",
+      "green",
+      "white",
+      "yellow",
+      "triangle",
+      "star",
+      "animal",
+      "bird",
+      "map",
+      "diagonal"
+    ],
     "shortname": "cx",
     "continent": "asia",
     "name": "Christmas Island",
@@ -592,7 +1000,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Christmas_Island"
   },
   {
-    "tags": "cyprus white orange green vegetation map",
+    "tags": [
+      "white",
+      "orange",
+      "green",
+      "vegetation",
+      "map"
+    ],
     "shortname": "cy",
     "continent": "asia",
     "name": "Cyprus",
@@ -603,7 +1017,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Cyprus"
   },
   {
-    "tags": "czechia white red blue triangle horizontal pan-slavic",
+    "tags": [
+      "white",
+      "red",
+      "blue",
+      "triangle",
+      "horizontal",
+      "pan-slavic"
+    ],
+    "aliases": [
+      "czechia"
+    ],
     "shortname": "cz",
     "continent": "europe",
     "name": "Czech Republic",
@@ -614,7 +1038,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Czech_Republic"
   },
   {
-    "tags": "germany black red yellow horizontal",
+    "tags": [
+      "black",
+      "red",
+      "yellow",
+      "horizontal"
+    ],
     "shortname": "de",
     "continent": "europe",
     "name": "Germany",
@@ -625,7 +1054,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Germany"
   },
   {
-    "tags": "djibouti white blue green red triangle horizontal star",
+    "tags": [
+      "white",
+      "blue",
+      "green",
+      "red",
+      "triangle",
+      "horizontal",
+      "star"
+    ],
     "shortname": "dj",
     "continent": "africa",
     "name": "Djibouti",
@@ -636,7 +1073,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Djibouti"
   },
   {
-    "tags": "denmark red white cross christianity nordic",
+    "tags": [
+      "red",
+      "white",
+      "cross",
+      "christianity",
+      "nordic"
+    ],
     "shortname": "dk",
     "continent": "europe",
     "name": "Denmark",
@@ -647,7 +1090,21 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Denmark"
   },
   {
-    "tags": "dominica green yellow black white red purple star circle bird animal horizontal vertical christianity",
+    "tags": [
+      "green",
+      "yellow",
+      "black",
+      "white",
+      "red",
+      "purple",
+      "star",
+      "circle",
+      "bird",
+      "animal",
+      "horizontal",
+      "vertical",
+      "christianity"
+    ],
     "shortname": "dm",
     "continent": "northAmerica",
     "name": "Dominica",
@@ -658,7 +1115,19 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Dominica"
   },
   {
-    "tags": "dominican republic blue red white weapon cross ribbon cross text motto name flag christianity",
+    "tags": [
+      "blue",
+      "red",
+      "white",
+      "weapon",
+      "cross",
+      "ribbon",
+      "text",
+      "motto",
+      "name",
+      "flag",
+      "christianity"
+    ],
     "shortname": "do",
     "continent": "northAmerica",
     "name": "Dominican Republic",
@@ -669,7 +1138,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Dominican_Republic"
   },
   {
-    "tags": "algeria green white red vertical star moon islam",
+    "tags": [
+      "green",
+      "white",
+      "red",
+      "vertical",
+      "star",
+      "moon",
+      "islam"
+    ],
     "shortname": "dz",
     "continent": "africa",
     "name": "Algeria",
@@ -680,7 +1157,21 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Algeria"
   },
   {
-    "tags": "ecuador yellow blue red horizontal weapon mountain boat sun vegetation ribbon animal bird flag",
+    "tags": [
+      "yellow",
+      "blue",
+      "red",
+      "horizontal",
+      "weapon",
+      "mountain",
+      "boat",
+      "sun",
+      "vegetation",
+      "ribbon",
+      "animal",
+      "bird",
+      "flag"
+    ],
     "shortname": "ec",
     "continent": "southAmerica",
     "name": "Ecuador",
@@ -691,7 +1182,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Ecuador"
   },
   {
-    "tags": "estonia blue black white horizontal",
+    "tags": [
+      "blue",
+      "black",
+      "white",
+      "horizontal"
+    ],
     "shortname": "ee",
     "continent": "europe",
     "name": "Estonia",
@@ -702,7 +1198,19 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Estonia"
   },
   {
-    "tags": "egypt red white black yellow horizontal bird animal text name pan-arab shield",
+    "tags": [
+      "red",
+      "white",
+      "black",
+      "yellow",
+      "horizontal",
+      "bird",
+      "animal",
+      "text",
+      "name",
+      "pan-arab",
+      "shield"
+    ],
     "shortname": "eg",
     "continent": "africa",
     "name": "Egypt",
@@ -713,7 +1221,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Egypt"
   },
   {
-    "tags": "western sahara black white green red triangle horizontal moon star pan-arab",
+    "tags": [
+      "black",
+      "white",
+      "green",
+      "red",
+      "triangle",
+      "horizontal",
+      "moon",
+      "star",
+      "pan-arab"
+    ],
     "shortname": "eh",
     "continent": "africa",
     "name": "Western Sahara",
@@ -724,7 +1242,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Western_Sahara"
   },
   {
-    "tags": "eritrea green red blue yellow triangle pan-african",
+    "tags": [
+      "green",
+      "red",
+      "blue",
+      "yellow",
+      "triangle",
+      "pan-african"
+    ],
     "shortname": "er",
     "continent": "africa",
     "name": "Eritrea",
@@ -735,7 +1260,23 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Eritrea"
   },
   {
-    "tags": "spain red yellow horizontal vertical building crown ribbon waves animal vegetation cross fleur-de-lis text motto christianity",
+    "tags": [
+      "red",
+      "yellow",
+      "horizontal",
+      "vertical",
+      "building",
+      "crown",
+      "ribbon",
+      "waves",
+      "animal",
+      "vegetation",
+      "cross",
+      "fleur-de-lis",
+      "text",
+      "motto",
+      "christianity"
+    ],
     "shortname": "es",
     "continent": "europe",
     "name": "Spain",
@@ -746,7 +1287,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Spain"
   },
   {
-    "tags": "ethiopia green yellow red blue triangle star circle horizontal pan-african",
+    "tags": [
+      "green",
+      "yellow",
+      "red",
+      "blue",
+      "triangle",
+      "star",
+      "circle",
+      "horizontal",
+      "pan-african"
+    ],
     "shortname": "et",
     "continent": "africa",
     "name": "Ethiopia",
@@ -757,7 +1308,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Ethiopia"
   },
   {
-    "tags": "finland blue white cross christianity nordic",
+    "tags": [
+      "blue",
+      "white",
+      "cross",
+      "christianity",
+      "nordic"
+    ],
     "shortname": "fi",
     "continent": "europe",
     "name": "Finland",
@@ -768,7 +1325,20 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Finland"
   },
   {
-    "tags": "fiji blue white red cross british bird vegetation animal text ribbon weapon christianity",
+    "tags": [
+      "blue",
+      "white",
+      "red",
+      "cross",
+      "british",
+      "bird",
+      "vegetation",
+      "animal",
+      "text",
+      "ribbon",
+      "weapon",
+      "christianity"
+    ],
     "shortname": "fj",
     "continent": "oceania",
     "name": "Fiji",
@@ -779,7 +1349,20 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Fiji"
   },
   {
-    "tags": "falkland islands blue white red cross british waves animal vegetation ribbon star text motto",
+    "tags": [
+      "blue",
+      "white",
+      "red",
+      "cross",
+      "british",
+      "waves",
+      "animal",
+      "vegetation",
+      "ribbon",
+      "star",
+      "text",
+      "motto"
+    ],
     "shortname": "fk",
     "continent": "southAmerica",
     "name": "Falkland Islands",
@@ -790,7 +1373,11 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Falkland_Islands"
   },
   {
-    "tags": "micronesia blue white star",
+    "tags": [
+      "blue",
+      "white",
+      "star"
+    ],
     "shortname": "fm",
     "continent": "oceania",
     "name": "Micronesia",
@@ -801,7 +1388,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Federated_States_of_Micronesia"
   },
   {
-    "tags": "faroe islands white red blue cross nordic",
+    "tags": [
+      "white",
+      "red",
+      "blue",
+      "cross",
+      "nordic"
+    ],
     "shortname": "fo",
     "continent": "europe",
     "name": "Faroe Islands",
@@ -812,7 +1405,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Faroe_Islands"
   },
   {
-    "tags": "france blue white red vertical",
+    "tags": [
+      "blue",
+      "white",
+      "red",
+      "vertical"
+    ],
     "shortname": "fr",
     "continent": "europe",
     "name": "France",
@@ -823,7 +1421,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_France"
   },
   {
-    "tags": "gabon green yellow blue horizontal",
+    "tags": [
+      "green",
+      "yellow",
+      "blue",
+      "horizontal"
+    ],
     "shortname": "ga",
     "continent": "africa",
     "name": "Gabon",
@@ -834,7 +1437,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Gabon"
   },
   {
-    "tags": "united kingdom great britain red white blue cross british christianity",
+    "tags": [
+      "red",
+      "white",
+      "blue",
+      "cross",
+      "british",
+      "christianity"
+    ],
+    "aliases": [
+      "great britain"
+    ],
     "shortname": "gb",
     "continent": "europe",
     "name": "United Kingdom",
@@ -845,7 +1458,11 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_United_Kingdom"
   },
   {
-    "tags": "england white red cross",
+    "tags": [
+      "white",
+      "red",
+      "cross"
+    ],
     "shortname": "gb-eng",
     "continent": "europe",
     "name": "England",
@@ -856,7 +1473,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_England"
   },
   {
-    "tags": "northern ireland white red cross star hand crown",
+    "tags": [
+      "white",
+      "red",
+      "cross",
+      "star",
+      "hand",
+      "crown"
+    ],
     "shortname": "gb-nir",
     "continent": "europe",
     "name": "Northern Ireland",
@@ -867,7 +1491,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Ulster_Banner"
   },
   {
-    "tags": "scotland blue white triangle cross diagonal",
+    "tags": [
+      "blue",
+      "white",
+      "triangle",
+      "cross",
+      "diagonal"
+    ],
     "shortname": "gb-sct",
     "continent": "europe",
     "name": "Scotland",
@@ -878,7 +1508,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Scotland"
   },
   {
-    "tags": "wales white green red animal horizontal",
+    "tags": [
+      "white",
+      "green",
+      "red",
+      "animal",
+      "horizontal"
+    ],
     "shortname": "gb-wls",
     "continent": "europe",
     "name": "Wales",
@@ -889,7 +1525,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Wales"
   },
   {
-    "tags": "grenada red yellow green triangle vegetation star diagonal",
+    "tags": [
+      "red",
+      "yellow",
+      "green",
+      "triangle",
+      "vegetation",
+      "star",
+      "diagonal"
+    ],
     "shortname": "gd",
     "continent": "northAmerica",
     "name": "Grenada",
@@ -900,7 +1544,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Grenada"
   },
   {
-    "tags": "georgia white red cross christianity",
+    "tags": [
+      "white",
+      "red",
+      "cross",
+      "christianity"
+    ],
     "shortname": "ge",
     "continent": "asia",
     "name": "Georgia",
@@ -911,7 +1560,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Georgia_(country)"
   },
   {
-    "tags": "french guiana green yellow red triangle star diagonal",
+    "tags": [
+      "green",
+      "yellow",
+      "red",
+      "triangle",
+      "star",
+      "diagonal"
+    ],
     "shortname": "gf",
     "continent": "southAmerica",
     "name": "French Guiana",
@@ -922,7 +1578,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_French_Guiana"
   },
   {
-    "tags": "guernsey white red yellow cross",
+    "tags": [
+      "white",
+      "red",
+      "yellow",
+      "cross"
+    ],
     "shortname": "gg",
     "continent": "europe",
     "name": "Guernsey",
@@ -933,7 +1594,18 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Guernsey"
   },
   {
-    "tags": "ghana red yellow green black star horizontal stripe pan-african",
+    "tags": [
+      "red",
+      "yellow",
+      "green",
+      "black",
+      "star",
+      "horizontal",
+      "pan-african"
+    ],
+    "aliases": [
+      "stripe"
+    ],
     "shortname": "gh",
     "continent": "africa",
     "name": "Ghana",
@@ -944,7 +1616,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Ghana"
   },
   {
-    "tags": "gibraltar white red horizontal building",
+    "tags": [
+      "white",
+      "red",
+      "horizontal",
+      "building"
+    ],
     "shortname": "gi",
     "continent": "europe",
     "name": "Gibraltar",
@@ -955,7 +1632,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Gibraltar"
   },
   {
-    "tags": "greenland red white horizontal circle nordic",
+    "tags": [
+      "red",
+      "white",
+      "horizontal",
+      "circle",
+      "nordic"
+    ],
     "shortname": "gl",
     "continent": "northAmerica",
     "name": "Greenland",
@@ -966,7 +1649,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Greenland"
   },
   {
-    "tags": "gambia red white blue green horizontal pan-african",
+    "tags": [
+      "red",
+      "white",
+      "blue",
+      "green",
+      "horizontal",
+      "pan-african"
+    ],
     "shortname": "gm",
     "continent": "africa",
     "name": "Gambia",
@@ -977,7 +1667,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Gambia"
   },
   {
-    "tags": "guinea red yellow green vertical africa pan-african",
+    "tags": [
+      "red",
+      "yellow",
+      "green",
+      "vertical",
+      "pan-african"
+    ],
     "shortname": "gn",
     "continent": "africa",
     "name": "Guinea",
@@ -988,7 +1684,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Guinea"
   },
   {
-    "tags": "guadeloupe blue black yellow sun fleur-de-lis horizontal",
+    "tags": [
+      "blue",
+      "black",
+      "yellow",
+      "sun",
+      "fleur-de-lis",
+      "horizontal"
+    ],
     "shortname": "gp",
     "continent": "northAmerica",
     "name": "Guadeloupe",
@@ -999,7 +1702,19 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Guadeloupe"
   },
   {
-    "tags": "equatorial guinea green white red blue triangle star text motto ribbon vegetation horizontal",
+    "tags": [
+      "green",
+      "white",
+      "red",
+      "blue",
+      "triangle",
+      "star",
+      "text",
+      "motto",
+      "ribbon",
+      "vegetation",
+      "horizontal"
+    ],
     "shortname": "gq",
     "continent": "africa",
     "name": "Equatorial Guinea",
@@ -1010,7 +1725,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Equatorial_Guinea"
   },
   {
-    "tags": "greece blue white cross horizontal christianity",
+    "tags": [
+      "blue",
+      "white",
+      "cross",
+      "horizontal",
+      "christianity"
+    ],
     "shortname": "gr",
     "continent": "europe",
     "name": "Greece",
@@ -1021,7 +1742,19 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Greece"
   },
   {
-    "tags": "south georgia blue white red cross british shield ribbon vegetation animal text motto",
+    "tags": [
+      "blue",
+      "white",
+      "red",
+      "cross",
+      "british",
+      "shield",
+      "ribbon",
+      "vegetation",
+      "animal",
+      "text",
+      "motto"
+    ],
     "shortname": "gs",
     "name": "South Georgia",
     "proportion": "1:2",
@@ -1031,7 +1764,18 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_South_Georgia_and_the_South_Sandwich_Islands"
   },
   {
-    "tags": "guatemala blue white vertical weapon vegetation bird animal text motto ribbon",
+    "tags": [
+      "blue",
+      "white",
+      "vertical",
+      "weapon",
+      "vegetation",
+      "bird",
+      "animal",
+      "text",
+      "motto",
+      "ribbon"
+    ],
     "shortname": "gt",
     "continent": "northAmerica",
     "name": "Guatemala",
@@ -1042,7 +1786,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Guatemala"
   },
   {
-    "tags": "guinea-bissau yellow green red black star horizontal pan-african",
+    "tags": [
+      "yellow",
+      "green",
+      "red",
+      "black",
+      "star",
+      "horizontal",
+      "pan-african"
+    ],
     "shortname": "gw",
     "continent": "africa",
     "name": "Guinea-Bissau",
@@ -1053,7 +1805,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Guinea-Bissau"
   },
   {
-    "tags": "guam blue red vegetation boat weapon text name",
+    "tags": [
+      "blue",
+      "red",
+      "vegetation",
+      "boat",
+      "weapon",
+      "text",
+      "name"
+    ],
     "shortname": "gu",
     "continent": "oceania",
     "name": "Guam",
@@ -1064,7 +1824,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Guam"
   },
   {
-    "tags": "guyana green white yellow black red triangle whitney_smith",
+    "tags": [
+      "green",
+      "white",
+      "yellow",
+      "black",
+      "red",
+      "triangle",
+      "whitney_smith"
+    ],
     "shortname": "gy",
     "continent": "southAmerica",
     "name": "Guyana",
@@ -1075,7 +1843,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Guyana"
   },
   {
-    "tags": "hong kong red white star vegetation",
+    "tags": [
+      "red",
+      "white",
+      "star",
+      "vegetation"
+    ],
     "shortname": "hk",
     "continent": "asia",
     "name": "Hong Kong",
@@ -1086,7 +1859,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Hong_Kong"
   },
   {
-    "tags": "heard island and mcdonald islands blue white red cross british star",
+    "tags": [
+      "blue",
+      "white",
+      "red",
+      "cross",
+      "british",
+      "star"
+    ],
+    "aliases": [
+      "heard island and mcdonald islands"
+    ],
     "shortname": "hm",
     "name": "Heard Island and McDonald Islands",
     "proportion": "1:2",
@@ -1096,7 +1879,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Heard_Island_and_McDonald_Islands"
   },
   {
-    "tags": "honduras blue white horizontal star",
+    "tags": [
+      "blue",
+      "white",
+      "horizontal",
+      "star"
+    ],
     "shortname": "hn",
     "continent": "northAmerica",
     "name": "Honduras",
@@ -1107,7 +1895,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Honduras"
   },
   {
-    "tags": "croatia red white blue horizontal shield star moon animal pan-slavic",
+    "tags": [
+      "red",
+      "white",
+      "blue",
+      "horizontal",
+      "shield",
+      "star",
+      "moon",
+      "animal",
+      "pan-slavic"
+    ],
     "shortname": "hr",
     "continent": "europe",
     "name": "Croatia",
@@ -1118,7 +1916,19 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Croatia"
   },
   {
-    "tags": "haiti blue red white horizontal vegetation weapon hat text motto ribbon flag",
+    "tags": [
+      "blue",
+      "red",
+      "white",
+      "horizontal",
+      "vegetation",
+      "weapon",
+      "hat",
+      "text",
+      "motto",
+      "ribbon",
+      "flag"
+    ],
     "shortname": "ht",
     "continent": "northAmerica",
     "name": "Haiti",
@@ -1129,7 +1939,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Haiti"
   },
   {
-    "tags": "hungary red white green horizontal",
+    "tags": [
+      "red",
+      "white",
+      "green",
+      "horizontal"
+    ],
     "shortname": "hu",
     "continent": "europe",
     "name": "Hungary",
@@ -1140,7 +1955,11 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Hungary"
   },
   {
-    "tags": "indonesia red white horizontal",
+    "tags": [
+      "red",
+      "white",
+      "horizontal"
+    ],
     "shortname": "id",
     "continent": "asia",
     "name": "Indonesia",
@@ -1151,7 +1970,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Indonesia"
   },
   {
-    "tags": "ireland green white orange vertical christianity",
+    "tags": [
+      "green",
+      "white",
+      "orange",
+      "vertical",
+      "christianity"
+    ],
     "shortname": "ie",
     "continent": "europe",
     "name": "Ireland",
@@ -1162,7 +1987,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Ireland"
   },
   {
-    "tags": "israel white blue triangle horizontal star judaism",
+    "tags": [
+      "white",
+      "blue",
+      "triangle",
+      "horizontal",
+      "star",
+      "judaism"
+    ],
     "shortname": "il",
     "continent": "asia",
     "name": "Israel",
@@ -1173,7 +2005,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Israel"
   },
   {
-    "tags": "isle of man red white yellow star",
+    "tags": [
+      "red",
+      "white",
+      "yellow",
+      "star"
+    ],
     "shortname": "im",
     "continent": "europe",
     "name": "Isle of Man",
@@ -1184,7 +2021,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Isle_of_Man"
   },
   {
-    "tags": "india orange white green blue horizontal circle hinduism",
+    "tags": [
+      "orange",
+      "white",
+      "green",
+      "blue",
+      "horizontal",
+      "circle",
+      "hinduism"
+    ],
     "shortname": "in",
     "continent": "asia",
     "name": "India",
@@ -1195,7 +2040,16 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_India"
   },
   {
-    "tags": "british indian ocean territory blue red white cross crown waves vegetation",
+    "tags": [
+      "british",
+      "blue",
+      "red",
+      "white",
+      "cross",
+      "crown",
+      "waves",
+      "vegetation"
+    ],
     "shortname": "io",
     "continent": "africa",
     "name": "British Indian Ocean Territory",
@@ -1206,7 +2060,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_British_Indian_Ocean_Territory"
   },
   {
-    "tags": "iraq red white black green horizontal text motto pan-arab islam",
+    "tags": [
+      "red",
+      "white",
+      "black",
+      "green",
+      "horizontal",
+      "text",
+      "motto",
+      "pan-arab",
+      "islam"
+    ],
     "shortname": "iq",
     "continent": "asia",
     "name": "Iraq",
@@ -1217,7 +2081,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Iraq"
   },
   {
-    "tags": "iran green white red text motto horizontal islam",
+    "tags": [
+      "green",
+      "white",
+      "red",
+      "text",
+      "motto",
+      "horizontal",
+      "islam"
+    ],
     "shortname": "ir",
     "continent": "asia",
     "name": "Iran",
@@ -1228,7 +2100,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Iran"
   },
   {
-    "tags": "iceland blue red white cross christianity nordic",
+    "tags": [
+      "blue",
+      "red",
+      "white",
+      "cross",
+      "christianity",
+      "nordic"
+    ],
     "shortname": "is",
     "continent": "europe",
     "name": "Iceland",
@@ -1239,7 +2118,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Iceland"
   },
   {
-    "tags": "italy green white red vertical",
+    "tags": [
+      "green",
+      "white",
+      "red",
+      "vertical"
+    ],
     "shortname": "it",
     "continent": "europe",
     "name": "Italy",
@@ -1250,7 +2134,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Italy"
   },
   {
-    "tags": "jersey white red triangle cross animal crown diagonal",
+    "tags": [
+      "white",
+      "red",
+      "triangle",
+      "cross",
+      "animal",
+      "crown",
+      "diagonal"
+    ],
     "shortname": "je",
     "continent": "europe",
     "name": "Jersey",
@@ -1261,7 +2153,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Jersey"
   },
   {
-    "tags": "jamaica green yellow black triangle cross diagonal",
+    "tags": [
+      "green",
+      "yellow",
+      "black",
+      "triangle",
+      "cross",
+      "diagonal"
+    ],
     "shortname": "jm",
     "continent": "northAmerica",
     "name": "Jamaica",
@@ -1272,7 +2171,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Jamaica"
   },
   {
-    "tags": "jordan black white green red triangle horizontal star pan-arab islam",
+    "tags": [
+      "black",
+      "white",
+      "green",
+      "red",
+      "triangle",
+      "horizontal",
+      "star",
+      "pan-arab",
+      "islam"
+    ],
     "shortname": "jo",
     "continent": "asia",
     "name": "Jordan",
@@ -1283,7 +2192,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Jordan"
   },
   {
-    "tags": "japan white red circle sun",
+    "tags": [
+      "white",
+      "red",
+      "circle",
+      "sun"
+    ],
     "shortname": "jp",
     "continent": "asia",
     "name": "Japan",
@@ -1294,7 +2208,16 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Japan"
   },
   {
-    "tags": "kenya black white red green weapon shield horizontal pan-african",
+    "tags": [
+      "black",
+      "white",
+      "red",
+      "green",
+      "weapon",
+      "shield",
+      "horizontal",
+      "pan-african"
+    ],
     "shortname": "ke",
     "continent": "africa",
     "name": "Kenya",
@@ -1305,7 +2228,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Kenya"
   },
   {
-    "tags": "kyrgyzstan red yellow sun circle building",
+    "tags": [
+      "red",
+      "yellow",
+      "sun",
+      "circle",
+      "building"
+    ],
     "shortname": "kg",
     "continent": "asia",
     "name": "Kyrgyzstan",
@@ -1316,7 +2245,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Kyrgyzstan"
   },
   {
-    "tags": "cambodia blue red white horizontal building hinduism buddhism",
+    "tags": [
+      "blue",
+      "red",
+      "white",
+      "horizontal",
+      "building",
+      "hinduism",
+      "buddhism"
+    ],
     "shortname": "kh",
     "continent": "asia",
     "name": "Cambodia",
@@ -1327,7 +2264,16 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Cambodia"
   },
   {
-    "tags": "kiribati red white blue yellow sun bird animal waves",
+    "tags": [
+      "red",
+      "white",
+      "blue",
+      "yellow",
+      "sun",
+      "bird",
+      "animal",
+      "waves"
+    ],
     "shortname": "ki",
     "continent": "oceania",
     "name": "Kiribati",
@@ -1338,7 +2284,19 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Kiribati"
   },
   {
-    "tags": "comoros green yellow white red blue triangle horizontal moon star pan-african islam",
+    "tags": [
+      "green",
+      "yellow",
+      "white",
+      "red",
+      "blue",
+      "triangle",
+      "horizontal",
+      "moon",
+      "star",
+      "pan-african",
+      "islam"
+    ],
     "shortname": "km",
     "continent": "africa",
     "name": "Comoros",
@@ -1349,7 +2307,19 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Comoros"
   },
   {
-    "tags": "saint kitts nevis green yellow black white red triangle star diagonal",
+    "tags": [
+      "green",
+      "yellow",
+      "black",
+      "white",
+      "red",
+      "triangle",
+      "star",
+      "diagonal"
+    ],
+    "aliases": [
+      "saint kitts nevis"
+    ],
     "shortname": "kn",
     "continent": "northAmerica",
     "name": "Saint Kitts and Nevis",
@@ -1360,7 +2330,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Saint_Kitts_and_Nevis"
   },
   {
-    "tags": "north korea blue white red horizontal star circle communism",
+    "tags": [
+      "blue",
+      "white",
+      "red",
+      "horizontal",
+      "star",
+      "circle",
+      "communism"
+    ],
     "shortname": "kp",
     "continent": "asia",
     "name": "North Korea",
@@ -1371,7 +2349,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_North_Korea"
   },
   {
-    "tags": "south korea white black red blue circle",
+    "tags": [
+      "white",
+      "black",
+      "red",
+      "blue",
+      "circle"
+    ],
     "shortname": "kr",
     "continent": "asia",
     "name": "South Korea",
@@ -1382,7 +2366,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_South_Korea"
   },
   {
-    "tags": "kuwait green white red black horizontal pan-arab",
+    "tags": [
+      "green",
+      "white",
+      "red",
+      "black",
+      "horizontal",
+      "pan-arab"
+    ],
     "shortname": "kw",
     "continent": "asia",
     "name": "Kuwait",
@@ -1393,7 +2384,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Kuwait"
   },
   {
-    "tags": "cayman islands white blue red cross british text star animal waves",
+    "tags": [
+      "white",
+      "blue",
+      "red",
+      "cross",
+      "british",
+      "text",
+      "star",
+      "animal",
+      "waves"
+    ],
     "shortname": "ky",
     "continent": "northAmerica",
     "name": "Cayman Islands",
@@ -1404,7 +2405,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Cayman_Islands"
   },
   {
-    "tags": "kazakhstan blue yellow circle sun bird animal",
+    "tags": [
+      "blue",
+      "yellow",
+      "circle",
+      "sun",
+      "bird",
+      "animal"
+    ],
     "shortname": "kz",
     "continent": "asia",
     "name": "Kazakhstan",
@@ -1415,7 +2423,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Kazakhstan"
   },
   {
-    "tags": "laos red blue white horizontal circle",
+    "tags": [
+      "red",
+      "blue",
+      "white",
+      "horizontal",
+      "circle"
+    ],
     "shortname": "la",
     "continent": "asia",
     "name": "Laos",
@@ -1426,7 +2440,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Laos"
   },
   {
-    "tags": "lebanon red white green horizontal vegetation",
+    "tags": [
+      "red",
+      "white",
+      "green",
+      "horizontal",
+      "vegetation"
+    ],
     "shortname": "lb",
     "continent": "asia",
     "name": "Lebanon",
@@ -1437,7 +2457,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Lebanon"
   },
   {
-    "tags": "saint lucia blue white black yellow mountain triangle",
+    "tags": [
+      "blue",
+      "white",
+      "black",
+      "yellow",
+      "mountain",
+      "triangle"
+    ],
     "shortname": "lc",
     "continent": "northAmerica",
     "name": "Saint Lucia",
@@ -1448,7 +2475,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Saint_Lucia"
   },
   {
-    "tags": "liechtenstein blue red yellow horizontal crown christianity",
+    "tags": [
+      "blue",
+      "red",
+      "yellow",
+      "horizontal",
+      "crown",
+      "christianity"
+    ],
     "shortname": "li",
     "continent": "europe",
     "name": "Liechtenstein",
@@ -1459,7 +2493,20 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Liechtenstein"
   },
   {
-    "tags": "sri lanka yellow green orange red maroon vertical animal weapon vegetation buddhism",
+    "tags": [
+      "yellow",
+      "green",
+      "orange",
+      "red",
+      "vertical",
+      "animal",
+      "weapon",
+      "vegetation",
+      "buddhism"
+    ],
+    "aliases": [
+      "maroon"
+    ],
     "shortname": "lk",
     "continent": "asia",
     "name": "Sri Lanka",
@@ -1470,7 +2517,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Sri_Lanka"
   },
   {
-    "tags": "liberia red white blue horizontal star",
+    "tags": [
+      "red",
+      "white",
+      "blue",
+      "horizontal",
+      "star"
+    ],
     "shortname": "lr",
     "continent": "africa",
     "name": "Liberia",
@@ -1481,7 +2534,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Liberia"
   },
   {
-    "tags": "lesotho blue white green hat horizontal",
+    "tags": [
+      "blue",
+      "white",
+      "green",
+      "hat",
+      "horizontal"
+    ],
     "shortname": "ls",
     "continent": "africa",
     "name": "Lesotho",
@@ -1492,7 +2551,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Lesotho"
   },
   {
-    "tags": "lithuania yellow green red horizontal",
+    "tags": [
+      "yellow",
+      "green",
+      "red",
+      "horizontal"
+    ],
     "shortname": "lt",
     "continent": "europe",
     "name": "Lithuania",
@@ -1503,7 +2567,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Lithuania"
   },
   {
-    "tags": "luxembourg red white blue horizontal",
+    "tags": [
+      "red",
+      "white",
+      "blue",
+      "horizontal"
+    ],
     "shortname": "lu",
     "continent": "europe",
     "name": "Luxembourg",
@@ -1514,7 +2583,11 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Luxembourg"
   },
   {
-    "tags": "latvia red white horizontal",
+    "tags": [
+      "red",
+      "white",
+      "horizontal"
+    ],
     "shortname": "lv",
     "continent": "europe",
     "name": "Latvia",
@@ -1525,7 +2598,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Latvia"
   },
   {
-    "tags": "libya red black green white horizontal star moon pan-arab islam",
+    "tags": [
+      "red",
+      "black",
+      "green",
+      "white",
+      "horizontal",
+      "star",
+      "moon",
+      "pan-arab",
+      "islam"
+    ],
     "shortname": "ly",
     "continent": "africa",
     "name": "Libya",
@@ -1536,7 +2619,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Libya"
   },
   {
-    "tags": "morocco red green star triangle islam",
+    "tags": [
+      "red",
+      "green",
+      "star",
+      "triangle",
+      "islam"
+    ],
     "shortname": "ma",
     "continent": "africa",
     "name": "Morocco",
@@ -1547,7 +2636,11 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Morocco"
   },
   {
-    "tags": "monaco red white horizontal",
+    "tags": [
+      "red",
+      "white",
+      "horizontal"
+    ],
     "shortname": "mc",
     "continent": "europe",
     "name": "Monaco",
@@ -1558,7 +2651,20 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Monaco"
   },
   {
-    "tags": "moldova blue yellow red vertical star moon bird animal shield cross vegetation christianity",
+    "tags": [
+      "blue",
+      "yellow",
+      "red",
+      "vertical",
+      "star",
+      "moon",
+      "bird",
+      "animal",
+      "shield",
+      "cross",
+      "vegetation",
+      "christianity"
+    ],
     "shortname": "md",
     "continent": "europe",
     "name": "Moldova",
@@ -1569,7 +2675,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Moldova"
   },
   {
-    "tags": "montenegro red yellow bird cross animal christianity",
+    "tags": [
+      "red",
+      "yellow",
+      "bird",
+      "cross",
+      "animal",
+      "christianity"
+    ],
     "shortname": "me",
     "continent": "europe",
     "name": "Montenegro",
@@ -1580,7 +2693,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Montenegro"
   },
   {
-    "tags": "saint martin blue white red vertical",
+    "tags": [
+      "blue",
+      "white",
+      "red",
+      "vertical"
+    ],
     "shortname": "mf",
     "continent": "northAmerica",
     "name": "Saint Martin",
@@ -1591,7 +2709,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Collectivity_of_Saint_Martin"
   },
   {
-    "tags": "madagascar white red green horizontal",
+    "tags": [
+      "white",
+      "red",
+      "green",
+      "horizontal"
+    ],
     "shortname": "mg",
     "continent": "africa",
     "name": "Madagascar",
@@ -1602,7 +2725,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Madagascar"
   },
   {
-    "tags": "marshall islands blue white orange triangle star sun diagonal",
+    "tags": [
+      "blue",
+      "white",
+      "orange",
+      "triangle",
+      "star",
+      "sun",
+      "diagonal"
+    ],
     "shortname": "mh",
     "continent": "oceania",
     "name": "Marshall Islands",
@@ -1613,7 +2744,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Marshall_Islands"
   },
   {
-    "tags": "north macedonia red yellow sun triangle circle diagonal",
+    "tags": [
+      "red",
+      "yellow",
+      "sun",
+      "triangle",
+      "circle",
+      "diagonal"
+    ],
     "shortname": "mk",
     "continent": "europe",
     "name": "North Macedonia",
@@ -1624,7 +2762,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_North_Macedonia"
   },
   {
-    "tags": "mali green yellow red vertical pan-african",
+    "tags": [
+      "green",
+      "yellow",
+      "red",
+      "vertical",
+      "pan-african"
+    ],
     "shortname": "ml",
     "continent": "africa",
     "name": "Mali",
@@ -1635,7 +2779,18 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Mali"
   },
   {
-    "tags": "myanmar burma red green yellow white star horizontal buddhism",
+    "tags": [
+      "red",
+      "green",
+      "yellow",
+      "white",
+      "star",
+      "horizontal",
+      "buddhism"
+    ],
+    "aliases": [
+      "burma"
+    ],
     "shortname": "mm",
     "continent": "asia",
     "name": "Myanmar",
@@ -1646,7 +2801,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Myanmar"
   },
   {
-    "tags": "mongolia red blue yellow vertical circle",
+    "tags": [
+      "red",
+      "blue",
+      "yellow",
+      "vertical",
+      "circle"
+    ],
     "shortname": "mn",
     "continent": "asia",
     "name": "Mongolia",
@@ -1657,7 +2818,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Mongolia"
   },
   {
-    "tags": "macau green white star horizontal vegetation waves",
+    "tags": [
+      "green",
+      "white",
+      "star",
+      "horizontal",
+      "vegetation",
+      "waves"
+    ],
     "shortname": "mo",
     "continent": "asia",
     "name": "Macau",
@@ -1668,7 +2836,16 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Macau"
   },
   {
-    "tags": "northern mariana islands blue white grey circle star vegetation",
+    "tags": [
+      "blue",
+      "white",
+      "circle",
+      "star",
+      "vegetation"
+    ],
+    "aliases": [
+      "grey"
+    ],
     "shortname": "mp",
     "continent": "oceania",
     "name": "Northern Mariana Islands",
@@ -1679,7 +2856,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Northern_Mariana_Islands"
   },
   {
-    "tags": "martinique green red black triangle horizontal",
+    "tags": [
+      "green",
+      "red",
+      "black",
+      "triangle",
+      "horizontal"
+    ],
     "shortname": "mq",
     "continent": "northAmerica",
     "name": "Martinique",
@@ -1690,7 +2873,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Martinique"
   },
   {
-    "tags": "mauritania green yellow star moon horizontal pan-african islam",
+    "tags": [
+      "green",
+      "yellow",
+      "star",
+      "moon",
+      "horizontal",
+      "pan-african",
+      "islam"
+    ],
     "shortname": "mr",
     "continent": "africa",
     "name": "Mauritania",
@@ -1701,7 +2892,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Mauritania"
   },
   {
-    "tags": "montserrat blue white red cross british human christianity",
+    "tags": [
+      "blue",
+      "white",
+      "red",
+      "cross",
+      "british",
+      "human",
+      "christianity"
+    ],
     "shortname": "ms",
     "continent": "northAmerica",
     "name": "Montserrat",
@@ -1712,7 +2911,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Montserrat"
   },
   {
-    "tags": "malta red white vertical cross animal text christianity",
+    "tags": [
+      "red",
+      "white",
+      "vertical",
+      "cross",
+      "animal",
+      "text",
+      "christianity"
+    ],
     "shortname": "mt",
     "continent": "europe",
     "name": "Malta",
@@ -1723,7 +2930,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Malta"
   },
   {
-    "tags": "mauritius red blue yellow green horizontal pan-african",
+    "tags": [
+      "red",
+      "blue",
+      "yellow",
+      "green",
+      "horizontal",
+      "pan-african"
+    ],
     "shortname": "mu",
     "continent": "africa",
     "name": "Mauritius",
@@ -1734,7 +2948,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Mauritius"
   },
   {
-    "tags": "maldives red green white moon islam",
+    "tags": [
+      "red",
+      "green",
+      "white",
+      "moon",
+      "islam"
+    ],
     "shortname": "mv",
     "continent": "asia",
     "name": "Maldives",
@@ -1745,7 +2965,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Maldives"
   },
   {
-    "tags": "malawi black red green horizontal sun pan-african",
+    "tags": [
+      "black",
+      "red",
+      "green",
+      "horizontal",
+      "sun",
+      "pan-african"
+    ],
     "shortname": "mw",
     "continent": "africa",
     "name": "Malawi",
@@ -1756,7 +2983,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Malawi"
   },
   {
-    "tags": "mexico green white red vertical bird animal vegetation ribbon flag",
+    "tags": [
+      "green",
+      "white",
+      "red",
+      "vertical",
+      "bird",
+      "animal",
+      "vegetation",
+      "ribbon",
+      "flag"
+    ],
     "shortname": "mx",
     "continent": "northAmerica",
     "name": "Mexico",
@@ -1767,7 +3004,16 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Mexico"
   },
   {
-    "tags": "malaysia blue red white yellow horizontal moon star islam",
+    "tags": [
+      "blue",
+      "red",
+      "white",
+      "yellow",
+      "horizontal",
+      "moon",
+      "star",
+      "islam"
+    ],
     "shortname": "my",
     "continent": "asia",
     "name": "Malaysia",
@@ -1778,7 +3024,19 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Malaysia"
   },
   {
-    "tags": "mozambique green white black yellow red triangle horizontal star weapon tool pan-african",
+    "tags": [
+      "green",
+      "white",
+      "black",
+      "yellow",
+      "red",
+      "triangle",
+      "horizontal",
+      "star",
+      "weapon",
+      "tool",
+      "pan-african"
+    ],
     "shortname": "mz",
     "continent": "africa",
     "name": "Mozambique",
@@ -1789,7 +3047,18 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Mozambique"
   },
   {
-    "tags": "namibia blue white red green yellow triangle sun circle pan-african diagonal",
+    "tags": [
+      "blue",
+      "white",
+      "red",
+      "green",
+      "yellow",
+      "triangle",
+      "sun",
+      "circle",
+      "pan-african",
+      "diagonal"
+    ],
     "shortname": "na",
     "continent": "africa",
     "name": "Namibia",
@@ -1800,7 +3069,16 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Namibia"
   },
   {
-    "tags": "new caledonia blue red green yellow black horizontal circle sun",
+    "tags": [
+      "blue",
+      "red",
+      "green",
+      "yellow",
+      "black",
+      "horizontal",
+      "circle",
+      "sun"
+    ],
     "shortname": "nc",
     "continent": "oceania",
     "name": "New Caledonia",
@@ -1811,7 +3089,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flags_of_New_Caledonia"
   },
   {
-    "tags": "niger orange white green horizontal circle",
+    "tags": [
+      "orange",
+      "white",
+      "green",
+      "horizontal",
+      "circle"
+    ],
     "shortname": "ne",
     "continent": "africa",
     "name": "Niger",
@@ -1822,7 +3106,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Niger"
   },
   {
-    "tags": "norfolk island green white vertical vegetation",
+    "tags": [
+      "green",
+      "white",
+      "vertical",
+      "vegetation"
+    ],
     "shortname": "nf",
     "continent": "oceania",
     "name": "Norfolk Island",
@@ -1833,7 +3122,11 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Norfolk_Island"
   },
   {
-    "tags": "nigeria green white vertical",
+    "tags": [
+      "green",
+      "white",
+      "vertical"
+    ],
     "shortname": "ng",
     "continent": "africa",
     "name": "Nigeria",
@@ -1844,7 +3137,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Nigeria"
   },
   {
-    "tags": "nicaragua blue white horizontal mountain waves hat text name triangle",
+    "tags": [
+      "blue",
+      "white",
+      "horizontal",
+      "mountain",
+      "waves",
+      "hat",
+      "text",
+      "name",
+      "triangle"
+    ],
     "shortname": "ni",
     "continent": "northAmerica",
     "name": "Nicaragua",
@@ -1855,7 +3158,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Nicaragua"
   },
   {
-    "tags": "netherlands red white blue horizontal",
+    "tags": [
+      "red",
+      "white",
+      "blue",
+      "horizontal"
+    ],
     "shortname": "nl",
     "continent": "europe",
     "name": "Netherlands",
@@ -1866,7 +3174,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Netherlands"
   },
   {
-    "tags": "norway blue red white cross christianity nordic",
+    "tags": [
+      "blue",
+      "red",
+      "white",
+      "cross",
+      "christianity",
+      "nordic"
+    ],
     "shortname": "no",
     "continent": "europe",
     "name": "Norway",
@@ -1877,7 +3192,16 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Norway"
   },
   {
-    "tags": "nepal red blue white triangle star sun moon hinduism",
+    "tags": [
+      "red",
+      "blue",
+      "white",
+      "triangle",
+      "star",
+      "sun",
+      "moon",
+      "hinduism"
+    ],
     "shortname": "np",
     "continent": "asia",
     "name": "Nepal",
@@ -1888,7 +3212,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Nepal"
   },
   {
-    "tags": "nauru blue yellow white horizontal star",
+    "tags": [
+      "blue",
+      "yellow",
+      "white",
+      "horizontal",
+      "star"
+    ],
     "shortname": "nr",
     "continent": "oceania",
     "name": "Nauru",
@@ -1899,7 +3229,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Nauru"
   },
   {
-    "tags": "niue yellow blue white red cross british circle star christianity",
+    "tags": [
+      "yellow",
+      "blue",
+      "white",
+      "red",
+      "cross",
+      "british",
+      "circle",
+      "star",
+      "christianity"
+    ],
     "shortname": "nu",
     "continent": "oceania",
     "name": "Niue",
@@ -1910,7 +3250,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Niue"
   },
   {
-    "tags": "new zealand blue white red cross british star christianity",
+    "tags": [
+      "blue",
+      "white",
+      "red",
+      "cross",
+      "british",
+      "star",
+      "christianity"
+    ],
     "shortname": "nz",
     "continent": "oceania",
     "name": "New Zealand",
@@ -1921,7 +3269,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_New_Zealand"
   },
   {
-    "tags": "oman red white green weapon horizontal",
+    "tags": [
+      "red",
+      "white",
+      "green",
+      "weapon",
+      "horizontal"
+    ],
     "shortname": "om",
     "continent": "asia",
     "name": "Oman",
@@ -1932,7 +3286,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Oman"
   },
   {
-    "tags": "panama white red blue horizontal vertical star",
+    "tags": [
+      "white",
+      "red",
+      "blue",
+      "horizontal",
+      "vertical",
+      "star"
+    ],
     "shortname": "pa",
     "continent": "northAmerica",
     "name": "Panama",
@@ -1943,7 +3304,11 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Panama"
   },
   {
-    "tags": "peru red white vertical",
+    "tags": [
+      "red",
+      "white",
+      "vertical"
+    ],
     "shortname": "pe",
     "continent": "southAmerica",
     "name": "Peru",
@@ -1954,7 +3319,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Peru"
   },
   {
-    "tags": "french polynesia red white horizontal waves circle star boat",
+    "tags": [
+      "red",
+      "white",
+      "horizontal",
+      "waves",
+      "circle",
+      "star",
+      "boat"
+    ],
     "shortname": "pf",
     "continent": "oceania",
     "name": "French Polynesia",
@@ -1965,7 +3338,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_French_Polynesia"
   },
   {
-    "tags": "papua new guinea red black yellow white triangle star bird animal diagonal",
+    "tags": [
+      "red",
+      "black",
+      "yellow",
+      "white",
+      "triangle",
+      "star",
+      "bird",
+      "animal",
+      "diagonal"
+    ],
     "shortname": "pg",
     "continent": "oceania",
     "name": "Papua New Guinea",
@@ -1976,7 +3359,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Papua_New_Guinea"
   },
   {
-    "tags": "philippines blue red white yellow triangle horizontal circle sun star",
+    "tags": [
+      "blue",
+      "red",
+      "white",
+      "yellow",
+      "triangle",
+      "horizontal",
+      "circle",
+      "sun",
+      "star"
+    ],
     "shortname": "ph",
     "continent": "asia",
     "name": "Philippines",
@@ -1987,7 +3380,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Philippines"
   },
   {
-    "tags": "pakistan green white vertical moon star islam",
+    "tags": [
+      "green",
+      "white",
+      "vertical",
+      "moon",
+      "star",
+      "islam"
+    ],
     "shortname": "pk",
     "continent": "asia",
     "name": "Pakistan",
@@ -1998,7 +3398,11 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Pakistan"
   },
   {
-    "tags": "poland white red horizontal",
+    "tags": [
+      "white",
+      "red",
+      "horizontal"
+    ],
     "shortname": "pl",
     "continent": "europe",
     "name": "Poland",
@@ -2009,7 +3413,19 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Poland"
   },
   {
-    "tags": "saint pierre and miquelon white blue green yellow red black triangle cross boat waves animal",
+    "tags": [
+      "white",
+      "blue",
+      "green",
+      "yellow",
+      "red",
+      "black",
+      "triangle",
+      "cross",
+      "boat",
+      "waves",
+      "animal"
+    ],
     "shortname": "pm",
     "continent": "northAmerica",
     "name": "Saint Pierre and Miquelon",
@@ -2020,7 +3436,18 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Saint_Pierre_and_Miquelon"
   },
   {
-    "tags": "pitcairn islands blue white red yellow green cross vegetation ribbon british shield",
+    "tags": [
+      "blue",
+      "white",
+      "red",
+      "yellow",
+      "green",
+      "cross",
+      "vegetation",
+      "ribbon",
+      "british",
+      "shield"
+    ],
     "shortname": "pn",
     "continent": "oceania",
     "name": "Pitcairn Islands",
@@ -2031,7 +3458,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_and_coat_of_arms_of_the_Pitcairn_Islands"
   },
   {
-    "tags": "puerto rico red white blue triangle horizontal star",
+    "tags": [
+      "red",
+      "white",
+      "blue",
+      "triangle",
+      "horizontal",
+      "star"
+    ],
     "shortname": "pr",
     "continent": "northAmerica",
     "name": "Puerto Rico",
@@ -2042,7 +3476,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Puerto_Rico"
   },
   {
-    "tags": "palestine red white green black triangle horizontal pan-arab",
+    "tags": [
+      "red",
+      "white",
+      "green",
+      "black",
+      "triangle",
+      "horizontal",
+      "pan-arab"
+    ],
     "shortname": "ps",
     "continent": "asia",
     "name": "Palestine",
@@ -2053,7 +3495,18 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Palestine"
   },
   {
-    "tags": "portugal green red vertical circle sphere building shield christianity",
+    "tags": [
+      "green",
+      "red",
+      "vertical",
+      "circle",
+      "building",
+      "shield",
+      "christianity"
+    ],
+    "aliases": [
+      "sphere"
+    ],
     "shortname": "pt",
     "continent": "europe",
     "name": "Portugal",
@@ -2064,7 +3517,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Portugal"
   },
   {
-    "tags": "palau blue yellow circle sun moon",
+    "tags": [
+      "blue",
+      "yellow",
+      "circle",
+      "sun",
+      "moon"
+    ],
     "shortname": "pw",
     "continent": "oceania",
     "name": "Palau",
@@ -2075,7 +3534,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Palau"
   },
   {
-    "tags": "paraguay red white blue horizontal circle star vegetation text name",
+    "tags": [
+      "red",
+      "white",
+      "blue",
+      "horizontal",
+      "circle",
+      "star",
+      "vegetation",
+      "text",
+      "name"
+    ],
     "shortname": "py",
     "continent": "southAmerica",
     "name": "Paraguay",
@@ -2086,7 +3555,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Paraguay"
   },
   {
-    "tags": "qatar white maroon purple triangle tool",
+    "tags": [
+      "white",
+      "purple",
+      "triangle",
+      "tool"
+    ],
+    "aliases": [
+      "maroon"
+    ],
     "shortname": "qa",
     "continent": "asia",
     "name": "Qatar",
@@ -2097,7 +3574,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Qatar"
   },
   {
-    "tags": "réunion reunion red blue yellow triangle building",
+    "tags": [
+      "red",
+      "blue",
+      "yellow",
+      "triangle",
+      "building"
+    ],
     "shortname": "re",
     "continent": "africa",
     "name": "Réunion",
@@ -2108,7 +3591,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_R%C3%A9union"
   },
   {
-    "tags": "romania blue yellow red vertical",
+    "tags": [
+      "blue",
+      "yellow",
+      "red",
+      "vertical"
+    ],
     "shortname": "ro",
     "continent": "europe",
     "name": "Romania",
@@ -2119,7 +3607,19 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Romania"
   },
   {
-    "tags": "serbia red blue white fleur-de-lis horizontal bird animal crown cross pan-slavic christianity",
+    "tags": [
+      "red",
+      "blue",
+      "white",
+      "fleur-de-lis",
+      "horizontal",
+      "bird",
+      "animal",
+      "crown",
+      "cross",
+      "pan-slavic",
+      "christianity"
+    ],
     "shortname": "rs",
     "continent": "europe",
     "name": "Serbia",
@@ -2130,7 +3630,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Serbia"
   },
   {
-    "tags": "russia white blue red horizontal pan-slavic",
+    "tags": [
+      "white",
+      "blue",
+      "red",
+      "horizontal",
+      "pan-slavic"
+    ],
     "shortname": "ru",
     "continent": "europe",
     "name": "Russia",
@@ -2141,7 +3647,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Russia"
   },
   {
-    "tags": "rwanda blue yellow green horizontal sun circle",
+    "tags": [
+      "blue",
+      "yellow",
+      "green",
+      "horizontal",
+      "sun",
+      "circle"
+    ],
     "shortname": "rw",
     "continent": "africa",
     "name": "Rwanda",
@@ -2152,7 +3665,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Rwanda"
   },
   {
-    "tags": "saudi arabia green white weapon text motto islam",
+    "tags": [
+      "green",
+      "white",
+      "weapon",
+      "text",
+      "motto",
+      "islam"
+    ],
     "shortname": "sa",
     "continent": "asia",
     "name": "Saudi Arabia",
@@ -2163,7 +3683,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Saudi_Arabia"
   },
   {
-    "tags": "solomon islands blue yellow green white triangle star diagonal",
+    "tags": [
+      "blue",
+      "yellow",
+      "green",
+      "white",
+      "triangle",
+      "star",
+      "diagonal"
+    ],
     "shortname": "sb",
     "continent": "oceania",
     "name": "Solomon Islands",
@@ -2174,7 +3702,16 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Solomon_Islands"
   },
   {
-    "tags": "seychelles blue yellow red white green triangle pan-african diagonal",
+    "tags": [
+      "blue",
+      "yellow",
+      "red",
+      "white",
+      "green",
+      "triangle",
+      "pan-african",
+      "diagonal"
+    ],
     "shortname": "sc",
     "continent": "africa",
     "name": "Seychelles",
@@ -2185,7 +3722,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Seychelles"
   },
   {
-    "tags": "sudan red white black green triangle horizontal pan-arab",
+    "tags": [
+      "red",
+      "white",
+      "black",
+      "green",
+      "triangle",
+      "horizontal",
+      "pan-arab"
+    ],
     "shortname": "sd",
     "continent": "africa",
     "name": "Sudan",
@@ -2196,7 +3741,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Sudan"
   },
   {
-    "tags": "sweden blue yellow cross christianity nordic",
+    "tags": [
+      "blue",
+      "yellow",
+      "cross",
+      "christianity",
+      "nordic"
+    ],
     "shortname": "se",
     "continent": "europe",
     "name": "Sweden",
@@ -2207,7 +3758,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Sweden"
   },
   {
-    "tags": "singapore red white horizontal moon star buddhism",
+    "tags": [
+      "red",
+      "white",
+      "horizontal",
+      "moon",
+      "star",
+      "buddhism"
+    ],
     "shortname": "sg",
     "continent": "asia",
     "name": "Singapore",
@@ -2218,7 +3776,22 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Singapore"
   },
   {
-    "tags": "saint helena brown blue white red cross british boat flag england animal bird waves",
+    "tags": [
+      "brown",
+      "blue",
+      "white",
+      "red",
+      "cross",
+      "british",
+      "boat",
+      "flag",
+      "animal",
+      "bird",
+      "waves"
+    ],
+    "aliases": [
+      "england"
+    ],
     "shortname": "sh",
     "continent": "africa",
     "name": "Saint Helena",
@@ -2229,7 +3802,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Saint_Helena"
   },
   {
-    "tags": "slovenia white blue red horizontal star mountain pan-slavic",
+    "tags": [
+      "white",
+      "blue",
+      "red",
+      "horizontal",
+      "star",
+      "mountain",
+      "pan-slavic"
+    ],
     "shortname": "si",
     "continent": "europe",
     "name": "Slovenia",
@@ -2240,7 +3821,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Slovenia"
   },
   {
-    "tags": "svalbard and jan mayen red white blue cross norway christianity nordic",
+    "tags": [
+      "red",
+      "white",
+      "blue",
+      "cross",
+      "christianity",
+      "nordic"
+    ],
+    "aliases": [
+      "norway"
+    ],
     "shortname": "sj",
     "continent": "europe",
     "name": "Svalbard and Jan Mayen",
@@ -2251,7 +3842,16 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Svalbard_and_Jan_Mayen"
   },
   {
-    "tags": "slovakia white blue red horizontal cross mountain pan-slavic christianity",
+    "tags": [
+      "white",
+      "blue",
+      "red",
+      "horizontal",
+      "cross",
+      "mountain",
+      "pan-slavic",
+      "christianity"
+    ],
     "shortname": "sk",
     "continent": "europe",
     "name": "Slovakia",
@@ -2262,7 +3862,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Slovakia"
   },
   {
-    "tags": "sierra leone green white blue horizontal",
+    "tags": [
+      "green",
+      "white",
+      "blue",
+      "horizontal"
+    ],
     "shortname": "sl",
     "continent": "africa",
     "name": "Sierra Leone",
@@ -2273,7 +3878,20 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Sierra_Leone"
   },
   {
-    "tags": "san marino white blue horizontal vegetation mountain crown ribbon cross text motto building christianity",
+    "tags": [
+      "white",
+      "blue",
+      "horizontal",
+      "vegetation",
+      "mountain",
+      "crown",
+      "ribbon",
+      "cross",
+      "text",
+      "motto",
+      "building",
+      "christianity"
+    ],
     "shortname": "sm",
     "continent": "europe",
     "name": "San Marino",
@@ -2284,7 +3902,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_San_Marino"
   },
   {
-    "tags": "senegal green yellow red vertical star pan-african islam",
+    "tags": [
+      "green",
+      "yellow",
+      "red",
+      "vertical",
+      "star",
+      "pan-african",
+      "islam"
+    ],
     "shortname": "sn",
     "continent": "africa",
     "name": "Senegal",
@@ -2295,7 +3921,11 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Senegal"
   },
   {
-    "tags": "somalia blue white star",
+    "tags": [
+      "blue",
+      "white",
+      "star"
+    ],
     "shortname": "so",
     "continent": "africa",
     "name": "Somalia",
@@ -2306,7 +3936,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Somalia"
   },
   {
-    "tags": "suriname green white red yellow horizontal star",
+    "tags": [
+      "green",
+      "white",
+      "red",
+      "yellow",
+      "horizontal",
+      "star"
+    ],
     "shortname": "sr",
     "continent": "southAmerica",
     "name": "Suriname",
@@ -2317,7 +3954,19 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Suriname"
   },
   {
-    "tags": "south sudan black blue red green yellow white triangle horizontal star pan-african islam",
+    "tags": [
+      "black",
+      "blue",
+      "red",
+      "green",
+      "yellow",
+      "white",
+      "triangle",
+      "horizontal",
+      "star",
+      "pan-african",
+      "islam"
+    ],
     "shortname": "ss",
     "continent": "africa",
     "name": "South Sudan",
@@ -2328,7 +3977,19 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_South_Sudan"
   },
   {
-    "tags": "são tomé and príncipe sao tome principe green yellow red black triangle horizontal star pan-african",
+    "tags": [
+      "green",
+      "yellow",
+      "red",
+      "black",
+      "triangle",
+      "horizontal",
+      "star",
+      "pan-african"
+    ],
+    "aliases": [
+      "sao tome principe"
+    ],
     "shortname": "st",
     "continent": "africa",
     "name": "São Tomé and Príncipe",
@@ -2339,7 +4000,19 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_S%C3%A3o_Tom%C3%A9_and_Pr%C3%ADncipe"
   },
   {
-    "tags": "el salvador blue white horizontal vegetation mountain hat text motto name flag christianity",
+    "tags": [
+      "blue",
+      "white",
+      "horizontal",
+      "vegetation",
+      "mountain",
+      "hat",
+      "text",
+      "motto",
+      "name",
+      "flag",
+      "christianity"
+    ],
     "shortname": "sv",
     "continent": "northAmerica",
     "name": "El Salvador",
@@ -2350,7 +4023,20 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_El_Salvador"
   },
   {
-    "tags": "sint maarten blue red white yellow triangle horizontal animal vegetation text motto ribbon building",
+    "tags": [
+      "blue",
+      "red",
+      "white",
+      "yellow",
+      "triangle",
+      "horizontal",
+      "animal",
+      "vegetation",
+      "text",
+      "motto",
+      "ribbon",
+      "building"
+    ],
     "shortname": "sx",
     "continent": "northAmerica",
     "name": "Sint Maarten",
@@ -2361,7 +4047,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Sint_Maarten"
   },
   {
-    "tags": "syria red white blue green horizontal star pan-arab",
+    "tags": [
+      "red",
+      "white",
+      "blue",
+      "green",
+      "horizontal",
+      "star",
+      "pan-arab"
+    ],
     "shortname": "sy",
     "continent": "asia",
     "name": "Syria",
@@ -2372,7 +4066,19 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Syria"
   },
   {
-    "tags": "eswatini swaziland blue yellow red white black shield weapon horizontal",
+    "tags": [
+      "blue",
+      "yellow",
+      "red",
+      "white",
+      "black",
+      "shield",
+      "weapon",
+      "horizontal"
+    ],
+    "aliases": [
+      "swaziland"
+    ],
     "shortname": "sz",
     "continent": "africa",
     "name": "Eswatini",
@@ -2383,7 +4089,16 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Eswatini"
   },
   {
-    "tags": "turks and caicos islands blue white red yellow cross british animal vegetation",
+    "tags": [
+      "blue",
+      "white",
+      "red",
+      "yellow",
+      "cross",
+      "british",
+      "animal",
+      "vegetation"
+    ],
     "shortname": "tc",
     "continent": "northAmerica",
     "name": "Turks and Caicos Islands",
@@ -2394,7 +4109,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Turks_and_Caicos_Islands"
   },
   {
-    "tags": "chad blue yellow red vertical pan-african",
+    "tags": [
+      "blue",
+      "yellow",
+      "red",
+      "vertical",
+      "pan-african"
+    ],
     "shortname": "td",
     "continent": "africa",
     "name": "Chad",
@@ -2405,7 +4126,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Chad"
   },
   {
-    "tags": "french southern and antarctic lands red white blue star vertical text",
+    "tags": [
+      "red",
+      "white",
+      "blue",
+      "star",
+      "vertical",
+      "text"
+    ],
     "shortname": "tf",
     "name": "French Southern and Antarctic Lands",
     "proportion": "2:3",
@@ -2415,7 +4143,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Antarctica#French_Southern_and_Antarctic_Territories"
   },
   {
-    "tags": "togo green yellow red white horizontal star pan-african",
+    "tags": [
+      "green",
+      "yellow",
+      "red",
+      "white",
+      "horizontal",
+      "star",
+      "pan-african"
+    ],
     "shortname": "tg",
     "continent": "africa",
     "name": "Togo",
@@ -2426,7 +4162,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Togo"
   },
   {
-    "tags": "thailand red white blue horizontal buddhism",
+    "tags": [
+      "red",
+      "white",
+      "blue",
+      "horizontal",
+      "buddhism"
+    ],
     "shortname": "th",
     "continent": "asia",
     "name": "Thailand",
@@ -2437,7 +4179,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Thailand"
   },
   {
-    "tags": "tajikistan red white green horizontal star crown",
+    "tags": [
+      "red",
+      "white",
+      "green",
+      "horizontal",
+      "star",
+      "crown"
+    ],
     "shortname": "tj",
     "continent": "asia",
     "name": "Tajikistan",
@@ -2448,7 +4197,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Tajikistan"
   },
   {
-    "tags": "tokelau blue yellow white triangle star boat",
+    "tags": [
+      "blue",
+      "yellow",
+      "white",
+      "triangle",
+      "star",
+      "boat"
+    ],
     "shortname": "tk",
     "continent": "oceania",
     "name": "Tokelau",
@@ -2459,7 +4215,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Tokelau"
   },
   {
-    "tags": "timor-leste east timor red yellow black white triangle star",
+    "tags": [
+      "red",
+      "yellow",
+      "black",
+      "white",
+      "triangle",
+      "star"
+    ],
     "shortname": "tl",
     "continent": "asia",
     "name": "Timor-Leste (East Timor)",
@@ -2470,7 +4233,19 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_East_Timor"
   },
   {
-    "tags": "turkmenistan green red vertical stripe carpet moon star vegetation islam",
+    "tags": [
+      "green",
+      "red",
+      "vertical",
+      "moon",
+      "star",
+      "vegetation",
+      "islam"
+    ],
+    "aliases": [
+      "stripe",
+      "carpet"
+    ],
     "shortname": "tm",
     "continent": "asia",
     "name": "Turkmenistan",
@@ -2481,7 +4256,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Turkmenistan"
   },
   {
-    "tags": "tunisia red white circle star islam",
+    "tags": [
+      "red",
+      "white",
+      "circle",
+      "star",
+      "islam"
+    ],
     "shortname": "tn",
     "continent": "africa",
     "name": "Tunisia",
@@ -2492,7 +4273,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Tunisia"
   },
   {
-    "tags": "tonga red white cross christianity",
+    "tags": [
+      "red",
+      "white",
+      "cross",
+      "christianity"
+    ],
     "shortname": "to",
     "continent": "oceania",
     "name": "Tonga",
@@ -2503,7 +4289,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Tonga"
   },
   {
-    "tags": "turkey red white moon star islam",
+    "tags": [
+      "red",
+      "white",
+      "moon",
+      "star",
+      "islam"
+    ],
     "shortname": "tr",
     "continent": "asia",
     "name": "Turkey",
@@ -2514,7 +4306,16 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Turkey"
   },
   {
-    "tags": "trinidad tobago red white black triangle diagonal",
+    "tags": [
+      "red",
+      "white",
+      "black",
+      "triangle",
+      "diagonal"
+    ],
+    "aliases": [
+      "trinidad tobago"
+    ],
     "shortname": "tt",
     "continent": "northAmerica",
     "name": "Trinidad and Tobago",
@@ -2525,7 +4326,16 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Trinidad_and_Tobago"
   },
   {
-    "tags": "tuvalu blue red white yellow cross british star christianity",
+    "tags": [
+      "blue",
+      "red",
+      "white",
+      "yellow",
+      "cross",
+      "british",
+      "star",
+      "christianity"
+    ],
     "shortname": "tv",
     "continent": "oceania",
     "name": "Tuvalu",
@@ -2536,7 +4346,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Tuvalu"
   },
   {
-    "tags": "taiwan red blue white circle sun",
+    "tags": [
+      "red",
+      "blue",
+      "white",
+      "circle",
+      "sun"
+    ],
     "shortname": "tw",
     "continent": "asia",
     "name": "Taiwan",
@@ -2547,7 +4363,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_Republic_of_China"
   },
   {
-    "tags": "tanzania green yellow black blue triangle diagonal",
+    "tags": [
+      "green",
+      "yellow",
+      "black",
+      "blue",
+      "triangle",
+      "diagonal"
+    ],
     "shortname": "tz",
     "continent": "africa",
     "name": "Tanzania",
@@ -2558,7 +4381,11 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Tanzania"
   },
   {
-    "tags": "ukraine blue yellow horizontal",
+    "tags": [
+      "blue",
+      "yellow",
+      "horizontal"
+    ],
     "shortname": "ua",
     "continent": "europe",
     "name": "Ukraine",
@@ -2569,7 +4396,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Ukraine"
   },
   {
-    "tags": "uganda black yellow red horizontal circle bird animal",
+    "tags": [
+      "black",
+      "yellow",
+      "red",
+      "horizontal",
+      "circle",
+      "bird",
+      "animal"
+    ],
     "shortname": "ug",
     "continent": "africa",
     "name": "Uganda",
@@ -2580,7 +4415,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Uganda"
   },
   {
-    "tags": "united states minor outlying islands red white blue horizontal star",
+    "tags": [
+      "red",
+      "white",
+      "blue",
+      "horizontal",
+      "star"
+    ],
     "shortname": "um",
     "continent": "oceania",
     "name": "United States Minor Outlying Islands",
@@ -2591,7 +4432,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/United_States_Minor_Outlying_Islands"
   },
   {
-    "tags": "usa united states america red white blue horizontal star",
+    "tags": [
+      "red",
+      "white",
+      "blue",
+      "horizontal",
+      "star"
+    ],
+    "aliases": [
+      "usa",
+      "america"
+    ],
     "shortname": "us",
     "continent": "northAmerica",
     "name": "United States",
@@ -2602,7 +4453,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_United_States"
   },
   {
-    "tags": "uruguay white blue yellow horizontal sun face",
+    "tags": [
+      "white",
+      "blue",
+      "yellow",
+      "horizontal",
+      "sun",
+      "face"
+    ],
     "shortname": "uy",
     "continent": "southAmerica",
     "name": "Uruguay",
@@ -2613,7 +4471,16 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Uruguay"
   },
   {
-    "tags": "uzbekistan blue white green red horizontal moon star islam",
+    "tags": [
+      "blue",
+      "white",
+      "green",
+      "red",
+      "horizontal",
+      "moon",
+      "star",
+      "islam"
+    ],
     "shortname": "uz",
     "continent": "asia",
     "name": "Uzbekistan",
@@ -2624,7 +4491,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Uzbekistan"
   },
   {
-    "tags": "vatican city yellow white vertical crown christianity",
+    "tags": [
+      "yellow",
+      "white",
+      "vertical",
+      "crown",
+      "christianity"
+    ],
     "shortname": "va",
     "continent": "europe",
     "name": "Vatican City",
@@ -2635,7 +4508,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Vatican_City"
   },
   {
-    "tags": "saint vincent grenadines blue yellow green vertical",
+    "tags": [
+      "blue",
+      "yellow",
+      "green",
+      "vertical"
+    ],
+    "aliases": [
+      "saint vincent grenadines"
+    ],
     "shortname": "vc",
     "continent": "northAmerica",
     "name": "Saint Vincent and the Grenadines",
@@ -2646,7 +4527,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Saint_Vincent_and_the_Grenadines"
   },
   {
-    "tags": "venezuela yellow blue red horizontal star",
+    "tags": [
+      "yellow",
+      "blue",
+      "red",
+      "horizontal",
+      "star"
+    ],
     "shortname": "ve",
     "continent": "southAmerica",
     "name": "Venezuela",
@@ -2657,7 +4544,20 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Venezuela"
   },
   {
-    "tags": "british virgin islands white blue red green yellow cross human text motto ribbon shield",
+    "tags": [
+      "british",
+      "white",
+      "blue",
+      "red",
+      "green",
+      "yellow",
+      "cross",
+      "human",
+      "text",
+      "motto",
+      "ribbon",
+      "shield"
+    ],
     "shortname": "vg",
     "continent": "northAmerica",
     "name": "British Virgin Islands",
@@ -2668,7 +4568,19 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_British_Virgin_Islands"
   },
   {
-    "tags": "united states virgin islands white blue yellow red animal bird vegetation weapon shield text vertical",
+    "tags": [
+      "white",
+      "blue",
+      "yellow",
+      "red",
+      "animal",
+      "bird",
+      "vegetation",
+      "weapon",
+      "shield",
+      "text",
+      "vertical"
+    ],
     "shortname": "vi",
     "continent": "northAmerica",
     "name": "United States Virgin Islands",
@@ -2679,7 +4591,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_the_United_States_Virgin_Islands"
   },
   {
-    "tags": "vietnam red yellow star communism",
+    "tags": [
+      "red",
+      "yellow",
+      "star",
+      "communism"
+    ],
     "shortname": "vn",
     "continent": "asia",
     "name": "Vietnam",
@@ -2690,7 +4607,15 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Vietnam"
   },
   {
-    "tags": "vanuatu red green yellow black triangle vegetation horizontal",
+    "tags": [
+      "red",
+      "green",
+      "yellow",
+      "black",
+      "triangle",
+      "vegetation",
+      "horizontal"
+    ],
     "shortname": "vu",
     "continent": "oceania",
     "name": "Vanuatu",
@@ -2701,7 +4626,14 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Vanuatu"
   },
   {
-    "tags": "wallis and futuna red blue white triangle vertical cross",
+    "tags": [
+      "red",
+      "blue",
+      "white",
+      "triangle",
+      "vertical",
+      "cross"
+    ],
     "shortname": "wf",
     "continent": "oceania",
     "name": "Wallis and Futuna",
@@ -2712,7 +4644,12 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Wallis_and_Futuna"
   },
   {
-    "tags": "samoa red blue white star",
+    "tags": [
+      "red",
+      "blue",
+      "white",
+      "star"
+    ],
     "shortname": "ws",
     "continent": "oceania",
     "name": "Samoa",
@@ -2723,7 +4660,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Samoa"
   },
   {
-    "tags": "kosovo blue yellow white star map",
+    "tags": [
+      "blue",
+      "yellow",
+      "white",
+      "star",
+      "map"
+    ],
     "shortname": "xk",
     "continent": "europe",
     "name": "Kosovo",
@@ -2734,7 +4677,13 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Kosovo"
   },
   {
-    "tags": "yemen red white black horizontal pan-arab",
+    "tags": [
+      "red",
+      "white",
+      "black",
+      "horizontal",
+      "pan-arab"
+    ],
     "shortname": "ye",
     "continent": "asia",
     "name": "Yemen",
@@ -2745,7 +4694,22 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Yemen"
   },
   {
-    "tags": "mayotte white red blue yellow grey text name ribbon animal vegetation moon star",
+    "tags": [
+      "white",
+      "red",
+      "blue",
+      "yellow",
+      "text",
+      "name",
+      "ribbon",
+      "animal",
+      "vegetation",
+      "moon",
+      "star"
+    ],
+    "aliases": [
+      "grey"
+    ],
     "shortname": "yt",
     "continent": "africa",
     "name": "Mayotte",
@@ -2756,7 +4720,17 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_and_coat_of_arms_of_Mayotte"
   },
   {
-    "tags": "south africa red green blue white yellow black triangle horizontal pan-african",
+    "tags": [
+      "red",
+      "green",
+      "blue",
+      "white",
+      "yellow",
+      "black",
+      "triangle",
+      "horizontal",
+      "pan-african"
+    ],
     "shortname": "za",
     "continent": "africa",
     "name": "South Africa",
@@ -2767,7 +4741,16 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_South_Africa"
   },
   {
-    "tags": "zambia green red black orange bird animal vertical pan-african",
+    "tags": [
+      "green",
+      "red",
+      "black",
+      "orange",
+      "bird",
+      "animal",
+      "vertical",
+      "pan-african"
+    ],
     "shortname": "zm",
     "continent": "africa",
     "name": "Zambia",
@@ -2778,7 +4761,18 @@
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Zambia"
   },
   {
-    "tags": "zimbabwe green yellow red black white horizontal star bird animal pan-african",
+    "tags": [
+      "green",
+      "yellow",
+      "red",
+      "black",
+      "white",
+      "horizontal",
+      "star",
+      "bird",
+      "animal",
+      "pan-african"
+    ],
     "shortname": "zw",
     "continent": "africa",
     "name": "Zimbabwe",
