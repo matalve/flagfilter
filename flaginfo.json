@@ -67,6 +67,9 @@
       "sun",
       "triangle"
     ],
+    "aliases": [
+      "antigua barbuda"
+    ],
     "shortname": "ag",
     "continent": "northAmerica",
     "name": "Antigua and Barbuda",
@@ -704,6 +707,10 @@
       "vegetation",
       "circle"
     ],
+    "aliases": [
+      "cocos islands",
+      "keeling islands"
+    ],
     "shortname": "cc",
     "continent": "asia",
     "name": "Cocos (Keeling) Islands",
@@ -762,7 +769,7 @@
       "pan-african"
     ],
     "aliases": [
-      "brazzaville"
+      "congo brazzaville"
     ],
     "shortname": "cg",
     "continent": "africa",
@@ -797,7 +804,7 @@
       "vertical"
     ],
     "aliases": [
-      "divoire"
+      "cote divoire"
     ],
     "shortname": "ci",
     "continent": "africa",
@@ -1863,7 +1870,7 @@
       "star"
     ],
     "aliases": [
-      "mcdonald"
+      "heard island and mcdonald islands"
     ],
     "shortname": "hm",
     "name": "Heard Island and McDonald Islands",
@@ -2311,6 +2318,9 @@
       "triangle",
       "star",
       "diagonal"
+    ],
+    "aliases": [
+      "saint kitts nevis"
     ],
     "shortname": "kn",
     "continent": "northAmerica",
@@ -3979,6 +3989,9 @@
       "star",
       "pan-african"
     ],
+    "aliases": [
+      "sao tome principe"
+    ],
     "shortname": "st",
     "continent": "africa",
     "name": "São Tomé and Príncipe",
@@ -4302,6 +4315,9 @@
       "triangle",
       "diagonal"
     ],
+    "aliases": [
+      "trinidad tobago"
+    ],
     "shortname": "tt",
     "continent": "northAmerica",
     "name": "Trinidad and Tobago",
@@ -4499,6 +4515,9 @@
       "yellow",
       "green",
       "vertical"
+    ],
+    "aliases": [
+      "saint vincent grenadines"
     ],
     "shortname": "vc",
     "continent": "northAmerica",

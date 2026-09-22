@@ -366,7 +366,11 @@ test.describe('Flagfilter UI flows', () => {
     const cases = [
       ['burma', 'Myanmar'],
       ['great britain', 'United Kingdom'],
-      ['carpet', 'Turkmenistan']
+      ['carpet', 'Turkmenistan'],
+      // Phrases the punctuation-free spelling gives you and the name does not.
+      ['cote divoire', "Côte d'Ivoire (Ivory Coast)"],
+      ['sao tome principe', 'São Tomé and Príncipe'],
+      ['trinidad tobago', 'Trinidad and Tobago']
     ];
     for (const [term, expected] of cases) {
       await page.locator('#searchInput').fill(term);
