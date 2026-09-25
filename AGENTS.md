@@ -129,8 +129,24 @@ This file documents how AI coding assistants should work in this repository.
 
 ## Environment constraints (verification)
 
-- The assistant sandbox typically has no Node/npm; Playwright runs in CI
-  (`.github/workflows/ui-tests.yml`), not locally. Write tests, let CI validate them.
+- Whether Node, npm and a Playwright browser are available depends on where the
+  session runs — some environments have all three, some have none. Check before
+  assuming either way.
+  - `node --version` answers for Node. For the browser there is no cheap proxy:
+    `npx playwright --version` succeeds with no browser installed. The real check
+    is `npx playwright test --max-failures=1` — with no browser it stops within
+    seconds on `Executable doesn't exist`; with one, it runs the suite and stops
+    at the first real failure. Without the flag, a missing browser fails every
+    test in turn and takes minutes.
+  - If everything is there, run the validators and the suite before pushing. The
+    full suite takes about six minutes, and a failure caught locally is cheaper
+    than a red PR.
+  - If not, write the test, let CI (`.github/workflows/ui-tests.yml`) validate it,
+    and say that it was not run locally.
+  - Either way CI is the gate. A local pass does not replace it.
+  - A run killed partway through can leave `python3 -m http.server 4173` behind,
+    and the next run then fails with `config.webServer was not able to start`.
+    Stop that process rather than debugging the config.
 - The sandbox may not be able to reach `flagfilter.com` (DNS). Verify production
   behavior via the `*.pages.dev` preview deployment or ask the user to check.
 - `_headers` (CSP/security headers) cannot be exercised by the Playwright suite —
