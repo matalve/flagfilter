@@ -169,7 +169,8 @@
       "yellow",
       "sun",
       "horizontal",
-      "face"
+      "face",
+      "circle"
     ],
     "shortname": "ar",
     "continent": "southAmerica",
@@ -1690,7 +1691,8 @@
       "yellow",
       "sun",
       "fleur-de-lis",
-      "horizontal"
+      "horizontal",
+      "vegetation"
     ],
     "shortname": "gp",
     "continent": "northAmerica",
@@ -4459,7 +4461,8 @@
       "yellow",
       "horizontal",
       "sun",
-      "face"
+      "face",
+      "circle"
     ],
     "shortname": "uy",
     "continent": "southAmerica",
