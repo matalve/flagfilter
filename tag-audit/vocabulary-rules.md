@@ -121,6 +121,12 @@ review:
 - `mx` carries `flag`, and there is no flag depicted in the design.
 - `pw` carries both `sun` and `moon` for a single yellow disc, and the flag's own
   `symbolism` says the disc is the full moon. There is nothing else on the flag.
+- `bl` carries `star`, and there is no star. The eight-pointed white figure in the
+  shield is a Maltese cross.
+- `bl` carries `horizontal`, but the only horizontal bands are the partitions inside
+  the shield; the flag itself is a white field with arms on it.
+- `tm` carries `vertical` for a single red band at the hoist on a green field. The
+  `vertical` rule wants at least two parallel bands.
 
 ## Additions found while settling the rules
 
