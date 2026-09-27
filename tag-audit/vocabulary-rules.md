@@ -11,7 +11,8 @@ Read this before proposing anything. See #174.
 A word that describes the flag but has no button — `carpet` on Turkmenistan,
 `sphere` on Portugal — is a search keyword, not a tag, and lives in the flag's
 `aliases` array alongside the alternative names (`burma`, `usa`). Do not propose
-one as a tag, and do not propose removing one from `aliases`. See #184 and #203.
+one as a tag, and do not propose removing one from `aliases`. Adding one is allowed
+for plain emblems; see *Aliases for plain emblems* below. See #184 and #203.
 
 ## Rules
 
@@ -134,6 +135,29 @@ nearly every colour filter, and a filter that returns everything helps nobody.
 
 When unsure, ask whether the colour would appear in a one-line description of the
 flag. "Blue, white and red stripes with a coat of arms" does not name the grass.
+
+## Aliases for plain emblems
+
+Propose an alias when a flag carries a plain emblem that people would search for by
+name, and no filter term covers it. The trident on Barbados is the model: it is the
+whole emblem and the word someone half remembering the flag would type, and with
+`black` on the flag, a search for "black trident" finds it.
+
+The row looks like any other, with `alias` as the action and the word in the tag
+column:
+
+    Barbados	bb	trident	alias	high	The emblem is a black trident.
+
+- **Plain emblems only**, by the same test as the colour rule: would the word appear
+  in a one-line description of the flag? Lebanon's cedar and Canada's maple leaf
+  pass. The charges inside a detailed coat of arms do not.
+- **Not a filter term.** The search reads a filter term in a query as the filter, so
+  an alias like `star` or `bird` could never match. The script refuses one.
+- **Lower case**, like the existing aliases. Several words are fine: `maple leaf`.
+- **Add only.** Removing an alias is not the audit's call.
+- **A word that fits many flags** is a motif as much as an alias. Propose the aliases,
+  and note it in the next section too: enough flags pointing the same way is the
+  argument for a filter button instead.
 
 ## Motifs the vocabulary does not cover
 

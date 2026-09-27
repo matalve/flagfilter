@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-// Applies the approved rows of a tag audit to flaginfo.json. See #174.
+// Applies the approved rows of a tag audit to flaginfo.json: tags added or removed,
+// and search aliases added. See #174.
 //
 // The audit itself is done by an agent looking at every flag image; this script
 // is the part that touches the data, and it is deliberately dull. The agent
@@ -17,7 +18,8 @@
 import { createHash } from 'node:crypto';
 import { appendFileSync, existsSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
-import { TAG_TERMS } from '../js/filter-config.js';
+import { FILTER_TERMS, TAG_TERMS } from '../js/filter-config.js';
+import { normalizeQueryValue } from '../js/util.js';
 
 const FLAG_INFO_PATH = 'flaginfo.json';
 const BASELINE_DIR = 'flag-baseline';
@@ -136,17 +138,45 @@ function checkNameAndCode(row, where) {
 
 original.forEach((row) => checkNameAndCode(row, `${ORIGINAL_PATH}:${row.lineNumber}`));
 
+// An alias row carries a search word in the tag column: the name someone would type
+// for a plain emblem that has no filter term, like the trident on Barbados. The
+// search reads any filter term in a query as the filter, so an alias that is one can
+// never be matched as a word, and it is refused. Compared the way the search
+// compares, so "North America" is caught as the continent filter it is.
+const FILTER_WORDS = new Set([...FILTER_TERMS].map(normalizeQueryValue));
+
+function checkAlias(row, where) {
+    const word = row.tag || '';
+    if (word === '' || word !== word.trim().toLowerCase()) {
+        failures.push(`${where}: an alias is written in lower case with no surrounding spaces, got "${word}"`);
+    }
+    if (FILTER_WORDS.has(normalizeQueryValue(word))) {
+        failures.push(`${where}: "${word}" is a filter term, so the search would read it as the filter and never as an alias`);
+    }
+}
+
+// Every flag with aliases has them straight after tags. Setting the key in place
+// would put it at the end of the object, and the diff would show it there.
+function withAliases(flag, aliases) {
+    const { tags, aliases: previous, ...rest } = flag;
+    return { tags, aliases, ...rest };
+}
+
 reviewed.forEach((row) => {
     const where = `${REVIEWED_PATH}:${row.lineNumber}`;
     if (!checkNameAndCode(row, where)) return;
-    if (!['add', 'remove'].includes(row.action)) {
-        failures.push(`${where}: action must be add or remove, got "${row.action}"`);
+    if (!['add', 'remove', 'alias'].includes(row.action)) {
+        failures.push(`${where}: action must be add, remove or alias, got "${row.action}"`);
     }
-    if (!filterTerms.has(row.tag)) {
-        failures.push(`${where}: "${row.tag}" is not a filter term in js/filter-config.js, so it would filter nothing`);
-    }
-    if (PROTECTED_TAGS.has(row.tag)) {
-        failures.push(`${where}: "${row.tag}" is not decided by looking at the image and must not be audited`);
+    if (row.action === 'alias') {
+        checkAlias(row, where);
+    } else {
+        if (!filterTerms.has(row.tag)) {
+            failures.push(`${where}: "${row.tag}" is not a filter term in js/filter-config.js, so it would filter nothing`);
+        }
+        if (PROTECTED_TAGS.has(row.tag)) {
+            failures.push(`${where}: "${row.tag}" is not decided by looking at the image and must not be audited`);
+        }
     }
 
     // A rejection stands until the flag's picture changes.
@@ -166,6 +196,20 @@ const noop = [];
 
 reviewed.forEach((row) => {
     const flag = flagsByCode.get(row.code);
+
+    if (row.action === 'alias') {
+        const aliases = flag.aliases || [];
+        if (aliases.includes(row.tag)) {
+            noop.push(`${row.name} (${row.code}) already has the alias "${row.tag}"`);
+            return;
+        }
+        const updated = withAliases(flag, [...aliases, row.tag]);
+        flags[flags.indexOf(flag)] = updated;
+        flagsByCode.set(row.code, updated);
+        applied.push(`+ ${row.name} (${row.code}) alias "${row.tag}"`);
+        return;
+    }
+
     const words = flag.tags;
     const has = words.includes(row.tag);
 
@@ -178,8 +222,8 @@ reviewed.forEach((row) => {
         return;
     }
 
-    // Search aliases live in their own field ("burma", "usa", "great britain")
-    // and nothing here can reach them; tags is vocabulary only. See #203.
+    // A tag row touches tags and nothing else; tags is vocabulary only (#203), and
+    // aliases are reached only by alias rows, above.
     flag.tags = row.action === 'add'
         ? [...words, row.tag]
         : words.filter((word) => word !== row.tag);
@@ -196,7 +240,7 @@ if (dryRun) {
         const header = existsSync(REJECTED_PATH)
             ? ''
             : '# Proposals a human declined, so later audits stay quiet about them.\n' +
-              '# Columns: name, code, tag, action, baseline image hash at the time, justification.\n' +
+              '# Columns: name, code, tag or alias, action, baseline image hash at the time, justification.\n' +
               '# Read the name; the code beside it is what the script applies to, and a row whose\n' +
               '# name and code disagree is refused. To see a flag: https://flagfilter.com/?q=<name>\n' +
               '# The hash expires the rejection: when flagcdn changes the flag, the question\n' +
