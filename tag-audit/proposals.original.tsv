@@ -11,10 +11,10 @@
 # the Playwright suite. Do not edit proposals.original.tsv — the difference
 # between it and this file is how your rejections get remembered.
 #
-# The code column is ISO 3166-1 alpha-2; look one up at
-# https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes
-# Columns: code, tag, add|remove, confidence, why.
-ar	circle	add	high	The Sun of May carries its face on a closed round disc, with the rays outside it.
-uy	circle	add	high	The Sun of May carries its face on a closed round disc, with the rays outside it.
-gp	circle	add	medium	The sun's body is a large round disc; the rays are worked into its edge rather than drawn outside it.
-gp	vegetation	add	high	The flag depicts sugar cane, which its own symbolism names as one of Guadeloupe's main crops.
+# Read the name; the code beside it is what the script applies to, and a row whose
+# name and code disagree is refused. To see a flag: https://flagfilter.com/?q=<name>
+# Columns: name, code, tag, add|remove, confidence, why.
+Argentina	ar	circle	add	high	The Sun of May carries its face on a closed round disc, with the rays outside it.
+Uruguay	uy	circle	add	high	The Sun of May carries its face on a closed round disc, with the rays outside it.
+Guadeloupe	gp	circle	add	medium	The sun's body is a large round disc; the rays are worked into its edge rather than drawn outside it.
+Guadeloupe	gp	vegetation	add	high	The flag depicts sugar cane, which its own symbolism names as one of Guadeloupe's main crops.

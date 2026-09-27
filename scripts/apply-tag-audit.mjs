@@ -41,7 +41,13 @@ const PROTECTED_TAGS = new Set([
 const dryRun = process.argv.includes('--dry-run');
 const failures = [];
 
-function readRows(filePath) {
+// Every audit file leads with the flag's English name, because a human reviews
+// these rows and nobody reads ISO codes fluently. The code stays as the key: names
+// are long, some contain others, and the script needs one exact spelling.
+const PROPOSAL_COLUMNS = ['name', 'code', 'tag', 'action', 'confidence', 'justification'];
+const LEDGER_COLUMNS = ['name', 'code', 'tag', 'action', 'hash', 'justification'];
+
+function readRows(filePath, columns) {
     if (!existsSync(filePath)) {
         failures.push(`${filePath} does not exist`);
         return [];
@@ -52,8 +58,8 @@ function readRows(filePath) {
         .map((line, index) => ({ line, lineNumber: index + 1 }))
         .filter(({ line }) => line.trim() !== '' && !line.startsWith('#'))
         .map(({ line, lineNumber }) => {
-            const [code, tag, action, confidence, justification] = line.split('\t');
-            return { code, tag, action, confidence, justification, lineNumber, key: `${code}\t${tag}\t${action}` };
+            const row = Object.fromEntries(columns.map((column, i) => [column, line.split('\t')[i]]));
+            return { ...row, lineNumber, key: `${row.code}\t${row.tag}\t${row.action}` };
         });
 }
 
@@ -74,8 +80,8 @@ const filterTerms = TAG_TERMS;
 const flags = JSON.parse(readFileSync(FLAG_INFO_PATH, 'utf8'));
 const flagsByCode = new Map(flags.map((flag) => [flag.shortname, flag]));
 
-const original = readRows(ORIGINAL_PATH);
-const reviewed = readRows(REVIEWED_PATH);
+const original = readRows(ORIGINAL_PATH, PROPOSAL_COLUMNS);
+const reviewed = readRows(REVIEWED_PATH, PROPOSAL_COLUMNS);
 
 if (failures.length > 0) {
     failures.forEach((failure) => console.error(`FAIL: ${failure}`));
@@ -95,10 +101,9 @@ const handAdded = reviewed.filter((row) => !originalKeys.has(row.key));
 // directions if an image ever returned to an earlier version — the duplicate check
 // below would write a line that already exists, and the standing check would let a
 // live rejection through. A set of composite keys has no such newest.
-// readRows is generic, so the hash column lands in the `confidence` position.
 const rejectionLedger = new Set(
-    (existsSync(REJECTED_PATH) ? readRows(REJECTED_PATH) : [])
-        .map((row) => `${row.key}\t${row.confidence}`)
+    (existsSync(REJECTED_PATH) ? readRows(REJECTED_PATH, LEDGER_COLUMNS) : [])
+        .map((row) => `${row.key}\t${row.hash}`)
 );
 
 function isRecorded(row) {
@@ -117,6 +122,12 @@ reviewed.forEach((row) => {
     if (!flagsByCode.has(row.code)) {
         failures.push(`${where}: no flag with code "${row.code}"`);
         return;
+    }
+    // The reviewer decides by the name and the script applies by the code, so the
+    // two have to name the same flag, or an approval lands somewhere else.
+    const expectedName = flagsByCode.get(row.code).name;
+    if (row.name !== expectedName) {
+        failures.push(`${where}: the row says "${row.name}" but ${row.code} is "${expectedName}"`);
     }
     if (!['add', 'remove'].includes(row.action)) {
         failures.push(`${where}: action must be add or remove, got "${row.action}"`);
@@ -149,11 +160,11 @@ reviewed.forEach((row) => {
     const has = words.includes(row.tag);
 
     if (row.action === 'add' && has) {
-        noop.push(`${row.code} already has ${row.tag}`);
+        noop.push(`${row.name} (${row.code}) already has ${row.tag}`);
         return;
     }
     if (row.action === 'remove' && !has) {
-        noop.push(`${row.code} does not have ${row.tag}`);
+        noop.push(`${row.name} (${row.code}) does not have ${row.tag}`);
         return;
     }
 
@@ -163,7 +174,7 @@ reviewed.forEach((row) => {
         ? [...words, row.tag]
         : words.filter((word) => word !== row.tag);
 
-    applied.push(`${row.action === 'add' ? '+' : '-'} ${row.code} ${row.tag}`);
+    applied.push(`${row.action === 'add' ? '+' : '-'} ${row.name} (${row.code}) ${row.tag}`);
 });
 
 if (dryRun) {
@@ -175,14 +186,14 @@ if (dryRun) {
         const header = existsSync(REJECTED_PATH)
             ? ''
             : '# Proposals a human declined, so later audits stay quiet about them.\n' +
-              '# Columns: code, tag, action, baseline image hash at the time, justification.\n' +
-              '# The code column is ISO 3166-1 alpha-2; look one up at\n' +
-              '# https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes\n' +
+              '# Columns: name, code, tag, action, baseline image hash at the time, justification.\n' +
+              '# Read the name; the code beside it is what the script applies to, and a row whose\n' +
+              '# name and code disagree is refused. To see a flag: https://flagfilter.com/?q=<name>\n' +
               '# The hash expires the rejection: when flagcdn changes the flag, the question\n' +
               '# was answered about a different picture and may be asked again. Delete a line\n' +
               '# to reopen a question early. See #174.\n';
         appendFileSync(REJECTED_PATH, header + unrecorded
-            .map((row) => [row.code, row.tag, row.action, baselineHash(row.code), row.justification].join('\t'))
+            .map((row) => [row.name, row.code, row.tag, row.action, baselineHash(row.code), row.justification].join('\t'))
             .join('\n') + '\n');
     }
 }
@@ -192,7 +203,7 @@ applied.forEach((change) => console.log(`  ${change}`));
 
 if (unrecorded.length > 0) {
     console.log(`\n${unrecorded.length} proposal(s) declined and recorded in ${REJECTED_PATH}:`);
-    unrecorded.forEach((row) => console.log(`  ${row.code} ${row.tag}`));
+    unrecorded.forEach((row) => console.log(`  ${row.name} (${row.code}) ${row.tag}`));
 }
 
 if (alreadyRecorded > 0) {
@@ -201,7 +212,7 @@ if (alreadyRecorded > 0) {
 
 if (handAdded.length > 0) {
     console.log(`\n${handAdded.length} row(s) were added by hand after the audit ran:`);
-    handAdded.forEach((row) => console.log(`  ${row.code} ${row.tag} ${row.action}`));
+    handAdded.forEach((row) => console.log(`  ${row.name} (${row.code}) ${row.tag} ${row.action}`));
 }
 
 if (noop.length > 0) {
