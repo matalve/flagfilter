@@ -103,6 +103,25 @@ and Guadeloupe's sun is a large round body with the rays worked into its edge.
 Ecuador is the one real question and is in `needs-a-human.tsv`: its sun is a small
 faced disc high on an oval shield, round but barely a design element in its own right.
 
+## Colours: the flag and its plain emblems, not the inside of a coat of arms
+
+A colour counts when it is how someone would describe what they saw: the flag's own
+fields and bands, and any plain emblem on them. Barbados's trident is black,
+Venezuela's stars are white, Malaysia's crescent is yellow. Someone searching for "a
+black trident" is describing the flag, so `black` belongs on it.
+
+A colour inside a detailed coat of arms or a many-coloured emblem does not count.
+Nobody describes Ecuador by the green of the grass in its arms. Tagging every
+tincture in every coat of arms would put arms-bearing flags in nearly every colour
+filter, and a filter that returns everything helps nobody.
+
+For an emblem between the two, ask whether its colour is how it would be described.
+A plain yellow disc is yellow. A shield full of charges is "a coat of arms", whatever
+colour its field is.
+
+What this means for data already there is a question for the removal round, not for
+an audit batch. The first candidates are listed below.
+
 ## Motifs the vocabulary does not cover
 
 `tags` holds filter terms only, so an audit that sees a recurring motif with no term
@@ -127,6 +146,12 @@ review:
   the shield; the flag itself is a white field with arms on it.
 - `tm` carries `vertical` for a single red band at the hoist on a green field. The
   `vertical` rule wants at least two parallel bands.
+- `bl` carries `blue`, `red` and `yellow`, and all three come from the coat of arms;
+  the flag itself is a white field. The colour rule says they do not count. This is
+  the rule's largest consequence, so it is worth a deliberate look.
+- `tc` carries `yellow` only for the field of its shield, which holds a conch, a
+  lobster and a cactus. Borderline: the yellow is solid and large, but the shield is
+  a coat of arms by the rule's test.
 
 ## Additions found while settling the rules
 

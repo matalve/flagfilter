@@ -312,7 +312,8 @@
       "blue",
       "yellow",
       "weapon",
-      "vertical"
+      "vertical",
+      "black"
     ],
     "shortname": "bb",
     "continent": "northAmerica",
@@ -457,7 +458,9 @@
       "cross",
       "fleur-de-lis",
       "star",
-      "ribbon"
+      "ribbon",
+      "shield",
+      "name"
     ],
     "shortname": "bl",
     "continent": "northAmerica",
@@ -914,7 +917,9 @@
       "text",
       "name",
       "ribbon",
-      "flag"
+      "flag",
+      "boat",
+      "sun"
     ],
     "shortname": "cr",
     "continent": "northAmerica",
@@ -1533,7 +1538,8 @@
       "triangle",
       "vegetation",
       "star",
-      "diagonal"
+      "diagonal",
+      "circle"
     ],
     "shortname": "gd",
     "continent": "northAmerica",
@@ -3620,7 +3626,8 @@
       "crown",
       "cross",
       "pan-slavic",
-      "christianity"
+      "christianity",
+      "shield"
     ],
     "shortname": "rs",
     "continent": "europe",
@@ -4099,7 +4106,8 @@
       "cross",
       "british",
       "animal",
-      "vegetation"
+      "vegetation",
+      "shield"
     ],
     "shortname": "tc",
     "continent": "northAmerica",
@@ -4242,7 +4250,8 @@
       "moon",
       "star",
       "vegetation",
-      "islam"
+      "islam",
+      "white"
     ],
     "aliases": [
       "stripe",
@@ -4535,7 +4544,8 @@
       "blue",
       "red",
       "horizontal",
-      "star"
+      "star",
+      "white"
     ],
     "shortname": "ve",
     "continent": "southAmerica",
