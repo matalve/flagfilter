@@ -1,6 +1,6 @@
-# Tag audit proposals — tranche 2: every 8th flag by code at offset 1 (32 of 254),
-# the pilot having taken offset 0. Additions only; removals are their own round.
-# See #174.
+# Tag audit proposals — tranche 3: every 8th flag by code at offset 2 (32 of 254).
+# Additions and aliases; removals are their own round. Afghanistan is left out on
+# purpose: its image and its data describe two different flags. See #174.
 #
 # HOW TO REVIEW: delete the rows you disagree with. What survives is applied.
 # Nothing else to fill in; the deletions are themselves the record of your call.
@@ -16,15 +16,25 @@
 #
 # Read the name; the code beside it is what the script applies to, and a row whose
 # name and code disagree is refused. To see a flag: https://flagfilter.com/?q=<name>
-# Columns: name, code, tag, add|remove, confidence, why.
-Barbados	bb	black	add	high	The broken trident head is black.
-Saint Barthélemy	bl	shield	add	high	The arms are on a heraldic shield: fleurs-de-lis, a Maltese cross and three crowns.
-Saint Barthélemy	bl	name	add	medium	The ribbon reads OUANALAO, which the flag's own symbolism calls the local name of the island.
-Costa Rica	cr	boat	add	high	Two sailing ships cross the seas in the arms.
-Costa Rica	cr	sun	add	high	A sun rises on the left horizon of the arms.
-Costa Rica	cr	shield	add	medium	The arms sit on a shield inside an ornate gold frame.
-Grenada	gd	circle	add	high	The central star sits on a closed red disc.
-Serbia	rs	shield	add	high	The double-headed eagle is on a red shield, with a second shield on its breast.
-Turks and Caicos Islands	tc	shield	add	high	The conch, lobster and cactus are on a yellow shield.
-Turkmenistan	tm	white	add	high	The crescent and the five stars are white.
-Venezuela	ve	white	add	high	The arc of eight stars is white.
+# Columns: name, code, tag or alias, add|remove|alias, confidence, why.
+Barbados	bb	tool	add	high	A trident is a fishing spear as well as a weapon; the owner judged that the axe rule covers it.
+American Samoa	as	tool	add	medium	The eagle holds a fue, a fly-whisk, beside the war club, as the flag's own symbolism says.
+Bermuda	bm	shield	add	high	The red lion holds a shield showing the wreck of the Sea Venture.
+Eritrea	er	vegetation	add	high	An olive branch stands inside an olive wreath.
+French Polynesia	pf	sun	add	high	A sun rises behind the canoe, its orange rays above the waves.
+Jersey	je	shield	add	high	The three lions are on a red shield under the crown.
+Mayotte	yt	shield	add	high	The crescent and the two flowers are on a shield held by the seahorses.
+Mayotte	yt	motto	add	high	The ribbon reads RA HACHIRI, which the flag's own symbolism calls the Mayotte motto.
+Saint Helena	sh	shield	add	high	The wirebird, the ship and the cliffs are on a shield.
+Tunisia	tn	moon	add	high	A red crescent wraps the star inside the white disc.
+Uganda	ug	white	add	high	The crane stands on a white disc at the centre.
+American Samoa	as	eagle	alias	high	The eagle is the whole emblem, and eagle is what someone would type.
+Eritrea	er	olive branch	alias	medium	The emblem is an olive branch; searching olive also matches it.
+Hong Kong	hk	flower	alias	high	The emblem is a white flower, the bauhinia.
+Israel	il	star of david	alias	high	The emblem is the Star of David; the search reads star as the filter and matches the rest against this alias.
+Lebanon	lb	cedar	alias	high	The cedar is the whole emblem.
+Mayotte	yt	seahorse	alias	high	Two seahorses hold the shield, and they are what the eye goes to.
+Mozambique	mz	rifle	alias	high	The emblem shows a rifle with a bayonet, crossed with a hoe.
+Mozambique	mz	book	alias	medium	The rifle and hoe lie on an open book.
+Uganda	ug	crane	alias	high	The emblem is a grey crowned crane, as the flag's own symbolism says.
+French Polynesia	pf	canoe	alias	medium	The emblem is an outrigger canoe in front of the sun.

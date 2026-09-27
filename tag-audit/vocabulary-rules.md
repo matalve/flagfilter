@@ -167,7 +167,11 @@ with the flags it was seen on. Enough entries pointing the same way is the argum
 for a new filter button, which is its own issue and its own PR — see #184. Do not
 add the term to `js/filter-config.js` as part of an audit batch.
 
-Nothing recorded yet.
+- **eagle**: American Samoa (alias proposed in tranche 3), Serbia (tranche 2, no
+  alias). Mexico, Egypt, Albania and others are still to come.
+- **lion**: Jersey, Bermuda, and Sri Lanka still to come. So far always inside a
+  shield, so not proposed as an alias.
+- **flower**: Hong Kong (alias proposed). Macau's lotus is still to come.
 
 ## Candidates for the removal pass
 
@@ -177,11 +181,15 @@ review:
 - `mx` carries `flag`, and there is no flag depicted in the design.
 - `pw` carries both `sun` and `moon` for a single yellow disc, and the flag's own
   `symbolism` says the disc is the full moon. There is nothing else on the flag.
+- `pf` carries `star` for the five figures on the canoe. They are X-shaped (stylised
+  people for the five archipelagos) and do not read as stars, so the rule that keeps
+  Saint Barthélemy's `star` does not obviously cover them.
+- `sh` carries `brown`, and the only brown is the cliffs inside the shield. By the
+  colour rule that is detail.
 
 ## Additions found while settling the rules
 
 The same as above, the other way round. Propose these in a batch rather than editing
 by hand:
 
-- `bb` gains `tool`. A trident is a fishing spear as well as a weapon, and the owner
-  judged that the axe rule covers it.
+Nothing waiting.
