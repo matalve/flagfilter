@@ -101,10 +101,9 @@ const handAdded = reviewed.filter((row) => !originalKeys.has(row.key));
 // directions if an image ever returned to an earlier version — the duplicate check
 // below would write a line that already exists, and the standing check would let a
 // live rejection through. A set of composite keys has no such newest.
-const rejectionLedger = new Set(
-    (existsSync(REJECTED_PATH) ? readRows(REJECTED_PATH, LEDGER_COLUMNS) : [])
-        .map((row) => `${row.key}\t${row.hash}`)
-);
+const ledgerRows = existsSync(REJECTED_PATH) ? readRows(REJECTED_PATH, LEDGER_COLUMNS) : [];
+ledgerRows.forEach((row) => checkNameAndCode(row, `${REJECTED_PATH}:${row.lineNumber}`));
+const rejectionLedger = new Set(ledgerRows.map((row) => `${row.key}\t${row.hash}`));
 
 function isRecorded(row) {
     return rejectionLedger.has(`${row.key}\t${baselineHash(row.code)}`);
@@ -118,10 +117,11 @@ const unrecorded = rejected.filter((row) => !isRecorded(row));
 const alreadyRecorded = rejected.length - unrecorded.length;
 
 // The reviewer decides by the name and the script applies by the code, so the two
-// have to name the same flag. Both files are checked, not only the reviewed one: a
+// have to name the same flag. Every file is checked, not only the reviewed one: a
 // row the reviewer deleted survives only in the original, and it becomes a
 // rejection recorded under its code. If its name pointed at another flag, the
-// ledger would silence proposals for a flag nobody looked at.
+// ledger would silence proposals for a flag nobody looked at. The ledger itself is
+// checked for the same reason, since people edit it by hand to reopen a question.
 function checkNameAndCode(row, where) {
     if (!flagsByCode.has(row.code)) {
         failures.push(`${where}: no flag with code "${row.code}"`);
