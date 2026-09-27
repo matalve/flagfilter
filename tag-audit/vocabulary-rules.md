@@ -15,11 +15,21 @@ one as a tag, and do not propose removing one from `aliases`. See #184 and #203.
 
 ## Rules
 
-**`vertical` and `horizontal` describe the design, not any band in it.** The flag
-needs at least two parallel bands in that orientation to earn the tag. A single band
-at the hoist crossing horizontal stripes does not make the flag vertical: Benin,
-the Central African Republic and Guinea-Bissau are `horizontal` and nothing else.
-The United Arab Emirates and Madagascar are the same case.
+**`vertical` and `horizontal` describe how the field is cut.** Count the parts the
+field is divided into, not the coloured bands. Turkmenistan is green, red and green
+from the hoist: three side-by-side parts, so it is `vertical`, even though only one
+part is red. What does not count is a band that stripes of the other orientation run
+into, wherever it sits: Benin, the Central African Republic and Guinea-Bissau are
+`horizontal` and nothing else, and so are the United Arab Emirates and Madagascar.
+
+When a coat of arms is the flag, its partitions count as the flag's if they are
+prominent. Saint Barthélemy's shield is cut into three horizontal parts, and that is
+most of what you see, so the flag is `horizontal`.
+
+**A figure people read as a star keeps `star`.** Saint Barthélemy's white figure is
+heraldically a Maltese cross, but it looks enough like a star that people searching for
+one expect to find the flag. An alias cannot do this job: the search reads "star" as
+the star filter, so only the tag makes the flag turn up.
 
 **A ring of text is not a `circle`.** Nicaragua's emblem sits inside a lettered ring;
 that is lettering arranged in a curve, not a circle in the flag's design.
@@ -143,20 +153,11 @@ review:
 - `mx` carries `flag`, and there is no flag depicted in the design.
 - `pw` carries both `sun` and `moon` for a single yellow disc, and the flag's own
   `symbolism` says the disc is the full moon. There is nothing else on the flag.
-- `bl` carries `star`, and there is no star. The eight-pointed white figure in the
-  shield is a Maltese cross.
-- `bl` carries `horizontal`, but the only horizontal bands are the partitions inside
-  the shield; the flag itself is a white field with arms on it. The colour rule treats
-  these arms as the flag, and the same reasoning may keep the pattern too.
-- `tm` carries `vertical` for a single red band at the hoist on a green field. The
-  `vertical` rule wants at least two parallel bands.
 
 ## Additions found while settling the rules
 
 The same as above, the other way round. Propose these in a batch rather than editing
 by hand:
 
-- `gp` depicts sugar cane — its `symbolism` says so — and carries no `vegetation`.
-- `ar` and `uy` carry `sun` without `circle`, and the Sun of May's face sits on a
-  closed round disc.
-- `gp` carries `sun` without `circle`; the sun's body is a large round disc.
+- `bb` gains `tool`. A trident is a fishing spear as well as a weapon, and the owner
+  judged that the axe rule covers it.
