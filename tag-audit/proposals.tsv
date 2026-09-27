@@ -1,7 +1,10 @@
-# Tag audit proposals — findings from settling the hierarchy rules (#213). See #174.
+# Tag audit proposals — tranche 2: every 8th flag by code at offset 1 (32 of 254),
+# the pilot having taken offset 0. Additions only; removals are their own round.
+# See #174.
 #
 # HOW TO REVIEW: delete the rows you disagree with. What survives is applied.
 # Nothing else to fill in; the deletions are themselves the record of your call.
+# The pull request shows each flag's image beside its row.
 #
 # WHEN YOU ARE DONE:
 #     git add tag-audit/
@@ -14,6 +17,14 @@
 # Read the name; the code beside it is what the script applies to, and a row whose
 # name and code disagree is refused. To see a flag: https://flagfilter.com/?q=<name>
 # Columns: name, code, tag, add|remove, confidence, why.
-Argentina	ar	circle	add	high	The Sun of May carries its face on a closed round disc, with the rays outside it.
-Uruguay	uy	circle	add	high	The Sun of May carries its face on a closed round disc, with the rays outside it.
-Guadeloupe	gp	vegetation	add	high	The flag depicts sugar cane, which its own symbolism names as one of Guadeloupe's main crops.
+Barbados	bb	black	add	high	The broken trident head is black.
+Saint Barthélemy	bl	shield	add	high	The arms are on a heraldic shield: fleurs-de-lis, a Maltese cross and three crowns.
+Saint Barthélemy	bl	name	add	medium	The ribbon reads OUANALAO, which the flag's own symbolism calls the local name of the island.
+Costa Rica	cr	boat	add	high	Two sailing ships cross the seas in the arms.
+Costa Rica	cr	sun	add	high	A sun rises on the left horizon of the arms.
+Costa Rica	cr	shield	add	medium	The arms sit on a shield inside an ornate gold frame.
+Grenada	gd	circle	add	high	The central star sits on a closed red disc.
+Serbia	rs	shield	add	high	The double-headed eagle is on a red shield, with a second shield on its breast.
+Turks and Caicos Islands	tc	shield	add	high	The conch, lobster and cactus are on a yellow shield.
+Turkmenistan	tm	white	add	high	The crescent and the five stars are white.
+Venezuela	ve	white	add	high	The arc of eight stars is white.
