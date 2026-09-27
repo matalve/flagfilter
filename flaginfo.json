@@ -314,6 +314,9 @@
       "weapon",
       "vertical"
     ],
+    "aliases": [
+      "trident"
+    ],
     "shortname": "bb",
     "continent": "northAmerica",
     "name": "Barbados",
