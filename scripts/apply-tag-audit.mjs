@@ -152,10 +152,15 @@ const FILTER_WORDS = new Set([...FILTER_TERMS].flatMap((term) => {
 
 function checkAlias(row, where) {
     const word = row.tag || '';
+    const normalized = normalizeQueryValue(word);
     if (word === '' || word !== word.trim().toLowerCase()) {
         failures.push(`${where}: an alias is written in lower case with no surrounding spaces, got "${word}"`);
     }
-    if (FILTER_WORDS.has(normalizeQueryValue(word))) {
+    // The search keeps only a-z, digits and spaces, so "---" or a word in another
+    // script normalizes to nothing, and an empty term never matches.
+    if (normalized === '') {
+        failures.push(`${where}: "${word}" leaves nothing for the search to match once it is normalized`);
+    } else if (FILTER_WORDS.has(normalized)) {
         failures.push(`${where}: "${word}" is a filter term, so the search would read it as the filter and never as an alias`);
     }
 }
