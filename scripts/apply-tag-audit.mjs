@@ -142,8 +142,13 @@ original.forEach((row) => checkNameAndCode(row, `${ORIGINAL_PATH}:${row.lineNumb
 // for a plain emblem that has no filter term, like the trident on Barbados. The
 // search reads any filter term in a query as the filter, so an alias that is one can
 // never be matched as a word, and it is refused. Compared the way the search
-// compares, so "North America" is caught as the continent filter it is.
-const FILTER_WORDS = new Set([...FILTER_TERMS].map(normalizeQueryValue));
+// compares: normalized, and also with the spaces taken out, because js/filters.js
+// accepts both spellings of a filter. So "north america" and "northamerica" are both
+// caught as the continent filter they are.
+const FILTER_WORDS = new Set([...FILTER_TERMS].flatMap((term) => {
+    const normalized = normalizeQueryValue(term);
+    return [normalized, normalized.replace(/\s+/g, '')];
+}));
 
 function checkAlias(row, where) {
     const word = row.tag || '';
