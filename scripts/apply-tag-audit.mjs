@@ -117,18 +117,28 @@ function isRecorded(row) {
 const unrecorded = rejected.filter((row) => !isRecorded(row));
 const alreadyRecorded = rejected.length - unrecorded.length;
 
-reviewed.forEach((row) => {
-    const where = `${REVIEWED_PATH}:${row.lineNumber}`;
+// The reviewer decides by the name and the script applies by the code, so the two
+// have to name the same flag. Both files are checked, not only the reviewed one: a
+// row the reviewer deleted survives only in the original, and it becomes a
+// rejection recorded under its code. If its name pointed at another flag, the
+// ledger would silence proposals for a flag nobody looked at.
+function checkNameAndCode(row, where) {
     if (!flagsByCode.has(row.code)) {
         failures.push(`${where}: no flag with code "${row.code}"`);
-        return;
+        return false;
     }
-    // The reviewer decides by the name and the script applies by the code, so the
-    // two have to name the same flag, or an approval lands somewhere else.
     const expectedName = flagsByCode.get(row.code).name;
     if (row.name !== expectedName) {
         failures.push(`${where}: the row says "${row.name}" but ${row.code} is "${expectedName}"`);
     }
+    return true;
+}
+
+original.forEach((row) => checkNameAndCode(row, `${ORIGINAL_PATH}:${row.lineNumber}`));
+
+reviewed.forEach((row) => {
+    const where = `${REVIEWED_PATH}:${row.lineNumber}`;
+    if (!checkNameAndCode(row, where)) return;
     if (!['add', 'remove'].includes(row.action)) {
         failures.push(`${where}: action must be add or remove, got "${row.action}"`);
     }
@@ -146,7 +156,7 @@ reviewed.forEach((row) => {
 });
 
 if (failures.length > 0) {
-    console.error(`FAIL: ${failures.length} problem(s) with the reviewed proposals:`);
+    console.error(`FAIL: ${failures.length} problem(s) with the proposals:`);
     failures.forEach((failure) => console.error(`  - ${failure}`));
     process.exit(1);
 }
