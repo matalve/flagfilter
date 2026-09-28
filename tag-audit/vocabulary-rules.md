@@ -60,32 +60,39 @@ from a filter it belongs in. Where they do not, adding the broad tag is wrong, n
 generous. The vocabulary gives no hint which is which, so each pair is decided here
 rather than re-derived per flag.
 
+The rules below name flags as examples and do not count them, because every batch
+changes the counts. Before a batch, check that each rule still holds across
+`flaginfo.json`. Every one did when tranche 3 was applied.
+
 **These imply the broader tag. Always propose both.**
 
-- `bird` implies `animal`. All 21 bird flags carry both today.
-- `motto` implies `text`, and so does `name`. All 19 and all 10 carry both.
+- `bird` implies `animal`. Every bird flag carries both.
+- `motto` implies `text`, and so does `name`. Every motto flag and every name flag
+  carries `text` as well.
 
 **These do not imply anything, and the broader tag is a separate finding.**
 
-- `crown` is not a `hat`. A crown is regalia, not headwear; all 10 crown flags leave
-  `hat` off. Whether a bishop's mitre is a `hat` is still open, in
+- `crown` is not a `hat`. A crown is regalia, not headwear, and no crown flag
+  carries `hat`. Whether a bishop's mitre is a `hat` is still open, in
   `needs-a-human.tsv`.
 - `hand` is not `human`, and neither is `face` or `hat`. A body part or a garment
   standing alone is not a person: Brunei's hands, the Red Hand of Ulster, the Sun of
-  May's face on Argentina and Uruguay, the four hat flags. `human` is for a figure
+  May's face on Argentina and Uruguay, the hats on Haiti, Lesotho, Nicaragua and El
+  Salvador. `human` is for a figure
   depicted as a figure, which is why only Belize, Montserrat and the British Virgin
   Islands carry it. Belize is the one flag with both `face` and `human`, and it earns
   both: the faces belong to the two figures.
-- `shield` is not `weapon`. Arms are on a shield on 11 flags; only 3 carry both, and
-  those have a weapon elsewhere in the design.
-- `moon` is not `circle`. A crescent is not a circle, and the 2 flags of 20 carrying
-  both earn it elsewhere: Palau's disc is the full moon drawn as a disc, and Cocos
-  has a circular palm-tree badge beside its crescent. So `circle` goes on a disc, not
-  on the idea of a moon.
+- `shield` is not `weapon`. Most shield flags carry no weapon. The ones that carry
+  both, Kenya, Eswatini and the US Virgin Islands, have a weapon elsewhere in the
+  design.
+- `moon` is not `circle`. A crescent is not a circle, and the flags carrying both
+  earn it from a disc. Palau's disc is the full moon drawn as a disc, Cocos has a
+  circular palm-tree badge beside its crescent, and Tunisia's crescent sits inside a
+  white disc. So `circle` goes on a disc, not on the idea of a moon.
 - `fleur-de-lis` is not `vegetation`. It is a stylised lily, but it is carried as a
-  heraldic charge, and none of the 4 flags derives `vegetation` from it. Spain has
-  both because its arms depict a pomegranate for Granada, which is a plant in its own
-  right.
+  heraldic charge, and no flag derives `vegetation` from it. Spain and Guadeloupe
+  carry both for plants of their own: the pomegranate of Granada in Spain's arms, and
+  Guadeloupe's sugar cane.
 
 **An object that is two things still gets both tags** — see the axe rule above. That
 is co-classification, not hierarchy: neither `tool` nor `weapon` contains the other,
@@ -94,24 +101,25 @@ and the object earns both on its own merits.
 ## `sun` and `circle`: the drawing decides, not the word
 
 A sun earns `circle` when the design holds a closed round disc, and not otherwise.
-Same reading as the `moon` rule above: `circle` goes on a shape, not on an idea. The
-counts looked like a coin flip — 10 flags carried both and 9 carried only `sun` — but
-that split is mostly the rule already working, not drift.
+Same reading as the `moon` rule above: `circle` goes on a shape, not on an idea. When
+the rule was written the counts looked like a coin flip, 10 flags with both and 9 with
+only `sun`, but the split was mostly the rule already working, not drift.
 
-**A disc is there.** All 10 that carry both earn it: Japan's plain disc, the solid sun
-bodies on Kazakhstan, North Macedonia, Namibia, New Caledonia, Rwanda and Taiwan, the
-faced disc on the Philippines, the ring around Kyrgyzstan's tunduk, and Palau's disc.
+**A disc is there.** Every sun flag with `circle` has a real disc: Japan's plain disc;
+the solid sun bodies on Kazakhstan, North Macedonia, Namibia, New Caledonia, Rwanda
+and Taiwan; the faced discs of the Sun of May on Argentina and Uruguay and of the
+Philippines; the ring around Kyrgyzstan's tunduk; Palau's disc; and the round emblem
+of French Polynesia.
 
 **No disc.** A sun rising at the horizon is a semicircle: Antigua and Barbuda,
-Kiribati, Malawi. A starburst whose points meet with no body behind them is not a
-disc either: the Marshall Islands, and Nepal's twelve-pointed sun. All 5 correctly
-leave `circle` off.
+Kiribati, Malawi, and the sun in Costa Rica's arms. A starburst whose points meet with
+no body behind them is not a disc either: the Marshall Islands, and Nepal's
+twelve-pointed sun.
 
-**Three are missing it**, and are recorded below rather than edited in by hand. The
-Sun of May on Argentina and Uruguay carries its face on an unmistakable round disc,
-and Guadeloupe's sun is a large round body with the rays worked into its edge.
+**Decided in review.** Guadeloupe's sun is a large round body with the rays worked into
+its edge. It was proposed for `circle` and declined, so it stays without one.
 
-Ecuador is the one real question and is in `needs-a-human.tsv`: its sun is a small
+Ecuador is the one open question and is in `needs-a-human.tsv`. Its sun is a small
 faced disc high on an oval shield, round but barely a design element in its own right.
 
 ## Colours: what someone would describe, not every tincture
