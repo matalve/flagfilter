@@ -40,22 +40,26 @@
   },
   {
     "tags": [
-      "white",
       "black",
+      "red",
+      "green",
+      "white",
+      "vertical",
+      "building",
+      "flag",
       "text",
       "motto",
       "name",
-      "flag",
-      "building",
+      "vegetation",
       "islam"
     ],
     "shortname": "af",
     "continent": "asia",
     "name": "Afghanistan",
-    "proportion": "1:2",
-    "adopted": "2021",
-    "symbolism": "White: Commonly associated with purity and, in the current context, with the Islamic Emirate led by the Taliban.<br>Text: The Islamic declaration of faith, known as the \"shahada\".<br>",
-    "funfacts": "During the 20th century, Afghanistan went through 19 national flags. More than any other country during that time period.<br>",
+    "proportion": "2:3",
+    "adopted": "2013",
+    "symbolism": "Black: Its troubled 19th century history as a protected state.<br>Red: The blood of those who fought for independence (specifically, the Anglo-Afghan Treaty of 1919) or progress.<br>Green: The hope and prosperity for the future or alternatively agricultural prosperity or Islam.<br>Emblem: A mosque framed by sheaves of wheat, with the shahada above it. Almost every Afghan emblem since 1901 has shown a mosque, and wheat since 1928.<br>",
+    "funfacts": "Afghanistan has changed its national flag many times since the start of the 20th century. Tricolours in black, red and green have been used, with interruptions, since 1928.<br>The emblem shows two flags beside the mosque, a <a href=\"?q=flag\">flag within the flag</a>.<br>The tricolour was supposedly inspired by the <a href=\"?q=germany\">German flag</a> after King Amanullah Khan visited Europe with his wife in 1928.<br>Since the Taliban took power in 2021 they have used a white flag with the shahada in black, but the tricolour remains the flag of Afghanistan internationally, and the diaspora uses it as a symbol of resistance.<br>",
     "wikipedialink": "https://en.wikipedia.org/wiki/Flag_of_Afghanistan"
   },
   {
