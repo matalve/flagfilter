@@ -189,7 +189,11 @@
       "red",
       "bird",
       "animal",
-      "weapon"
+      "weapon",
+      "tool"
+    ],
+    "aliases": [
+      "eagle"
     ],
     "shortname": "as",
     "continent": "oceania",
@@ -313,7 +317,8 @@
       "yellow",
       "weapon",
       "vertical",
-      "black"
+      "black",
+      "tool"
     ],
     "aliases": [
       "trident"
@@ -484,7 +489,8 @@
       "animal",
       "boat",
       "waves",
-      "vegetation"
+      "vegetation",
+      "shield"
     ],
     "shortname": "bm",
     "continent": "northAmerica",
@@ -1257,7 +1263,11 @@
       "blue",
       "yellow",
       "triangle",
-      "pan-african"
+      "pan-african",
+      "vegetation"
+    ],
+    "aliases": [
+      "olive branch"
     ],
     "shortname": "er",
     "continent": "africa",
@@ -1860,6 +1870,9 @@
       "star",
       "vegetation"
     ],
+    "aliases": [
+      "flower"
+    ],
     "shortname": "hk",
     "continent": "asia",
     "name": "Hong Kong",
@@ -2005,6 +2018,9 @@
       "horizontal",
       "star",
       "judaism"
+    ],
+    "aliases": [
+      "star of david"
     ],
     "shortname": "il",
     "continent": "asia",
@@ -2152,7 +2168,8 @@
       "cross",
       "animal",
       "crown",
-      "diagonal"
+      "diagonal",
+      "shield"
     ],
     "shortname": "je",
     "continent": "europe",
@@ -2457,6 +2474,10 @@
       "green",
       "horizontal",
       "vegetation"
+    ],
+    "aliases": [
+      "cedar",
+      "pine"
     ],
     "shortname": "lb",
     "continent": "asia",
@@ -3048,6 +3069,10 @@
       "tool",
       "pan-african"
     ],
+    "aliases": [
+      "rifle",
+      "book"
+    ],
     "shortname": "mz",
     "continent": "africa",
     "name": "Mozambique",
@@ -3337,7 +3362,11 @@
       "waves",
       "circle",
       "star",
-      "boat"
+      "boat",
+      "sun"
+    ],
+    "aliases": [
+      "canoe"
     ],
     "shortname": "pf",
     "continent": "oceania",
@@ -3799,7 +3828,8 @@
       "flag",
       "animal",
       "bird",
-      "waves"
+      "waves",
+      "shield"
     ],
     "aliases": [
       "england"
@@ -4275,7 +4305,8 @@
       "white",
       "circle",
       "star",
-      "islam"
+      "islam",
+      "moon"
     ],
     "shortname": "tn",
     "continent": "africa",
@@ -4417,7 +4448,11 @@
       "horizontal",
       "circle",
       "bird",
-      "animal"
+      "animal",
+      "white"
+    ],
+    "aliases": [
+      "crane"
     ],
     "shortname": "ug",
     "continent": "africa",
@@ -4721,10 +4756,14 @@
       "animal",
       "vegetation",
       "moon",
-      "star"
+      "star",
+      "shield",
+      "motto"
     ],
     "aliases": [
-      "grey"
+      "grey",
+      "seahorse",
+      "seahorses"
     ],
     "shortname": "yt",
     "continent": "africa",

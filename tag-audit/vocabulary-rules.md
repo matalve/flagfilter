@@ -154,6 +154,13 @@ column:
 - **Not a filter term.** The search reads a filter term in a query as the filter, so
   an alias like `star` or `bird` could never match. The script refuses one.
 - **Lower case**, like the existing aliases. Several words are fine: `maple leaf`.
+- **Several of something: both singular and plural.** Mayotte has two seahorses, so it
+  gets `seahorse` and `seahorses`. Today the plural alone would match both, because the
+  search checks whether the query is part of an alias. Writing both does not depend on
+  that, and irregular plurals (`leaf`, `leaves`) need both anyway.
+- **What people think they see counts too.** Lebanon's cedar is often taken for a
+  pine, so it gets `pine` beside `cedar`. It is the same reasoning that keeps Saint
+  Barthélemy's `star`.
 - **Add only.** Removing an alias is not the audit's call.
 - **A word that fits many flags** is a motif as much as an alias. Propose the aliases,
   and note it in the next section too: enough flags pointing the same way is the
