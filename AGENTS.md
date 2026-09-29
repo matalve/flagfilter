@@ -178,9 +178,16 @@ This file documents how AI coding assistants should work in this repository.
   Cloudflare directly instead:
 
   ```
-  IP=$(dig +short flagfilter.com @1.1.1.1 | head -1)
-  curl -sS -o /dev/null -w '%{http_code}\n' --resolve flagfilter.com:443:$IP https://flagfilter.com/js/filter-config.js
+  IP=$(dig +short A flagfilter.com @1.1.1.1 | grep -E '^[0-9]+(\.[0-9]+){3}$' | head -1)
+  if [ -n "$IP" ]; then
+    curl -sS -o /dev/null -w '%{http_code}\n' --resolve "flagfilter.com:443:$IP" https://flagfilter.com/js/filter-config.js
+  else
+    echo "Could not resolve flagfilter.com through 1.1.1.1"
+  fi
   ```
+
+  Keep the address check. When the resolver is unreachable, `dig` prints its error
+  on stdout, and without the check that text becomes the address.
 
   Every file the page loads should answer 200. A 403 whose page is titled
   *Attention Required! | Cloudflare* comes from a zone security rule, not from the
