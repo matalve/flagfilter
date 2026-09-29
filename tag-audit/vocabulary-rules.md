@@ -58,9 +58,9 @@ knot tying Mexico's wreath. What is written on the band does not change that: a 
 on a band gives the flag both `motto` and `ribbon`, and a name gives `name` and
 `ribbon`.
 
-What is not a ribbon: text lettered on a shield's frame (Andorra), text on a flat
-plaque (the panel under Egypt's eagle), and scrolls or bows so small that they are
-detail (El Salvador).
+Size does not matter: El Salvador's blue bow and small motto scroll count, even
+though both are easy to miss at a glance. What is not a ribbon: text lettered on a
+shield's frame (Andorra), and text on a flat plaque (the panel under Egypt's eagle).
 
 **`waves` is about how water is drawn, not whether water is there.** Bands of wavy
 lines are waves: the blue and white ones at the foot of each of Spain's pillars.
