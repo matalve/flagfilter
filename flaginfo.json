@@ -9,7 +9,8 @@
       "vertical",
       "christianity",
       "shield",
-      "motto"
+      "motto",
+      "hat"
     ],
     "shortname": "ad",
     "continent": "europe",
@@ -3383,7 +3384,8 @@
       "circle",
       "star",
       "boat",
-      "sun"
+      "sun",
+      "orange"
     ],
     "aliases": [
       "canoe"
@@ -4657,7 +4659,8 @@
       "weapon",
       "shield",
       "text",
-      "vertical"
+      "vertical",
+      "name"
     ],
     "aliases": [
       "eagle"
