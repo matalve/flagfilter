@@ -38,6 +38,9 @@ This file documents how AI coding assistants should work in this repository.
 
 ## Frontend conventions
 
+- New public file or folder names must not match the zone's security rules (see
+  the Cloudflare section). A match returns 403 on `flagfilter.com` only, so the
+  preview and the test suite pass while production breaks.
 - The Content-Security-Policy in `_headers` is enforced. Any new external origin
   (script, stylesheet, image, font, fetch/beacon target) must be added to the matching
   CSP directive in the same PR, or the browser will silently block it in production.
@@ -122,7 +125,28 @@ This file documents how AI coding assistants should work in this repository.
   Fonts `<link>` to same-origin; the CSP still allows the Google Fonts origins as its
   fallback), Email Obfuscation enabled (keep it — its inline script is why script-src
   has 'unsafe-inline'), Rocket Loader disabled, Web Analytics enabled (its beacon
-  origins are allowed in the CSP).
+  origins are allowed in the CSP). Cloudflare also injects a JavaScript Detections
+  script (`/cdn-cgi/challenge-platform/…`) on the custom domain (seen 2026-09).
+- Zone security rules, as of 2026-09. This is a copy; the Cloudflare dashboard is
+  the source of truth. They apply to `flagfilter.com` only, never to `*.pages.dev`.
+  - *Bad access* blocks (403) any request whose path **contains** one of `.git`,
+    `Admin`, `admin`, `scripts`, `rss`, `setup.cgi`, `w00tw00t`, `httpbin`,
+    `guacamole`, `x01`, `version.js`, `x.js`, `.env`, `logon.aspx`, `login`,
+    `exporttool`, `wp-content`, `pages`, `boaform`, `wp-includes`, `gemini`,
+    `owa/auth`, `passwd` or `phpunit`, or whose referer contains `anonymousfox.co`.
+    It is a substring match: `x.js` also catches `index.js`, and `pages` catches any
+    folder of that name.
+  - *PHP wildcard* blocks any path containing `.php`, except `github_update.php`.
+  - *Wall of China* gives visitors from China a managed challenge.
+  - *Known Bots* (interactive challenge) and the rate limit on `/api/report-issue`
+    are disabled.
+- **A file the page loads must not match those rules.** After #205 added
+  `js/filter-config.js` (2026-09-21), `flagfilter.com` rendered no flags and left
+  every filter group expanded, until 2026-09-29. *Bad access* then also matched
+  `config`, so the browser got Cloudflare's block page instead of the module. Every
+  module imports that file, so no script ran. CI could not see it, and neither could
+  the `*.pages.dev` preview. Before naming a new public file, check its path against
+  the list. If a word on it is needed, ask the owner to change the rule first.
 - Web Analytics undercounts by design: Edge Tracking Prevention, Safari ITP and ad
   blockers block the beacon. Use it for traffic composition (referrers, paths), not
   absolute counts. Zone-level "unique visitors" counts include bots/crawlers.
@@ -147,8 +171,21 @@ This file documents how AI coding assistants should work in this repository.
   - A run killed partway through can leave `python3 -m http.server 4173` behind,
     and the next run then fails with `config.webServer was not able to start`.
     Stop that process rather than debugging the config.
-- The sandbox may not be able to reach `flagfilter.com` (DNS). Verify production
-  behavior via the `*.pages.dev` preview deployment or ask the user to check.
+- **Verify production on `flagfilter.com` itself, not only on `*.pages.dev`.** Zone
+  features and security rules apply only to the custom domain, so a preview can be
+  fine while production is broken. On the owner's home network, including the
+  Raspberry Pi, `flagfilter.com` resolves to a local address (a known issue). Go to
+  Cloudflare directly instead:
+
+  ```
+  IP=$(dig +short flagfilter.com @1.1.1.1 | head -1)
+  curl -sS -o /dev/null -w '%{http_code}\n' --resolve flagfilter.com:443:$IP https://flagfilter.com/js/filter-config.js
+  ```
+
+  Every file the page loads should answer 200. A 403 whose page is titled
+  *Attention Required! | Cloudflare* comes from a zone security rule, not from the
+  deploy. If the session can reach neither DNS nor Cloudflare, say so and ask the
+  owner to check.
 - `_headers` (CSP/security headers) cannot be exercised by the Playwright suite —
   tests run against a plain static file server. Changes there need verification on
   the deployed site after merge.
