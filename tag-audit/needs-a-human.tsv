@@ -4,11 +4,3 @@
 # Read the name; the code beside it is what the script applies to, and a row whose
 # name and code disagree is refused. To see a flag: https://flagfilter.com/?q=<name>
 # Columns: name, code, tag, add|remove, confidence, why.
-Andorra	ad	hat	add	low	A bishop's mitre is headwear, but "hat" may be meant more narrowly than that.
-Bhutan	bt	yellow	add	low	The upper field reads as saffron; it is tagged orange, and both are defensible.
-Northern Mariana Islands	mp	building	add	low	The latte stone is a carved monument rather than a building.
-Pitcairn Islands	pn	hat	add	low	A tilted helmet sits above the shield as the crest.
-Ecuador	ec	circle	add	low	The sun is a small faced disc high on the oval shield; round, but barely a design element of its own.
-French Polynesia	pf	orange	add	low	The sun behind the canoe is orange and the brightest thing on the flag; whether it stands out enough under the colour rule.
-United States Virgin Islands	vi	name	add	low	The letters V and I are the territory's initials; whether initials count as the name.
-Equatorial Guinea	gq	yellow	add	low	Six small yellow stars stand above the arms; whether they stand out enough under the colour rule.
