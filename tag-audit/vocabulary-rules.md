@@ -197,8 +197,12 @@ with the flags it was seen on. Enough entries pointing the same way is the argum
 for a new filter button, which is its own issue and its own PR — see #184. Do not
 add the term to `js/filter-config.js` as part of an audit batch.
 
-- **eagle**: American Samoa and the US Virgin Islands (aliases), Serbia (tranche 2,
-  no alias). Mexico, Egypt, Albania and others are still to come.
+- **eagle**: American Samoa, the US Virgin Islands and Zambia (aliases), Serbia
+  (tranche 2, no alias). Mexico, Egypt, Albania and others are still to come.
+- **Southern Cross**: Australia (alias). New Zealand, Samoa and Brazil are still to
+  come; Papua New Guinea (tranche 4) has no alias yet.
+- **sword**: Saudi Arabia (alias). Sri Lanka and Oman are still to come.
+- **pentagram**: Morocco and Ethiopia (aliases).
 - **lion**: Jersey, Bermuda, Spain, and Sri Lanka still to come. So far always inside
   a shield, so not proposed as an alias.
 - **flower**: Hong Kong (alias proposed). Macau's lotus is still to come.
@@ -208,7 +212,12 @@ add the term to `js/filter-config.js` as part of an audit batch.
 Found while auditing, not acted on. Removals are their own round with their own
 review.
 
-Nothing waiting. The first round (see #174) removed French Polynesia `star`, Saint
+- `ma` carries `triangle`, and there is no triangle. The emblem is an interlaced
+  pentagram.
+- `ck` carries `circle` for its ring of fifteen stars. Cape Verde's ring of ten stars
+  carries no `circle`, and by the ring-of-text rule a ring of figures is not a circle.
+
+The first round (see #174) removed French Polynesia `star`, Saint
 Helena `brown`, Isle of Man `star`, and Dominica `horizontal` and `vertical`. It kept
 Mexico `flag`, Palau `sun`, Spain `vertical`, Equatorial Guinea `ribbon` and the
 French Southern Lands `vertical`, and the rules above now say why.
