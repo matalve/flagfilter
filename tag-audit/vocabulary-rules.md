@@ -73,8 +73,7 @@ changes the counts. Before a batch, check that each rule still holds across
 **These do not imply anything, and the broader tag is a separate finding.**
 
 - `crown` is not a `hat`. A crown is regalia, not headwear, and no crown flag
-  carries `hat`. Whether a bishop's mitre is a `hat` is still open, in
-  `needs-a-human.tsv`.
+  carries `hat`. A bishop's mitre is headwear, so Andorra's counts as a `hat`.
 - `hand` is not `human`, and neither is `face` or `hat`. A body part or a garment
   standing alone is not a person: Brunei's hands, the Red Hand of Ulster, the Sun of
   May's face on Argentina and Uruguay, the hats on Haiti, Lesotho, Nicaragua and El
@@ -119,8 +118,8 @@ twelve-pointed sun.
 **Decided in review.** Guadeloupe's sun is a large round body with the rays worked into
 its edge. It was proposed for `circle` and declined, so it stays without one.
 
-Ecuador is the one open question and is in `needs-a-human.tsv`. Its sun is a small
-faced disc high on an oval shield, round but barely a design element in its own right.
+Ecuador's sun was declined as well. It is a small faced disc high on an oval shield,
+round but barely a design element in its own right.
 
 ## Colours: what someone would describe, not every tincture
 
