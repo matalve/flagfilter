@@ -52,7 +52,8 @@
       "motto",
       "name",
       "vegetation",
-      "islam"
+      "islam",
+      "ribbon"
     ],
     "shortname": "af",
     "continent": "asia",
@@ -579,7 +580,8 @@
       "circle",
       "text",
       "motto",
-      "star"
+      "star",
+      "ribbon"
     ],
     "shortname": "br",
     "continent": "southAmerica",
@@ -1123,8 +1125,6 @@
       "circle",
       "bird",
       "animal",
-      "horizontal",
-      "vertical",
       "christianity",
       "cross"
     ],
@@ -2049,8 +2049,7 @@
     "tags": [
       "red",
       "white",
-      "yellow",
-      "star"
+      "yellow"
     ],
     "aliases": [
       "triskelion",
@@ -3382,7 +3381,6 @@
       "horizontal",
       "waves",
       "circle",
-      "star",
       "boat",
       "sun",
       "orange"
@@ -3845,7 +3843,6 @@
   },
   {
     "tags": [
-      "brown",
       "blue",
       "white",
       "red",

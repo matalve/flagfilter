@@ -16,21 +16,26 @@ for plain emblems; see *Aliases for plain emblems* below. See #184 and #203.
 
 ## Rules
 
-**`vertical` and `horizontal` describe how the field is cut.** Count the parts the
-field is divided into, not the coloured bands. Turkmenistan is green, red and green
-from the hoist: three side-by-side parts, so it is `vertical`, even though only one
-part is red. What does not count is a band that stripes of the other orientation run
-into, wherever it sits: Benin, the Central African Republic and Guinea-Bissau are
-`horizontal` and nothing else, and so are the United Arab Emirates and Madagascar.
+**`vertical` and `horizontal` mean the flag shows a set of parallel stripes in that
+direction, somewhere they are plain to see.** The stripes can run across the whole
+field (France), cut it into parts (Turkmenistan: green, red and green), sit in a
+canton flag (the French tricolour on the French Southern Lands), or sit in the arms
+(the red and gold stripes in Spain's, the three bands of Saint Barthélemy's).
 
-When a coat of arms is the flag, its partitions count as the flag's if they are
-prominent. Saint Barthélemy's shield is cut into three horizontal parts, and that is
-most of what you see, so the flag is `horizontal`.
+What does not count is a single band that stripes of the other direction run into,
+wherever it sits. Benin, the Central African Republic and Guinea-Bissau are
+`horizontal` and nothing else, and so are the United Arab Emirates and Madagascar. A
+cross is not stripes either: Dominica's cross carries `cross`, not `horizontal` and
+`vertical`.
 
 **A figure people read as a star keeps `star`.** Saint Barthélemy's white figure is
 heraldically a Maltese cross, but it looks enough like a star that people searching for
 one expect to find the flag. An alias cannot do this job: the search reads "star" as
 the star filter, so only the tag makes the flag turn up.
+
+The same goes for a shape that reads as two things. Palau's disc is officially the
+full moon, but someone looking at it may just as well search for a sun, so it carries
+both `sun` and `moon`.
 
 **A ring of text is not a `circle`.** Nicaragua's emblem sits inside a lettered ring;
 that is lettering arranged in a curve, not a circle in the flag's design.
@@ -38,14 +43,24 @@ that is lettering arranged in a curve, not a circle in the flag's design.
 **A flag in a canton is not `flag`.** The Union Jack on Pitcairn, and on every other
 British ensign, is a canton — that is what an ensign is. `flag` is for a flag
 depicted as an object in the design, the way standards flank the arms on Ecuador's.
+A canton flag's stripes still count for `vertical` and `horizontal` (see above).
+
+A band in the national colours can read as a flag too. The green, white and red knot
+tying Mexico's wreath carries both `ribbon` and `flag`.
 
 **An object that is two things gets both tags.** An axe is a `tool` and a `weapon`,
 not whichever is closer. Belize already carries both, so this is existing practice.
 
-**A motto scroll is not a `ribbon`.** `ribbon` is for a ribbon as an object — the
-tricolour band tying the wreath on Mexico, the ribbons wound round the pillars on
-Spain. The lettered banderole under Andorra's shield and the scroll under Egypt's
-eagle are not that, whatever they are made of.
+**A `ribbon` is a band that stands out as an object of its own.** A scroll with
+curled or folded ends counts (Afghanistan's, Equatorial Guinea's), and so does a band
+arching across an emblem (Brazil's), the ribbons wound round Spain's pillars, and the
+knot tying Mexico's wreath. What is written on the band does not change that: a motto
+on a band gives the flag both `motto` and `ribbon`, and a name gives `name` and
+`ribbon`.
+
+What is not a ribbon: text lettered on a shield's frame (Andorra), text on a flat
+plaque (the panel under Egypt's eagle), and scrolls or bows so small that they are
+detail (El Salvador).
 
 **`waves` is about how water is drawn, not whether water is there.** Bands of wavy
 lines are waves: the blue and white ones at the foot of each of Spain's pillars.
@@ -68,7 +83,8 @@ changes the counts. Before a batch, check that each rule still holds across
 
 - `bird` implies `animal`. Every bird flag carries both.
 - `motto` implies `text`, and so does `name`. Every motto flag and every name flag
-  carries `text` as well.
+  carries `text` as well. Initials count as a name: the V and I on the US Virgin
+  Islands.
 
 **These do not imply anything, and the broader tag is a separate finding.**
 
@@ -77,7 +93,7 @@ changes the counts. Before a batch, check that each rule still holds across
 - `hand` is not `human`, and neither is `face` or `hat`. A body part or a garment
   standing alone is not a person: Brunei's hands, the Red Hand of Ulster, the Sun of
   May's face on Argentina and Uruguay, the hats on Haiti, Lesotho, Nicaragua and El
-  Salvador. `human` is for a figure
+  Salvador, Andorra's mitre. `human` is for a figure
   depicted as a figure, which is why only Belize, Montserrat and the British Virgin
   Islands carry it. Belize is the one flag with both `face` and `human`, and it earns
   both: the faces belong to the two figures.
@@ -134,7 +150,7 @@ three things:
   colours.
 - **A colour that stands out, even inside a coat of arms.** The shield on Turks and
   Caicos is solid yellow and large enough to be the first thing you notice, so
-  `yellow` belongs on the flag.
+  `yellow` belongs on the flag. So does the orange of the sun on French Polynesia.
 
 What does not count is detail. Nobody describes Ecuador by the green of the grass in
 its arms. Tagging every tincture in every coat of arms would put arms-bearing flags in
@@ -190,26 +206,12 @@ add the term to `js/filter-config.js` as part of an audit batch.
 ## Candidates for the removal pass
 
 Found while auditing, not acted on. Removals are their own round with their own
-review:
+review.
 
-- `mx` carries `flag`, and there is no flag depicted in the design.
-- `pw` carries both `sun` and `moon` for a single yellow disc, and the flag's own
-  `symbolism` says the disc is the full moon. There is nothing else on the flag.
-- `pf` carries `star` for the five figures on the canoe. They are X-shaped (stylised
-  people for the five archipelagos) and do not read as stars, so the rule that keeps
-  Saint Barthélemy's `star` does not obviously cover them.
-- `sh` carries `brown`, and the only brown is the cliffs inside the shield. By the
-  colour rule that is detail.
-- `im` carries `star`, and there is no star on the flag. The emblem is a triskelion.
-- `dm` carries `horizontal` and `vertical` for its cross. No other cross flag carries
-  them, and by the rule the field is cut by a cross, not into bands.
-- `es` carries `vertical`, but the flag is three horizontal bands. The only upright
-  shapes are the pillars in the arms.
-- `gq` carries `ribbon` for the scroll with its motto, *Unidad, Paz, Justicia*. By the
-  ribbon rule a motto scroll is not a ribbon; Andorra and Egypt were declined for the
-  same reason.
-- `tf` carries `vertical`, and the only vertical stripes are those of the French flag
-  in the canton. By the canton rule that flag is not part of the design.
+Nothing waiting. The first round (see #174) removed French Polynesia `star`, Saint
+Helena `brown`, Isle of Man `star`, and Dominica `horizontal` and `vertical`. It kept
+Mexico `flag`, Palau `sun`, Spain `vertical`, Equatorial Guinea `ribbon` and the
+French Southern Lands `vertical`, and the rules above now say why.
 
 ## Additions found while settling the rules
 

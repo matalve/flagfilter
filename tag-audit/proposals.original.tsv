@@ -1,9 +1,9 @@
-# Tag audit proposals — tranche 4: every 8th flag by code at offset 3 (32 of 254).
-# Additions and aliases; removals are their own round. See #174.
+# Tag audit proposals — removal round 1, plus two additions from the rewritten
+# ribbon rule. Every row is a decision the owner already made in review; the file
+# records them the same way as any batch. See #174.
 #
 # HOW TO REVIEW: delete the rows you disagree with. What survives is applied.
 # Nothing else to fill in; the deletions are themselves the record of your call.
-# The pull request shows each flag's image beside its row.
 #
 # WHEN YOU ARE DONE:
 #     git add tag-audit/
@@ -16,20 +16,10 @@
 # Read the name; the code beside it is what the script applies to, and a row whose
 # name and code disagree is refused. To see a flag: https://flagfilter.com/?q=<name>
 # Columns: name, code, tag or alias, add|remove|alias, confidence, why.
-Antigua and Barbuda	ag	yellow	add	high	The rising sun is yellow.
-Antigua and Barbuda	ag	horizontal	add	medium	The V holds three horizontal bands, black, blue and white, and they are most of the design.
-Dominica	dm	cross	add	high	A yellow, black and white cross spans the flag, as its own symbolism says.
-Equatorial Guinea	gq	shield	add	high	The silk-cotton tree stands on a grey shield under the six stars.
-Montserrat	ms	shield	add	high	Erin, with her cross and harp, stands on a shield.
-Portugal	pt	yellow	add	medium	The armillary sphere is gold, and it is the largest emblem on the flag.
-Slovenia	si	shield	add	high	Triglav and the stars are on a blue shield with a red border.
-Slovenia	si	waves	add	high	Two wavy lines run under Triglav; the flag's own symbolism calls them the Adriatic and the rivers.
-Spain	es	shield	add	high	The quartered arms are on a shield between the two pillars.
-Dominica	dm	parrot	alias	high	The emblem is a sisserou parrot, as the flag's own symbolism says.
-Isle of Man	im	triskelion	alias	high	The emblem is a triskelion, as the flag's own symbolism says.
-Isle of Man	im	three legs	alias	high	What most people call the emblem.
-Isle of Man	im	leg	alias	high	Singular of the three legs, per the plural rule.
-Isle of Man	im	legs	alias	high	Plural of the three legs, per the plural rule.
-Papua New Guinea	pg	bird of paradise	alias	high	The emblem is a bird-of-paradise; the search reads bird as the filter and matches the rest against this alias.
-Portugal	pt	armillary sphere	alias	high	The full name of the emblem, beside the existing sphere.
-United States Virgin Islands	vi	eagle	alias	high	The eagle is the whole emblem.
+French Polynesia	pf	star	remove	high	The five figures on the canoe are X-shaped, stylised people; they do not read as stars.
+Saint Helena	sh	brown	remove	high	The only brown is the cliffs inside the shield, which is detail under the colour rule.
+Isle of Man	im	star	remove	high	There is no star on the flag; the emblem is a triskelion.
+Dominica	dm	horizontal	remove	high	The field is cut by a cross, not into horizontal stripes.
+Dominica	dm	vertical	remove	high	The field is cut by a cross, not into vertical stripes.
+Afghanistan	af	ribbon	add	high	The name sits on a scroll with curled ends.
+Brazil	br	ribbon	add	high	The motto runs on a white band arching across the globe.
