@@ -69,7 +69,9 @@
       "blue",
       "white",
       "sun",
-      "triangle"
+      "triangle",
+      "yellow",
+      "horizontal"
     ],
     "aliases": [
       "antigua barbuda"
@@ -1122,7 +1124,11 @@
       "animal",
       "horizontal",
       "vertical",
-      "christianity"
+      "christianity",
+      "cross"
+    ],
+    "aliases": [
+      "parrot"
     ],
     "shortname": "dm",
     "continent": "northAmerica",
@@ -1298,7 +1304,8 @@
       "fleur-de-lis",
       "text",
       "motto",
-      "christianity"
+      "christianity",
+      "shield"
     ],
     "shortname": "es",
     "continent": "europe",
@@ -1739,7 +1746,8 @@
       "motto",
       "ribbon",
       "vegetation",
-      "horizontal"
+      "horizontal",
+      "shield"
     ],
     "shortname": "gq",
     "continent": "africa",
@@ -2042,6 +2050,12 @@
       "white",
       "yellow",
       "star"
+    ],
+    "aliases": [
+      "triskelion",
+      "three legs",
+      "leg",
+      "legs"
     ],
     "shortname": "im",
     "continent": "europe",
@@ -2936,7 +2950,8 @@
       "cross",
       "british",
       "human",
-      "christianity"
+      "christianity",
+      "shield"
     ],
     "shortname": "ms",
     "continent": "northAmerica",
@@ -3394,6 +3409,9 @@
       "animal",
       "diagonal"
     ],
+    "aliases": [
+      "bird of paradise"
+    ],
     "shortname": "pg",
     "continent": "oceania",
     "name": "Papua New Guinea",
@@ -3547,10 +3565,12 @@
       "circle",
       "building",
       "shield",
-      "christianity"
+      "christianity",
+      "yellow"
     ],
     "aliases": [
-      "sphere"
+      "sphere",
+      "armillary sphere"
     ],
     "shortname": "pt",
     "continent": "europe",
@@ -3856,7 +3876,9 @@
       "horizontal",
       "star",
       "mountain",
-      "pan-slavic"
+      "pan-slavic",
+      "shield",
+      "waves"
     ],
     "shortname": "si",
     "continent": "europe",
@@ -4636,6 +4658,9 @@
       "shield",
       "text",
       "vertical"
+    ],
+    "aliases": [
+      "eagle"
     ],
     "shortname": "vi",
     "continent": "northAmerica",
