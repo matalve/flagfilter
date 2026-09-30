@@ -33,6 +33,7 @@ Bolivia	bo	vegetation	add	high	A breadfruit tree and a wheat sheaf inside the ov
 Bolivia	bo	hat	add	medium	A red Phrygian cap is raised on the left of the arms.
 Bolivia	bo	sun	add	medium	A sun hangs in the sky above the mountain, drawn as a small ring.
 Bolivia	bo	building	add	medium	A small chapel with a tower stands on the lower hill: the Chapel of the Sacred Heart of Jesus.
+Bolivia	bo	circle	add	medium	The sun is drawn as a closed ring, which the sun rule counts, like Kyrgyzstan's ring; it is small.
 Malta	mt	human	add	medium	The George Cross shows Saint George on horseback; the figure is small.
 Malta	mt	weapon	add	medium	Saint George's lance on the George Cross.
 Australia	au	southern cross	alias	high	The five stars on the fly are the Southern Cross; the search reads cross as the filter and matches the rest against this alias.
