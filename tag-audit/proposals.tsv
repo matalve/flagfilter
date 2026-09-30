@@ -31,7 +31,8 @@ Bolivia	bo	star	add	high	Ten stars run round the bottom of the oval.
 Bolivia	bo	mountain	add	high	The oval shows Cerro Rico, the silver mountain of Potosí.
 Bolivia	bo	vegetation	add	high	A breadfruit tree and a wheat sheaf inside the oval, and laurel and olive branches outside.
 Bolivia	bo	hat	add	medium	A red Phrygian cap is raised on the left of the arms.
-Bolivia	bo	sun	add	medium	A sun rises behind the mountain; it is small.
+Bolivia	bo	sun	add	medium	A sun hangs in the sky above the mountain, drawn as a small ring.
+Bolivia	bo	building	add	medium	A small chapel with a tower stands on the lower hill: the Chapel of the Sacred Heart of Jesus.
 Malta	mt	human	add	medium	The George Cross shows Saint George on horseback; the figure is small.
 Malta	mt	weapon	add	medium	Saint George's lance on the George Cross.
 Australia	au	southern cross	alias	high	The five stars on the fly are the Southern Cross; the search reads cross as the filter and matches the rest against this alias.
