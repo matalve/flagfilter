@@ -220,6 +220,8 @@ review.
 
 - `ma` carries `triangle`, and there is no triangle. The emblem is an interlaced
   pentagram.
+- `et` carries `triangle` for the same reason. Its only candidate is the pentagram in
+  the blue disc; the bands are horizontal and there is no triangle in the field.
 - `ck` carries `circle` for its ring of fifteen stars. Cape Verde's ring of ten stars
   carries no `circle`, and by the ring-of-text rule a ring of figures is not a circle.
 
