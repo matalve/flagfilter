@@ -146,11 +146,13 @@ export function showFlagInfoModal(flag) {
         <p><strong>${t('fun_facts_label')}:</strong> ${processedFunfacts}</p>
         <p><strong>${t('colors_label')}:</strong> ${flag.colors.map((color) => t(`color_${color}`)).join(', ')}</p>
         <div class="modal-actions">
-            <a href="${flag.info.wikipedialink}" target="_blank" rel="noopener noreferrer" class="wiki-link">${t('read_more_wikipedia')}</a>
-            <a href="${shopUrl}" target="_blank" rel="noopener noreferrer sponsored nofollow" class="shop-link">${t('shop_flag', { name: flag.name })}</a>
-            <button class="report-issue-btn" aria-expanded="false" aria-controls="reportFormPanel">${t('report_issue')}</button>
+            <a href="${flag.info.wikipedialink}" target="_blank" rel="noopener noreferrer" class="modal-btn modal-btn--filled wiki-link">${t('read_more_wikipedia')}</a>
+            <a href="${shopUrl}" target="_blank" rel="noopener noreferrer sponsored nofollow" class="modal-btn modal-btn--outline shop-link">${t('shop_flag', { name: flag.name })}</a>
         </div>
         <p class="affiliate-disclosure">${t('amazon_disclosure')}</p>
+        <div class="modal-utility">
+            <button type="button" class="modal-text-btn report-issue-btn" aria-expanded="false" aria-controls="reportFormPanel">${t('report_issue')}</button>
+        </div>
     `;
 
     // Create report issue form (initially hidden)

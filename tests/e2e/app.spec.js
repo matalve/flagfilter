@@ -1191,6 +1191,25 @@ test.describe('Flagfilter UI flows', () => {
       .toHaveAttribute('href', 'https://www.amazon.com/s?k=Timor-Leste%20flag&tag=flagfilter-20');
   });
 
+  test('modal link buttons share one geometry and report issue sits below them', async ({ page }) => {
+    await openFlagModalBySearch(page, 'sweden');
+    const metrics = (el) => {
+      const s = getComputedStyle(el);
+      return {
+        height: el.getBoundingClientRect().height,
+        padding: s.padding,
+        radius: s.borderRadius,
+        font: `${s.fontSize} ${s.fontWeight}`,
+        underline: s.borderBottomStyle === 'dashed'
+      };
+    };
+    const wiki = await page.locator('.wiki-link').evaluate(metrics);
+    const shop = await page.locator('.shop-link').evaluate(metrics);
+    expect(shop).toEqual(wiki);
+    expect(wiki.underline).toBe(false);
+    await expect(page.locator('.modal-utility .report-issue-btn')).toBeVisible();
+  });
+
   test('modal Colors line reflects the flag color tags', async ({ page }) => {
     // Argentina gained "yellow" (Sun of May) when the reported color tags were fixed.
     await openFlagModalBySearch(page, 'argentina');
