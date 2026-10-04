@@ -1210,26 +1210,90 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('.modal-utility .report-issue-btn')).toBeVisible();
   });
 
-  test('modal Colors line reflects the flag color tags', async ({ page }) => {
+  // The tags panel replaced the modal's old "Colors:" line. See #222.
+  const openTagsPanel = async (page) => {
+    await page.locator('.flag-tags-btn').click();
+    const panel = page.locator('#flagTagsPanel');
+    await expect(panel).toBeVisible();
+    return panel;
+  };
+
+  test('flag tags panel is collapsed when the modal opens and toggles', async ({ page }) => {
+    await openFlagModalBySearch(page, 'sweden');
+    const button = page.locator('.flag-tags-btn');
+    const panel = page.locator('#flagTagsPanel');
+
+    await expect(button).toHaveAttribute('aria-expanded', 'false');
+    await expect(panel).toBeHidden();
+    await expect(page.locator('.flag-info-details p', { hasText: 'Colors:' })).toHaveCount(0);
+
+    await button.click();
+    await expect(button).toHaveAttribute('aria-expanded', 'true');
+    await expect(panel).toBeVisible();
+
+    await button.click();
+    await expect(button).toHaveAttribute('aria-expanded', 'false');
+    await expect(panel).toBeHidden();
+  });
+
+  test('flag tags panel groups every filter value under its filter heading', async ({ page }) => {
+    await openFlagModalBySearch(page, 'sweden');
+    const panel = await openTagsPanel(page);
+
+    await expect(panel.locator('dt')).toHaveText(['Colors', 'Continent', 'Pattern', 'Ideology', 'Flag family']);
+    await expect(panel.locator('dt', { hasText: 'Pattern' }).locator('+ dd')).toHaveText('Cross');
+    await expect(panel.locator('.flag-tag', { hasText: /^Nordic$/ })).toHaveAttribute('href', '?q=nordic');
+  });
+
+  test('flag tags panel shows the color tags', async ({ page }) => {
     // Argentina gained "yellow" (Sun of May) when the reported color tags were fixed.
     await openFlagModalBySearch(page, 'argentina');
-    const argentinaColors = page.locator('.flag-info-details p', { hasText: 'Colors:' });
-    await expect(argentinaColors).toContainText('Yellow'); // localized label (was raw "yellow")
+    await expect(await openTagsPanel(page)).toContainText('Yellow');
   });
 
-  test('modal Colors line surfaces brown for the Cocos Islands', async ({ page }) => {
+  test('flag tags panel surfaces brown for the Cocos Islands', async ({ page }) => {
     // "brown" was promoted to a recognized color so the Cocos palm tree shows up.
     await openFlagModalBySearch(page, 'cocos');
-    const cocosColors = page.locator('.flag-info-details p', { hasText: 'Colors:' });
-    await expect(cocosColors).toContainText('Brown');
+    await expect(await openTagsPanel(page)).toContainText('Brown');
   });
 
-  test('modal Colors line is localized in the Spanish UI', async ({ page }) => {
+  test('flag tags panel is localized in the Spanish UI', async ({ page }) => {
     await gotoApp(page, 'es');
     await openFlagModalBySearch(page, 'sweden');
-    const colors = page.locator('.flag-info-details p', { hasText: 'Colores:' });
-    await expect(colors).toContainText('Azul'); // localized, not the English "blue"
-    await expect(colors).not.toContainText('blue');
+    await expect(page.locator('.flag-tags-btn')).toContainText('Etiquetas y palabras de búsqueda');
+    const panel = await openTagsPanel(page);
+
+    await expect(panel.locator('dt', { hasText: 'Patrón' }).locator('+ dd')).toHaveText('Cruz');
+    await expect(panel).toContainText('Azul');
+    await expect(panel).toContainText('Nórdica');
+    await expect(panel).not.toContainText('blue');
+  });
+
+  test('flag tags panel lists the aliases as written', async ({ page }) => {
+    await openFlagModalBySearch(page, 'barbados');
+    const panel = await openTagsPanel(page);
+    await expect(panel.locator('dt', { hasText: 'Search words' })).toHaveCount(1);
+    await expect(panel.locator('.flag-aliases')).toHaveText('trident');
+  });
+
+  test('flag tags panel has no alias row when a flag has no aliases', async ({ page }) => {
+    await openFlagModalBySearch(page, 'sweden');
+    const panel = await openTagsPanel(page);
+    await expect(panel.locator('dt', { hasText: 'Search words' })).toHaveCount(0);
+    await expect(panel.locator('.flag-aliases')).toHaveCount(0);
+  });
+
+  test('a tag in the flag tags panel applies that filter', async ({ page }) => {
+    await openFlagModalBySearch(page, 'sweden');
+    const panel = await openTagsPanel(page);
+
+    await waitForNextTask(page);
+    await panel.locator('.flag-tag', { hasText: /^Nordic$/ }).click();
+
+    await expect(page.locator('#flagModalTitle')).toHaveCount(0);
+    await expect(page.locator('.filter-btn[data-family="nordic"]')).toHaveClass(/active/);
+    await expect(page.locator('.flag-card h3', { hasText: /^Norway$/ })).toHaveCount(1);
+    await expect(page.locator('.flag-card h3', { hasText: /^Japan$/ })).toHaveCount(0);
   });
 
   test('English modal content renders inline flag links', async ({ page }) => {

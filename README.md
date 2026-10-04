@@ -12,7 +12,7 @@ Flagfilter is a Cloudflare Pages app for exploring, searching, and filtering nat
 
 - Search by country name, tag, or alternate name (`burma`, `usa`, `cote divoire`)
 - Filter by color and other visual attributes
-- Flag detail modal with inline related-flag links
+- Flag detail modal with inline related-flag links, and a collapsed list of the flag's filter tags and search words
 - English and Spanish UI
 - Report issues to Telegram, GitHub Issues, or both
 - Floating scroll-to-top button once the page is scrolled down

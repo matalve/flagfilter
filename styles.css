@@ -1261,6 +1261,95 @@ h1 {
     text-underline-offset: 3px;
 }
 
+.modal-text-btn-chevron {
+    font-size: 0.75em;
+    transition: transform 0.2s ease;
+}
+
+.modal-text-btn[aria-expanded="true"] .modal-text-btn-chevron {
+    transform: rotate(180deg);
+}
+
+/* Tags and aliases disclosure. No display rule on the panel itself, so the
+   hidden attribute is what collapses it. See #222. */
+.flag-tags-panel {
+    margin-top: 1rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--r-1);
+}
+
+.flag-tags {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: 0.55rem 1rem;
+    align-items: baseline;
+    margin: 0;
+}
+
+.flag-tags dt {
+    font-size: 0.8rem;
+    font-weight: 600;
+    opacity: 0.75;
+}
+
+.flag-tags dd {
+    margin: 0;
+    min-width: 0;
+}
+
+.flag-tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.flag-tag {
+    display: inline-flex;
+    padding: 0.15rem 0.65rem;
+    font-size: 0.85rem;
+    color: var(--text-color);
+    text-decoration: none;
+    background-color: var(--filter-btn-bg);
+    border-radius: var(--r-pill);
+    transition: background-color 0.2s ease;
+}
+
+.flag-tag:hover {
+    background-color: var(--filter-btn-hover);
+}
+
+.flag-tag:focus-visible {
+    outline: 3px solid rgba(30, 128, 128, 0.35);
+    outline-offset: 2px;
+}
+
+.flag-aliases {
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+.flag-info-details .flag-tags-hint {
+    margin: 0.8rem 0 0;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    opacity: 0.65;
+}
+
+@media (max-width: 480px) {
+    .flag-tags {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.2rem;
+    }
+
+    .flag-tags dd + dt {
+        margin-top: 0.5rem;
+    }
+}
+
 /* Responsive adjustments for modal */
 @media (max-width: 768px) {
     .modal {

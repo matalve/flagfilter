@@ -6,6 +6,7 @@ import { getFlagImageDimensions } from './util.js';
 import { t } from './translate.js';
 import { getBaseFlagInfoByCode } from './flags.js';
 import { applyQueryAsFilterState, queryMatchesAnyFilter } from './filters.js';
+import { FILTER_GROUPS, flagHasValue } from './filter-config.js';
 import { createReportForm } from './report.js';
 
 const AMAZON_ASSOCIATE_TAG = 'flagfilter-20';
@@ -144,16 +145,25 @@ export function showFlagInfoModal(flag) {
         <p><strong>${t('adopted_label')}:</strong> ${flag.info.adopted || t('unknown')}</p>
         <p><strong>${t('symbolism_label')}:</strong> ${processedSymbolism}</p>
         <p><strong>${t('fun_facts_label')}:</strong> ${processedFunfacts}</p>
-        <p><strong>${t('colors_label')}:</strong> ${flag.colors.map((color) => t(`color_${color}`)).join(', ')}</p>
         <div class="modal-actions">
             <a href="${flag.info.wikipedialink}" target="_blank" rel="noopener noreferrer" class="modal-btn modal-btn--filled wiki-link">${t('read_more_wikipedia')}</a>
             <a href="${shopUrl}" target="_blank" rel="noopener noreferrer sponsored nofollow" class="modal-btn modal-btn--outline shop-link">${t('shop_flag', { name: flag.name })}</a>
         </div>
         <p class="affiliate-disclosure">${t('amazon_disclosure')}</p>
         <div class="modal-utility">
+            <button type="button" class="modal-text-btn flag-tags-btn" aria-expanded="false" aria-controls="flagTagsPanel">${t('flag_tags_toggle')}<svg class="icon modal-text-btn-chevron" aria-hidden="true"><use href="#i-chevron-down"></use></svg></button>
             <button type="button" class="modal-text-btn report-issue-btn" aria-expanded="false" aria-controls="reportFormPanel">${t('report_issue')}</button>
         </div>
+        ${buildTagsPanel(flag)}
     `;
+
+    const tagsButton = flagInfo.querySelector('.flag-tags-btn');
+    const tagsPanel = flagInfo.querySelector('#flagTagsPanel');
+    tagsButton.addEventListener('click', () => {
+        const expanded = tagsButton.getAttribute('aria-expanded') === 'true';
+        tagsButton.setAttribute('aria-expanded', String(!expanded));
+        tagsPanel.hidden = expanded;
+    });
 
     // Create report issue form (initially hidden)
     const { element: reportForm, teardown: teardownReportForm } = createReportForm({
@@ -205,8 +215,8 @@ export function showFlagInfoModal(flag) {
 
         // Filter links keep their real ?q= href, so they work without JS and can
         // be opened in a new tab. The handler only spares the in-page reader a
-        // full page load. See #141.
-        modal.querySelectorAll('.filter-link').forEach((link) => {
+        // full page load. See #141. The tags panel's values work the same way (#222).
+        modal.querySelectorAll('.filter-link, .flag-tag').forEach((link) => {
             link.addEventListener('click', (event) => {
                 if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) {
                     return;
@@ -218,6 +228,38 @@ export function showFlagInfoModal(flag) {
             });
         });
     }, 0);
+}
+
+// Why a flag turns up for a filter or a search: every filter value it carries,
+// grouped and labelled like the filter panel, plus its search-only aliases.
+// Collapsed until asked for. Each value keeps a real ?q= href, and the same
+// handler as the prose filter links applies it in place.
+// This replaced the old "Colors:" line, which showed one group of the same
+// list. See #222.
+function buildTagsPanel(flag) {
+    const groupRows = FILTER_GROUPS.map((group) => {
+        const values = group.values.filter((value) => flagHasValue(flag, group, value));
+        if (values.length === 0) return '';
+
+        // Colour is a section of its own in the filter panel and has no heading key.
+        const label = t(group.heading || 'colors_label');
+        const items = values.map((value) => (
+            `<li><a href="?q=${encodeURIComponent(value)}" class="flag-tag" data-query="${value}">${t(`${group.key}_${value}`)}</a></li>`
+        )).join('');
+        return `<dt>${label}</dt><dd><ul class="flag-tag-list">${items}</ul></dd>`;
+    }).join('');
+
+    const aliases = flag.info.aliases || [];
+    const aliasRow = aliases.length > 0
+        ? `<dt>${t('flag_aliases_label')}</dt><dd class="flag-aliases">${aliases.join(', ')}</dd>`
+        : '';
+
+    return `
+        <div class="flag-tags-panel" id="flagTagsPanel" hidden>
+            <dl class="flag-tags">${groupRows}${aliasRow}</dl>
+            <p class="flag-tags-hint">${t('flag_tags_hint')}</p>
+        </div>
+    `;
 }
 
 function closeDynamicModal(modal) {
