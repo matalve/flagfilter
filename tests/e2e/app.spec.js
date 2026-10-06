@@ -640,6 +640,21 @@ test.describe('Flagfilter UI flows', () => {
     expect(box.width / box.height).toBeLessThan(2.1);
   });
 
+  test('the language flags reserve their size before they load', async ({ page }) => {
+    // The picker re-renders the <img> that index.html ships, and the copy lost
+    // its width and height, so the button's width was unknown until the image
+    // arrived. See #233.
+    const button = page.locator('#languageButton');
+    const flag = button.locator('img.language-flag');
+    await expect(flag).toHaveAttribute('width', '40');
+    await expect(flag).toHaveAttribute('height', '20');
+
+    await button.click();
+    const spanish = page.locator('#languageMenu .language-option[data-language="es"] img.language-flag');
+    await expect(spanish).toHaveAttribute('width', '30');
+    await expect(spanish).toHaveAttribute('height', '20');
+  });
+
   test('the language menu is reachable from the keyboard and escapes on Escape', async ({ page }) => {
     const button = page.locator('#languageButton');
     const menu = page.locator('#languageMenu');

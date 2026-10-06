@@ -22,6 +22,13 @@ export const SUPPORTED_LANGUAGES = ['en', 'es'];
 // and a language is not, so these are choices rather than facts: English is shown
 // as the Union Jack, Spanish as Spain.
 export const LANGUAGE_FLAGS = { en: 'gb', es: 'es' };
+// The size flagcdn's h20 endpoint serves each of those flags at, so the picker's
+// <img> can reserve its space before the image loads. The width follows the
+// flag's own proportion, so a new language needs its own entry here. See #233.
+export const LANGUAGE_FLAG_DIMENSIONS = {
+    en: { width: 40, height: 20 },
+    es: { width: 30, height: 20 }
+};
 // Each language named in itself, which is what a reader looking for their own
 // language recognises. These are not translated.
 export const LANGUAGE_NAMES = { en: 'English', es: 'Español' };

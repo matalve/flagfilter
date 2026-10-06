@@ -3,7 +3,7 @@
 // The menu lists every language except the one being read: the button already
 // shows that one, and repeating it gives the reader nothing to choose. See #194.
 import { state } from './state.js';
-import { LANGUAGE_FLAGS, LANGUAGE_NAMES, SUPPORTED_LANGUAGES, switchLanguage } from './i18n.js';
+import { LANGUAGE_FLAGS, LANGUAGE_FLAG_DIMENSIONS, LANGUAGE_NAMES, SUPPORTED_LANGUAGES, switchLanguage } from './i18n.js';
 import { t } from './translate.js';
 
 // flagcdn's h-endpoints ask for a height and let the width follow the flag's own
@@ -11,8 +11,9 @@ import { t } from './translate.js';
 // bent the Union Jack's diagonals.
 function flagMarkup(language) {
     const code = LANGUAGE_FLAGS[language];
+    const { width, height } = LANGUAGE_FLAG_DIMENSIONS[language];
     return `<img class="language-flag" src="https://flagcdn.com/h20/${code}.webp"`
-        + ` srcset="https://flagcdn.com/h40/${code}.webp 2x" alt="" decoding="async">`;
+        + ` srcset="https://flagcdn.com/h40/${code}.webp 2x" width="${width}" height="${height}" alt="" decoding="async">`;
 }
 
 function getElements() {
