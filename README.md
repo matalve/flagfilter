@@ -7,6 +7,9 @@ Flagfilter is a Cloudflare Pages app for exploring, searching, and filtering nat
 - Production runs on Cloudflare Pages
 - Static frontend files live in the repository root
 - The issue reporting endpoint is `functions/api/report-issue.js`
+- `404.html` is served with status 404 for any path that matches no file. Without it, Pages
+  treats the project as a single-page app and answers every unknown path with `index.html`
+  and status 200 (#232)
 
 ## Main features
 
