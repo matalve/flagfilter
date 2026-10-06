@@ -126,5 +126,9 @@
   "failed_to_submit_report": "Failed to submit report",
   "report_error": "Sorry, there was an error submitting your report. Please try again later.",
   "error_loading_flags": "Error loading flags. Please try again later.",
-  "language_picker_aria": "Select language"
+  "language_picker_aria": "Select language",
+  "not_found_title": "Page not found - Flagfilter",
+  "not_found_heading": "Page not found",
+  "not_found_text": "There is nothing at this address. It may have been mistyped, or the link may be out of date.",
+  "not_found_link": "Go to Flagfilter"
 }

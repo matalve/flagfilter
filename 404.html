@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page not found - Flagfilter</title>
+    <title data-i18n="not_found_title">Page not found - Flagfilter</title>
     <!-- Cloudflare Pages serves this file with status 404 for every path that
          matches nothing. Without it, Pages treats the project as a single-page app
          and answers every unknown path with index.html and status 200. See #232.
          Self-contained on purpose: it can be served at any depth, so every URL is
          absolute, and it loads no script or stylesheet that could itself be
-         missing. Both languages are on the page because there is no i18n here. -->
+         missing. Both languages are on the page because there is no i18n here.
+         The copy is kept in i18n/ui/*.json under not_found_*, and each element
+         names its key in data-i18n; a test fails if the two disagree. -->
     <meta name="robots" content="noindex">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -77,14 +79,14 @@
 <body>
     <main>
         <section>
-            <h1>Page not found</h1>
-            <p>There is nothing at this address. It may have been mistyped, or the link may be out of date.</p>
-            <a href="/">Go to Flagfilter</a>
+            <h1 data-i18n="not_found_heading">Page not found</h1>
+            <p data-i18n="not_found_text">There is nothing at this address. It may have been mistyped, or the link may be out of date.</p>
+            <a href="/" data-i18n="not_found_link">Go to Flagfilter</a>
         </section>
         <section lang="es">
-            <h1>Página no encontrada</h1>
-            <p>No hay nada en esta dirección. Puede que esté mal escrita o que el enlace esté desactualizado.</p>
-            <a href="/?lang=es">Ir a Flagfilter</a>
+            <h1 data-i18n="not_found_heading">Página no encontrada</h1>
+            <p data-i18n="not_found_text">No hay nada en esta dirección. Puede que esté mal escrita o que el enlace esté desactualizado.</p>
+            <a href="/?lang=es" data-i18n="not_found_link">Ir a Flagfilter</a>
         </section>
     </main>
 </body>

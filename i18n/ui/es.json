@@ -126,5 +126,9 @@
   "failed_to_submit_report": "No se pudo enviar el reporte",
   "report_error": "Lo sentimos, hubo un error al enviar tu reporte. Inténtalo de nuevo más tarde.",
   "error_loading_flags": "Error al cargar las banderas. Inténtalo de nuevo más tarde.",
-  "language_picker_aria": "Seleccionar idioma"
+  "language_picker_aria": "Seleccionar idioma",
+  "not_found_title": "Página no encontrada - Flagfilter",
+  "not_found_heading": "Página no encontrada",
+  "not_found_text": "No hay nada en esta dirección. Puede que esté mal escrita o que el enlace esté desactualizado.",
+  "not_found_link": "Ir a Flagfilter"
 }

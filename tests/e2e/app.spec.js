@@ -1,4 +1,4 @@
-import { readdirSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import { test, expect } from '@playwright/test';
 import { FILTER_GROUPS, FILTER_KEYS } from '../../js/filter-config.js';
 
@@ -1010,6 +1010,28 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('script')).toHaveCount(0);
     await expect(page.getByRole('link', { name: 'Go to Flagfilter' })).toHaveAttribute('href', '/');
     await expect(page.getByRole('link', { name: 'Ir a Flagfilter' })).toHaveAttribute('href', '/?lang=es');
+
+    // The page cannot load the catalogs, so its copy is written out by hand.
+    // Each element names its key; the text must be the catalog's, in the
+    // language of its nearest lang attribute, and every not_found_* key must
+    // exist in every catalog.
+    const catalogs = Object.fromEntries(['en', 'es'].map((language) => [
+      language,
+      JSON.parse(readFileSync(new URL(`../../i18n/ui/${language}.json`, import.meta.url), 'utf8'))
+    ]));
+    const notFoundKeys = Object.keys(catalogs.en).filter((key) => key.startsWith('not_found_')).sort();
+    expect(notFoundKeys.length).toBeGreaterThan(0);
+    expect(Object.keys(catalogs.es).filter((key) => key.startsWith('not_found_')).sort()).toEqual(notFoundKeys);
+
+    const copy = await page.locator('[data-i18n]').evaluateAll((elements) => elements.map((element) => ({
+      key: element.dataset.i18n,
+      language: element.closest('[lang]').getAttribute('lang'),
+      text: element.textContent.trim()
+    })));
+    expect(copy.length).toBeGreaterThan(0);
+    for (const { key, language, text } of copy) {
+      expect(text, `${language} ${key}`).toBe(catalogs[language][key]);
+    }
 
     const origin = new URL(page.url()).origin;
     expect(requested.every((url) => url.startsWith(origin))).toBe(true);
