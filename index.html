@@ -52,6 +52,15 @@
     <link rel="modulepreload" href="js/modal.js">
     <link rel="modulepreload" href="js/report.js">
     <link rel="modulepreload" href="js/scroll-to-top.js">
+    <link rel="modulepreload" href="js/language-picker.js">
+    <!-- The grid is built from flaginfo.json and the English UI strings (loaded
+         in every language as the fallback), and neither request is visible
+         until the modules run. Preloading them takes them off the critical
+         chain in front of the LCP flag. crossorigin is required: fetch() makes
+         a CORS-mode request, and a preload without it does not match, so the
+         file would be downloaded twice. See #231. -->
+    <link rel="preload" href="flaginfo.json" as="fetch" crossorigin>
+    <link rel="preload" href="i18n/ui/en.json" as="fetch" crossorigin>
     <!-- Apply the theme before first paint so a saved or system dark preference
          does not flash the light theme first. Mirrors the storage key and the
          fallback logic in initDarkMode() in script.js — keep the two in sync.

@@ -57,15 +57,19 @@ function updateLanguageInUrl(language) {
     window.history.replaceState({}, '', url);
 }
 
+// The three files are independent, so fetch them together rather than one
+// after another. A missing language file falls back to English, which is why
+// that one is awaited before it is used as the fallback value. See #231.
 async function loadTranslations(language) {
-    state.fallbackUiTranslations = await loadJson('i18n/ui/en.json', {});
-    state.uiTranslations = language === 'en'
-        ? state.fallbackUiTranslations
-        : await loadJson(`i18n/ui/${language}.json`, state.fallbackUiTranslations);
+    const englishRequest = loadJson('i18n/ui/en.json', {});
+    const languageRequest = language === 'en' ? null : loadJson(`i18n/ui/${language}.json`, null);
+    const flagRequest = language === 'en' ? Promise.resolve({}) : loadJson(`i18n/flags/${language}.json`, {});
 
-    state.flagTranslations = language === 'en'
-        ? {}
-        : await loadJson(`i18n/flags/${language}.json`, {});
+    state.fallbackUiTranslations = await englishRequest;
+    state.uiTranslations = languageRequest
+        ? (await languageRequest) ?? state.fallbackUiTranslations
+        : state.fallbackUiTranslations;
+    state.flagTranslations = await flagRequest;
 }
 
 function applyStaticTranslations() {

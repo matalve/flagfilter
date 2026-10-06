@@ -82,11 +82,28 @@ export function rebuildFlags() {
     buildFlagCards();
 }
 
+// The grid cannot render before flaginfo.json arrives, and nothing about that
+// request depends on the language. initApp starts it here, before awaiting the
+// translations, so the two downloads overlap instead of queueing; fetchFlags
+// then awaits the same promise. index.html also preloads the file, which this
+// fetch picks up. See #231.
+let flagInfoRequest = null;
+
+export function startFlagInfoRequest() {
+    if (!flagInfoRequest) {
+        flagInfoRequest = fetch('flaginfo.json').then((response) => response.json());
+        // fetchFlags awaits it and reports a failure. Until then this handler
+        // keeps a rejection that lands during the translation load from being
+        // logged as unhandled.
+        flagInfoRequest.catch(() => {});
+    }
+    return flagInfoRequest;
+}
+
 // Fetch flag data from local source and apply translations
 export async function fetchFlags() {
     try {
-        const flagInfoResponse = await fetch('flaginfo.json');
-        state.baseFlagInfo = await flagInfoResponse.json();
+        state.baseFlagInfo = await startFlagInfoRequest();
         rebuildFlags();
 
         // Don't render here: initApp resolves the initial ?q= filter first, so the

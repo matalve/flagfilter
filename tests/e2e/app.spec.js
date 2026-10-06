@@ -1,3 +1,4 @@
+import { readdirSync } from 'node:fs';
 import { test, expect } from '@playwright/test';
 import { FILTER_GROUPS, FILTER_KEYS } from '../../js/filter-config.js';
 
@@ -963,6 +964,37 @@ test.describe('Flagfilter UI flows', () => {
     // The preload must match the rendered src exactly, otherwise the browser fetches twice.
     await expect(page.locator('.flag-card img').first())
       .toHaveAttribute('src', 'https://flagcdn.com/w320/af.webp');
+  });
+
+  test('every module is modulepreloaded', async ({ page }) => {
+    // A module missing from the list is only discovered once the one importing
+    // it has been fetched and parsed, which adds a round trip to startup.
+    // js/language-picker.js was missing until #231.
+    const modules = readdirSync(new URL('../../js/', import.meta.url))
+      .filter((name) => name.endsWith('.js'))
+      .map((name) => `js/${name}`)
+      .sort();
+    const preloaded = await page.locator('link[rel="modulepreload"]')
+      .evaluateAll((links) => links.map((link) => link.getAttribute('href')));
+
+    expect([...preloaded].sort()).toEqual(modules);
+  });
+
+  test('the startup data is preloaded and fetched only once', async ({ page }) => {
+    // The preload only helps if fetch() picks it up. A preload that does not
+    // match (e.g. without crossorigin) downloads the file a second time. See #231.
+    for (const path of ['flaginfo.json', 'i18n/ui/en.json']) {
+      const preload = page.locator(`link[rel="preload"][href="${path}"]`);
+      await expect(preload).toHaveAttribute('as', 'fetch');
+      await expect(preload).toHaveAttribute('crossorigin', '');
+    }
+
+    const requested = [];
+    page.on('request', (request) => requested.push(new URL(request.url()).pathname));
+    await gotoApp(page);
+
+    expect(requested.filter((path) => path === '/flaginfo.json')).toHaveLength(1);
+    expect(requested.filter((path) => path === '/i18n/ui/en.json')).toHaveLength(1);
   });
 
   test('the icon set is declared and served', async ({ page, request }) => {

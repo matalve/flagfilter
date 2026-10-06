@@ -5,7 +5,7 @@ import { state } from './js/state.js';
 import { isEditableTarget } from './js/util.js';
 import { getInitialLanguage, switchLanguage } from './js/i18n.js';
 import { initLanguagePicker } from './js/language-picker.js';
-import { fetchFlags } from './js/flags.js';
+import { fetchFlags, startFlagInfoRequest } from './js/flags.js';
 import {
     applyInitialQueryFromUrl,
     debounceSearch,
@@ -63,6 +63,8 @@ FILTER_KEYS.forEach((key) => {
 async function initApp() {
     initDarkMode();
     initScrollToTop();
+    // Start the flag data download now so it runs alongside the translations.
+    startFlagInfoRequest();
     const initialLanguage = getInitialLanguage();
     await switchLanguage(initialLanguage);
     // Renders from state.currentLanguage, so it goes after the initial switch.
