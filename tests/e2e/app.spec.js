@@ -605,6 +605,8 @@ test.describe('Flagfilter UI flows', () => {
 
     // Closed, showing the language being read.
     await expect(button.locator('img.language-flag')).toHaveAttribute('src', /\/h20\/gb\.webp$/);
+    await expect(button.locator('img.language-flag')).toHaveAttribute('width', '40');
+    await expect(button.locator('img.language-flag')).toHaveAttribute('height', '20');
     await expect(button).toHaveAttribute('aria-expanded', 'false');
     await expect(menu).toBeHidden();
 
@@ -617,6 +619,8 @@ test.describe('Flagfilter UI flows', () => {
     const spanish = menu.locator('.language-option[data-language="es"]');
     await expect(spanish).toHaveAttribute('aria-label', 'Español');
     await expect(spanish.locator('img.language-flag')).toHaveAttribute('src', /\/h20\/es\.webp$/);
+    await expect(spanish.locator('img.language-flag')).toHaveAttribute('width', '30');
+    await expect(spanish.locator('img.language-flag')).toHaveAttribute('height', '20');
 
     await spanish.click();
     await expect(page.locator('.learn-more-btn').first()).toHaveText('Saber más');
@@ -624,9 +628,14 @@ test.describe('Flagfilter UI flows', () => {
 
     // Now the pair is the other way round.
     await expect(button.locator('img.language-flag')).toHaveAttribute('src', /\/h20\/es\.webp$/);
+    await expect(button.locator('img.language-flag')).toHaveAttribute('width', '30');
+    await expect(button.locator('img.language-flag')).toHaveAttribute('height', '20');
     await button.click();
     await expect(menu.locator('.language-option')).toHaveCount(1);
-    await expect(menu.locator('.language-option[data-language="en"]')).toHaveAttribute('aria-label', 'English');
+    const english = menu.locator('.language-option[data-language="en"]');
+    await expect(english).toHaveAttribute('aria-label', 'English');
+    await expect(english.locator('img.language-flag')).toHaveAttribute('width', '40');
+    await expect(english.locator('img.language-flag')).toHaveAttribute('height', '20');
   });
 
   test('the language flags keep their own proportion', async ({ page }) => {
