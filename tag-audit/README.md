@@ -65,7 +65,10 @@ jq -r '.[].shortname' flaginfo.json | sort | awk 'NR%8==6'
    node scripts/tag-audit-search.mjs --root /tmp/copy "southern cross" "dolphins"
    ```
 
-   Each alias should find exactly the flag it was added for.
+   Each alias must find the flag it was added for. Every other flag it finds must be
+   one the word also fits: `eagle` finds every eagle flag, and should. A match the word
+   does not describe, through another flag's name or alias (`pine` also finds the
+   Philippines), is worth a sentence in the pull request.
 5. **Write the batch.** Put the same rows in `proposals.original.tsv` and
    `proposals.tsv`, under the header the previous batch used, then
    `node scripts/apply-tag-audit.mjs --dry-run`. It must apply every row without a

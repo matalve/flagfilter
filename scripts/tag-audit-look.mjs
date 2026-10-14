@@ -50,10 +50,13 @@ const page = await browser.newPage();
 await page.setContent('<canvas id="c"></canvas>');
 
 // Same buckets as the colour filters. Thresholds are on HSV; the brown band is the
-// dark end of red and orange. Red runs down to 330 degrees because flagcdn's darker
-// reds sit there (the US stripes are 344). That also makes Qatar's maroon count as
-// red, while Qatar carries purple by choice (see #184): the count is evidence for a
-// colour tag, not the decision.
+// dark end of red and orange. Red runs down to 330 degrees. Measured over all 254
+// flags (2026-10), flagcdn's dark reds sit at 340-345 (the US stripes are 344,
+// Qatar's maroon 342), and nothing between 330 and 340 is a real colour: only 1-3%
+// of anti-aliased pixels where red meets blue. At 330 that noise reads as red, on
+// flags that already carry red; at 340 it would read as purple, which invites a
+// wrong purple tag. Qatar counts as red here while carrying purple by choice (see
+// #184): the count is evidence for a colour tag, not the decision.
 const shares = await page.evaluate(async (list) => {
     const classify = (r, g, b) => {
         const max = Math.max(r, g, b) / 255;
