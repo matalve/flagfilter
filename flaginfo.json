@@ -95,7 +95,12 @@
       "orange",
       "cross",
       "british",
-      "animal"
+      "animal",
+      "shield"
+    ],
+    "aliases": [
+      "dolphin",
+      "dolphins"
     ],
     "shortname": "ai",
     "continent": "northAmerica",
@@ -236,6 +241,9 @@
       "british",
       "star",
       "christianity"
+    ],
+    "aliases": [
+      "southern cross"
     ],
     "shortname": "au",
     "continent": "oceania",
@@ -540,7 +548,20 @@
       "red",
       "yellow",
       "green",
-      "horizontal"
+      "horizontal",
+      "flag",
+      "weapon",
+      "tool",
+      "bird",
+      "animal",
+      "text",
+      "name",
+      "star",
+      "mountain",
+      "vegetation",
+      "hat",
+      "sun",
+      "building"
     ],
     "shortname": "bo",
     "continent": "southAmerica",
@@ -692,7 +713,8 @@
       "boat",
       "waves",
       "human",
-      "face"
+      "face",
+      "shield"
     ],
     "shortname": "bz",
     "continent": "northAmerica",
@@ -1152,7 +1174,9 @@
       "motto",
       "name",
       "flag",
-      "christianity"
+      "christianity",
+      "shield",
+      "vegetation"
     ],
     "shortname": "do",
     "continent": "northAmerica",
@@ -1329,6 +1353,9 @@
       "horizontal",
       "pan-african"
     ],
+    "aliases": [
+      "pentagram"
+    ],
     "shortname": "et",
     "continent": "africa",
     "name": "Ethiopia",
@@ -1477,7 +1504,8 @@
       "christianity"
     ],
     "aliases": [
-      "great britain"
+      "great britain",
+      "union jack"
     ],
     "shortname": "gb",
     "continent": "europe",
@@ -2075,6 +2103,10 @@
       "horizontal",
       "circle",
       "hinduism"
+    ],
+    "aliases": [
+      "wheel",
+      "ashoka chakra"
     ],
     "shortname": "in",
     "continent": "asia",
@@ -2677,6 +2709,9 @@
       "triangle",
       "islam"
     ],
+    "aliases": [
+      "pentagram"
+    ],
     "shortname": "ma",
     "continent": "africa",
     "name": "Morocco",
@@ -2971,6 +3006,9 @@
       "animal",
       "text",
       "christianity"
+    ],
+    "aliases": [
+      "george cross"
     ],
     "shortname": "mt",
     "continent": "europe",
@@ -3738,6 +3776,9 @@
       "text",
       "motto",
       "islam"
+    ],
+    "aliases": [
+      "sword"
     ],
     "shortname": "sa",
     "continent": "asia",
@@ -4517,7 +4558,8 @@
     ],
     "aliases": [
       "usa",
-      "america"
+      "america",
+      "stars and stripes"
     ],
     "shortname": "us",
     "continent": "northAmerica",
@@ -4836,6 +4878,9 @@
       "animal",
       "vertical",
       "pan-african"
+    ],
+    "aliases": [
+      "eagle"
     ],
     "shortname": "zm",
     "continent": "africa",

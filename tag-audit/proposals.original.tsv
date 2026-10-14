@@ -1,9 +1,9 @@
-# Tag audit proposals — removal round 1, plus two additions from the rewritten
-# ribbon rule. Every row is a decision the owner already made in review; the file
-# records them the same way as any batch. See #174.
+# Tag audit proposals — tranche 5: every 8th flag by code at offset 4 (32 of 254).
+# Additions and aliases; removals are their own round. See #174.
 #
 # HOW TO REVIEW: delete the rows you disagree with. What survives is applied.
 # Nothing else to fill in; the deletions are themselves the record of your call.
+# The pull request shows each flag's image beside its row.
 #
 # WHEN YOU ARE DONE:
 #     git add tag-audit/
@@ -16,11 +16,35 @@
 # Read the name; the code beside it is what the script applies to, and a row whose
 # name and code disagree is refused. To see a flag: https://flagfilter.com/?q=<name>
 # Columns: name, code, tag or alias, add|remove|alias, confidence, why.
-French Polynesia	pf	star	remove	high	The five figures on the canoe are X-shaped, stylised people; they do not read as stars.
-Saint Helena	sh	brown	remove	high	The only brown is the cliffs inside the shield, which is detail under the colour rule.
-Isle of Man	im	star	remove	high	There is no star on the flag; the emblem is a triskelion.
-Dominica	dm	horizontal	remove	high	The field is cut by a cross, not into horizontal stripes.
-Dominica	dm	vertical	remove	high	The field is cut by a cross, not into vertical stripes.
-Afghanistan	af	ribbon	add	high	The name sits on a scroll with curled ends.
-Brazil	br	ribbon	add	high	The motto runs on a white band arching across the globe.
-El Salvador	sv	ribbon	add	high	A blue bow ties the laurel wreath, and the motto sits on a small scroll inside the arms.
+Anguilla	ai	shield	add	high	The three dolphins are on a white shield.
+Belize	bz	shield	add	high	The figures, tree and tools stand around a shield showing tools and a ship.
+Dominican Republic	do	shield	add	high	The Bible, cross and flags are on a shield.
+Dominican Republic	do	vegetation	add	high	A laurel branch and a palm frond frame the shield.
+Bolivia	bo	flag	add	high	Bolivian flags flank the arms, the way standards flank Ecuador's.
+Bolivia	bo	weapon	add	high	Rifles, cannons and an axe stand behind the oval.
+Bolivia	bo	tool	add	high	The axe is a tool as well as a weapon, by the axe rule.
+Bolivia	bo	bird	add	high	A condor stands on top of the arms.
+Bolivia	bo	animal	add	high	The condor, and an alpaca inside the oval.
+Bolivia	bo	text	add	high	BOLIVIA is written on the oval.
+Bolivia	bo	name	add	high	The oval spells out the country's name.
+Bolivia	bo	star	add	high	Ten stars run round the bottom of the oval.
+Bolivia	bo	mountain	add	high	The oval shows Cerro Rico, the silver mountain of Potosí.
+Bolivia	bo	vegetation	add	high	A breadfruit tree and a wheat sheaf inside the oval, and laurel and olive branches outside.
+Bolivia	bo	hat	add	medium	A red Phrygian cap is raised on the left of the arms.
+Bolivia	bo	sun	add	medium	A sun hangs in the sky above the mountain, drawn as a small ring.
+Bolivia	bo	building	add	medium	A small chapel with a tower stands on the lower hill: the Chapel of the Sacred Heart of Jesus.
+Bolivia	bo	circle	add	medium	The sun is drawn as a closed ring, which the sun rule counts, like Kyrgyzstan's ring; it is small.
+Malta	mt	human	add	medium	The George Cross shows Saint George on horseback; the figure is small.
+Malta	mt	weapon	add	medium	Saint George's lance on the George Cross.
+Australia	au	southern cross	alias	high	The five stars on the fly are the Southern Cross; the search reads cross as the filter and matches the rest against this alias.
+United Kingdom	gb	union jack	alias	high	What most people call the flag.
+United States	us	stars and stripes	alias	high	What most people call the flag.
+India	in	wheel	alias	high	The emblem is a navy blue wheel.
+India	in	ashoka chakra	alias	high	The wheel's name; searching chakra matches it too.
+Saudi Arabia	sa	sword	alias	high	A sword lies under the shahada.
+Zambia	zm	eagle	alias	high	The emblem is an African fish eagle.
+Malta	mt	george cross	alias	high	The emblem is the George Cross; the search reads cross as the filter and matches the rest.
+Anguilla	ai	dolphin	alias	medium	The emblem is three dolphins. They sit on a shield, where Jersey's lions got no alias; the one-line test favours them.
+Anguilla	ai	dolphins	alias	medium	Plural of the three dolphins, per the plural rule.
+Morocco	ma	pentagram	alias	medium	The emblem is an interlaced green pentagram.
+Ethiopia	et	pentagram	alias	medium	The emblem is a yellow pentagram on a blue disc.
