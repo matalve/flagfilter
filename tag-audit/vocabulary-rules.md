@@ -58,7 +58,7 @@ knot tying Mexico's wreath. What is written on the band does not change that: a 
 on a band gives the flag both `motto` and `ribbon`, and a name gives `name` and
 `ribbon`.
 
-Size does not matter: El Salvador's blue bow and small motto scroll count, even
+Size does not matter here: El Salvador's blue bow and small motto scroll count, even
 though both are easy to miss at a glance. What is not a ribbon: text lettered on a
 shield's frame (Andorra), and text on a flat plaque (the panel under Egypt's eagle).
 
@@ -135,7 +135,10 @@ twelve-pointed sun.
 its edge. It was proposed for `circle` and declined, so it stays without one.
 
 Ecuador's sun was declined as well. It is a small faced disc high on an oval shield,
-round but barely a design element in its own right.
+round but barely a design element in its own right. So was Bolivia's: a small ring in
+the sky of the oval, which keeps `sun` but is too slight a part of the arms for
+`circle`. A sun earns `circle` when the disc is something you see in the flag, not a
+detail you find by looking for it.
 
 ## Colours: what someone would describe, not every tincture
 
@@ -201,14 +204,12 @@ An alias in a batch that has not been applied yet is marked *proposed*, since th
 review can delete it. When a batch is applied, update its entries here to match what
 survived.
 
-- **eagle**: American Samoa and the US Virgin Islands (aliases), Zambia (alias
-  proposed in tranche 5), Serbia (tranche 2, no alias). Mexico, Egypt, Albania and
-  others are still to come.
-- **Southern Cross**: Australia (alias proposed in tranche 5). New Zealand, Samoa and
-  Brazil are still to come; Papua New Guinea (tranche 4) has no alias yet.
-- **sword**: Saudi Arabia (alias proposed in tranche 5). Sri Lanka and Oman are still
-  to come.
-- **pentagram**: Morocco and Ethiopia (aliases proposed in tranche 5).
+- **eagle**: American Samoa, the US Virgin Islands and Zambia (aliases), Serbia
+  (tranche 2, no alias). Mexico, Egypt, Albania and others are still to come.
+- **Southern Cross**: Australia (alias). New Zealand, Samoa and Brazil are still to
+  come; Papua New Guinea (tranche 4) has no alias yet.
+- **sword**: Saudi Arabia (alias). Sri Lanka and Oman are still to come.
+- **pentagram**: Morocco and Ethiopia (aliases).
 - **lion**: Jersey, Bermuda, Spain, and Sri Lanka still to come. So far always inside
   a shield, so not proposed as an alias.
 - **flower**: Hong Kong (alias). Macau's lotus is still to come.
@@ -222,6 +223,9 @@ review.
   pentagram.
 - `et` carries `triangle` for the same reason. Its only candidate is the pentagram in
   the blue disc; the bands are horizontal and there is no triangle in the field.
+- `mt` carries `animal` for Saint George's horse on the George Cross. The owner
+  declined `human` and `weapon` for the same figure as too small to make out, and the
+  horse is part of it.
 - `ck` carries `circle` for its ring of fifteen stars. Cape Verde's ring of ten stars
   carries no `circle`, and by the ring-of-text rule a ring of figures is not a circle.
 
