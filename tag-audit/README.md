@@ -87,7 +87,23 @@ jq -r '.[].shortname' flaginfo.json | sort | awk 'NR%8==6'
 The owner deletes rows in `proposals.tsv`, often in the GitHub editor, and says so.
 Then, on the same branch:
 
-1. Rebase onto `master` if it has moved.
+1. Check that no flag in the batch changed upstream during the review. If the image
+   watch's pull request merged meanwhile, rebasing brings in the new baseline, and the
+   apply script would stamp the reviewer's decision with the hash of a picture they
+   never saw. The look script cannot catch this, since flagcdn and the new baseline
+   then agree. Compare what `master` changed in `flag-baseline/` with the batch:
+
+   ```
+   git fetch origin master
+   comm -12 \
+     <(git diff --name-only "$(git merge-base HEAD origin/master)" origin/master -- flag-baseline/ \
+         | sed -n 's|^flag-baseline/\(.*\)\.png$|\1|p' | sort) \
+     <(grep -v -e '^#' -e '^$' tag-audit/proposals.original.tsv | cut -f2 | sort -u)
+   ```
+
+   Every code it prints: delete that flag's rows from both proposals files, so they are
+   neither applied nor rejected, and propose them again in a later batch after looking
+   at the new picture. Then rebase onto `master` if it has moved.
 2. `node scripts/apply-tag-audit.mjs`, then run it again: the second run must change
    nothing.
 3. Update `vocabulary-rules.md` to match what survived: drop *proposed* from kept
