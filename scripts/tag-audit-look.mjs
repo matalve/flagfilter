@@ -7,11 +7,18 @@
 // invented. It counts pixels of the image as flagcdn serves it, composited on white,
 // so a transparent background (Nepal's pennant) counts as white rather than black.
 //
+// Before anything else it checks that flagcdn still serves the picture recorded in
+// flag-baseline/. A rejection is stamped with the baseline image's hash, so auditing a
+// picture flagcdn has changed since would stamp the decision on the old image, and it
+// would lapse the moment the image watch's pull request is merged. On a difference it
+// stops: merge that pull request first.
+//
 // Run: node scripts/tag-audit-look.mjs --out <dir> [--size w320|w1280] <code>...
-// Needs network access to flagcdn.com and a Playwright browser, which is used here
-// only to decode the PNGs.
+// Run it from the repository root. Needs network access to flagcdn.com and a
+// Playwright browser, which is used here only to decode the PNGs.
 
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { chromium } from '@playwright/test';
 
@@ -28,6 +35,30 @@ const codes = args;
 
 if (!outDir || codes.length === 0) {
     console.error('Usage: node scripts/tag-audit-look.mjs --out <dir> [--size w320|w1280] <code>...');
+    process.exit(1);
+}
+
+const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex');
+const drifted = [];
+for (const code of codes) {
+    const baselinePath = path.join('flag-baseline', `${code}.png`);
+    if (!existsSync(baselinePath)) {
+        drifted.push(`${code}: no image in flag-baseline/`);
+        continue;
+    }
+    const response = await fetch(`https://flagcdn.com/w40/${code}.png`);
+    if (!response.ok) {
+        drifted.push(`${code}: flagcdn answered ${response.status} for the w40 image`);
+        continue;
+    }
+    if (sha256(Buffer.from(await response.arrayBuffer())) !== sha256(readFileSync(baselinePath))) {
+        drifted.push(`${code}: flagcdn's image differs from flag-baseline/${code}.png`);
+    }
+}
+if (drifted.length > 0) {
+    console.error('FAIL: these flags are not the picture the baseline records:');
+    drifted.forEach((line) => console.error(`  - ${line}`));
+    console.error('Run or merge the image watch (scripts/sync-flag-images.mjs) before auditing them.');
     process.exit(1);
 }
 

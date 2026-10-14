@@ -43,6 +43,10 @@ jq -r '.[].shortname' flaginfo.json | sort | awk 'NR%8==6'
    node scripts/tag-audit-look.mjs --out /tmp/tranche-zoom --size w1280 bo mt
    ```
 
+   The script first checks that flagcdn still serves the picture `flag-baseline/`
+   records, and stops if not: a rejection is stamped with that baseline's hash, so a
+   changed flag is audited after the image watch's pull request is merged, not before.
+
    Read the sheets, then open coats of arms and small emblems at `w1280`; details that
    matter are often invisible at 320 px. Trust the colour count over your eye for
    colours, and the image over the count for everything else. The flag's own
