@@ -91,19 +91,22 @@ Then, on the same branch:
    watch's pull request merged meanwhile, rebasing brings in the new baseline, and the
    apply script would stamp the reviewer's decision with the hash of a picture they
    never saw. The look script cannot catch this, since flagcdn and the new baseline
-   then agree. Compare what `master` changed in `flag-baseline/` with the batch:
+   then agree. Compare what `master` changed in `flag-baseline/` with the whole
+   tranche, not only the flags that got a row (here tranche 6):
 
    ```
    git fetch origin master
    comm -12 \
      <(git diff --name-only "$(git merge-base HEAD origin/master)" origin/master -- flag-baseline/ \
          | sed -n 's|^flag-baseline/\(.*\)\.png$|\1|p' | sort) \
-     <(grep -v -e '^#' -e '^$' tag-audit/proposals.original.tsv | cut -f2 | sort -u)
+     <(jq -r '.[].shortname' flaginfo.json | sort | awk 'NR%8==6')
    ```
 
-   Every code it prints: delete that flag's rows from both proposals files, so they are
-   neither applied nor rejected, and propose them again in a later batch after looking
-   at the new picture. Then rebase onto `master` if it has moved.
+   For every code it prints, delete that flag's rows from both proposals files, if it
+   has any, so they are neither applied nor rejected. Say in the pull request that the
+   flag changed during review: its new picture is checked through the image watch's
+   own checklist, and any proposal for it comes in a later batch. Then rebase onto
+   `master` if it has moved.
 2. `node scripts/apply-tag-audit.mjs`, then run it again: the second run must change
    nothing.
 3. Update `vocabulary-rules.md` to match what survived: drop *proposed* from kept
