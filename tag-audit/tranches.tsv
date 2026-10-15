@@ -1,0 +1,265 @@
+# Which tranche of the tag audit each flag belongs to. See tag-audit/README.md.
+#
+# Frozen on purpose. Computing tranches from flaginfo.json would shift every flag after
+# a new or removed one into another tranche, so some would land in a tranche already
+# finished and never be audited, and others would be audited twice. Generated once from
+# the 254 codes in flaginfo.json, sorted, tranche n taking every 8th from position n
+# (tranche 8 takes positions 8, 16, ...), which is how tranches 1-5 were run.
+#
+# A flag added to flaginfo.json later is not listed: audit it with the next tranche and
+# add it here under that tranche's number. Never renumber an existing row.
+# Columns: name, code, tranche.
+Andorra	ad	1
+United Arab Emirates	ae	2
+Afghanistan	af	3
+Antigua and Barbuda	ag	4
+Anguilla	ai	5
+Albania	al	6
+Armenia	am	7
+Angola	ao	8
+Antarctica	aq	1
+Argentina	ar	2
+American Samoa	as	3
+Austria	at	4
+Australia	au	5
+Aruba	aw	6
+Åland Islands	ax	7
+Azerbaijan	az	8
+Bosnia and Herzegovina	ba	1
+Barbados	bb	2
+Bangladesh	bd	3
+Belgium	be	4
+Burkina Faso	bf	5
+Bulgaria	bg	6
+Bahrain	bh	7
+Burundi	bi	8
+Benin	bj	1
+Saint Barthélemy	bl	2
+Bermuda	bm	3
+Brunei	bn	4
+Bolivia	bo	5
+Bonaire	bq	6
+Brazil	br	7
+Bahamas	bs	8
+Bhutan	bt	1
+Bouvet Island	bv	2
+Botswana	bw	3
+Belarus	by	4
+Belize	bz	5
+Canada	ca	6
+Cocos (Keeling) Islands	cc	7
+Democratic Republic of the Congo	cd	8
+Central African Republic	cf	1
+Republic of the Congo	cg	2
+Switzerland	ch	3
+Côte d'Ivoire (Ivory Coast)	ci	4
+Cook Islands	ck	5
+Chile	cl	6
+Cameroon	cm	7
+China	cn	8
+Colombia	co	1
+Costa Rica	cr	2
+Cuba	cu	3
+Cape Verde	cv	4
+Curaçao	cw	5
+Christmas Island	cx	6
+Cyprus	cy	7
+Czech Republic	cz	8
+Germany	de	1
+Djibouti	dj	2
+Denmark	dk	3
+Dominica	dm	4
+Dominican Republic	do	5
+Algeria	dz	6
+Ecuador	ec	7
+Estonia	ee	8
+Egypt	eg	1
+Western Sahara	eh	2
+Eritrea	er	3
+Spain	es	4
+Ethiopia	et	5
+Finland	fi	6
+Fiji	fj	7
+Falkland Islands	fk	8
+Micronesia	fm	1
+Faroe Islands	fo	2
+France	fr	3
+Gabon	ga	4
+United Kingdom	gb	5
+England	gb-eng	6
+Northern Ireland	gb-nir	7
+Scotland	gb-sct	8
+Wales	gb-wls	1
+Grenada	gd	2
+Georgia	ge	3
+French Guiana	gf	4
+Guernsey	gg	5
+Ghana	gh	6
+Gibraltar	gi	7
+Greenland	gl	8
+Gambia	gm	1
+Guinea	gn	2
+Guadeloupe	gp	3
+Equatorial Guinea	gq	4
+Greece	gr	5
+South Georgia	gs	6
+Guatemala	gt	7
+Guam	gu	8
+Guinea-Bissau	gw	1
+Guyana	gy	2
+Hong Kong	hk	3
+Heard Island and McDonald Islands	hm	4
+Honduras	hn	5
+Croatia	hr	6
+Haiti	ht	7
+Hungary	hu	8
+Indonesia	id	1
+Ireland	ie	2
+Israel	il	3
+Isle of Man	im	4
+India	in	5
+British Indian Ocean Territory	io	6
+Iraq	iq	7
+Iran	ir	8
+Iceland	is	1
+Italy	it	2
+Jersey	je	3
+Jamaica	jm	4
+Jordan	jo	5
+Japan	jp	6
+Kenya	ke	7
+Kyrgyzstan	kg	8
+Cambodia	kh	1
+Kiribati	ki	2
+Comoros	km	3
+Saint Kitts and Nevis	kn	4
+North Korea	kp	5
+South Korea	kr	6
+Kuwait	kw	7
+Cayman Islands	ky	8
+Kazakhstan	kz	1
+Laos	la	2
+Lebanon	lb	3
+Saint Lucia	lc	4
+Liechtenstein	li	5
+Sri Lanka	lk	6
+Liberia	lr	7
+Lesotho	ls	8
+Lithuania	lt	1
+Luxembourg	lu	2
+Latvia	lv	3
+Libya	ly	4
+Morocco	ma	5
+Monaco	mc	6
+Moldova	md	7
+Montenegro	me	8
+Saint Martin	mf	1
+Madagascar	mg	2
+Marshall Islands	mh	3
+North Macedonia	mk	4
+Mali	ml	5
+Myanmar	mm	6
+Mongolia	mn	7
+Macau	mo	8
+Northern Mariana Islands	mp	1
+Martinique	mq	2
+Mauritania	mr	3
+Montserrat	ms	4
+Malta	mt	5
+Mauritius	mu	6
+Maldives	mv	7
+Malawi	mw	8
+Mexico	mx	1
+Malaysia	my	2
+Mozambique	mz	3
+Namibia	na	4
+New Caledonia	nc	5
+Niger	ne	6
+Norfolk Island	nf	7
+Nigeria	ng	8
+Nicaragua	ni	1
+Netherlands	nl	2
+Norway	no	3
+Nepal	np	4
+Nauru	nr	5
+Niue	nu	6
+New Zealand	nz	7
+Oman	om	8
+Panama	pa	1
+Peru	pe	2
+French Polynesia	pf	3
+Papua New Guinea	pg	4
+Philippines	ph	5
+Pakistan	pk	6
+Poland	pl	7
+Saint Pierre and Miquelon	pm	8
+Pitcairn Islands	pn	1
+Puerto Rico	pr	2
+Palestine	ps	3
+Portugal	pt	4
+Palau	pw	5
+Paraguay	py	6
+Qatar	qa	7
+Réunion	re	8
+Romania	ro	1
+Serbia	rs	2
+Russia	ru	3
+Rwanda	rw	4
+Saudi Arabia	sa	5
+Solomon Islands	sb	6
+Seychelles	sc	7
+Sudan	sd	8
+Sweden	se	1
+Singapore	sg	2
+Saint Helena	sh	3
+Slovenia	si	4
+Svalbard and Jan Mayen	sj	5
+Slovakia	sk	6
+Sierra Leone	sl	7
+San Marino	sm	8
+Senegal	sn	1
+Somalia	so	2
+Suriname	sr	3
+South Sudan	ss	4
+São Tomé and Príncipe	st	5
+El Salvador	sv	6
+Sint Maarten	sx	7
+Syria	sy	8
+Eswatini	sz	1
+Turks and Caicos Islands	tc	2
+Chad	td	3
+French Southern and Antarctic Lands	tf	4
+Togo	tg	5
+Thailand	th	6
+Tajikistan	tj	7
+Tokelau	tk	8
+Timor-Leste (East Timor)	tl	1
+Turkmenistan	tm	2
+Tunisia	tn	3
+Tonga	to	4
+Turkey	tr	5
+Trinidad and Tobago	tt	6
+Tuvalu	tv	7
+Taiwan	tw	8
+Tanzania	tz	1
+Ukraine	ua	2
+Uganda	ug	3
+United States Minor Outlying Islands	um	4
+United States	us	5
+Uruguay	uy	6
+Uzbekistan	uz	7
+Vatican City	va	8
+Saint Vincent and the Grenadines	vc	1
+Venezuela	ve	2
+British Virgin Islands	vg	3
+United States Virgin Islands	vi	4
+Vietnam	vn	5
+Vanuatu	vu	6
+Wallis and Futuna	wf	7
+Samoa	ws	8
+Kosovo	xk	1
+Yemen	ye	2
+Mayotte	yt	3
+South Africa	za	4
+Zambia	zm	5
+Zimbabwe	zw	6

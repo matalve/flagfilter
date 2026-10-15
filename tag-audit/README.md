@@ -15,6 +15,7 @@ and the picture disagree, the data is wrong.
 | `proposals.original.tsv` | The batch as proposed. Never edited after it is committed. |
 | `proposals.tsv` | The same rows; the reviewer deletes the ones they disagree with. |
 | `rejected.tsv` | Rejections, keyed on the flag's baseline image hash, so a declined row is not proposed again until flagcdn changes the picture. Written by the apply script. |
+| `tranches.tsv` | Which tranche each flag belongs to, frozen so that a new flag cannot shift the others. |
 | `needs-a-human.tsv` | Questions the audit will not decide. Not applied by anything. |
 | `vocabulary-rules.md` | The rules, the motifs seen so far, and the candidates for the next removal round. |
 
@@ -23,12 +24,15 @@ name; the script applies by the code and refuses a row where the two disagree.
 
 ## Running a tranche
 
-The flags are worked through in eight tranches of about 32: every 8th flag in code
-order, tranche *n* taking `NR%8 == n` (tranche 8 is `NR%8 == 0`). Find the last merged
-*Propose tranche N* pull request to see which is next, then list it:
+The flags are worked through in eight tranches of about 32, listed in
+[`tranches.tsv`](tranches.tsv). The list is frozen: deriving tranches from
+`flaginfo.json` would shift every flag after a new or removed one into another tranche.
+A flag added later is not in it; audit it with the next tranche and add it there under
+that tranche's number. Find the last merged *Propose tranche N* pull request to see
+which is next, then list it:
 
 ```
-jq -r '.[].shortname' flaginfo.json | sort | awk 'NR%8==6'
+awk -F'\t' '!/^#/ && $3==6 {print $2}' tag-audit/tranches.tsv
 ```
 
 1. **Check the rules first.** `vocabulary-rules.md` names flags as examples rather than
@@ -39,7 +43,7 @@ jq -r '.[].shortname' flaginfo.json | sort | awk 'NR%8==6'
    contact sheets of eight, and prints how much of each flag is each filter colour:
 
    ```
-   node scripts/tag-audit-look.mjs --out /tmp/tranche $(jq -r '.[].shortname' flaginfo.json | sort | awk 'NR%8==6')
+   node scripts/tag-audit-look.mjs --out /tmp/tranche $(awk -F'\t' '!/^#/ && $3==6 {print $2}' tag-audit/tranches.tsv)
    node scripts/tag-audit-look.mjs --out /tmp/tranche-zoom --size w1280 bo mt
    ```
 
@@ -100,7 +104,7 @@ Then, on the same branch:
    comm -12 \
      <(git diff --name-only "$(git merge-base HEAD origin/master)" origin/master -- flag-baseline/ \
          | sed -n 's|^flag-baseline/\(.*\)\.png$|\1|p' | sort) \
-     <(jq -r '.[].shortname' flaginfo.json | sort | awk 'NR%8==6')
+     <(awk -F'\t' '!/^#/ && $3==6 {print $2}' tag-audit/tranches.tsv | sort)
    ```
 
    For every code it prints, delete that flag's rows from both proposals files, if it
@@ -113,7 +117,7 @@ Then, on the same branch:
    flagcdn image no longer matches the baseline. Treat those flags the same way.
 
    ```
-   node scripts/tag-audit-look.mjs --out /tmp/recheck $(jq -r '.[].shortname' flaginfo.json | sort | awk 'NR%8==6')
+   node scripts/tag-audit-look.mjs --out /tmp/recheck $(awk -F'\t' '!/^#/ && $3==6 {print $2}' tag-audit/tranches.tsv)
    ```
 
    Then rebase onto `master` if it has moved.
