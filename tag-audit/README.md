@@ -60,11 +60,16 @@ jq -r '.[].shortname' flaginfo.json | sort | awk 'NR%8==6'
    - Anything genuinely undecidable goes to `needs-a-human.tsv`, not into the batch.
    - Protected tags (flag families, religions, `whitney_smith`) are never proposed; the
      apply script refuses them.
-4. **Test every alias in a browser.** The search turns a filter word into the filter
+4. **Write the batch.** Put the same rows in `proposals.original.tsv` and
+   `proposals.tsv`, under the header the previous batch used, then
+   `node scripts/apply-tag-audit.mjs --dry-run`. It must apply every row without a
+   `FAIL`. Write it before testing aliases: the test applies these files to a copy, so
+   until they hold the new rows it only re-applies the previous batch.
+5. **Test every alias in a browser.** The search turns a filter word into the filter
    and matches the rest as a substring, so reason less and measure:
 
    ```
-   rsync -a --exclude node_modules --exclude .git ./ /tmp/copy/
+   rm -rf /tmp/copy && rsync -a --exclude node_modules --exclude .git ./ /tmp/copy/
    (cd /tmp/copy && node scripts/apply-tag-audit.mjs)
    node scripts/tag-audit-search.mjs --root /tmp/copy "southern cross" "dolphins"
    ```
@@ -73,10 +78,6 @@ jq -r '.[].shortname' flaginfo.json | sort | awk 'NR%8==6'
    one the word also fits: `eagle` finds every eagle flag, and should. A match the word
    does not describe, through another flag's name or alias (`pine` also finds the
    Philippines), is worth a sentence in the pull request.
-5. **Write the batch.** Put the same rows in `proposals.original.tsv` and
-   `proposals.tsv`, under the header the previous batch used, then
-   `node scripts/apply-tag-audit.mjs --dry-run`. It must apply every row without a
-   `FAIL`.
 6. **Open the pull request**, titled *Propose tranche N of the tag audit*.
    `node scripts/tag-audit-table.mjs` prints the rows as tables with each flag's image
    and a flagfilter.com link. Put the medium-confidence rows, the ones most worth
