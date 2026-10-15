@@ -6,17 +6,27 @@ name: UI Tests
 # github-actions[bot], a queued run would sit at "waiting for approval" instead of
 # just being pointless. Skipping the trigger removes the prompt rather than
 # answering it every week.
+#
+# Markdown files and the tag audit's working files (tag-audit/) are skipped for the
+# same reason: no page loads them and no test reads them. GitHub compares the
+# whole pull request against these filters, so as soon as a PR also changes
+# something else (flaginfo.json, once an audit batch is applied) every push runs
+# the suite again. tag-audit.yml checks the audit files themselves.
 on:
   pull_request:
     branches:
       - master
     paths-ignore:
       - 'flag-baseline/**'
+      - 'tag-audit/**'
+      - '**.md'
   push:
     branches:
       - master
     paths-ignore:
       - 'flag-baseline/**'
+      - 'tag-audit/**'
+      - '**.md'
 
 jobs:
   playwright:

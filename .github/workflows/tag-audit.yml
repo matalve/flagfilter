@@ -1,0 +1,40 @@
+name: Tag audit
+
+# The tag audit's proposals (tag-audit/) are data no page or test reads, so UI
+# Tests skips a PR that only changes them. What they do need is to be applicable:
+# every row's name must match its code, every term must be a filter term, no
+# protected tag may appear, and no row may repeat a standing rejection. The dry
+# run checks exactly that and writes nothing. It also runs when the flag data, the
+# filter vocabulary or the script changes. Not on flag-baseline/: the image watch's
+# bot PRs touch only that, a run there would wait for approval, and a changed
+# baseline can only make a rejection lapse, never make the dry run fail.
+on:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'tag-audit/**'
+      - 'flaginfo.json'
+      - 'js/filter-config.js'
+      - 'js/util.js'
+      - 'scripts/apply-tag-audit.mjs'
+      - '.github/workflows/tag-audit.yml'
+
+jobs:
+  dry-run:
+    name: Proposals apply cleanly
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+
+      - name: Dry-run the tag audit proposals
+        run: node scripts/apply-tag-audit.mjs --dry-run

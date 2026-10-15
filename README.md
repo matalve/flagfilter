@@ -174,6 +174,10 @@ Translation contributions are welcome:
   A word that should be searchable but has no button — `burma`, `usa`, `carpet` — goes in the
   flag's optional `aliases` array instead; both feed the search haystack.
 - Flag images are watched for upstream changes weekly: see [Flag image watch](#flag-image-watch)
+- UI Tests and CodeQL skip a pull request that only changes Markdown files or the tag
+  audit's working files in `tag-audit/`. The *Tag audit* workflow instead dry-runs
+  `scripts/apply-tag-audit.mjs` on such a PR, so a proposals file that would not
+  apply fails before review rather than after.
 - Flag cross-links (`<a href="?q=…">` inside `symbolism`/`funfacts`, in `flaginfo.json` and every
   `i18n/flags/*.json`) are validated in CI: `node scripts/validate-flag-links.mjs`. A link that
   resolves to nothing is not a visible error — the runtime drops the anchor and keeps the text —
