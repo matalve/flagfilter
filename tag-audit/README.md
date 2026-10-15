@@ -106,8 +106,17 @@ Then, on the same branch:
    For every code it prints, delete that flag's rows from both proposals files, if it
    has any, so they are neither applied nor rejected. Say in the pull request that the
    flag changed during review: its new picture is checked through the image watch's
-   own checklist, and any proposal for it comes in a later batch. Then rebase onto
-   `master` if it has moved.
+   own checklist, and any proposal for it comes in a later batch.
+
+   That covers changes the image watch has already merged. For one it has not picked
+   up yet, run the look script on the tranche again: it stops on any flag whose
+   flagcdn image no longer matches the baseline. Treat those flags the same way.
+
+   ```
+   node scripts/tag-audit-look.mjs --out /tmp/recheck $(jq -r '.[].shortname' flaginfo.json | sort | awk 'NR%8==6')
+   ```
+
+   Then rebase onto `master` if it has moved.
 2. `node scripts/apply-tag-audit.mjs`, then run it again: the second run must change
    nothing.
 3. Update `vocabulary-rules.md` to match what survived: drop *proposed* from kept
