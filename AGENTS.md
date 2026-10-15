@@ -33,6 +33,10 @@ This file documents how AI coding assistants should work in this repository.
 - Keep PRs focused on one theme when possible.
 - Prefer iterative PRs over large bundled changes.
 - PRs are reviewed by the Codex bot; request a (re-)review by commenting `@codex review`.
+- Reply to every review comment in its own thread, including those that lead to no
+  change: say what was done and in which commit, or why nothing was. A reply posted only
+  as a general PR comment leaves the thread looking unanswered in the review view.
+  Request the re-review after the replies.
 - Squash-merge once CI is green and review feedback is resolved; head branches are
   auto-deleted on merge, so also delete the local branch afterwards.
 
@@ -164,7 +168,8 @@ This file documents how AI coding assistants should work in this repository.
     test in turn and takes minutes.
   - If everything is there, run the validators and the suite before pushing. The
     full suite takes about six minutes, and a failure caught locally is cheaper
-    than a red PR.
+    than a red PR. A change that touches only Markdown files (`*.md`) needs
+    neither: nothing they exercise has changed.
   - If not, write the test, let CI (`.github/workflows/ui-tests.yml`) validate it,
     and say that it was not run locally.
   - Either way CI is the gate. A local pass does not replace it.
