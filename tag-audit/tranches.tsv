@@ -10,6 +10,7 @@
 # audits it adds it here, under its own number; nothing else adds rows. A row is never
 # renumbered once its tranche has been proposed, except to move a flag whose picture
 # changed, or that joined, during review to the next tranche: nothing was applied for it.
+# After tranche 8 the next tranche is 9, a catch-up tranche for such late flags.
 # Columns: name, code, tranche.
 Andorra	ad	1
 United Arab Emirates	ae	2

@@ -10,7 +10,8 @@
 // of times, cannot hide a change.
 //
 // The batch names its tranche in the header of proposals.original.tsv
-// ("# Tranche: 6", or "# Tranche: none" for a removal round). Recorded are that
+// ("# Tranche: 6"; tranche 9 onwards collect flags that arrived or changed too late
+// for 1-8; "# Tranche: none" is for a removal round). Recorded are that
 // tranche's flags and every flag in the proposals files, since a batch can carry a row
 // for a flag outside its tranche: a decision carried over, or a row the reviewer adds
 // by hand. Such rows are few, so record requires more than half the proposed flags to
@@ -99,8 +100,14 @@ const mode = process.argv[2];
 if (mode === 'record') {
     if (!existsSync(ORIGINAL_PATH)) fail(`${ORIGINAL_PATH} does not exist; write the batch first.`);
     const tranche = trancheMarker(readFileSync(ORIGINAL_PATH, 'utf8'));
-    if (!/^([1-8]|none)$/.test(tranche || '')) {
-        fail(`${ORIGINAL_PATH} needs a "# Tranche: <1-8>" header line ("# Tranche: none" for a removal round).`);
+    if (!/^([1-9][0-9]*|none)$/.test(tranche || '')) {
+        fail(`${ORIGINAL_PATH} needs a "# Tranche: <number>" header line ("# Tranche: none" for a removal round).`);
+    }
+    // A batch with no rows applies nothing and rejects nothing, so no decision can be
+    // stamped against the wrong picture, and there is nothing for a recording to
+    // protect. Refusing it also means a header that no row can confirm is never used.
+    if (proposedCodes().size === 0) {
+        fail(`${ORIGINAL_PATH} has no rows. A batch with nothing to apply or reject needs no recording; see "After review" in tag-audit/README.md.`);
     }
     const unlisted = unlistedCodes();
     if (unlisted.length > 0) {
@@ -108,7 +115,7 @@ if (mode === 'record') {
     }
     const inTranche = trancheCodes(tranche);
     const proposed = [...proposedCodes()];
-    if (tranche !== 'none' && proposed.length > 0) {
+    if (tranche !== 'none') {
         const inside = proposed.filter((code) => inTranche.includes(code)).length;
         if (inside * 2 <= proposed.length) {
             fail(`only ${inside} of the ${proposed.length} proposed flags are in tranche ${tranche}; more than half must be. Is the header's tranche number right? A carried-over row can wait for a larger batch.`);

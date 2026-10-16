@@ -81,7 +81,8 @@ comm -23 <(jq -r '.[].shortname' flaginfo.json | sort) <(awk -F'\t' '!/^#/ {prin
    `node scripts/apply-tag-audit.mjs --dry-run`. It must apply every row without a
    `FAIL`. Write it before testing aliases: the test applies these files to a copy, so
    until they hold the new rows it only re-applies the previous batch. In the same
-   commit, record which picture of each flag the batch is reviewed against:
+   commit, record which picture of each flag the batch is reviewed against (a batch
+   with no rows skips this; there is nothing in it to protect):
 
    ```
    node scripts/tag-audit-baseline.mjs record
@@ -113,6 +114,10 @@ comm -23 <(jq -r '.[].shortname' flaginfo.json | sort) <(awk -F'\t' '!/^#/ {prin
 
 ## After review
 
+A batch with no rows has nothing to apply or reject, so none of the steps below
+apply to it: merge the pull request to mark the tranche done. (`record` refuses such a
+batch for the same reason.)
+
 The owner deletes rows in `proposals.tsv`, often in the GitHub editor, and says so.
 Then, on the same branch:
 
@@ -138,10 +143,9 @@ Then, on the same branch:
    `tranches.tsv`, so its new picture is audited there. Say both in the pull request.
    Its tags and prose also go through the image watch's own checklist. Look at a flag
    that joined, or one only a hand-added row names, before applying, or move a joined
-   flag to the next tranche the same way. After tranche 8 there is no next tranche:
-   such flags wait for a final catch-up batch headed `# Tranche: none`, listed in its
-   pull request. Then record again, so the check passes on what is actually being
-   applied.
+   flag to the next tranche the same way. After tranche 8 the next tranche is 9: a
+   catch-up tranche for late flags, run like any other. Then record again, so the check
+   passes on what is actually being applied.
 
    Last, run the look script on every recorded flag, the tranche and any proposal from
    outside it. The check covers changes the image watch has merged; for one it has not
