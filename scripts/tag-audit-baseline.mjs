@@ -17,6 +17,10 @@
 // be in the named tranche; anything less is what a wrong number looks like. A tie is
 // refused too, since it cannot tell the right tranche from the carried-over one.
 //
+// record also refuses while flaginfo.json has a flag that tranches.tsv does not list:
+// the frozen list cannot pick up a new flag by itself, and the batch that finds it
+// adds it under its own number.
+//
 // Run from the repository root:
 //   node scripts/tag-audit-baseline.mjs record   when writing the batch
 //   node scripts/tag-audit-baseline.mjs check    before applying it
@@ -31,6 +35,7 @@ import path from 'node:path';
 
 const RECORD_PATH = path.join('tag-audit', 'batch-baseline.tsv');
 const TRANCHES_PATH = path.join('tag-audit', 'tranches.tsv');
+const FLAG_INFO_PATH = 'flaginfo.json';
 const ORIGINAL_PATH = path.join('tag-audit', 'proposals.original.tsv');
 const PROPOSAL_PATHS = [ORIGINAL_PATH, path.join('tag-audit', 'proposals.tsv')];
 
@@ -87,6 +92,14 @@ if (mode === 'record') {
     const tranche = trancheMarker(readFileSync(ORIGINAL_PATH, 'utf8'));
     if (!/^([1-8]|none)$/.test(tranche || '')) {
         fail(`${ORIGINAL_PATH} needs a "# Tranche: <1-8>" header line ("# Tranche: none" for a removal round).`);
+    }
+    const listed = new Set(dataLines(readFileSync(TRANCHES_PATH, 'utf8')).map((line) => line.split('\t')[1]));
+    const unlisted = JSON.parse(readFileSync(FLAG_INFO_PATH, 'utf8'))
+        .map((flag) => flag.shortname)
+        .filter((code) => !listed.has(code))
+        .sort();
+    if (unlisted.length > 0) {
+        fail(`flaginfo.json has flags tranches.tsv does not list: ${unlisted.join(' ')}. Add them under this batch's tranche and audit them with it.`);
     }
     const inTranche = trancheCodes(tranche);
     const proposed = [...proposedCodes()];

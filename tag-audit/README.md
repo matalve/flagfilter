@@ -38,6 +38,14 @@ which is next, then list it:
 awk -F'\t' '!/^#/ && $3==6 {print $2}' tag-audit/tranches.tsv
 ```
 
+Before anything else, check that the list knows every flag. This prints any code in
+`flaginfo.json` that `tranches.tsv` does not list; add each one under this tranche's
+number and audit it with the rest. `record` (step 4) refuses while any is missing.
+
+```
+comm -23 <(jq -r '.[].shortname' flaginfo.json | sort) <(awk -F'\t' '!/^#/ {print $2}' tag-audit/tranches.tsv | sort)
+```
+
 1. **Check the rules first.** `vocabulary-rules.md` names flags as examples rather than
    counting them. Confirm each rule still holds across `flaginfo.json` before
    proposing anything, for example that every `bird` flag carries `animal`, and that
