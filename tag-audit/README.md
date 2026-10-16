@@ -16,6 +16,7 @@ and the picture disagree, the data is wrong.
 | `proposals.tsv` | The same rows; the reviewer deletes the ones they disagree with. |
 | `rejected.tsv` | Rejections, keyed on the flag's baseline image hash, so a declined row is not proposed again until flagcdn changes the picture. Written by the apply script. |
 | `tranches.tsv` | Which tranche each flag belongs to, frozen so that a new flag cannot shift the others. |
+| `batch-baseline.tsv` | The baseline image hash of every flag in the current batch's tranche, recorded when the batch is proposed and checked before it is applied. |
 | `needs-a-human.tsv` | Questions the audit will not decide. Not applied by anything. |
 | `vocabulary-rules.md` | The rules, the motifs seen so far, and the candidates for the next removal round. |
 
@@ -69,7 +70,15 @@ awk -F'\t' '!/^#/ && $3==6 {print $2}' tag-audit/tranches.tsv
    `proposals.tsv`, under the header the previous batch used, then
    `node scripts/apply-tag-audit.mjs --dry-run`. It must apply every row without a
    `FAIL`. Write it before testing aliases: the test applies these files to a copy, so
-   until they hold the new rows it only re-applies the previous batch.
+   until they hold the new rows it only re-applies the previous batch. In the same
+   commit, record which picture of each flag the batch is reviewed against:
+
+   ```
+   node scripts/tag-audit-baseline.mjs record 6
+   ```
+
+   This writes `batch-baseline.tsv`. The look script has just confirmed that flagcdn
+   serves what `flag-baseline/` holds, so these are the pictures the reviewer sees.
 5. **Test every alias in a browser.** The search turns a filter word into the filter
    and matches the rest as a substring, so reason less and measure:
 
@@ -94,42 +103,31 @@ awk -F'\t' '!/^#/ && $3==6 {print $2}' tag-audit/tranches.tsv
 The owner deletes rows in `proposals.tsv`, often in the GitHub editor, and says so.
 Then, on the same branch:
 
-1. Check that no flag in the batch changed upstream during the review. If the image
-   watch's pull request merged meanwhile, rebasing brings in the new baseline, and the
-   apply script would stamp the reviewer's decision with the hash of a picture they
-   never saw. The look script cannot catch this, since flagcdn and the new baseline
-   then agree. Compare what `master` changed in `flag-baseline/` with the whole
-   tranche, not only the flags that got a row (here tranche 6):
+1. Check that every flag is still the picture it was reviewed against. A rejection is
+   stamped with the hash of the flag's baseline image, so applying a decision against
+   a different picture records it wrongly. Rebase first, onto the `origin/master` that
+   `git fetch` updates (not the local `master`, which it does not move), then compare
+   with the recording made when the batch was proposed:
 
    ```
    git fetch origin master
-   comm -12 \
-     <(git diff --name-only "$(git merge-base HEAD origin/master)" origin/master -- flag-baseline/ \
-         | sed -n 's|^flag-baseline/\(.*\)\.png$|\1|p' | sort) \
-     <(awk -F'\t' '!/^#/ && $3==6 {print $2}' tag-audit/tranches.tsv | sort)
-   ```
-
-   For every code it prints, delete that flag's rows from both proposals files, if it
-   has any, so they are neither applied nor rejected. Say in the pull request that the
-   flag changed during review: its new picture is checked through the image watch's
-   own checklist, and any proposal for it comes in a later batch.
-
-   Then rebase onto the `origin/master` fetched above, not the local `master`, which
-   `git fetch` does not move, and check that the tranche's list did not gain a flag on
-   the way. Every code the last command prints joined this tranche on `master` during
-   review and was never looked at: look at it before applying, or take it out of
-   `tranches.tsv` for a later tranche.
-
-   ```
-   before=$(awk -F'\t' '!/^#/ && $3==6 {print $2}' tag-audit/tranches.tsv)
    git rebase origin/master
-   comm -13 <(echo "$before" | sort) <(awk -F'\t' '!/^#/ && $3==6 {print $2}' tag-audit/tranches.tsv | sort)
+   node scripts/tag-audit-baseline.mjs check
    ```
 
-   Last, on the rebased branch, run the look script on the tranche again. The comparison
-   above covers changes the image watch has already merged; for one it has not picked up
-   yet, this stops on any flag whose flagcdn image no longer matches the baseline. Treat
-   those flags the same way as the ones the comparison found.
+   The check reads `batch-baseline.tsv`, not git history, so earlier rebases during
+   review cannot hide anything from it. It fails on a flag whose baseline changed, a
+   flag that joined the tranche after the batch was proposed, and one that left it.
+   For a changed flag, delete its rows from both proposals files, if it has any, so
+   they are neither applied nor rejected, and say in the pull request that it changed
+   during review: its new picture goes through the image watch's checklist, and any
+   proposal for it comes in a later batch. Look at a flag that joined before applying,
+   or move it to a later tranche in `tranches.tsv`. Then record again, so the check
+   passes on what is actually being applied.
+
+   Last, run the look script on the tranche. The check covers changes the image watch
+   has merged; for one it has not picked up yet, this stops on any flag whose flagcdn
+   image no longer matches the baseline. Treat those flags as changed.
 
    ```
    node scripts/tag-audit-look.mjs --out /tmp/recheck $(awk -F'\t' '!/^#/ && $3==6 {print $2}' tag-audit/tranches.tsv)
