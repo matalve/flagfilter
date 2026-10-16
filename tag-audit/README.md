@@ -40,7 +40,9 @@ awk -F'\t' '!/^#/ && $3==6 {print $2}' tag-audit/tranches.tsv
 
 Before anything else, check that the list knows every flag. This prints any code in
 `flaginfo.json` that `tranches.tsv` does not list; add each one under this tranche's
-number and audit it with the rest. `record` (step 4) refuses while any is missing.
+number and audit it with the rest; the number is always a tranche number, never
+`none`, even when the batch is a removal round. `record` (step 4) refuses while any is
+missing.
 
 ```
 comm -23 <(jq -r '.[].shortname' flaginfo.json | sort) <(awk -F'\t' '!/^#/ {print $2}' tag-audit/tranches.tsv | sort)
@@ -81,8 +83,8 @@ comm -23 <(jq -r '.[].shortname' flaginfo.json | sort) <(awk -F'\t' '!/^#/ {prin
    `node scripts/apply-tag-audit.mjs --dry-run`. It must apply every row without a
    `FAIL`. Write it before testing aliases: the test applies these files to a copy, so
    until they hold the new rows it only re-applies the previous batch. In the same
-   commit, record which picture of each flag the batch is reviewed against (a batch
-   with no rows skips this; there is nothing in it to protect):
+   commit, record which picture of each flag the batch is reviewed against (for a
+   batch with no rows, see *After review*):
 
    ```
    node scripts/tag-audit-baseline.mjs record
@@ -114,9 +116,10 @@ comm -23 <(jq -r '.[].shortname' flaginfo.json | sort) <(awk -F'\t' '!/^#/ {prin
 
 ## After review
 
-A batch with no rows has nothing to apply or reject, so none of the steps below
-apply to it: merge the pull request to mark the tranche done. (`record` refuses such a
-batch for the same reason.)
+A batch with no rows has nothing to apply, but it is still a conclusion about the
+pictures reviewed, so it runs step 1 like any other before merging. When writing it,
+record with `node scripts/tag-audit-baseline.mjs record --empty 6`: no row can confirm
+the header's tranche, so the number is given again and must match.
 
 The owner deletes rows in `proposals.tsv`, often in the GitHub editor, and says so.
 Then, on the same branch:

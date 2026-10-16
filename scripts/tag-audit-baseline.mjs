@@ -25,6 +25,10 @@
 //
 // Run from the repository root:
 //   node scripts/tag-audit-baseline.mjs record   when writing the batch
+//   node scripts/tag-audit-baseline.mjs record --empty <n>
+//                                                for a batch with no rows: no row can
+//                                                confirm the header, so the tranche is
+//                                                given again and must match it
 //   node scripts/tag-audit-baseline.mjs check    before applying it
 //   node scripts/tag-audit-baseline.mjs codes    prints every recorded flag, for the
 //                                                final live check
@@ -75,6 +79,16 @@ function baselineHash(code) {
     return createHash('sha256').update(readFileSync(imagePath)).digest('hex').slice(0, 16);
 }
 
+// A tranche is a number. "none" belongs to removal rounds and is never a row here:
+// a flag listed under it would satisfy the completeness check and still be in no
+// tranche that is ever run.
+function trancheListProblems() {
+    return dataLines(readFileSync(TRANCHES_PATH, 'utf8'))
+        .map((line) => line.split('\t'))
+        .filter((columns) => !/^[1-9][0-9]*$/.test(columns[2] || ''))
+        .map((columns) => `${columns[1]}: tranches.tsv lists it under "${columns[2]}", which is not a tranche number`);
+}
+
 function unlistedCodes() {
     const listed = new Set(dataLines(readFileSync(TRANCHES_PATH, 'utf8')).map((line) => line.split('\t')[1]));
     return JSON.parse(readFileSync(FLAG_INFO_PATH, 'utf8'))
@@ -103,19 +117,26 @@ if (mode === 'record') {
     if (!/^([1-9][0-9]*|none)$/.test(tranche || '')) {
         fail(`${ORIGINAL_PATH} needs a "# Tranche: <number>" header line ("# Tranche: none" for a removal round).`);
     }
-    // A batch with no rows applies nothing and rejects nothing, so no decision can be
-    // stamped against the wrong picture, and there is nothing for a recording to
-    // protect. Refusing it also means a header that no row can confirm is never used.
+    const listProblems = trancheListProblems();
+    if (listProblems.length > 0) fail(listProblems.join('; '));
+    // An empty batch is still a conclusion about the pictures reviewed, so it is
+    // recorded and checked like any other. No row can confirm its header, so the
+    // tranche must be given a second time, and the two must agree.
     if (proposedCodes().size === 0) {
-        fail(`${ORIGINAL_PATH} has no rows. A batch with nothing to apply or reject needs no recording; see "After review" in tag-audit/README.md.`);
+        const index = process.argv.indexOf('--empty');
+        const confirmed = index === -1 ? undefined : process.argv[index + 1];
+        if (tranche === 'none') fail(`${ORIGINAL_PATH} is a removal round with no rows; there is nothing to record.`);
+        if (confirmed !== tranche) {
+            fail(`${ORIGINAL_PATH} has no rows, so no row confirms "# Tranche: ${tranche}". Run "record --empty ${tranche}" if that is the tranche reviewed.`);
+        }
     }
     const unlisted = unlistedCodes();
     if (unlisted.length > 0) {
-        fail(`flaginfo.json has flags tranches.tsv does not list: ${unlisted.join(' ')}. Add them under this batch's tranche and audit them with it.`);
+        fail(`flaginfo.json has flags tranches.tsv does not list: ${unlisted.join(' ')}. Add them under this batch's tranche number and audit them with it${tranche === 'none' ? ' (a removal round has none: use the next numbered tranche)' : ''}.`);
     }
     const inTranche = trancheCodes(tranche);
     const proposed = [...proposedCodes()];
-    if (tranche !== 'none') {
+    if (tranche !== 'none' && proposed.length > 0) {
         const inside = proposed.filter((code) => inTranche.includes(code)).length;
         if (inside * 2 <= proposed.length) {
             fail(`only ${inside} of the ${proposed.length} proposed flags are in tranche ${tranche}; more than half must be. Is the header's tranche number right? A carried-over row can wait for a larger batch.`);
@@ -140,7 +161,7 @@ if (mode === 'record') {
     const current = trancheCodes(tranche);
     const proposed = proposedCodes();
 
-    const problems = unlistedCodes().map((code) => `${code}: in flaginfo.json but not in tranches.tsv; list it under this tranche and look at it, or under the next`);
+    const problems = [...trancheListProblems(), ...unlistedCodes().map((code) => `${code}: in flaginfo.json but not in tranches.tsv; list it under this tranche and look at it, or under the next`)];
     for (const code of current) {
         if (!recorded.has(code)) problems.push(`${code}: joined tranche ${tranche} after the batch was proposed, and was never looked at`);
         else if (recorded.get(code).hash !== baselineHash(code)) problems.push(`${code}: its baseline image changed during review`);
