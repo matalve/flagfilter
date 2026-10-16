@@ -82,7 +82,7 @@ awk -F'\t' '!/^#/ && $3==6 {print $2}' tag-audit/tranches.tsv
    it, such as a decision carried over from an earlier batch. The look script has just
    confirmed that flagcdn serves what `flag-baseline/` holds, so these are the pictures
    the reviewer sees. The tranche number comes from the header line, and `record`
-   refuses it when fewer than half the proposed flags are in that tranche.
+   refuses it unless more than half the proposed flags are in that tranche.
 5. **Test every alias in a browser.** The search turns a filter word into the filter
    and matches the rest as a substring, so reason less and measure:
 

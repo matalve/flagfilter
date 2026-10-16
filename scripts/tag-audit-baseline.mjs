@@ -13,8 +13,9 @@
 // ("# Tranche: 6", or "# Tranche: none" for a removal round). Recorded are that
 // tranche's flags and every flag in the proposals files, since a batch can carry a row
 // for a flag outside its tranche: a decision carried over, or a row the reviewer adds
-// by hand. Such rows are few, so record refuses a batch where fewer than half the
-// proposed flags are in the named tranche; that is what a wrong number looks like.
+// by hand. Such rows are few, so record requires more than half the proposed flags to
+// be in the named tranche; anything less is what a wrong number looks like. A tie is
+// refused too, since it cannot tell the right tranche from the carried-over one.
 //
 // Run from the repository root:
 //   node scripts/tag-audit-baseline.mjs record   when writing the batch
@@ -91,8 +92,8 @@ if (mode === 'record') {
     const proposed = [...proposedCodes()];
     if (tranche !== 'none' && proposed.length > 0) {
         const inside = proposed.filter((code) => inTranche.includes(code)).length;
-        if (inside * 2 < proposed.length) {
-            fail(`only ${inside} of the ${proposed.length} proposed flags are in tranche ${tranche}. Is the header's tranche number right?`);
+        if (inside * 2 <= proposed.length) {
+            fail(`only ${inside} of the ${proposed.length} proposed flags are in tranche ${tranche}; more than half must be. Is the header's tranche number right? A carried-over row can wait for a larger batch.`);
         }
     }
     const outside = proposed.filter((code) => !inTranche.includes(code)).sort();
