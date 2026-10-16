@@ -27,8 +27,9 @@ name; the script applies by the code and refuses a row where the two disagree.
 The flags are worked through in eight tranches of about 32, listed in
 [`tranches.tsv`](tranches.tsv). The list is frozen: deriving tranches from
 `flaginfo.json` would shift every flag after a new or removed one into another tranche.
-A flag added later is not in it; audit it with the next tranche and add it there under
-that tranche's number. Find the last merged *Propose tranche N* pull request to see
+A flag added later is not in it. The tranche pull request that audits it adds it, under
+its own number; nothing else adds rows, so a tranche's list cannot change under an open
+review. Find the last merged *Propose tranche N* pull request to see
 which is next, then list it:
 
 ```
@@ -113,19 +114,25 @@ Then, on the same branch:
    flag changed during review: its new picture is checked through the image watch's
    own checklist, and any proposal for it comes in a later batch.
 
-   That covers changes the image watch has already merged. For one it has not picked
-   up yet, run the look script on the tranche again: it stops on any flag whose
-   flagcdn image no longer matches the baseline. Treat those flags the same way.
+   Then rebase onto the `origin/master` fetched above, not the local `master`, which
+   `git fetch` does not move, and check that the tranche's list did not gain a flag on
+   the way. Every code the last command prints joined this tranche on `master` during
+   review and was never looked at: look at it before applying, or take it out of
+   `tranches.tsv` for a later tranche.
+
+   ```
+   before=$(awk -F'\t' '!/^#/ && $3==6 {print $2}' tag-audit/tranches.tsv)
+   git rebase origin/master
+   comm -13 <(echo "$before" | sort) <(awk -F'\t' '!/^#/ && $3==6 {print $2}' tag-audit/tranches.tsv | sort)
+   ```
+
+   Last, on the rebased branch, run the look script on the tranche again. The comparison
+   above covers changes the image watch has already merged; for one it has not picked up
+   yet, this stops on any flag whose flagcdn image no longer matches the baseline. Treat
+   those flags the same way as the ones the comparison found.
 
    ```
    node scripts/tag-audit-look.mjs --out /tmp/recheck $(awk -F'\t' '!/^#/ && $3==6 {print $2}' tag-audit/tranches.tsv)
-   ```
-
-   Then rebase onto the `origin/master` fetched above, not the local `master`, which
-   `git fetch` does not move:
-
-   ```
-   git rebase origin/master
    ```
 2. `node scripts/apply-tag-audit.mjs`, then run it again: the second run must change
    nothing.

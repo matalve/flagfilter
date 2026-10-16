@@ -6,8 +6,9 @@
 # the 254 codes in flaginfo.json, sorted, tranche n taking every 8th from position n
 # (tranche 8 takes positions 8, 16, ...), which is how tranches 1-5 were run.
 #
-# A flag added to flaginfo.json later is not listed: audit it with the next tranche and
-# add it here under that tranche's number. Never renumber an existing row.
+# A flag added to flaginfo.json later is not listed. The tranche pull request that
+# audits it adds it here, under its own number; nothing else adds rows. Never renumber
+# a row once its tranche has been proposed.
 # Columns: name, code, tranche.
 Andorra	ad	1
 United Arab Emirates	ae	2
