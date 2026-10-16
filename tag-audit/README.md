@@ -67,20 +67,22 @@ awk -F'\t' '!/^#/ && $3==6 {print $2}' tag-audit/tranches.tsv
    - Protected tags (flag families, religions, `whitney_smith`) are never proposed; the
      apply script refuses them.
 4. **Write the batch.** Put the same rows in `proposals.original.tsv` and
-   `proposals.tsv`, under the header the previous batch used, then
+   `proposals.tsv`, under the header the previous batch used with a
+   `# Tranche: 6` line for this batch's number, then
    `node scripts/apply-tag-audit.mjs --dry-run`. It must apply every row without a
    `FAIL`. Write it before testing aliases: the test applies these files to a copy, so
    until they hold the new rows it only re-applies the previous batch. In the same
    commit, record which picture of each flag the batch is reviewed against:
 
    ```
-   node scripts/tag-audit-baseline.mjs record 6
+   node scripts/tag-audit-baseline.mjs record
    ```
 
    This writes `batch-baseline.tsv`: the tranche's flags and any proposed from outside
    it, such as a decision carried over from an earlier batch. The look script has just
    confirmed that flagcdn serves what `flag-baseline/` holds, so these are the pictures
-   the reviewer sees. It refuses a tranche number that none of the proposals belong to.
+   the reviewer sees. The tranche number comes from the header line, and `record`
+   refuses it when fewer than half the proposed flags are in that tranche.
 5. **Test every alias in a browser.** The search turns a filter word into the filter
    and matches the rest as a substring, so reason less and measure:
 
@@ -129,12 +131,13 @@ Then, on the same branch:
    `tranches.tsv`. Then record again, so the check
    passes on what is actually being applied.
 
-   Last, run the look script on the tranche. The check covers changes the image watch
-   has merged; for one it has not picked up yet, this stops on any flag whose flagcdn
-   image no longer matches the baseline. Treat those flags as changed.
+   Last, run the look script on every recorded flag, the tranche and any proposal from
+   outside it. The check covers changes the image watch has merged; for one it has not
+   picked up yet, this stops on any flag whose flagcdn image no longer matches the
+   baseline. Treat those flags as changed.
 
    ```
-   node scripts/tag-audit-look.mjs --out /tmp/recheck $(awk -F'\t' '!/^#/ && $3==6 {print $2}' tag-audit/tranches.tsv)
+   node scripts/tag-audit-look.mjs --out /tmp/recheck $(node scripts/tag-audit-baseline.mjs codes)
    ```
 2. `node scripts/apply-tag-audit.mjs`, then run it again: the second run must change
    nothing.
@@ -145,4 +148,4 @@ Then, on the same branch:
    PR, and squash-merge once CI and review are green.
 
 When enough removal candidates have gathered, run them as their own batch
-(`remove` rows), reviewed the same way.
+(`remove` rows), reviewed the same way, with `# Tranche: none` in the header.
