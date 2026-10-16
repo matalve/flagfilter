@@ -84,7 +84,8 @@ awk -F'\t' '!/^#/ && $3==6 {print $2}' tag-audit/tranches.tsv
    Philippines), is worth a sentence in the pull request.
 6. **Open the pull request**, titled *Propose tranche N of the tag audit*.
    `node scripts/tag-audit-table.mjs` prints the rows as tables with each flag's image
-   and a flagfilter.com link. Put the medium-confidence rows, the ones most worth
+   and a flagfilter.com link. Clicking the image opens flagcdn's SVG of the flag, which
+   zooms without limit, so a row about a small detail can be checked there. Put the medium-confidence rows, the ones most worth
    disagreeing with, in the description, and do not apply anything.
 
 ## After review
