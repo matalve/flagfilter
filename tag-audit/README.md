@@ -77,8 +77,10 @@ awk -F'\t' '!/^#/ && $3==6 {print $2}' tag-audit/tranches.tsv
    node scripts/tag-audit-baseline.mjs record 6
    ```
 
-   This writes `batch-baseline.tsv`. The look script has just confirmed that flagcdn
-   serves what `flag-baseline/` holds, so these are the pictures the reviewer sees.
+   This writes `batch-baseline.tsv`: the tranche's flags and any proposed from outside
+   it, such as a decision carried over from an earlier batch. The look script has just
+   confirmed that flagcdn serves what `flag-baseline/` holds, so these are the pictures
+   the reviewer sees. It refuses a tranche number that none of the proposals belong to.
 5. **Test every alias in a browser.** The search turns a filter word into the filter
    and matches the rest as a substring, so reason less and measure:
 
@@ -117,12 +119,14 @@ Then, on the same branch:
 
    The check reads `batch-baseline.tsv`, not git history, so earlier rebases during
    review cannot hide anything from it. It fails on a flag whose baseline changed, a
-   flag that joined the tranche after the batch was proposed, and one that left it.
+   flag that joined the tranche after the batch was proposed, one that left it, and a
+   proposed flag that was never recorded, typically a row the reviewer added by hand.
    For a changed flag, delete its rows from both proposals files, if it has any, so
    they are neither applied nor rejected, and say in the pull request that it changed
    during review: its new picture goes through the image watch's checklist, and any
-   proposal for it comes in a later batch. Look at a flag that joined before applying,
-   or move it to a later tranche in `tranches.tsv`. Then record again, so the check
+   proposal for it comes in a later batch. Look at a flag that joined, or one only a
+   hand-added row names, before applying, or move a joined flag to a later tranche in
+   `tranches.tsv`. Then record again, so the check
    passes on what is actually being applied.
 
    Last, run the look script on the tranche. The check covers changes the image watch
