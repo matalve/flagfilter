@@ -120,7 +120,12 @@ Then, on the same branch:
    node scripts/tag-audit-look.mjs --out /tmp/recheck $(awk -F'\t' '!/^#/ && $3==6 {print $2}' tag-audit/tranches.tsv)
    ```
 
-   Then rebase onto `master` if it has moved.
+   Then rebase onto the `origin/master` fetched above, not the local `master`, which
+   `git fetch` does not move:
+
+   ```
+   git rebase origin/master
+   ```
 2. `node scripts/apply-tag-audit.mjs`, then run it again: the second run must change
    nothing.
 3. Update `vocabulary-rules.md` to match what survived: drop *proposed* from kept
