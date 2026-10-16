@@ -97,16 +97,23 @@ function unlistedCodes() {
         .sort();
 }
 
+// Identifies the batch a recording belongs to: proposals.original.tsv is never edited
+// after it is written, so its hash names the batch.
+const batchHash = () => (existsSync(ORIGINAL_PATH)
+    ? createHash('sha256').update(readFileSync(ORIGINAL_PATH)).digest('hex').slice(0, 16)
+    : 'none');
+
 function readRecording() {
     if (!existsSync(RECORD_PATH)) fail(`${RECORD_PATH} does not exist; record it when writing the batch.`);
     const text = readFileSync(RECORD_PATH, 'utf8');
     const tranche = trancheMarker(text);
     if (!tranche) fail(`${RECORD_PATH} names no tranche.`);
+    const batch = (text.match(/^# Batch: (\S+)/m) || [])[1];
     const recorded = new Map(dataLines(text).map((line) => {
         const [code, hash, reason] = line.split('\t');
         return [code, { hash, reason }];
     }));
-    return { tranche, recorded };
+    return { tranche, batch, recorded };
 }
 
 const mode = process.argv[2];
@@ -148,6 +155,7 @@ if (mode === 'record') {
         '# against, written when the batch was proposed. Checked before applying by',
         '# scripts/tag-audit-baseline.mjs check. See tag-audit/README.md.',
         `# Tranche: ${tranche}`,
+        `# Batch: ${batchHash()} (hash of proposals.original.tsv when recorded)`,
         '# Columns: code, baseline image hash, why it is recorded (in the tranche, or',
         '# proposed from outside it).',
         ...inTranche.map((code) => `${code}\t${baselineHash(code)}\ttranche`),
@@ -157,7 +165,16 @@ if (mode === 'record') {
     console.log(`Recorded ${inTranche.length} flags of tranche ${tranche} in ${RECORD_PATH}.`);
     if (outside.length > 0) console.log(`Also recorded, proposed from outside the tranche: ${outside.join(' ')}`);
 } else if (mode === 'check') {
-    const { tranche, recorded } = readRecording();
+    const { tranche, batch, recorded } = readRecording();
+    // batch-baseline.tsv survives from batch to batch, so a stale one would check an
+    // earlier batch, even one with the same tranche number. It must be this batch's.
+    if (batch !== batchHash()) {
+        fail(`${RECORD_PATH} was not recorded for the current ${ORIGINAL_PATH}. Record this batch first.`);
+    }
+    const batchTranche = existsSync(ORIGINAL_PATH) ? trancheMarker(readFileSync(ORIGINAL_PATH, 'utf8')) : undefined;
+    if (batchTranche !== tranche) {
+        fail(`${RECORD_PATH} records tranche ${tranche}, but ${ORIGINAL_PATH} is headed "# Tranche: ${batchTranche}". Record this batch first.`);
+    }
     const current = trancheCodes(tranche);
     const proposed = proposedCodes();
 
