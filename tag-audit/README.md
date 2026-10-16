@@ -131,7 +131,8 @@ Then, on the same branch:
    The check reads `batch-baseline.tsv`, not git history, so earlier rebases during
    review cannot hide anything from it. It fails on a flag whose baseline changed, a
    flag that joined the tranche after the batch was proposed, one that left it, and a
-   proposed flag that was never recorded, typically a row the reviewer added by hand.
+   proposed flag that was never recorded, typically a row the reviewer added by hand,
+   and a flag added to `flaginfo.json` that `tranches.tsv` does not list yet.
    For a changed flag, delete its rows from both proposals files, if it has any, so
    they are neither applied nor rejected, and move it to the next tranche in
    `tranches.tsv`, so its new picture is audited there. Say both in the pull request.

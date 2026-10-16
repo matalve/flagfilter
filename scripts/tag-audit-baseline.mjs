@@ -17,9 +17,10 @@
 // be in the named tranche; anything less is what a wrong number looks like. A tie is
 // refused too, since it cannot tell the right tranche from the carried-over one.
 //
-// record also refuses while flaginfo.json has a flag that tranches.tsv does not list:
-// the frozen list cannot pick up a new flag by itself, and the batch that finds it
-// adds it under its own number.
+// record and check both refuse while flaginfo.json has a flag that tranches.tsv does
+// not list: the frozen list cannot pick up a new flag by itself, and the batch that
+// finds it adds it under its own number (or the next tranche's, if it arrives during
+// review).
 //
 // Run from the repository root:
 //   node scripts/tag-audit-baseline.mjs record   when writing the batch
@@ -73,6 +74,14 @@ function baselineHash(code) {
     return createHash('sha256').update(readFileSync(imagePath)).digest('hex').slice(0, 16);
 }
 
+function unlistedCodes() {
+    const listed = new Set(dataLines(readFileSync(TRANCHES_PATH, 'utf8')).map((line) => line.split('\t')[1]));
+    return JSON.parse(readFileSync(FLAG_INFO_PATH, 'utf8'))
+        .map((flag) => flag.shortname)
+        .filter((code) => !listed.has(code))
+        .sort();
+}
+
 function readRecording() {
     if (!existsSync(RECORD_PATH)) fail(`${RECORD_PATH} does not exist; record it when writing the batch.`);
     const text = readFileSync(RECORD_PATH, 'utf8');
@@ -93,11 +102,7 @@ if (mode === 'record') {
     if (!/^([1-8]|none)$/.test(tranche || '')) {
         fail(`${ORIGINAL_PATH} needs a "# Tranche: <1-8>" header line ("# Tranche: none" for a removal round).`);
     }
-    const listed = new Set(dataLines(readFileSync(TRANCHES_PATH, 'utf8')).map((line) => line.split('\t')[1]));
-    const unlisted = JSON.parse(readFileSync(FLAG_INFO_PATH, 'utf8'))
-        .map((flag) => flag.shortname)
-        .filter((code) => !listed.has(code))
-        .sort();
+    const unlisted = unlistedCodes();
     if (unlisted.length > 0) {
         fail(`flaginfo.json has flags tranches.tsv does not list: ${unlisted.join(' ')}. Add them under this batch's tranche and audit them with it.`);
     }
@@ -128,7 +133,7 @@ if (mode === 'record') {
     const current = trancheCodes(tranche);
     const proposed = proposedCodes();
 
-    const problems = [];
+    const problems = unlistedCodes().map((code) => `${code}: in flaginfo.json but not in tranches.tsv; list it under this tranche and look at it, or under the next`);
     for (const code of current) {
         if (!recorded.has(code)) problems.push(`${code}: joined tranche ${tranche} after the batch was proposed, and was never looked at`);
         else if (recorded.get(code).hash !== baselineHash(code)) problems.push(`${code}: its baseline image changed during review`);
