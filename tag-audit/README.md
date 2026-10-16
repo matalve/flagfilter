@@ -30,7 +30,8 @@ The flags are worked through in eight tranches of about 32, listed in
 `flaginfo.json` would shift every flag after a new or removed one into another tranche.
 A flag added later is not in it. The tranche pull request that audits it adds it, under
 its own number; nothing else adds rows, so a tranche's list cannot change under an open
-review. Find the last merged *Propose tranche N* pull request to see
+review. The one change to an existing row is moving a flag whose picture changed, or
+that joined, during review to the next tranche (see *After review*). Find the last merged *Propose tranche N* pull request to see
 which is next, then list it:
 
 ```
@@ -124,12 +125,14 @@ Then, on the same branch:
    flag that joined the tranche after the batch was proposed, one that left it, and a
    proposed flag that was never recorded, typically a row the reviewer added by hand.
    For a changed flag, delete its rows from both proposals files, if it has any, so
-   they are neither applied nor rejected, and say in the pull request that it changed
-   during review: its new picture goes through the image watch's checklist, and any
-   proposal for it comes in a later batch. Look at a flag that joined, or one only a
-   hand-added row names, before applying, or move a joined flag to a later tranche in
-   `tranches.tsv`. Then record again, so the check
-   passes on what is actually being applied.
+   they are neither applied nor rejected, and move it to the next tranche in
+   `tranches.tsv`, so its new picture is audited there. Say both in the pull request.
+   Its tags and prose also go through the image watch's own checklist. Look at a flag
+   that joined, or one only a hand-added row names, before applying, or move a joined
+   flag to the next tranche the same way. After tranche 8 there is no next tranche:
+   such flags wait for a final catch-up batch headed `# Tranche: none`, listed in its
+   pull request. Then record again, so the check passes on what is actually being
+   applied.
 
    Last, run the look script on every recorded flag, the tranche and any proposal from
    outside it. The check covers changes the image watch has merged; for one it has not

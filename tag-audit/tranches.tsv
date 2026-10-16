@@ -7,8 +7,9 @@
 # (tranche 8 takes positions 8, 16, ...), which is how tranches 1-5 were run.
 #
 # A flag added to flaginfo.json later is not listed. The tranche pull request that
-# audits it adds it here, under its own number; nothing else adds rows. Never renumber
-# a row once its tranche has been proposed.
+# audits it adds it here, under its own number; nothing else adds rows. A row is never
+# renumbered once its tranche has been proposed, except to move a flag whose picture
+# changed, or that joined, during review to the next tranche: nothing was applied for it.
 # Columns: name, code, tranche.
 Andorra	ad	1
 United Arab Emirates	ae	2
