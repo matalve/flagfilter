@@ -1,0 +1,39 @@
+# The flag-baseline/ picture each flag of the current tag audit batch was reviewed
+# against, written when the batch was proposed. Checked before applying by
+# scripts/tag-audit-baseline.mjs check. See tag-audit/README.md.
+# Tranche: 6
+# Batch: a55d5872fa8cc82e (hash of proposals.original.tsv when recorded)
+# Columns: code, baseline image hash, why it is recorded (in the tranche, or
+# proposed from outside it).
+al	eb1abace71ac54d5	tranche
+aw	24ccf982bcf79d8c	tranche
+bg	e7f6afef8cd01e93	tranche
+bq	8349926c964318fe	tranche
+ca	c239959c36c5316f	tranche
+cl	9337f13abffd762d	tranche
+cx	1e36c12791cba80b	tranche
+dz	c4e1138e086bd510	tranche
+fi	7239c8caa2b1c5c3	tranche
+gb-eng	38417e0f89fd3902	tranche
+gh	c2e1449a279c4e45	tranche
+gs	2d4ece8686acd123	tranche
+hr	5cd7795f670dc14e	tranche
+io	4b81b83c2d6bf2d7	tranche
+jp	ec7131f162be04e0	tranche
+kr	e4da4c40c5f0a6e6	tranche
+lk	d7af5328a6ca68a0	tranche
+mc	da217add5385930b	tranche
+mm	08abff58abf4da5e	tranche
+mu	6095f4fc432be368	tranche
+ne	6b26d38af32c1f5f	tranche
+nu	8ab41dcbbe0fe116	tranche
+pk	5a4a56aea914da4b	tranche
+py	3a02b307563e4f49	tranche
+sb	dc44a48f46a1fa21	tranche
+sk	89c568a4f6c418e5	tranche
+sv	5289eb1a565ccafe	tranche
+th	f91dfd0057a2e7a4	tranche
+tt	29a6fb1b225a6773	tranche
+uy	8fb1094bdfa019ef	tranche
+vu	09cd5cbffd7b3aec	tranche
+zw	533332a0dbbd24b2	tranche

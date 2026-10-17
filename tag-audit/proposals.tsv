@@ -1,5 +1,6 @@
-# Tag audit proposals — tranche 5: every 8th flag by code at offset 4 (32 of 254).
+# Tag audit proposals — tranche 6: every 8th flag by code at offset 5 (32 of 254).
 # Additions and aliases; removals are their own round. See #174.
+# Tranche: 6
 #
 # HOW TO REVIEW: delete the rows you disagree with. What survives is applied.
 # Nothing else to fill in; the deletions are themselves the record of your call.
@@ -16,35 +17,35 @@
 # Read the name; the code beside it is what the script applies to, and a row whose
 # name and code disagree is refused. To see a flag: https://flagfilter.com/?q=<name>
 # Columns: name, code, tag or alias, add|remove|alias, confidence, why.
-Anguilla	ai	shield	add	high	The three dolphins are on a white shield.
-Belize	bz	shield	add	high	The figures, tree and tools stand around a shield showing tools and a ship.
-Dominican Republic	do	shield	add	high	The Bible, cross and flags are on a shield.
-Dominican Republic	do	vegetation	add	high	A laurel branch and a palm frond frame the shield.
-Bolivia	bo	flag	add	high	Bolivian flags flank the arms, the way standards flank Ecuador's.
-Bolivia	bo	weapon	add	high	Rifles, cannons and an axe stand behind the oval.
-Bolivia	bo	tool	add	high	The axe is a tool as well as a weapon, by the axe rule.
-Bolivia	bo	bird	add	high	A condor stands on top of the arms.
-Bolivia	bo	animal	add	high	The condor, and an alpaca inside the oval.
-Bolivia	bo	text	add	high	BOLIVIA is written on the oval.
-Bolivia	bo	name	add	high	The oval spells out the country's name.
-Bolivia	bo	star	add	high	Ten stars run round the bottom of the oval.
-Bolivia	bo	mountain	add	high	The oval shows Cerro Rico, the silver mountain of Potosí.
-Bolivia	bo	vegetation	add	high	A breadfruit tree and a wheat sheaf inside the oval, and laurel and olive branches outside.
-Bolivia	bo	hat	add	medium	A red Phrygian cap is raised on the left of the arms.
-Bolivia	bo	sun	add	medium	A sun hangs in the sky above the mountain, drawn as a small ring.
-Bolivia	bo	building	add	medium	A small chapel with a tower stands on the lower hill: the Chapel of the Sacred Heart of Jesus.
-
-
-
-Australia	au	southern cross	alias	high	The five stars on the fly are the Southern Cross; the search reads cross as the filter and matches the rest against this alias.
-United Kingdom	gb	union jack	alias	high	What most people call the flag.
-United States	us	stars and stripes	alias	high	What most people call the flag.
-India	in	wheel	alias	high	The emblem is a navy blue wheel.
-India	in	ashoka chakra	alias	high	The wheel's name; searching chakra matches it too.
-Saudi Arabia	sa	sword	alias	high	A sword lies under the shahada.
-Zambia	zm	eagle	alias	high	The emblem is an African fish eagle.
-Malta	mt	george cross	alias	high	The emblem is the George Cross; the search reads cross as the filter and matches the rest.
-Anguilla	ai	dolphin	alias	medium	The emblem is three dolphins. They sit on a shield, where Jersey's lions got no alias; the one-line test favours them.
-Anguilla	ai	dolphins	alias	medium	Plural of the three dolphins, per the plural rule.
-Morocco	ma	pentagram	alias	medium	The emblem is an interlaced green pentagram.
-Ethiopia	et	pentagram	alias	medium	The emblem is a yellow pentagram on a blue disc.
+Zimbabwe	zw	triangle	add	high	The white triangle at the hoist carries the star and the bird.
+Slovakia	sk	shield	add	high	The double cross and the three hills are on a red shield.
+El Salvador	sv	triangle	add	high	The volcanoes, sea and cap are framed by a golden triangle, as in Nicaragua's emblem, which carries triangle.
+El Salvador	sv	waves	add	high	The sea at the foot of the volcanoes is drawn as wavy blue and white lines, as in Nicaragua's emblem, which carries waves.
+Christmas Island	cx	circle	add	high	The map of the island sits on a yellow disc.
+South Georgia	gs	bird	add	high	A macaroni penguin supports the shield on the right.
+South Georgia	gs	star	add	high	Two gold stars from James Cook's arms are on the shield beside the lion.
+South Georgia	gs	hat	add	medium	A knight's helmet sits on the shield under the reindeer. Headwear, as Andorra's mitre is; it is part of the arms.
+Bonaire	bq	circle	add	medium	The compass is a closed black ring round the red star, a ring like Kyrgyzstan's.
+Niger	ne	sun	add	medium	The orange disc is the sun, per the flag's own symbolism. A shape that reads as two things gets both, like Palau's disc.
+British Indian Ocean Territory	io	green	add	medium	The palm tree is a plain green emblem on the field, like Barbados's black trident; it is 4% of the flag.
+British Indian Ocean Territory	io	horizontal	add	medium	The field is six wavy blue and white horizontal stripes. They are waves, but also a set of parallel stripes plain to see.
+Albania	al	eagle	alias	high	The emblem is a black double-headed eagle.
+Albania	al	double-headed eagle	alias	high	What the emblem is called; the search drops the hyphen in both the alias and the query.
+Canada	ca	maple leaf	alias	high	The emblem is a red maple leaf; the vocabulary rules name it as an alias that passes.
+Sri Lanka	lk	lion	alias	high	The emblem is a gold lion, standing alone on the maroon panel rather than in a shield.
+Sri Lanka	lk	sword	alias	high	The lion holds a sword in its raised paw.
+Croatia	hr	checkerboard	alias	high	The red and white checkerboard shield is what the flag is known by.
+Croatia	hr	chessboard	alias	high	The word the flag's own symbolism uses for the pattern.
+South Korea	kr	yin yang	alias	high	The red and blue taegeuk is what most people take for a yin-yang.
+South Korea	kr	taegeuk	alias	high	The emblem's name, as the flag's own symbolism gives it.
+British Indian Ocean Territory	io	palm tree	alias	high	A palm tree stands on the waves; searching palm matches it too.
+Vanuatu	vu	tusk	alias	high	The emblem is a curled boar's tusk.
+Vanuatu	vu	boar's tusk	alias	medium	What the emblem is; the search turns the apostrophe into a space.
+Vanuatu	vu	boars tusk	alias	medium	The same written without the apostrophe, which the first does not match.
+England	gb-eng	st george's cross	alias	medium	What the flag is called; the search reads cross as the filter and matches the rest.
+England	gb-eng	st georges cross	alias	medium	The same without the apostrophe, which the first does not match.
+England	gb-eng	saint george's cross	alias	medium	The same with saint written out.
+England	gb-eng	saint georges cross	alias	medium	The same, saint written out and no apostrophe.
+Slovakia	sk	double cross	alias	medium	The emblem is a white double cross; the search reads cross as the filter and matches double.
+Bonaire	bq	compass	alias	medium	The black ring with four points is a compass, per the flag's own symbolism.
+Japan	jp	hinomaru	alias	medium	What the flag is called in Japan, as union jack is for the United Kingdom.
