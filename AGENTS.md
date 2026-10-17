@@ -15,6 +15,9 @@ This file documents how AI coding assistants should work in this repository.
   changed an image. Never reference them from the page and never edit them by hand —
   they are meaningful precisely because they record what upstream served the last time
   a human agreed to it. See the Flag image watch section in README.
+- The tag audit (#174) runs in batches that a human reviews before anything is applied.
+  How to run one is in `tag-audit/README.md`; what the tags mean is in
+  `tag-audit/vocabulary-rules.md`.
 
 ## Branching and git workflow
 
