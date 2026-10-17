@@ -28,7 +28,7 @@ South Georgia	gs	hat	add	medium	A knight's helmet sits on the shield under the r
 Bonaire	bq	circle	add	medium	The compass is a closed black ring round the red star, a ring like Kyrgyzstan's.
 Niger	ne	sun	add	medium	The orange disc is the sun, per the flag's own symbolism. A shape that reads as two things gets both, like Palau's disc.
 British Indian Ocean Territory	io	green	add	medium	The palm tree is a plain green emblem on the field, like Barbados's black trident; it is 4% of the flag.
-British Indian Ocean Territory	io	horizontal	add	medium	The field is six wavy blue and white horizontal stripes. They are waves, but also a set of parallel stripes plain to see.
+British Indian Ocean Territory	io	horizontal	add	medium	The field is wavy blue and white horizontal stripes. They are waves, but also a set of parallel stripes plain to see.
 Albania	al	eagle	alias	high	The emblem is a black double-headed eagle.
 Albania	al	double-headed eagle	alias	high	What the emblem is called; the search drops the hyphen in both the alias and the query.
 Canada	ca	maple leaf	alias	high	The emblem is a red maple leaf; the vocabulary rules name it as an alias that passes.
