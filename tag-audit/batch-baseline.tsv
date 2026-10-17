@@ -2,7 +2,7 @@
 # against, written when the batch was proposed. Checked before applying by
 # scripts/tag-audit-baseline.mjs check. See tag-audit/README.md.
 # Tranche: 6
-# Batch: a55d5872fa8cc82e (hash of proposals.original.tsv when recorded)
+# Batch: bba0140aac069ccc (hash of proposals.original.tsv when recorded)
 # Columns: code, baseline image hash, why it is recorded (in the tranche, or
 # proposed from outside it).
 al	eb1abace71ac54d5	tranche
