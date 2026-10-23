@@ -7,6 +7,10 @@ Flagfilter is a Cloudflare Pages app for exploring, searching, and filtering nat
 - Production runs on Cloudflare Pages
 - Static frontend files live in the repository root
 - The issue reporting endpoint is `functions/api/report-issue.js`
+- `functions/index.js` serves `/`. For `?lang=es` it rewrites the page head (title,
+  description, canonical, `og:*`, `<html lang>`) from `i18n/ui/es.json`, so search engines
+  and link previews see the Spanish page as its own page before any script runs. Every
+  other request gets `index.html` untouched (#243)
 - `404.html` is served with status 404 for any path that matches no file. Without it, Pages
   treats the project as a single-page app and answers every unknown path with `index.html`
   and status 200 (#232)
@@ -105,6 +109,12 @@ URL query behavior:
 - every active filter must match: `?q=star moon` shows flags with a star *and* a moon, not either
 - remaining query terms stay in the search field
 - `Reset` clears both the UI state and the `q` parameter
+
+Search engines: `/` and `/?lang=es` are the two indexable URLs. Both are listed in
+`sitemap.xml` and linked with `hreflang` in `index.html`. The English title and description
+in `index.html` must equal `page_title` and `meta_description` in `i18n/ui/en.json`; a test
+checks it. The Spanish ones come from `es.json` through `functions/index.js`, which the test
+suite cannot exercise: check it on the deployed site.
 
 Inline modal links like `?q=france` are resolved against base flag data so they keep working in translated views.
 

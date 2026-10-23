@@ -1012,6 +1012,57 @@ test.describe('Flagfilter UI flows', () => {
     expect(requested.filter((path) => path === '/i18n/ui/en.json')).toHaveLength(1);
   });
 
+  test('the static head matches the English catalog and declares both languages', async ({ page }) => {
+    // Crawlers read the file as served, before any script runs, so check the raw
+    // markup rather than the live DOM. The ?lang=es rewrite in functions/index.js
+    // runs only on Cloudflare and is not exercised here. See #243.
+    const en = JSON.parse(readFileSync('i18n/ui/en.json', 'utf8'));
+    const html = await (await page.request.get('/index.html')).text();
+    await page.goto('about:blank');
+    const head = await page.evaluate((source) => {
+      const doc = new DOMParser().parseFromString(source, 'text/html');
+      const attr = (selector, name) => doc.querySelector(selector)?.getAttribute(name);
+      return {
+        title: doc.title,
+        description: attr('meta[name="description"]', 'content'),
+        ogTitle: attr('meta[property="og:title"]', 'content'),
+        ogDescription: attr('meta[property="og:description"]', 'content'),
+        canonical: attr('link[rel="canonical"]', 'href'),
+        alternates: [...doc.querySelectorAll('link[rel="alternate"][hreflang]')]
+          .map((link) => `${link.hreflang} ${link.href}`),
+        jsonLd: [...doc.querySelectorAll('script[type="application/ld+json"]')]
+          .map((script) => script.textContent)
+      };
+    }, html);
+
+    expect(head.title).toBe(en.page_title);
+    expect(head.ogTitle).toBe(en.page_title);
+    expect(head.description).toBe(en.meta_description);
+    expect(head.ogDescription).toBe(en.meta_description);
+    expect(head.canonical).toBe('https://flagfilter.com/');
+    expect(head.alternates).toEqual([
+      'en https://flagfilter.com/',
+      'es https://flagfilter.com/?lang=es',
+      'x-default https://flagfilter.com/'
+    ]);
+    expect(head.jsonLd).toHaveLength(1);
+    expect(JSON.parse(head.jsonLd[0])).toMatchObject({ '@type': 'WebSite', name: 'Flagfilter' });
+  });
+
+  test('the title and description follow the selected language', async ({ page }) => {
+    const es = JSON.parse(readFileSync('i18n/ui/es.json', 'utf8'));
+    const en = JSON.parse(readFileSync('i18n/ui/en.json', 'utf8'));
+    const description = page.locator('meta[name="description"]');
+
+    await gotoApp(page, 'es');
+    await expect(page).toHaveTitle(es.page_title);
+    await expect(description).toHaveAttribute('content', es.meta_description);
+
+    await gotoApp(page, 'en');
+    await expect(page).toHaveTitle(en.page_title);
+    await expect(description).toHaveAttribute('content', en.meta_description);
+  });
+
   test('the not-found page is self-contained and links back in both languages', async ({ page }) => {
     // Cloudflare Pages serves 404.html for any unmatched path, at any depth, so
     // it must not depend on relative URLs or on the app's scripts. The test

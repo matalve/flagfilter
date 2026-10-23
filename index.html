@@ -3,13 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flagfilter - Filtering and Exploring Flags</title>
-    <meta name="description" content="Explore and filter flags from around the world. Search by country name, filter by colors and continents, and discover interesting flag facts.">
-    <meta name="keywords" content="flags, world flags, flag filter, flag explorer, flag colors, flag continents, flag search">
+    <!-- Title and description mirror page_title and meta_description in
+         i18n/ui/en.json; a test holds them equal. For ?lang=es, functions/index.js
+         rewrites them, the canonical, og:* and <html lang> at the edge, because
+         search engines and link scrapers read this markup before any script runs
+         (#243). -->
+    <title>Flagfilter – Identify Any Flag by Its Colors and Symbols</title>
+    <meta name="description" content="Seen a flag you can't place? Pick its colors, symbols and continent, and Flagfilter narrows the world's flags down to a match.">
     <meta name="author" content="Flagfilter">
-    <meta property="og:title" content="Flagfilter - Filtering and Exploring Flags">
-    <meta property="og:description" content="Explore and filter flags from around the world. Search by country name, filter by colors and continents, and discover interesting flag facts.">
+    <meta property="og:title" content="Flagfilter – Identify Any Flag by Its Colors and Symbols">
+    <meta property="og:description" content="Seen a flag you can't place? Pick its colors, symbols and continent, and Flagfilter narrows the world's flags down to a match.">
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Flagfilter">
+    <meta property="og:locale" content="en_US">
     <meta property="og:url" content="https://flagfilter.com/">
     <!-- Absolute URL on purpose: most scrapers (Slack, iMessage, LinkedIn) will not
          resolve a relative og:image, which is why the original never rendered. -->
@@ -17,6 +23,20 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="627">
     <link rel="canonical" href="https://flagfilter.com/">
+    <link rel="alternate" hreflang="en" href="https://flagfilter.com/">
+    <link rel="alternate" hreflang="es" href="https://flagfilter.com/?lang=es">
+    <link rel="alternate" hreflang="x-default" href="https://flagfilter.com/">
+    <!-- Gives search results the site name "Flagfilter" rather than the domain.
+         A data block, not a script: the browser never runs it. -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Flagfilter",
+            "url": "https://flagfilter.com/",
+            "inLanguage": ["en", "es"]
+        }
+    </script>
     <!-- Icon set restored from a40dbfd^ — it was deleted wholesale by the April 2025
          rework, not missing by design. /favicon.ico is deliberately a real file even
          though nothing links to it: browsers that ignore the <link> tags request it
