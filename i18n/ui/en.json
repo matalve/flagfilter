@@ -1,5 +1,6 @@
 {
-  "page_title": "Flagfilter - Filtering and Exploring Flags",
+  "page_title": "Flagfilter – Identify any flag by its colors and symbols",
+  "meta_description": "Seen a flag you can't place? Pick its colors, symbols and continent, and Flagfilter narrows the world's flags down to a match.",
   "search_placeholder": "Search flags by country name...",
   "search_input_aria": "Search flags by country name",
   "reset_button": "Reset",

@@ -82,6 +82,9 @@ async function loadTranslations(language) {
 function applyStaticTranslations() {
     document.documentElement.lang = state.currentLanguage;
     document.title = t('page_title');
+    // Crawlers get the localized description from functions/index.js; this keeps
+    // the live page in step after a language switch.
+    document.querySelector('meta[name="description"]')?.setAttribute('content', t('meta_description'));
     const searchInput = document.getElementById('searchInput');
     const resetFiltersButton = document.getElementById('resetFiltersButton');
     searchInput.placeholder = t('search_placeholder');
