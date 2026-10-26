@@ -204,15 +204,29 @@ An alias in a batch that has not been applied yet is marked *proposed*, since th
 review can delete it. When a batch is applied, update its entries here to match what
 survived.
 
-- **eagle**: American Samoa, the US Virgin Islands and Zambia (aliases), Serbia
-  (tranche 2, no alias). Mexico, Egypt, Albania and others are still to come.
-- **Southern Cross**: Australia (alias). New Zealand, Samoa and Brazil are still to
-  come; Papua New Guinea (tranche 4) has no alias yet.
-- **sword**: Saudi Arabia (alias). Sri Lanka and Oman are still to come.
+- **eagle**: American Samoa, the US Virgin Islands and Zambia (aliases), Albania
+  (tranche 6, proposed, with `double-headed eagle`), Serbia (tranche 2, no alias).
+  Mexico, Egypt and others are still to come.
+- **Southern Cross**: Australia (alias). Christmas Island (tranche 6) cannot have one:
+  the search reads "cross" in "southern cross" as the cross filter, so the alias only
+  finds a flag that also carries `cross`, and Australia does only through its Union
+  Jack. Papua New Guinea (tranche 4) is in the same position. New Zealand, Samoa and
+  Brazil are still to come. A Southern Cross filter term would be the fix.
+- **sword**: Saudi Arabia (alias), Sri Lanka (tranche 6, proposed). Oman is still to
+  come.
 - **pentagram**: Morocco and Ethiopia (aliases).
-- **lion**: Jersey, Bermuda, Spain, and Sri Lanka still to come. So far always inside
-  a shield, so not proposed as an alias.
+- **lion**: Sri Lanka (tranche 6, proposed): the lion is the whole emblem there. Jersey,
+  Bermuda, Spain and South Georgia carry theirs inside a shield, so no alias. A search
+  for lion also finds the Isle of Man, through its `triskelion` alias.
 - **flower**: Hong Kong (alias). Macau's lotus is still to come.
+- **cross by name**: Malta's `george cross`, and England's `st george's cross` and
+  `double cross` on Slovakia (tranche 6, proposed). The search reads "cross" as the
+  filter and matches the rest, so these work because both flags carry `cross`. The
+  search turns an apostrophe into a space, so a possessive needs a second alias
+  without it (`st georges cross`, `boars tusk`).
+- Also proposed in tranche 6: `maple leaf` (Canada), `checkerboard` and `chessboard`
+  (Croatia), `yin yang` and `taegeuk` (South Korea), `palm tree` (British Indian
+  Ocean Territory), `tusk` (Vanuatu), `compass` (Bonaire) and `hinomaru` (Japan).
 
 ## Candidates for the removal pass
 
