@@ -36,16 +36,59 @@ function updateQueryInUrl(query) {
     window.history.replaceState({}, '', url);
 }
 
+function spellingsOf(text) {
+    const normalized = normalizeQueryValue(text);
+    return normalized === '' ? [] : [normalized, normalized.replace(/\s+/g, '')];
+}
+
 // Every filter value with the spellings ?q= accepts for it, built once from the
 // config rather than read off the buttons on every query.
-const QUERY_ENTRIES = FILTER_GROUPS.flatMap((group) => group.values.map((value) => {
-    const normalizedValue = normalizeQueryValue(value);
-    return {
-        key: group.key,
-        value,
-        aliases: new Set([normalizedValue, normalizedValue.replace(/\s+/g, '')])
-    };
-}));
+const BASE_QUERY_ENTRIES = FILTER_GROUPS.flatMap((group) => group.values.map((value) => ({
+    key: group.key,
+    value,
+    aliases: new Set(spellingsOf(value))
+})));
+
+// The same entries plus each button's label in the current UI language, so
+// ?q=estrella means the Star filter in Spanish. Only the current language: a
+// Spanish word is not a filter for someone searching in English. Cached
+// against the translations object, which loadTranslations replaces on every
+// language switch, so the list follows the language without a hook. See #221.
+let localizedQueryEntries = { source: null, entries: BASE_QUERY_ENTRIES };
+
+function queryEntries() {
+    if (localizedQueryEntries.source !== state.uiTranslations) {
+        localizedQueryEntries = {
+            source: state.uiTranslations,
+            entries: BASE_QUERY_ENTRIES.map((entry) => ({
+                ...entry,
+                aliases: new Set([
+                    ...entry.aliases,
+                    ...spellingsOf(state.uiTranslations[`${entry.key}_${entry.value}`])
+                ])
+            }))
+        };
+    }
+    return localizedQueryEntries.entries;
+}
+
+// Normalized flag names, localized and English. A label can be a word in a
+// name: "verde" in "Cabo Verde", whose flag has no green. A run of query words
+// that spells a whole name stays search text instead of becoming a filter.
+// Cached against state.flags, which rebuildFlags replaces on a language switch.
+let flagNameCache = { source: null, names: new Set() };
+
+function flagNames() {
+    if (flagNameCache.source !== state.flags) {
+        flagNameCache = {
+            source: state.flags,
+            names: new Set([...state.flags, ...state.baseFlagInfo]
+                .map((flag) => normalizeQueryValue(flag.name))
+                .filter(Boolean))
+        };
+    }
+    return flagNameCache.names;
+}
 
 export function createEmptyFilters() {
     return Object.fromEntries(FILTER_GROUPS.map((group) => [group.key, new Set()]));
@@ -75,20 +118,36 @@ function syncQueryParamFromState() {
 }
 
 // Split a raw ?q= string into the filter values it names and the words left
-// over as search text. Longest phrase first, so a multi-word filter value wins
-// over its individual words.
+// over as search text. A flag name wins over the filters inside it, then the
+// longest phrase first, so a multi-word filter value wins over its own words.
 function resolveQuery(rawQuery) {
     const rawWords = rawQuery.trim().split(/\s+/).filter(Boolean);
     const filters = createEmptyFilters();
     const matched = new Set();
     const remainingSearchTerms = [];
+    const entries = queryEntries();
+    const names = flagNames();
 
     for (let index = 0; index < rawWords.length;) {
+        let nameEnd = 0;
         let matchedEntry = null;
 
         for (let end = rawWords.length; end > index; end -= 1) {
+            if (names.has(normalizeQueryValue(rawWords.slice(index, end).join(' ')))) {
+                nameEnd = end;
+                break;
+            }
+        }
+
+        if (nameEnd > 0) {
+            remainingSearchTerms.push(...rawWords.slice(index, nameEnd));
+            index = nameEnd;
+            continue;
+        }
+
+        for (let end = rawWords.length; end > index; end -= 1) {
             const phrase = normalizeQueryValue(rawWords.slice(index, end).join(' '));
-            const entry = QUERY_ENTRIES.find((candidate) => (
+            const entry = entries.find((candidate) => (
                 !matched.has(candidate) && candidate.aliases.has(phrase)
             ));
 

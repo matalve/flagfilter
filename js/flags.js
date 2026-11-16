@@ -9,7 +9,23 @@ import {
     normalizeQueryValue
 } from './util.js';
 import { t } from './translate.js';
-import { COLOR_VALUES } from './filter-config.js';
+import { COLOR_VALUES, FILTER_GROUPS } from './filter-config.js';
+
+// tag -> i18n key of its button label, for the values a flag carries in tags.
+// Continent is left out: it is not a tag, and a continent name in the haystack
+// would make "africa" match every African flag by substring.
+const TAG_LABEL_KEYS = new Map(FILTER_GROUPS
+    .filter((group) => group.field !== 'continent')
+    .flatMap((group) => group.values.map((value) => [value, `${group.key}_${value}`])));
+
+// The button labels of a flag's tags in the current UI language, so typing what
+// a button says finds the flags it would filter to. English already has the
+// tags themselves in the haystack. See #221.
+function localizedTagLabels(tags) {
+    return tags
+        .map((tag) => state.uiTranslations[TAG_LABEL_KEYS.get(tag)])
+        .filter(hasTextValue);
+}
 
 // Looked up on demand rather than captured at import time; see #143.
 function flagGrid() {
@@ -54,7 +70,8 @@ export function rebuildFlags() {
         // can never match across a field boundary (e.g. "spain es"). See #144
         // and #151. Aliases are the spellings the name does not give you —
         // "burma", "usa", "great britain" — and the search-only keywords of #184.
-        const searchText = [info.name || '', baseInfo.name || '', code, ...tags, ...(info.aliases || [])]
+        // Tag labels are the button texts in the UI language (#221).
+        const searchText = [info.name || '', baseInfo.name || '', code, ...tags, ...localizedTagLabels(tags), ...(info.aliases || [])]
             .map(normalizeQueryValue)
             .join(String.fromCharCode(0));
 
