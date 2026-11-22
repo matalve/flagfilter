@@ -8,6 +8,7 @@ import { initLanguagePicker } from './js/language-picker.js';
 import { fetchFlags, startFlagInfoRequest } from './js/flags.js';
 import {
     applyInitialQueryFromUrl,
+    applyQueryAsFilterState,
     debounceSearch,
     initializeFilterSections,
     resetAllFilters,
@@ -107,6 +108,20 @@ infoModal._closeHandler = () => closeModal(infoModal);
 
 closeBtn.addEventListener('click', () => {
     closeModal(infoModal);
+});
+
+// The help examples keep a real ?q= href for a new tab; a plain click applies
+// them in place and closes the modal, like the filter links in flag prose.
+// Delegated, because the help content is rebuilt on every language switch.
+infoModal.addEventListener('click', (event) => {
+    const example = event.target.closest('.help-example');
+    if (!example || event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) {
+        return;
+    }
+
+    event.preventDefault();
+    closeModal(infoModal);
+    applyQueryAsFilterState(example.dataset.query);
 });
 
 window.addEventListener('click', (event) => {

@@ -1,6 +1,7 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { test, expect } from '@playwright/test';
 import { FILTER_GROUPS, FILTER_KEYS } from '../../js/filter-config.js';
+import { HELP_EXAMPLES } from '../../js/help.js';
 
 async function gotoApp(page, language = 'en', query = '') {
   const params = new URLSearchParams({ lang: language });
@@ -783,6 +784,42 @@ test.describe('Flagfilter UI flows', () => {
 
     await page.locator('#infoButton').click();
     await expect(page.locator('#infoModal .close-btn use[href="#i-xmark"]')).toHaveCount(1);
+  });
+
+  test('every help example is made of filter values', () => {
+    // The examples are ?q= strings; a renamed filter would leave one that
+    // silently matches nothing. See #41.
+    const values = new Set(FILTER_GROUPS.flatMap((group) => group.values));
+    for (const example of HELP_EXAMPLES) {
+      expect(example.filter((value) => !values.has(value))).toEqual([]);
+    }
+  });
+
+  test('help examples apply their filters in place and close the modal', async ({ page }) => {
+    for (const example of HELP_EXAMPLES) {
+      await page.locator('#infoButton').click();
+      await expect(page.locator('#infoModalTitle')).toHaveText('Help and about');
+
+      await page.locator(`#infoModal .help-example[data-query="${example.join(' ')}"]`).click();
+
+      await expect(page.locator('#infoModal')).toBeHidden();
+      await expect(page.locator('.filter-btn.active')).toHaveCount(example.length);
+      await expect(page.locator('#searchInput')).toHaveValue('');
+      await expect(page.locator('.flag-card').first()).toBeVisible();
+      // The URL lists filters in config order, not in the example's order.
+      await expect.poll(async () => new URL(await page.url()).searchParams.get('q').split(' ').sort())
+        .toEqual([...example].sort());
+    }
+  });
+
+  test('help is shown in the UI language', async ({ page }) => {
+    await gotoApp(page, 'es');
+    await page.locator('#infoButton').click();
+
+    await expect(page.locator('#infoModalTitle')).toHaveText('Ayuda e información');
+    await expect(page.locator('#infoModal .help-content h3').first()).toHaveText('Buscar');
+    await expect(page.locator('#infoModal .help-example[data-query="star moon"]')).toHaveText('Estrella + Luna');
+    await expect(page.locator('#infoModal .about-content h3')).toHaveText('Acerca de Flagfilter');
   });
 
   test('modal close button closes the flag modal', async ({ page }) => {

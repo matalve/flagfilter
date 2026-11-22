@@ -22,6 +22,7 @@ Flagfilter is a Cloudflare Pages app for exploring, searching, and filtering nat
 - Filter by color and other visual attributes
 - Flag detail modal with inline related-flag links, and a collapsed list of the flag's filter tags and search words
 - English and Spanish UI
+- Help and about modal (the `?` button) on search, filters, flag order and links, with clickable examples
 - Report issues to Telegram, GitHub Issues, or both
 - Floating scroll-to-top button once the page is scrolled down
 
