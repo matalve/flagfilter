@@ -345,6 +345,62 @@ test.describe('Flagfilter UI flows', () => {
     await expect(page.locator('.flag-card h3')).toHaveText(['Suecia']);
   });
 
+  test('q accepts a filter by its label in the UI language and writes it back in English', async ({ page }) => {
+    // The button says "Estrella", so typing that is the Star filter. The URL
+    // keeps the English value, so shared links work in every language. See #221.
+    await gotoApp(page, 'es', 'estrella');
+
+    await expect(page.locator('.filter-btn[data-symbol="star"]')).toHaveClass(/active/);
+    await expect(page.locator('#searchInput')).toHaveValue('');
+    await expect.poll(async () => new URL(await page.url()).searchParams.get('q')).toBe('star');
+  });
+
+  test('q accepts multi-word and accented labels in the UI language', async ({ page }) => {
+    await gotoApp(page, 'es', 'america del sur vegetacion');
+
+    await expect(page.locator('.filter-btn[data-continent="southAmerica"]')).toHaveClass(/active/);
+    await expect(page.locator('.filter-btn[data-motive="vegetation"]')).toHaveClass(/active/);
+    await expect(page.locator('#searchInput')).toHaveValue('');
+  });
+
+  test('q does not read another language\'s labels as filters', async ({ page }) => {
+    // No flag matches, so gotoApp's wait for a card would never end.
+    await page.goto('/?lang=en&q=estrella');
+
+    await expect(page.locator('#searchInput')).toHaveValue('estrella');
+    await expect(page.locator('.filter-btn.active')).toHaveCount(0);
+    await expect(page.locator('.flag-card')).toHaveCount(0);
+  });
+
+  test('q keeps a flag name whole when a label is one of its words', async ({ page }) => {
+    // "Verde" is the Spanish green button and a word in Cabo Verde, whose flag
+    // has no green. Read as a filter, the country's own name found nothing.
+    await gotoApp(page, 'es', 'cabo verde');
+
+    await expect(page.locator('.filter-btn.active')).toHaveCount(0);
+    await expect(page.locator('.flag-card h3')).toHaveText(['Cabo Verde']);
+  });
+
+  test('q keeps an English flag name whole when a filter value is one of its words', async ({ page }) => {
+    await gotoApp(page, 'en', 'south africa');
+
+    await expect(page.locator('.filter-btn.active')).toHaveCount(0);
+    await expect(page.locator('.flag-card h3')).toHaveText(['South Africa']);
+    await expect.poll(async () => new URL(await page.url()).searchParams.get('q')).toBe('south africa');
+  });
+
+  test('Spanish UI search box finds flags by a button label', async ({ page }) => {
+    // Typing does not parse filters; it searches each flag's haystack, which
+    // now carries its tags' labels in the UI language. See #221.
+    const flags = JSON.parse(readFileSync('flaginfo.json', 'utf8'));
+    const starCount = flags.filter((flag) => flag.tags.includes('star')).length;
+    expect(starCount).toBeGreaterThan(0);
+
+    await gotoApp(page, 'es');
+    await page.locator('#searchInput').fill('estrella');
+    await expect(page.locator('.flag-card')).toHaveCount(starCount);
+  });
+
   test('q keeps accented text in the search field', async ({ page }) => {
     await gotoApp(page, 'es', 'españa');
 

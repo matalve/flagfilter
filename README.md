@@ -17,7 +17,8 @@ Flagfilter is a Cloudflare Pages app for exploring, searching, and filtering nat
 
 ## Main features
 
-- Search by country name, tag, or alternate name (`burma`, `usa`, `cote divoire`)
+- Search by country name, tag, or alternate name (`burma`, `usa`, `cote divoire`); a tag can also
+  be typed as its button reads in the UI language (`estrella` in Spanish)
 - Filter by color and other visual attributes
 - Flag detail modal with inline related-flag links, and a collapsed list of the flag's filter tags and search words
 - English and Spanish UI
@@ -106,6 +107,10 @@ URL query behavior:
 
 - `?q=...` can prefill the search field on load
 - recognized filter terms such as `red`, `europe`, or `cross` activate the matching filter buttons
+- so do the button labels of the current UI language (`?lang=es&q=estrella` is the Star filter);
+  the URL is rewritten with the English values, so a shared link works in every language
+- a run of words that spells a whole flag name stays search text: `cabo verde` finds Cape Verde
+  rather than applying the green filter to `cabo`
 - every active filter must match: `?q=star moon` shows flags with a star *and* a moon, not either
 - remaining query terms stay in the search field
 - `Reset` clears both the UI state and the `q` parameter
