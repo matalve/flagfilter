@@ -337,6 +337,27 @@ header::before {
     text-decoration: underline;
 }
 
+/* Help sections in the info modal (#41). The examples share the look of the
+   flag modal's tag chips. */
+.info-content h3 {
+    margin: 1.5rem 0 0.4rem;
+    font-size: 1.05rem;
+}
+
+.info-content .help-content section:first-child h3 {
+    margin-top: 0;
+}
+
+.info-content .help-content p {
+    margin-bottom: 0.6rem;
+}
+
+.about-content {
+    margin-top: 1.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
 /* Dark mode adjustments */
 .dark-mode .info-button {
     background: rgba(255, 255, 255, 0.1);
@@ -1298,7 +1319,8 @@ h1 {
     min-width: 0;
 }
 
-.flag-tag-list {
+.flag-tag-list,
+.help-examples {
     display: flex;
     flex-wrap: wrap;
     gap: 0.35rem;
@@ -1307,7 +1329,8 @@ h1 {
     list-style: none;
 }
 
-.flag-tag {
+.flag-tag,
+.info-content .help-example {
     display: inline-flex;
     padding: 0.15rem 0.65rem;
     font-size: 0.85rem;
@@ -1318,11 +1341,15 @@ h1 {
     transition: background-color 0.2s ease;
 }
 
-.flag-tag:hover {
+.flag-tag:hover,
+.info-content .help-example:hover {
+    color: var(--text-color);
+    text-decoration: none;
     background-color: var(--filter-btn-hover);
 }
 
-.flag-tag:focus-visible {
+.flag-tag:focus-visible,
+.info-content .help-example:focus-visible {
     outline: 3px solid rgba(30, 128, 128, 0.35);
     outline-offset: 2px;
 }

@@ -13,6 +13,7 @@ import { t } from './translate.js';
 import { rebuildFlags } from './flags.js';
 import { applyFilters } from './filters.js';
 import { FILTER_GROUPS } from './filter-config.js';
+import { buildHelpContent } from './help.js';
 
 // Looked up inside the functions that use them rather than at import time; see
 // the note in filters.js and #143.
@@ -136,14 +137,19 @@ function applyStaticTranslations() {
         ? `<p><strong>${t('translation_disclaimer_label')}:</strong> ${t('translation_disclaimer_es')}</p>`
         : '';
     closeBtn.setAttribute('aria-label', t('close'));
-    infoTitle.textContent = t('about_flagfilter');
-    infoContent.innerHTML = `
+    infoTitle.textContent = t('help_and_about');
+    // Help first, then the about part that used to be the whole modal. See #41.
+    const about = document.createElement('section');
+    about.className = 'about-content';
+    about.innerHTML = `
+        <h3>${t('about_flagfilter')}</h3>
         <p><strong>${t('contact_label')}:</strong> <a href="mailto:info@flagfilter.com">info@flagfilter.com</a></p>
         <p><strong>${t('source_code_label')}:</strong> <a href="https://github.com/matalve/flagfilter" target="_blank" rel="noopener noreferrer">GitHub</a></p>
         <p><strong>${t('flags_provided_by_label')}:</strong> <a href="https://flagpedia.net/" target="_blank" rel="noopener noreferrer">Flagpedia</a></p>
         <p><strong>${t('help_translate_label')}:</strong> <a href="https://poeditor.com/join/project/P7N0JxV3wI" target="_blank" rel="noopener noreferrer">${t('help_translate_link_text')}</a></p>
         ${translationDisclaimer}
     `;
+    infoContent.replaceChildren(buildHelpContent(), about);
 }
 
 export async function switchLanguage(language) {
